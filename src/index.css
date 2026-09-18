@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --forest-primary: #093326;
+    --forest-dark: #052018;
+    --forest-accent: #0e4432;
+    --gold-primary: #d4973b;
+    --gold-light: #f5cf82;
+    --gold-dark: #b87e1f;
+  }
+
+  body {
+    font-family: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1e293b;
+    background-color: #f8faf8;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-crest {
+    font-family: 'Cinzel', Georgia, serif;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f2;
+}
+::-webkit-scrollbar-thumb {
+  background: #0e4432;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4973b;
+}
+
+/* Smooth glass effect */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.dark-glass {
+  background: rgba(9, 51, 38, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 151, 59, 0.2);
+}
