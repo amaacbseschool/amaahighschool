@@ -45,7 +45,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenAdmission, onExplo
     },
     {
       image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1920&auto=format&fit=crop',
-      badge: 'World-Class 15-Acre Green Campus',
+      badge: 'World-Class 15-Acre Modern Campus',
       titlePrefix: 'Holistic Growth,',
       titleAccent: 'Limitless Horizons',
       subtitle: 'State-of-the-art sports complex, robotics research centres, and digital classrooms designed to unlock every child’s highest potential.',
@@ -96,7 +96,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenAdmission, onExplo
   ];
 
   return (
-    <div className="relative bg-[#07261d] overflow-hidden">
+    <div className="relative bg-[#4f000b] overflow-hidden">
       {/* Main Hero Viewport */}
       <div className="relative min-h-[560px] md:min-h-[640px] lg:min-h-[700px] flex items-center">
         {/* Background Slide Carousel */}
@@ -112,11 +112,11 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenAdmission, onExplo
             <img
               src={slides[currentSlide].image}
               alt="AMAA High School Campus"
-              className="w-full h-full object-cover object-center filter brightness-[0.45] contrast-105"
+              className="w-full h-full object-cover object-center filter brightness-[0.45] contrast-110"
             />
-            {/* Elegant deep green gradients matching reference */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#06241a]/95 via-[#093326]/75 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#06241a] via-transparent to-[#06241a]/60" />
+            {/* Elegant deep crimson and ruby gradients */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#4f000b]/95 via-[#780016]/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#4f000b] via-transparent to-[#4f000b]/60" />
           </motion.div>
         </AnimatePresence>
 
@@ -129,9 +129,9 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenAdmission, onExplo
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="inline-flex items-center gap-2 bg-emerald-950/70 backdrop-blur-md border border-amber-400/40 text-amber-300 text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-full mb-6 shadow-lg"
+              className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/40 text-white text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-full mb-6 shadow-lg"
             >
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
               <span>{slides[currentSlide].badge}</span>
             </motion.div>
 
@@ -144,7 +144,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenAdmission, onExplo
               className="font-crest text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12]"
             >
               {slides[currentSlide].titlePrefix}{' '}
-              <span className="block mt-1 text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 italic font-serif">
+              <span className="block mt-1 text-transparent bg-clip-text bg-gradient-to-r from-red-100 via-white to-amber-200 italic font-serif">
                 {slides[currentSlide].titleAccent}
               </span>
             </motion.h1>
@@ -155,7 +155,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenAdmission, onExplo
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-6 text-emerald-100/90 text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl font-normal"
+              className="mt-6 text-red-50/95 text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl font-normal"
             >
               {slides[currentSlide].subtitle}
             </motion.p>
@@ -170,7 +170,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenAdmission, onExplo
             >
               <button
                 onClick={onOpenAdmission}
-                className="group relative inline-flex items-center gap-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold px-7 py-3.5 rounded-lg shadow-xl hover:shadow-amber-500/25 transition-all duration-300 transform hover:-translate-y-0.5 text-xs sm:text-sm tracking-wider uppercase"
+                className="group relative inline-flex items-center gap-2.5 bg-white hover:bg-red-50 text-[#ba181b] font-black px-7 py-3.5 rounded-lg shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 text-xs sm:text-sm tracking-wider uppercase border border-white"
               >
                 <span>ADMISSION OPEN</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -178,10 +178,10 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenAdmission, onExplo
 
               <button
                 onClick={onExploreCampus}
-                className="group inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-semibold px-7 py-3.5 rounded-lg border border-white/30 hover:border-white/60 transition-all duration-300 text-xs sm:text-sm tracking-wider uppercase"
+                className="group inline-flex items-center gap-2.5 bg-[#ba181b]/40 hover:bg-[#ba181b]/70 backdrop-blur-md text-white font-bold px-7 py-3.5 rounded-lg border border-white/40 hover:border-white/80 transition-all duration-300 text-xs sm:text-sm tracking-wider uppercase"
               >
                 <span>EXPLORE CAMPUS</span>
-                <ArrowRight className="w-4 h-4 text-amber-400 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-4 h-4 text-white transition-transform group-hover:translate-x-1" />
               </button>
             </motion.div>
           </div>
@@ -212,16 +212,16 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenAdmission, onExplo
               onClick={() => setCurrentSlide(idx)}
               aria-label={`Go to slide ${idx + 1}`}
               className={`h-2 transition-all duration-300 rounded-full ${
-                currentSlide === idx ? 'w-8 bg-amber-400' : 'w-2 bg-white/40 hover:bg-white/70'
+                currentSlide === idx ? 'w-8 bg-white' : 'w-2 bg-white/40 hover:bg-white/70'
               }`}
             />
           ))}
         </div>
       </div>
 
-      {/* Floating 5 Key Pillars Highlight Bar (Exact match to reference design) */}
+      {/* Floating 5 Key Pillars Highlight Bar */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 -mt-10 sm:-mt-12 mb-6">
-        <div className="bg-white rounded-2xl shadow-2xl border border-slate-200/80 p-3 sm:p-5">
+        <div className="bg-white rounded-2xl shadow-2xl border border-red-100 p-3 sm:p-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 lg:gap-0 lg:divide-x lg:divide-slate-200">
             {featurePillars.map((pill, idx) => {
               const Icon = pill.icon;
@@ -230,13 +230,13 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenAdmission, onExplo
                   key={idx}
                   whileHover={{ y: -3 }}
                   transition={{ duration: 0.2 }}
-                  className="flex items-center gap-3.5 p-3 sm:p-4 rounded-xl hover:bg-[#f4f8f5] transition-colors"
+                  className="flex items-center gap-3.5 p-3 sm:p-4 rounded-xl hover:bg-red-50/60 transition-colors group cursor-pointer"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#093326]/10 text-[#093326] flex items-center justify-center shrink-0 border border-[#093326]/15 group-hover:bg-[#093326] group-hover:text-amber-300 transition-colors">
-                    <Icon className="w-6 h-6 text-[#093326]" />
+                  <div className="w-12 h-12 rounded-xl bg-red-50 text-[#ba181b] flex items-center justify-center shrink-0 border border-red-200 group-hover:bg-[#ba181b] group-hover:text-white transition-all shadow-sm">
+                    <Icon className="w-6 h-6 text-[#ba181b] group-hover:text-white transition-colors" />
                   </div>
                   <div>
-                    <h4 className="text-xs sm:text-sm font-bold text-slate-800 leading-tight">
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-800 leading-tight group-hover:text-[#ba181b] transition-colors">
                       {pill.title}
                     </h4>
                     <p className="text-[11px] text-slate-500 mt-1 leading-snug">

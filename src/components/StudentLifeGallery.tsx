@@ -60,15 +60,15 @@ export const StudentLifeGallery: React.FC = () => {
       : galleryItems.filter((item) => item.category === activeCategory);
 
   return (
-    <section id="gallery" className="py-20 lg:py-28 bg-white relative">
+    <section id="gallery" className="py-20 lg:py-28 bg-[#fffbfa] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header with View Gallery CTA on right (matching reference) */}
+        {/* Section Header with View Gallery CTA on right */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <span className="text-xs font-extrabold tracking-widest text-[#b87e1f] uppercase">
+            <span className="text-xs font-extrabold tracking-widest text-[#ba181b] uppercase">
               STUDENT LIFE
             </span>
-            <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-bold text-[#093326] tracking-tight mt-1">
+            <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-bold text-[#660708] tracking-tight mt-1">
               Learning Beyond Classrooms
             </h2>
             <p className="text-slate-600 text-sm sm:text-base max-w-xl mt-2">
@@ -78,15 +78,15 @@ export const StudentLifeGallery: React.FC = () => {
 
           <div className="flex items-center gap-3">
             {/* Category Pills */}
-            <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
+            <div className="flex items-center gap-1.5 bg-white border border-red-100 p-1 rounded-xl shadow-sm">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                     activeCategory === cat
-                      ? 'bg-[#093326] text-amber-300 shadow-sm'
-                      : 'text-slate-600 hover:text-slate-900'
+                      ? 'bg-[#ba181b] text-white shadow'
+                      : 'text-slate-600 hover:text-[#ba181b]'
                   }`}
                 >
                   {cat}
@@ -96,15 +96,15 @@ export const StudentLifeGallery: React.FC = () => {
 
             <button
               onClick={() => setSelectedPhoto(galleryItems[0])}
-              className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold px-4 py-2 rounded-xl border border-slate-300 text-xs uppercase tracking-wider shadow-sm transition-all"
+              className="inline-flex items-center gap-2 bg-white hover:bg-red-50 text-slate-800 hover:text-[#ba181b] font-bold px-4 py-2 rounded-xl border border-slate-200 text-xs uppercase tracking-wider shadow-sm transition-all"
             >
               <span>VIEW GALLERY</span>
-              <ArrowRight className="w-3.5 h-3.5 text-[#d4973b]" />
+              <ArrowRight className="w-3.5 h-3.5 text-[#ba181b]" />
             </button>
           </div>
         </div>
 
-        {/* 5-Photo Strip Grid matching reference */}
+        {/* 5-Photo Strip Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {filteredItems.map((item, idx) => (
             <motion.div
@@ -115,7 +115,7 @@ export const StudentLifeGallery: React.FC = () => {
               transition={{ duration: 0.4, delay: idx * 0.08 }}
               whileHover={{ y: -5 }}
               onClick={() => setSelectedPhoto(item)}
-              className="group relative h-64 sm:h-72 rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 bg-slate-900"
+              className="group relative h-64 sm:h-72 rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 bg-slate-900 border-2 border-transparent hover:border-[#ba181b]"
             >
               <img
                 src={item.image}
@@ -125,7 +125,7 @@ export const StudentLifeGallery: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 
               {/* Category Pill Tag */}
-              <div className="absolute top-3 left-3 bg-[#093326]/90 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-amber-400/30">
+              <div className="absolute top-3 left-3 bg-[#ba181b]/95 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-white/30 shadow">
                 {item.category}
               </div>
 
@@ -136,7 +136,7 @@ export const StudentLifeGallery: React.FC = () => {
 
               {/* Text info bottom */}
               <div className="absolute bottom-3 left-3 right-3 text-white">
-                <h4 className="text-xs font-bold leading-snug group-hover:text-amber-300 transition-colors">
+                <h4 className="text-xs font-bold leading-snug group-hover:text-red-300 transition-colors">
                   {item.title}
                 </h4>
                 <p className="text-[10px] text-slate-300 line-clamp-1 mt-0.5">
@@ -156,11 +156,11 @@ export const StudentLifeGallery: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="bg-slate-900 text-white rounded-2xl max-w-2xl w-full overflow-hidden border border-slate-700 relative shadow-2xl"
+              className="bg-slate-900 text-white rounded-2xl max-w-2xl w-full overflow-hidden border border-red-900/50 relative shadow-2xl"
             >
               <button
                 onClick={() => setSelectedPhoto(null)}
-                className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/60 text-white hover:bg-black/90 flex items-center justify-center transition-colors"
+                className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/60 text-white hover:bg-red-600 flex items-center justify-center transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -174,7 +174,7 @@ export const StudentLifeGallery: React.FC = () => {
               </div>
 
               <div className="p-6 bg-slate-900 border-t border-slate-800">
-                <div className="flex items-center gap-2 text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">
+                <div className="flex items-center gap-2 text-xs font-bold text-red-400 uppercase tracking-wider mb-1">
                   <Sparkles className="w-4 h-4" />
                   <span>{selectedPhoto.category} Spotlight</span>
                 </div>

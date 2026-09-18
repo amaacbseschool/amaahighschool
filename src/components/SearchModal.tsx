@@ -49,7 +49,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
             placeholder="Search classes, facilities, admissions, bus routes..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 text-sm rounded-xl border border-slate-300 focus:border-[#093326] focus:ring-1 focus:ring-[#093326] outline-none"
+            className="w-full pl-10 pr-4 py-3 text-sm rounded-xl border border-slate-300 focus:border-[#ba181b] focus:ring-1 focus:ring-[#ba181b] outline-none"
           />
         </div>
 
@@ -65,20 +65,20 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
                     onClose();
                     onSelectAction(item.href);
                   }}
-                  className="flex items-center justify-between p-3 rounded-xl hover:bg-[#f4f8f5] transition-colors group"
+                  className="flex items-center justify-between p-3 rounded-xl hover:bg-red-50/70 transition-colors group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-[#093326]/10 text-[#093326] flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-lg bg-red-50 text-[#ba181b] flex items-center justify-center">
                       <Icon className="w-4 h-4" />
                     </div>
                     <div>
-                      <h5 className="text-xs font-bold text-slate-800 group-hover:text-[#093326]">
+                      <h5 className="text-xs font-bold text-slate-800 group-hover:text-[#ba181b]">
                         {item.title}
                       </h5>
-                      <span className="text-[10px] text-[#b87e1f] font-semibold">{item.category}</span>
+                      <span className="text-[10px] text-[#ba181b] font-semibold">{item.category}</span>
                     </div>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#093326] group-hover:translate-x-1 transition-all" />
+                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#ba181b] group-hover:translate-x-1 transition-all" />
                 </a>
               );
             })

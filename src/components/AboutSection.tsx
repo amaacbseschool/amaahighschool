@@ -42,7 +42,7 @@ export const AboutSection: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 lg:py-28 bg-[#f8faf8] relative overflow-hidden">
+    <section id="about" className="py-20 lg:py-28 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Campus & Student Showcase Image */}
@@ -64,7 +64,7 @@ export const AboutSection: React.FC = () => {
               {/* Floating Badge on Image */}
               <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-white/80 shadow-lg flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-[#093326] text-amber-300 flex items-center justify-center font-crest font-bold text-lg">
+                  <div className="w-10 h-10 rounded-lg bg-[#ba181b] text-white flex items-center justify-center font-crest font-bold text-lg shadow">
                     A
                   </div>
                   <div>
@@ -72,15 +72,15 @@ export const AboutSection: React.FC = () => {
                     <p className="text-[11px] text-slate-500">Center of Intellectual & Moral Rigor</p>
                   </div>
                 </div>
-                <span className="text-[11px] font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-1 rounded-full">
+                <span className="text-[11px] font-bold text-[#ba181b] bg-red-50 border border-red-200 px-2.5 py-1 rounded-full">
                   Est. 2004
                 </span>
               </div>
             </div>
 
             {/* Decorative background accent blob */}
-            <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-[#d4973b]/15 rounded-full filter blur-2xl -z-10" />
-            <div className="absolute -top-6 -left-6 w-48 h-48 bg-[#093326]/10 rounded-full filter blur-2xl -z-10" />
+            <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-red-500/10 rounded-full filter blur-2xl -z-10" />
+            <div className="absolute -top-6 -left-6 w-48 h-48 bg-[#ba181b]/10 rounded-full filter blur-2xl -z-10" />
           </motion.div>
 
           {/* Right Column: Narrative & Stats */}
@@ -92,10 +92,10 @@ export const AboutSection: React.FC = () => {
             className="lg:col-span-6 space-y-6"
           >
             <div>
-              <span className="text-xs font-extrabold tracking-widest text-[#b87e1f] uppercase">
+              <span className="text-xs font-extrabold tracking-widest text-[#ba181b] uppercase">
                 WELCOME TO
               </span>
-              <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-bold text-[#093326] tracking-tight mt-1.5">
+              <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-bold text-[#660708] tracking-tight mt-1.5">
                 AMAA High School
               </h2>
             </div>
@@ -120,11 +120,11 @@ export const AboutSection: React.FC = () => {
                 return (
                   <div
                     key={idx}
-                    className="p-3 bg-white rounded-xl border border-slate-200/70 shadow-sm hover:shadow-md transition-shadow"
+                    className="p-3 bg-white rounded-xl border border-red-100 shadow-sm hover:shadow-md hover:border-red-300 transition-all"
                   >
-                    <div className="flex items-center gap-1.5 text-[#093326] mb-1">
-                      <Icon className="w-4 h-4 text-[#d4973b]" />
-                      <span className="text-lg sm:text-xl font-black text-[#093326] tracking-tight">
+                    <div className="flex items-center gap-1.5 text-[#ba181b] mb-1">
+                      <Icon className="w-4 h-4 text-[#ba181b]" />
+                      <span className="text-lg sm:text-xl font-black text-[#660708] tracking-tight">
                         {stat.value}
                       </span>
                     </div>
@@ -135,11 +135,11 @@ export const AboutSection: React.FC = () => {
               })}
             </div>
 
-            {/* CTA Button matching reference */}
+            {/* CTA Button */}
             <div className="pt-2">
               <button
                 onClick={() => setModalOpen(true)}
-                className="group inline-flex items-center gap-3 bg-[#093326] hover:bg-[#0e4432] text-amber-300 hover:text-amber-200 font-bold px-6 py-3.5 rounded-lg shadow-lg hover:shadow-[#093326]/20 transition-all duration-300 text-xs tracking-wider uppercase"
+                className="group inline-flex items-center gap-3 bg-[#ba181b] hover:bg-[#a4161a] text-white font-bold px-6 py-3.5 rounded-lg shadow-lg hover:shadow-red-500/25 transition-all duration-300 text-xs tracking-wider uppercase"
               >
                 <span>READ MORE ABOUT US</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -160,12 +160,12 @@ export const AboutSection: React.FC = () => {
               <X className="w-5 h-5" />
             </button>
 
-            <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 uppercase tracking-wider mb-2">
-              <GraduationCap className="w-5 h-5 text-amber-500" />
+            <div className="flex items-center gap-2 text-xs font-bold text-[#ba181b] uppercase tracking-wider mb-2">
+              <GraduationCap className="w-5 h-5 text-[#ba181b]" />
               <span>Our Vision & Legacy</span>
             </div>
 
-            <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#093326]">
+            <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#660708]">
               About AMAA High School
             </h3>
 
@@ -176,23 +176,23 @@ export const AboutSection: React.FC = () => {
                 as a sanctuary of learning where curiosity thrives and individuality is cherished.
               </p>
 
-              <div className="bg-[#f4f8f5] p-4 rounded-xl border border-emerald-900/10 space-y-2">
-                <h4 className="font-bold text-[#093326] text-sm">Our Core Pillars:</h4>
+              <div className="bg-[#fff5f5] p-4 rounded-xl border border-red-100 space-y-2">
+                <h4 className="font-bold text-[#660708] text-sm">Our Core Pillars:</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   <div className="flex items-center gap-2 text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#ba181b] shrink-0" />
                     <span>Holistic Mind, Body & Character Cultivation</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#ba181b] shrink-0" />
                     <span>CBSE Compliant Experiential Curriculum</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#ba181b] shrink-0" />
                     <span>State-of-the-Art Science & AI Innovation Labs</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#ba181b] shrink-0" />
                     <span>100% Secure GPS Transportation & CCTV Care</span>
                   </div>
                 </div>
@@ -208,7 +208,7 @@ export const AboutSection: React.FC = () => {
             <div className="mt-6 pt-4 border-t border-slate-100 flex justify-end">
               <button
                 onClick={() => setModalOpen(false)}
-                className="bg-[#093326] text-amber-300 px-6 py-2.5 rounded-lg text-xs font-bold hover:bg-[#0e4432] transition-colors"
+                className="bg-[#ba181b] text-white px-6 py-2.5 rounded-lg text-xs font-bold hover:bg-[#a4161a] transition-colors"
               >
                 Close Window
               </button>
