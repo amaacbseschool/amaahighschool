@@ -2,23 +2,31 @@
 
 @layer base {
   :root {
-    --primary-red: #ba181b;
-    --dark-red: #660708;
-    --deep-burgundy: #4f000b;
-    --crimson-light: #e5383b;
-    --rose-50: #fef2f2;
-    --rose-100: #fee2e2;
+    --primary-blue: #1d4ed8;
+    --navy-dark: #0a192f;
+    --deep-navy: #0b1f3a;
+    --blue-accent: #0284c7;
+    --sky-light: #38bdf8;
+    --sky-50: #f0f9ff;
+    --sky-100: #e0f2fe;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
   }
 
   body {
     font-family: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    color: #1f2937;
+    color: #1e293b;
     background-color: #ffffff;
     overflow-x: hidden;
   }
 
-  h1, h2, h3, .font-crest {
-    font-family: 'Cinzel', Georgia, serif;
+  h1, h2, h3, h4, h5, h6, .font-crest, .font-heading {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  .font-modern {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   }
 }
 
@@ -30,11 +38,11 @@
   background: #f8fafc;
 }
 ::-webkit-scrollbar-thumb {
-  background: #ba181b;
+  background: #1d4ed8;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #660708;
+  background: #0a192f;
 }
 
 /* Smooth glass effect */
@@ -42,12 +50,56 @@
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(229, 231, 235, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
-.dark-red-glass {
-  background: rgba(102, 7, 8, 0.92);
+.navy-glass, .dark-red-glass {
+  background: rgba(10, 25, 47, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.glass-card-dark {
+  background: rgba(10, 25, 47, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+}
+
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 20px 40px -10px rgba(10, 25, 47, 0.08);
+}
+
+.glass-badge {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/* Professional shadow utilities */
+.shadow-glow-blue {
+  box-shadow: 0 12px 32px -6px rgba(29, 78, 216, 0.45), 0 0 24px rgba(56, 189, 248, 0.3);
+}
+
+.shadow-glow-sky {
+  box-shadow: 0 12px 35px -6px rgba(14, 165, 233, 0.45), 0 0 22px rgba(56, 189, 248, 0.35);
+}
+
+.shadow-elevation-3d {
+  box-shadow: 0 24px 48px -12px rgba(10, 25, 47, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.8) inset, 0 12px 24px -6px rgba(29, 78, 216, 0.08);
+}
+
+.shadow-floating-card {
+  box-shadow: 0 28px 65px -12px rgba(6, 17, 33, 0.65), 0 12px 28px -8px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+}
+
+.shadow-pillar {
+  box-shadow: 0 24px 50px -12px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(224, 242, 254, 0.85), 0 8px 16px -4px rgba(0, 0, 0, 0.04);
 }

@@ -12,10 +12,10 @@ export const NoticeTicker: React.FC<NoticeTickerProps> = ({ notices }) => {
   if (!notices || notices.length === 0) return null;
 
   return (
-    <section id="notices" className="bg-[#fff5f5] border-y border-red-100 py-2.5 px-4">
+    <section id="notices" className="bg-sky-50/60 border-y border-blue-100 py-2.5 px-4">
       <div className="max-w-7xl mx-auto flex items-center gap-3">
         {/* Badge Label */}
-        <div className="shrink-0 flex items-center gap-1.5 bg-[#ba181b] text-white px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider shadow-sm">
+        <div className="shrink-0 flex items-center gap-1.5 bg-[#1d4ed8] text-white px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider shadow-sm">
           <Bell className="w-3.5 h-3.5 animate-bounce" />
           <span>LATEST NOTICES</span>
         </div>
@@ -26,10 +26,10 @@ export const NoticeTicker: React.FC<NoticeTickerProps> = ({ notices }) => {
             <button
               key={notice.id}
               onClick={() => setSelectedNotice(notice)}
-              className="flex items-center gap-2 text-xs font-medium text-slate-700 hover:text-[#ba181b] shrink-0 group transition-colors"
+              className="flex items-center gap-2 text-xs font-medium text-slate-700 hover:text-[#1d4ed8] shrink-0 group transition-colors"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ba181b] group-hover:scale-150 transition-transform" />
-              <span className="font-semibold text-[#660708]">[{notice.category}]</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#1d4ed8] group-hover:scale-150 transition-transform" />
+              <span className="font-semibold text-[#0a192f]">[{notice.category}]</span>
               <span className="group-hover:underline underline-offset-2">{notice.title}</span>
               <span className="text-[10px] text-slate-400 font-mono">({notice.date})</span>
             </button>
@@ -48,8 +48,8 @@ export const NoticeTicker: React.FC<NoticeTickerProps> = ({ notices }) => {
               <X className="w-5 h-5" />
             </button>
 
-            <div className="flex items-center gap-2 text-xs font-bold text-[#ba181b] uppercase tracking-wider mb-2">
-              <Sparkles className="w-4 h-4 text-[#ba181b]" />
+            <div className="flex items-center gap-2 text-xs font-bold text-[#1d4ed8] uppercase tracking-wider mb-2">
+              <Sparkles className="w-4 h-4 text-sky-500" />
               <span>Official Circular • {selectedNotice.category}</span>
             </div>
 
@@ -58,18 +58,18 @@ export const NoticeTicker: React.FC<NoticeTickerProps> = ({ notices }) => {
             </h3>
 
             <div className="flex items-center gap-2 text-xs text-slate-500 my-3">
-              <Calendar className="w-3.5 h-3.5 text-[#ba181b]" />
+              <Calendar className="w-3.5 h-3.5 text-[#1d4ed8]" />
               <span>Published on: {selectedNotice.date}</span>
             </div>
 
-            <p className="text-sm text-slate-600 leading-relaxed bg-[#fff5f5] p-4 rounded-xl border border-red-100">
+            <p className="text-sm text-slate-600 leading-relaxed bg-sky-50/70 p-4 rounded-xl border border-blue-100">
               {selectedNotice.content}
             </p>
 
             <div className="mt-6 flex justify-end">
               <button
                 onClick={() => setSelectedNotice(null)}
-                className="bg-[#ba181b] hover:bg-[#a4161a] text-white text-xs font-bold px-5 py-2.5 rounded-lg flex items-center gap-1.5 transition-all shadow"
+                className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white text-xs font-bold px-5 py-2.5 rounded-lg flex items-center gap-1.5 transition-all shadow"
               >
                 <span>Acknowledge Notice</span>
                 <ChevronRight className="w-4 h-4" />

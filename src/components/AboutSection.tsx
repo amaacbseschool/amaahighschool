@@ -16,9 +16,9 @@ export const AboutSection: React.FC = () => {
 
   const stats = [
     {
-      value: 'CBSE',
-      label: 'Affiliation',
-      sub: 'Senior Secondary (All Streams)',
+      value: 'Nursery – 10th',
+      label: 'Secondary School',
+      sub: 'Foundational to Grade 10',
       icon: Award,
     },
     {
@@ -64,7 +64,7 @@ export const AboutSection: React.FC = () => {
               {/* Floating Badge on Image */}
               <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-white/80 shadow-lg flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-[#ba181b] text-white flex items-center justify-center font-crest font-bold text-lg shadow">
+                  <div className="w-10 h-10 rounded-lg bg-[#1d4ed8] text-white flex items-center justify-center font-crest font-bold text-lg shadow">
                     A
                   </div>
                   <div>
@@ -72,15 +72,15 @@ export const AboutSection: React.FC = () => {
                     <p className="text-[11px] text-slate-500">Center of Intellectual & Moral Rigor</p>
                   </div>
                 </div>
-                <span className="text-[11px] font-bold text-[#ba181b] bg-red-50 border border-red-200 px-2.5 py-1 rounded-full">
+                <span className="text-[11px] font-bold text-[#1d4ed8] bg-sky-50 border border-blue-200 px-2.5 py-1 rounded-full">
                   Est. 2004
                 </span>
               </div>
             </div>
 
             {/* Decorative background accent blob */}
-            <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-red-500/10 rounded-full filter blur-2xl -z-10" />
-            <div className="absolute -top-6 -left-6 w-48 h-48 bg-[#ba181b]/10 rounded-full filter blur-2xl -z-10" />
+            <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-blue-500/10 rounded-full filter blur-2xl -z-10" />
+            <div className="absolute -top-6 -left-6 w-48 h-48 bg-sky-400/15 rounded-full filter blur-2xl -z-10" />
           </motion.div>
 
           {/* Right Column: Narrative & Stats */}
@@ -92,10 +92,10 @@ export const AboutSection: React.FC = () => {
             className="lg:col-span-6 space-y-6"
           >
             <div>
-              <span className="text-xs font-extrabold tracking-widest text-[#ba181b] uppercase">
+              <span className="text-xs font-extrabold tracking-widest text-[#1d4ed8] uppercase">
                 WELCOME TO
               </span>
-              <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-bold text-[#660708] tracking-tight mt-1.5">
+              <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0a192f] tracking-tight mt-1.5">
                 AMAA High School
               </h2>
             </div>
@@ -120,11 +120,11 @@ export const AboutSection: React.FC = () => {
                 return (
                   <div
                     key={idx}
-                    className="p-3 bg-white rounded-xl border border-red-100 shadow-sm hover:shadow-md hover:border-red-300 transition-all"
+                    className="p-3 bg-white rounded-xl border border-blue-100 shadow-sm hover:shadow-md hover:border-blue-300 transition-all"
                   >
-                    <div className="flex items-center gap-1.5 text-[#ba181b] mb-1">
-                      <Icon className="w-4 h-4 text-[#ba181b]" />
-                      <span className="text-lg sm:text-xl font-black text-[#660708] tracking-tight">
+                    <div className="flex items-center gap-1.5 text-[#1d4ed8] mb-1">
+                      <Icon className="w-4 h-4 text-[#1d4ed8]" />
+                      <span className="text-lg sm:text-xl font-black text-[#0a192f] tracking-tight">
                         {stat.value}
                       </span>
                     </div>
@@ -139,7 +139,7 @@ export const AboutSection: React.FC = () => {
             <div className="pt-2">
               <button
                 onClick={() => setModalOpen(true)}
-                className="group inline-flex items-center gap-3 bg-[#ba181b] hover:bg-[#a4161a] text-white font-bold px-6 py-3.5 rounded-lg shadow-lg hover:shadow-red-500/25 transition-all duration-300 text-xs tracking-wider uppercase"
+                className="group inline-flex items-center gap-3 bg-[#1d4ed8] hover:bg-[#1e40af] text-white font-bold px-6 py-3.5 rounded-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300 text-xs tracking-wider uppercase"
               >
                 <span>READ MORE ABOUT US</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -160,12 +160,12 @@ export const AboutSection: React.FC = () => {
               <X className="w-5 h-5" />
             </button>
 
-            <div className="flex items-center gap-2 text-xs font-bold text-[#ba181b] uppercase tracking-wider mb-2">
-              <GraduationCap className="w-5 h-5 text-[#ba181b]" />
+            <div className="flex items-center gap-2 text-xs font-bold text-[#1d4ed8] uppercase tracking-wider mb-2">
+              <GraduationCap className="w-5 h-5 text-[#1d4ed8]" />
               <span>Our Vision & Legacy</span>
             </div>
 
-            <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#660708]">
+            <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#0a192f]">
               About AMAA High School
             </h3>
 
@@ -176,39 +176,39 @@ export const AboutSection: React.FC = () => {
                 as a sanctuary of learning where curiosity thrives and individuality is cherished.
               </p>
 
-              <div className="bg-[#fff5f5] p-4 rounded-xl border border-red-100 space-y-2">
-                <h4 className="font-bold text-[#660708] text-sm">Our Core Pillars:</h4>
+              <div className="bg-sky-50/70 p-4 rounded-xl border border-blue-100 space-y-2">
+                <h4 className="font-bold text-[#0a192f] text-sm">Our Core Pillars:</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   <div className="flex items-center gap-2 text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-[#ba181b] shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#1d4ed8] shrink-0" />
                     <span>Holistic Mind, Body & Character Cultivation</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-[#ba181b] shrink-0" />
-                    <span>CBSE Compliant Experiential Curriculum</span>
+                    <CheckCircle2 className="w-4 h-4 text-[#1d4ed8] shrink-0" />
+                    <span>Holistic Secondary School Curriculum (Nursery to 10th)</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-[#ba181b] shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#1d4ed8] shrink-0" />
                     <span>State-of-the-Art Science & AI Innovation Labs</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-[#ba181b] shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#1d4ed8] shrink-0" />
                     <span>100% Secure GPS Transportation & CCTV Care</span>
                   </div>
                 </div>
               </div>
 
               <p>
-                From foundational Kindergarten explorations to advanced Senior Secondary streams in Science,
-                Commerce, and Humanities, our distinguished mentors ensure every student graduates with
-                unwavering confidence, ethical strength, and global competencies.
+                From foundational Kindergarten explorations to comprehensive Secondary School education up to Grade 10,
+                our distinguished mentors ensure every student graduates with unwavering confidence, ethical strength,
+                and life-ready competencies.
               </p>
             </div>
 
             <div className="mt-6 pt-4 border-t border-slate-100 flex justify-end">
               <button
                 onClick={() => setModalOpen(false)}
-                className="bg-[#ba181b] text-white px-6 py-2.5 rounded-lg text-xs font-bold hover:bg-[#a4161a] transition-colors"
+                className="bg-[#1d4ed8] text-white px-6 py-2.5 rounded-lg text-xs font-bold hover:bg-[#1e40af] transition-colors"
               >
                 Close Window
               </button>

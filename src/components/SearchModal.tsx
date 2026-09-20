@@ -12,7 +12,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
 
   const searchableItems = [
     { title: 'Admissions 2025–26 Form', category: 'Admissions', icon: Award, href: '#admission-info' },
-    { title: 'CBSE Curriculum & Syllabus', category: 'Academics', icon: BookOpen, href: '#academics' },
+    { title: 'School Curriculum (Nursery to 10th)', category: 'Academics', icon: BookOpen, href: '#academics' },
     { title: 'Smart Classrooms & Digital Boards', category: 'Facilities', icon: Monitor, href: '#facilities' },
     { title: 'Science & Robotics Laboratories', category: 'Facilities', icon: Monitor, href: '#facilities' },
     { title: 'School Bus Fleet & GPS Tracking', category: 'Transport', icon: Monitor, href: '#facilities' },
@@ -49,7 +49,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
             placeholder="Search classes, facilities, admissions, bus routes..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 text-sm rounded-xl border border-slate-300 focus:border-[#ba181b] focus:ring-1 focus:ring-[#ba181b] outline-none"
+            className="w-full pl-10 pr-4 py-3 text-sm rounded-xl border border-slate-300 focus:border-[#1d4ed8] focus:ring-1 focus:ring-[#1d4ed8] outline-none"
           />
         </div>
 
@@ -65,20 +65,20 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
                     onClose();
                     onSelectAction(item.href);
                   }}
-                  className="flex items-center justify-between p-3 rounded-xl hover:bg-red-50/70 transition-colors group"
+                  className="flex items-center justify-between p-3 rounded-xl hover:bg-blue-50/70 transition-colors group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-red-50 text-[#ba181b] flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-lg bg-sky-50 text-[#1d4ed8] flex items-center justify-center">
                       <Icon className="w-4 h-4" />
                     </div>
                     <div>
-                      <h5 className="text-xs font-bold text-slate-800 group-hover:text-[#ba181b]">
+                      <h5 className="text-xs font-bold text-slate-800 group-hover:text-[#1d4ed8]">
                         {item.title}
                       </h5>
-                      <span className="text-[10px] text-[#ba181b] font-semibold">{item.category}</span>
+                      <span className="text-[10px] text-[#1d4ed8] font-semibold">{item.category}</span>
                     </div>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#ba181b] group-hover:translate-x-1 transition-all" />
+                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#1d4ed8] group-hover:translate-x-1 transition-all" />
                 </a>
               );
             })

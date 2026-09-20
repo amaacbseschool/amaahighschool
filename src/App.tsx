@@ -38,7 +38,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8faf8] text-slate-800 font-sans selection:bg-[#d4973b]/20 selection:text-[#093326]">
+    <div className="min-h-screen flex flex-col bg-[#f8fafc] text-slate-800 font-sans selection:bg-blue-600/20 selection:text-[#1d4ed8]">
       {/* 1. Top Announcement & Contact Bar */}
       <TopBar
         onOpenAdmission={() => setAdmissionModalOpen(true)}

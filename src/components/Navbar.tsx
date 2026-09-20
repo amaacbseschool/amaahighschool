@@ -26,7 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmission, onOpenSearch })
       label: 'ACADEMICS',
       href: '#academics',
       dropdown: [
-        { title: 'CBSE Curriculum', desc: 'Holistic curriculum from Nursery to Class XII', href: '#academics' },
+        { title: 'School Curriculum', desc: 'Holistic curriculum from Nursery to Class 10', href: '#academics' },
         { title: 'Faculty & Mentors', desc: 'Highly qualified and dedicated educators', href: '#academics' },
         { title: 'Pedagogy & Labs', desc: 'Experiential learning & innovation labs', href: '#facilities' },
         { title: 'Academic Calendar', desc: 'Examinations, olympiads and sessions', href: '#notices' },
@@ -60,7 +60,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmission, onOpenSearch })
     <header
       className={`sticky top-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/98 backdrop-blur-md shadow-md border-b border-red-100 py-2.5'
+          ? 'bg-white/98 backdrop-blur-md shadow-md border-b border-blue-100 py-2.5'
           : 'bg-white py-3.5 shadow-sm border-b border-slate-100'
       }`}
     >
@@ -73,14 +73,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmission, onOpenSearch })
             className="w-12 h-12 sm:w-14 sm:h-14 object-contain transition-transform duration-300 group-hover:scale-105 filter drop-shadow-md"
           />
           <div className="flex flex-col">
-            <span className="font-crest text-xl sm:text-2xl font-black tracking-wider text-[#ba181b] leading-none">
+            <span className="font-crest text-xl sm:text-2xl font-black tracking-wider text-[#1d4ed8] leading-none">
               AMAA
             </span>
-            <span className="font-crest text-xs sm:text-sm font-semibold tracking-widest text-[#660708] mt-0.5">
+            <span className="font-crest text-xs sm:text-sm font-semibold tracking-widest text-[#0a192f] mt-0.5">
               HIGH SCHOOL
             </span>
             <span className="text-[9px] uppercase tracking-widest text-slate-500 font-medium hidden sm:block">
-              Affiliated to CBSE, New Delhi
+              Recognised High School (Nursery to 10th)
             </span>
           </div>
         </a>
@@ -96,17 +96,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmission, onOpenSearch })
             >
               <a
                 href={item.href}
-                className="flex items-center gap-1 text-[13px] font-bold text-slate-700 hover:text-[#ba181b] transition-colors tracking-wider"
+                className="flex items-center gap-1 text-[13px] font-bold text-slate-700 hover:text-[#1d4ed8] transition-colors tracking-wider"
               >
                 {item.label}
                 {item.dropdown && (
-                  <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#ba181b] group-hover:rotate-180 transition-transform duration-200" />
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#1d4ed8] group-hover:rotate-180 transition-transform duration-200" />
                 )}
               </a>
 
               {/* Dropdown Menu */}
               {item.dropdown && activeDropdown === item.label && (
-                <div className="absolute top-full left-0 w-64 bg-white rounded-xl shadow-2xl border border-red-50 p-2.5 transform opacity-100 translate-y-0 transition-all duration-200 z-50">
+                <div className="absolute top-full left-0 w-64 bg-white rounded-xl shadow-2xl border border-blue-100 p-2.5 transform opacity-100 translate-y-0 transition-all duration-200 z-50">
                   <div className="space-y-1">
                     {item.dropdown.map((subItem, idx) => (
                       <a
@@ -118,11 +118,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmission, onOpenSearch })
                             subItem.action();
                           }
                         }}
-                        className="block p-2.5 rounded-lg hover:bg-red-50/70 transition-colors group/sub"
+                        className="block p-2.5 rounded-lg hover:bg-blue-50/80 transition-colors group/sub"
                       >
-                        <div className="text-xs font-bold text-slate-800 group-hover/sub:text-[#ba181b] flex items-center justify-between">
+                        <div className="text-xs font-bold text-slate-800 group-hover/sub:text-[#1d4ed8] flex items-center justify-between">
                           <span>{subItem.title}</span>
-                          <span className="text-[#ba181b] opacity-0 group-hover/sub:opacity-100 transition-opacity">
+                          <span className="text-[#1d4ed8] opacity-0 group-hover/sub:opacity-100 transition-opacity">
                             →
                           </span>
                         </div>
@@ -140,7 +140,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmission, onOpenSearch })
         <div className="hidden lg:flex items-center gap-3">
           <button
             onClick={onOpenSearch}
-            className="p-2 text-slate-600 hover:text-[#ba181b] hover:bg-red-50 rounded-full transition-colors"
+            className="p-2 text-slate-600 hover:text-[#1d4ed8] hover:bg-blue-50 rounded-full transition-colors"
             title="Search Site"
           >
             <Search className="w-4 h-4" />
@@ -148,7 +148,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmission, onOpenSearch })
 
           <button
             onClick={onOpenAdmission}
-            className="bg-[#ba181b] hover:bg-[#a4161a] text-white text-xs font-bold px-4.5 py-2.5 rounded-lg border border-red-700 shadow-md hover:shadow-red-500/20 transition-all duration-200 flex items-center gap-2"
+            className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white text-xs font-bold px-4.5 py-2.5 rounded-lg border border-blue-600 shadow-md hover:shadow-blue-500/20 transition-all duration-200 flex items-center gap-2"
           >
             <GraduationCap className="w-4 h-4 text-white" />
             <span>ENQUIRE NOW</span>
@@ -159,14 +159,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmission, onOpenSearch })
         <div className="flex items-center gap-2 xl:hidden">
           <button
             onClick={onOpenAdmission}
-            className="bg-[#ba181b] text-white text-xs font-bold px-3 py-1.5 rounded-md flex items-center gap-1 shadow"
+            className="bg-[#1d4ed8] text-white text-xs font-bold px-3 py-1.5 rounded-md flex items-center gap-1 shadow"
           >
             <PhoneCall className="w-3.5 h-3.5" />
             <span>Enquire</span>
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-slate-700 hover:text-[#ba181b] rounded-lg"
+            className="p-2 text-slate-700 hover:text-[#1d4ed8] rounded-lg"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -181,7 +181,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmission, onOpenSearch })
               <a
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-sm font-bold text-slate-800 hover:text-[#ba181b] py-1"
+                className="block text-sm font-bold text-slate-800 hover:text-[#1d4ed8] py-1"
               >
                 {item.label}
               </a>
@@ -195,7 +195,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmission, onOpenSearch })
                         setMobileMenuOpen(false);
                         if (sub.action) sub.action();
                       }}
-                      className="block text-xs text-slate-600 hover:text-[#ba181b] py-0.5"
+                      className="block text-xs text-slate-600 hover:text-[#1d4ed8] py-0.5"
                     >
                       • {sub.title}
                     </a>
@@ -210,7 +210,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmission, onOpenSearch })
                 setMobileMenuOpen(false);
                 onOpenAdmission();
               }}
-              className="w-full bg-[#ba181b] text-white py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider shadow"
+              className="w-full bg-[#1d4ed8] text-white py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider shadow"
             >
               Apply for Admission 2025–26
             </button>

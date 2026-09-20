@@ -44,11 +44,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
     'Grade VII',
     'Grade VIII',
     'Grade IX',
-    'Grade X (CBSE)',
-    'Grade XI (Science Stream - PCM/PCB)',
-    'Grade XI (Commerce Stream)',
-    'Grade XI (Humanities & Arts)',
-    'Grade XII (Senior Secondary)',
+    'Grade X (High School)',
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -108,7 +104,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
           initial={{ opacity: 0, scale: 0.95, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
-          className="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-red-100 relative my-8"
+          className="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-blue-100 relative my-8"
         >
           {/* Close button */}
           <button
@@ -120,12 +116,12 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
 
           {!submittedData ? (
             <div>
-              <div className="flex items-center gap-2.5 text-xs font-bold text-[#ba181b] uppercase tracking-wider mb-2">
-                <GraduationCap className="w-4 h-4 text-[#ba181b]" />
+              <div className="flex items-center gap-2.5 text-xs font-bold text-[#1d4ed8] uppercase tracking-wider mb-2">
+                <GraduationCap className="w-4 h-4 text-[#1d4ed8]" />
                 <span>Admission Session 2025–26</span>
               </div>
 
-              <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#660708]">
+              <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#0a192f]">
                 Online Admission Enquiry
               </h3>
               <p className="text-xs sm:text-sm text-slate-500 mt-1 mb-6">
@@ -147,7 +143,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
                         placeholder="e.g. Aarav Sharma"
                         value={formData.student_name}
                         onChange={(e) => setFormData({ ...formData, student_name: e.target.value })}
-                        className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#ba181b] focus:ring-1 focus:ring-[#ba181b] outline-none"
+                        className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#1d4ed8] focus:ring-1 focus:ring-[#1d4ed8] outline-none"
                       />
                     </div>
                   </div>
@@ -165,7 +161,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
                         placeholder="e.g. Rajesh Sharma"
                         value={formData.parent_name}
                         onChange={(e) => setFormData({ ...formData, parent_name: e.target.value })}
-                        className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#ba181b] focus:ring-1 focus:ring-[#ba181b] outline-none"
+                        className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#1d4ed8] focus:ring-1 focus:ring-[#1d4ed8] outline-none"
                       />
                     </div>
                   </div>
@@ -185,7 +181,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
                         placeholder="parent@example.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#ba181b] focus:ring-1 focus:ring-[#ba181b] outline-none"
+                        className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#1d4ed8] focus:ring-1 focus:ring-[#1d4ed8] outline-none"
                       />
                     </div>
                   </div>
@@ -203,7 +199,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
                         placeholder="+91 98765 43210"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#ba181b] focus:ring-1 focus:ring-[#ba181b] outline-none"
+                        className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#1d4ed8] focus:ring-1 focus:ring-[#1d4ed8] outline-none"
                       />
                     </div>
                   </div>
@@ -220,7 +216,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
                       <select
                         value={formData.grade_applying}
                         onChange={(e) => setFormData({ ...formData, grade_applying: e.target.value })}
-                        className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#ba181b] focus:ring-1 focus:ring-[#ba181b] outline-none bg-white"
+                        className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#1d4ed8] focus:ring-1 focus:ring-[#1d4ed8] outline-none bg-white"
                       >
                         {gradeOptions.map((opt) => (
                           <option key={opt} value={opt}>
@@ -240,10 +236,10 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
                       <School className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
                       <input
                         type="text"
-                        placeholder="e.g. St. Jude / CBSE"
+                        placeholder="e.g. St. Jude / State Board"
                         value={formData.previous_school}
                         onChange={(e) => setFormData({ ...formData, previous_school: e.target.value })}
-                        className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#ba181b] focus:ring-1 focus:ring-[#ba181b] outline-none"
+                        className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#1d4ed8] focus:ring-1 focus:ring-[#1d4ed8] outline-none"
                       />
                     </div>
                   </div>
@@ -259,7 +255,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
                     placeholder="E.g. Seeking school bus transport route near East Colony; interest in sports academy."
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                    className="w-full p-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#ba181b] focus:ring-1 focus:ring-[#ba181b] outline-none resize-none"
+                    className="w-full p-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#1d4ed8] focus:ring-1 focus:ring-[#1d4ed8] outline-none resize-none"
                   />
                 </div>
 
@@ -268,7 +264,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full group inline-flex items-center justify-center gap-2 bg-[#ba181b] hover:bg-[#a4161a] text-white font-bold py-3.5 rounded-xl shadow-lg transition-all text-xs uppercase tracking-wider disabled:opacity-50"
+                    className="w-full group inline-flex items-center justify-center gap-2 bg-[#1d4ed8] hover:bg-[#1e40af] text-white font-bold py-3.5 rounded-xl shadow-lg transition-all text-xs uppercase tracking-wider disabled:opacity-50"
                   >
                     {isSubmitting ? (
                       <span className="flex items-center gap-2">
@@ -288,15 +284,15 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
           ) : (
             /* Confirmation State */
             <div className="text-center py-4 space-y-4">
-              <div className="w-16 h-16 bg-red-100 text-[#ba181b] rounded-full flex items-center justify-center mx-auto shadow-inner">
-                <CheckCircle className="w-10 h-10 text-[#ba181b]" />
+              <div className="w-16 h-16 bg-sky-100 text-[#1d4ed8] rounded-full flex items-center justify-center mx-auto shadow-inner">
+                <CheckCircle className="w-10 h-10 text-[#1d4ed8]" />
               </div>
 
               <div>
-                <span className="text-[11px] font-bold text-[#ba181b] bg-red-50 border border-red-200 px-3 py-1 rounded-full uppercase tracking-wider">
+                <span className="text-[11px] font-bold text-[#1d4ed8] bg-sky-50 border border-blue-200 px-3 py-1 rounded-full uppercase tracking-wider">
                   Application Logged in SQL Database
                 </span>
-                <h3 className="font-crest text-2xl font-bold text-[#660708] mt-3">
+                <h3 className="font-crest text-2xl font-bold text-[#0a192f] mt-3">
                   Admission Enquiry Received!
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto mt-2">
@@ -307,10 +303,10 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
               </div>
 
               {/* Receipt card */}
-              <div className="bg-[#fff5f5] p-4 rounded-2xl border border-red-100 text-left text-xs space-y-2 max-w-md mx-auto">
-                <div className="flex justify-between border-b border-red-100 pb-1.5 font-semibold text-slate-700">
+              <div className="bg-sky-50/70 p-4 rounded-2xl border border-blue-100 text-left text-xs space-y-2 max-w-md mx-auto">
+                <div className="flex justify-between border-b border-blue-100 pb-1.5 font-semibold text-slate-700">
                   <span>Application Reference ID:</span>
-                  <span className="font-mono text-[#ba181b] font-bold">AMAA-2025-00{submittedData.id}</span>
+                  <span className="font-mono text-[#1d4ed8] font-bold">AMAA-2025-00{submittedData.id}</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>Registered Contact:</span>
@@ -332,15 +328,15 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
                     handleReset();
                     onOpenSqlConsole();
                   }}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-[#4f000b] text-white font-bold px-5 py-2.5 rounded-xl text-xs border border-red-400/40 hover:bg-[#660708] transition-colors"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-[#0a192f] text-white font-bold px-5 py-2.5 rounded-xl text-xs border border-blue-400/40 hover:bg-[#0f2b48] transition-colors"
                 >
-                  <Database className="w-4 h-4 text-amber-300" />
+                  <Database className="w-4 h-4 text-sky-300" />
                   <span>View in SQL Console</span>
                 </button>
 
                 <button
                   onClick={handleReset}
-                  className="w-full sm:w-auto bg-[#ba181b] text-white font-bold px-6 py-2.5 rounded-xl text-xs hover:bg-[#a4161a] transition-colors"
+                  className="w-full sm:w-auto bg-[#1d4ed8] text-white font-bold px-6 py-2.5 rounded-xl text-xs hover:bg-[#1e40af] transition-colors"
                 >
                   Done
                 </button>

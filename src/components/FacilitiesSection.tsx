@@ -65,10 +65,10 @@ export const FacilitiesSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-14">
-          <span className="text-xs font-extrabold tracking-widest text-[#ba181b] uppercase">
+          <span className="text-xs font-extrabold tracking-widest text-[#1d4ed8] uppercase">
             FACILITIES
           </span>
-          <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-bold text-[#660708] tracking-tight mt-1">
+          <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0a192f] tracking-tight mt-1">
             World-Class Infrastructure
           </h2>
           <p className="text-slate-600 text-sm sm:text-base max-w-2xl mt-3">
@@ -89,7 +89,7 @@ export const FacilitiesSection: React.FC = () => {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -6 }}
                 onClick={() => setSelectedFacility(fac)}
-                className="bg-white rounded-2xl overflow-hidden border border-red-100 shadow-md hover:shadow-2xl hover:border-red-300 transition-all duration-300 flex flex-col cursor-pointer group"
+                className="bg-white rounded-2xl overflow-hidden border border-blue-100 shadow-md hover:shadow-2xl hover:border-blue-300 transition-all duration-300 flex flex-col cursor-pointer group"
               >
                 {/* Image Container */}
                 <div className="relative h-48 sm:h-52 overflow-hidden bg-slate-100">
@@ -100,8 +100,8 @@ export const FacilitiesSection: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
-                  {/* Circular Icon badge in red */}
-                  <div className="absolute -bottom-4 left-5 w-11 h-11 rounded-xl bg-[#ba181b] text-white flex items-center justify-center shadow-lg border-2 border-white group-hover:bg-[#660708] transition-colors">
+                  {/* Circular Icon badge in royal blue */}
+                  <div className="absolute -bottom-4 left-5 w-11 h-11 rounded-xl bg-[#1d4ed8] text-white flex items-center justify-center shadow-lg border-2 border-white group-hover:bg-[#0a192f] transition-colors">
                     <Icon className="w-5 h-5" />
                   </div>
                 </div>
@@ -109,7 +109,7 @@ export const FacilitiesSection: React.FC = () => {
                 {/* Content */}
                 <div className="p-5 pt-7 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-base font-bold text-slate-900 group-hover:text-[#ba181b] transition-colors">
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-[#1d4ed8] transition-colors">
                       {fac.title}
                     </h3>
                     <p className="text-xs text-slate-600 mt-2 leading-relaxed">
@@ -117,9 +117,9 @@ export const FacilitiesSection: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#ba181b]">
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#1d4ed8]">
                     <span>Explore details</span>
-                    <ArrowRight className="w-4 h-4 text-[#ba181b] group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4 text-[#1d4ed8] group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
               </motion.div>
@@ -131,10 +131,10 @@ export const FacilitiesSection: React.FC = () => {
         <div className="mt-12 text-center">
           <button
             onClick={() => setSelectedFacility(facilities[0])}
-            className="inline-flex items-center gap-2 bg-white hover:bg-red-50 text-slate-800 hover:text-[#ba181b] font-bold px-7 py-3 rounded-lg border-2 border-slate-200 hover:border-[#ba181b] transition-all text-xs uppercase tracking-wider shadow-sm hover:shadow"
+            className="inline-flex items-center gap-2 bg-white hover:bg-sky-50 text-slate-800 hover:text-[#1d4ed8] font-bold px-7 py-3 rounded-lg border-2 border-slate-200 hover:border-[#1d4ed8] transition-all text-xs uppercase tracking-wider shadow-sm hover:shadow"
           >
             <span>VIEW ALL FACILITIES</span>
-            <ArrowRight className="w-4 h-4 text-[#ba181b]" />
+            <ArrowRight className="w-4 h-4 text-[#1d4ed8]" />
           </button>
         </div>
       </div>
@@ -158,7 +158,7 @@ export const FacilitiesSection: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-3 left-4 text-white">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-red-200">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-sky-200">
                   Infrastructure Highlight
                 </span>
                 <h3 className="font-crest text-xl font-bold">{selectedFacility.title}</h3>
@@ -169,15 +169,15 @@ export const FacilitiesSection: React.FC = () => {
               {selectedFacility.description}
             </p>
 
-            <div className="mt-4 bg-[#fff5f5] p-4 rounded-xl border border-red-100">
-              <div className="flex items-center gap-1.5 text-xs font-bold text-[#ba181b] mb-3">
-                <Sparkles className="w-4 h-4 text-[#ba181b]" />
+            <div className="mt-4 bg-sky-50/70 p-4 rounded-xl border border-blue-100">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-[#1d4ed8] mb-3">
+                <Sparkles className="w-4 h-4 text-sky-500" />
                 <span>Key Specifications & Amenities</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                 {selectedFacility.features.map((feat: string, fidx: number) => (
                   <div key={fidx} className="flex items-center gap-2 text-slate-700">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#ba181b] shrink-0" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#1d4ed8] shrink-0" />
                     <span>{feat}</span>
                   </div>
                 ))}
@@ -187,7 +187,7 @@ export const FacilitiesSection: React.FC = () => {
             <div className="mt-6 flex justify-end">
               <button
                 onClick={() => setSelectedFacility(null)}
-                className="bg-[#ba181b] text-white font-bold px-5 py-2.5 rounded-lg text-xs hover:bg-[#a4161a] transition-colors"
+                className="bg-[#1d4ed8] text-white font-bold px-5 py-2.5 rounded-lg text-xs hover:bg-[#1e40af] transition-colors"
               >
                 Close Facility Overview
               </button>

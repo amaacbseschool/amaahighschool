@@ -94,9 +94,9 @@ export const SqlConsoleModal: React.FC<SqlConsoleModalProps> = ({
           className="bg-slate-900 text-slate-100 rounded-3xl max-w-5xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-emerald-800/40 relative overflow-hidden"
         >
           {/* Header */}
-          <div className="bg-[#4f000b] px-6 py-4 border-b border-red-900/60 flex items-center justify-between">
+          <div className="bg-[#0a192f] px-6 py-4 border-b border-blue-900/60 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-red-900/60 text-amber-300 flex items-center justify-center border border-red-500/40">
+              <div className="w-9 h-9 rounded-lg bg-blue-900/60 text-sky-300 flex items-center justify-center border border-blue-500/40">
                 <Database className="w-5 h-5" />
               </div>
               <div>
@@ -104,11 +104,11 @@ export const SqlConsoleModal: React.FC<SqlConsoleModalProps> = ({
                   <h3 className="text-base font-bold text-white font-crest">
                     AMAA High School SQL Database Manager
                   </h3>
-                  <span className="text-[10px] font-mono bg-red-950 text-red-200 px-2 py-0.5 rounded border border-red-800">
+                  <span className="text-[10px] font-mono bg-blue-950 text-sky-200 px-2 py-0.5 rounded border border-blue-800">
                     SQLite WASM / Local Engine
                   </span>
                 </div>
-                <p className="text-xs text-red-200/80">
+                <p className="text-xs text-blue-200/80">
                   Inspect relational tables, review student admission applications, and test raw SQL queries.
                 </p>
               </div>
@@ -129,7 +129,7 @@ export const SqlConsoleModal: React.FC<SqlConsoleModalProps> = ({
                 onClick={() => setActiveTab('console')}
                 className={`px-3 py-1.5 rounded-lg font-bold flex items-center gap-1.5 transition-colors ${
                   activeTab === 'console'
-                    ? 'bg-[#ba181b] text-white border border-red-500'
+                    ? 'bg-[#1d4ed8] text-white border border-blue-500'
                     : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -141,7 +141,7 @@ export const SqlConsoleModal: React.FC<SqlConsoleModalProps> = ({
                 onClick={() => setActiveTab('admissions')}
                 className={`px-3 py-1.5 rounded-lg font-bold flex items-center gap-1.5 transition-colors ${
                   activeTab === 'admissions'
-                    ? 'bg-[#ba181b] text-white border border-red-500'
+                    ? 'bg-[#1d4ed8] text-white border border-blue-500'
                     : 'text-slate-400 hover:text-white'
                 }`}
               >

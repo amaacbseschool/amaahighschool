@@ -59,7 +59,7 @@ const STORAGE_KEYS = {
 const SEED_NOTICES: SchoolNotice[] = [
   {
     id: 1,
-    title: 'Admissions Open for Academic Session 2025–26 (Nursery to Class XII)',
+    title: 'Admissions Open for Academic Session 2025–26 (Nursery to Class X)',
     category: 'Admissions',
     date: 'Sep 15, 2026',
     content: 'Registration and entrance assessment slots are now open online. Early bird sibling discounts applicable.',
@@ -67,10 +67,10 @@ const SEED_NOTICES: SchoolNotice[] = [
   },
   {
     id: 2,
-    title: 'Inter-School CBSE Science Olympiad & Robotics Expo',
+    title: 'Inter-School Science Olympiad & Robotics Expo',
     category: 'Academic',
     date: 'Sep 22, 2026',
-    content: 'Students from Grades VI to XII will showcase innovative green-tech models in the Vivekananda Hall.',
+    content: 'Students from Grades VI to X will showcase innovative green-tech models in the Vivekananda Hall.',
     is_important: false,
   },
   {
@@ -110,9 +110,9 @@ const SEED_ADMISSIONS: AdmissionEnquiry[] = [
     parent_name: 'Dr. Sunita Verma',
     email: 'dr.sunita@example.com',
     phone: '+91 98111 22334',
-    grade_applying: 'Grade XI (Science/Medical)',
-    previous_school: 'Delhi Public School',
-    notes: 'Aims for NEET preparation along with CBSE curriculum.',
+    grade_applying: 'Grade X (Secondary Board)',
+    previous_school: 'Model High School',
+    notes: 'Focus on high school board excellence and STEM foundations.',
     status: 'Admission Approved',
     created_at: '2026-09-16 09:45:00',
   },
