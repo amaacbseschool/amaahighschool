@@ -29,7 +29,7 @@ export interface FacultyMember {
   department: 'Leadership' | 'Sciences' | 'Mathematics' | 'Languages' | 'Arts & Sports';
   qualification: string;
   experience: string;
-  image: string;
+  image?: string;
   subjects: string[];
   quote: string;
   bio: string;
@@ -37,6 +37,17 @@ export interface FacultyMember {
   officeHours: string;
   email: string;
 }
+
+const getInitials = (name: string) => {
+  return name
+    .replace(/^(Dr\.|Sri|Smt\.|Mr\.|Mrs\.|Ms\.)\s+/i, '')
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((n) => n[0])
+    .join('')
+    .toUpperCase();
+};
 
 export const FacultySection: React.FC<FacultySectionProps> = ({
   onNavigateRoute,
@@ -334,32 +345,24 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 className="bg-white rounded-3xl border border-slate-200/80 hover:border-[#354024] shadow-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group overflow-hidden"
               >
-                {/* Image & Video Trigger Header */}
-                <div className="relative h-64 overflow-hidden bg-slate-900">
-                  <img
-                    src={faculty.image}
-                    alt={faculty.name}
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 filter brightness-95"
-                    loading="lazy"
-                  />
-
-                  {/* Dark Scrim */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
-
-                  {/* Department Tag */}
-                  <div className="absolute top-3.5 left-3.5 bg-[#07111e]/90 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-white/20">
-                    {faculty.department}
+                {/* Academic Profile Badge Header (No Photo) */}
+                <div className="pt-6 px-6 pb-2 flex items-start justify-between gap-3">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#354024] to-[#1b2213] text-[#cfbb99] font-crest font-extrabold text-lg flex items-center justify-center shadow-md shrink-0 border border-[#cfbb99]/30 group-hover:scale-105 transition-transform">
+                    {getInitials(faculty.name)}
                   </div>
-
-                  {/* Experience Pill */}
-                  <div className="absolute bottom-3.5 left-3.5 text-[11px] font-bold text-white bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full flex items-center gap-1">
-                    <Award className="w-3.5 h-3.5 text-[#cfbb99]" />
-                    <span>{faculty.experience.split(' ')[0]} Yrs Exp.</span>
+                  <div className="flex flex-col items-end gap-1.5">
+                    <span className="bg-[#354024]/10 text-[#354024] border border-[#354024]/20 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                      {faculty.department}
+                    </span>
+                    <span className="text-[11px] font-semibold text-slate-500 flex items-center gap-1 bg-slate-100 px-2 py-0.5 rounded-full">
+                      <Award className="w-3 h-3 text-[#cfbb99]" />
+                      <span>{faculty.experience.split(' ')[0]} Yrs Exp.</span>
+                    </span>
                   </div>
                 </div>
 
                 {/* Card Body */}
-                <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                <div className="p-6 pt-3 flex-1 flex flex-col justify-between space-y-4">
                   <div>
                     <h3 className="font-heading font-bold text-lg text-slate-900 group-hover:text-[#354024] transition-colors tracking-tight">
                       {faculty.name}
@@ -372,16 +375,16 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
                     </div>
 
                     {/* Quote Snippet */}
-                    <blockquote className="mt-3 text-xs text-slate-600 italic border-l-2 border-[#354024] pl-3 py-0.5 leading-relaxed line-clamp-2">
+                    <blockquote className="mt-3 text-xs text-slate-600 italic border-l-2 border-[#cfbb99] pl-3 py-0.5 leading-relaxed line-clamp-2">
                       {faculty.quote}
                     </blockquote>
 
                     {/* Subjects Badges */}
-                    <div className="mt-3 flex flex-wrap gap-1">
+                    <div className="mt-3.5 flex flex-wrap gap-1">
                       {faculty.subjects.map((sub, idx) => (
                         <span
                           key={idx}
-                          className="bg-sky-50 text-[#354024] text-[10px] font-semibold px-2.5 py-0.5 rounded-full"
+                          className="bg-slate-100 text-slate-700 text-[10px] font-semibold px-2.5 py-0.5 rounded-full"
                         >
                           {sub}
                         </span>
@@ -401,7 +404,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
 
                     <a
                       href={`mailto:${faculty.email}`}
-                      className="p-2 rounded-full text-slate-400 hover:text-[#354024] hover:bg-sky-50 transition-colors"
+                      className="p-2 rounded-full text-slate-400 hover:text-[#354024] hover:bg-slate-100 transition-colors"
                       title={`Email ${faculty.name}`}
                     >
                       <Mail className="w-4 h-4" />
@@ -491,12 +494,8 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
               {/* Header */}
               <div className="flex items-start justify-between p-6 sm:p-8 bg-gradient-to-r from-[#07111e] via-[#0a192f] to-[#252d19] text-white">
                 <div className="flex items-start gap-4">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/10 border-2 border-white/20 shrink-0 overflow-hidden shadow-md">
-                    <img
-                      src={selectedFaculty.image}
-                      alt={selectedFaculty.name}
-                      className="w-full h-full object-cover object-top"
-                    />
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/10 border-2 border-[#cfbb99]/40 shrink-0 flex items-center justify-center shadow-md font-crest font-extrabold text-2xl sm:text-3xl text-[#cfbb99]">
+                    {getInitials(selectedFaculty.name)}
                   </div>
                   <div>
                     <span className="text-[10px] uppercase px-3 py-1 rounded-full bg-[#354024] text-white font-bold">
