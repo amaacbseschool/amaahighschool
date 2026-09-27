@@ -2,104 +2,110 @@
 
 @layer base {
   :root {
-    --primary-blue: #1d4ed8;
-    --navy-dark: #0a192f;
-    --deep-navy: #0b1f3a;
-    --blue-accent: #0284c7;
-    --sky-light: #38bdf8;
-    --sky-50: #f0f9ff;
-    --sky-100: #e0f2fe;
-    --blue-50: #eff6ff;
-    --blue-100: #dbeafe;
+    /* AMAA High School Logo Brand Palette */
+    --school-navy: #0a192f;
+    --school-navy-dark: #07111e;
+    --school-blue: #0284c7;
+    --school-blue-dark: #0369a1;
+    --school-azure: #38bdf8;
+    --school-crimson: #991b1b;
+    --school-crimson-hover: #7f1d1d;
+    --school-red: #dc2626;
+    --school-gold: #daa520;
+    --school-amber: #f59e0b;
+    --school-slate: #334155;
+    --school-slate-light: #64748b;
+    --school-bg: #f8fafc;
+    --school-card: #ffffff;
+    --school-border: #e2e8f0;
   }
 
-  body {
-    font-family: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    color: #1e293b;
-    background-color: #ffffff;
+  body,
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #0f172a;
+    background-color: #f8f9fa;
     overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 
-  h1, h2, h3, h4, h5, h6, .font-crest, .font-heading {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .font-crest,
+  .font-heading {
+    font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     letter-spacing: -0.025em;
   }
 
   .font-modern {
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
   }
 }
 
-/* Custom scrollbar */
+/* Custom modern scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #f8fafc;
+  background: #f1f5f9;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #1d4ed8;
-  border-radius: 4px;
+  background: #cbd5e1;
+  border-radius: 9999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #0a192f;
+  background: #0284c7;
 }
 
-/* Smooth glass effect */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+/* Modern University Shadows */
+.shadow-subtle {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
-.navy-glass, .dark-red-glass {
-  background: rgba(10, 25, 47, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+.shadow-card {
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
 }
 
-.glass-card-dark {
-  background: rgba(10, 25, 47, 0.72);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+.shadow-card-hover {
+  box-shadow: 0 20px 30px -4px rgba(2, 132, 199, 0.12), 0 8px 12px -2px rgba(15, 23, 42, 0.06);
 }
 
-.glass-card-light {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 20px 40px -10px rgba(10, 25, 47, 0.08);
+.shadow-blue-glow {
+  box-shadow: 0 0 35px -5px rgba(2, 132, 199, 0.25);
 }
 
-.glass-badge {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+.shadow-crimson-glow {
+  box-shadow: 0 0 30px -5px rgba(153, 27, 27, 0.35);
 }
 
-/* Professional shadow utilities */
-.shadow-glow-blue {
-  box-shadow: 0 12px 32px -6px rgba(29, 78, 216, 0.45), 0 0 24px rgba(56, 189, 248, 0.3);
+.shadow-gold-glow {
+  box-shadow: 0 0 30px -5px rgba(218, 165, 32, 0.35);
 }
 
-.shadow-glow-sky {
-  box-shadow: 0 12px 35px -6px rgba(14, 165, 233, 0.45), 0 0 22px rgba(56, 189, 248, 0.35);
+/* Continuous smooth auto-scrolling marquee for notifications */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
-.shadow-elevation-3d {
-  box-shadow: 0 24px 48px -12px rgba(10, 25, 47, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.8) inset, 0 12px 24px -6px rgba(29, 78, 216, 0.08);
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
 }
 
-.shadow-floating-card {
-  box-shadow: 0 28px 65px -12px rgba(6, 17, 33, 0.65), 0 12px 28px -8px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.18) inset;
-}
-
-.shadow-pillar {
-  box-shadow: 0 24px 50px -12px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(224, 242, 254, 0.85), 0 8px 16px -4px rgba(0, 0, 0, 0.04);
+.animate-marquee:hover {
+  animation-play-state: paused;
 }

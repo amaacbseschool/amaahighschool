@@ -1,135 +1,359 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { BookOpen, GraduationCap, Lightbulb, Trophy, CheckCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  BookOpen,
+  Trophy,
+  CheckCircle2,
+  ArrowRight,
+  Sparkles,
+  Users2,
+  BrainCircuit,
+  Compass,
+} from 'lucide-react';
+import { TextReveal } from './motion/TextReveal';
+import type { RouteType } from '../types/routes';
 
-export const AcademicsSection: React.FC = () => {
-  const cards = [
+interface AcademicsSectionProps {
+  onNavigateRoute?: (route: RouteType, hashTarget?: string) => void;
+  onOpenAdmission?: () => void;
+}
+
+export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
+  onNavigateRoute,
+  onOpenAdmission,
+}) => {
+  const [selectedStageIndex, setSelectedStageIndex] = useState(0);
+
+  const stages = [
     {
-      icon: BookOpen,
-      title: 'Secondary Curriculum',
+      id: 'middle',
+      title: 'Middle School',
+      gradeRange: 'Grades VI – VIII',
+      ageRange: 'Ages 11 – 14',
+      badge: 'Analytical Discovery',
+      icon: BrainCircuit,
+      badgeColor: 'bg-purple-100 text-purple-800',
+      tagline: 'Subject specialization, lab practicals, and Olympiad readiness.',
       description:
-        'Comprehensive curriculum from Nursery to Class 10 designed for intellectual rigor, moral values, and foundational excellence.',
-      points: ['Recognised Board Aligned', 'Continuous Evaluation', 'Olympiad Preparation'],
+        'Students explore independent thinking, abstract reasoning, and systematic science. Introduction to certified laboratory apparatus, computer programming, and debate conclaves.',
+      ratio: '1:20',
+      subjects: [
+        'Physics, Chemistry, Biology',
+        'Algebra & Geometry',
+        'Social Studies & History',
+        'Computer Applications & Coding',
+      ],
+      outcomes: [
+        'Direct laboratory experimentation and data logging',
+        'Preparation for National Cyber & Science Olympiads',
+        'Inter-house public speaking and leadership guilds',
+      ],
     },
     {
-      icon: GraduationCap,
-      title: 'Experienced Faculty',
-      description:
-        'Our educators inspire, mentor, and bring out the finest capabilities in every child through personalized guidance.',
-      points: ['100% Certified Masters', 'Regular Pedagogy Workshops', 'Mentorship Ratios'],
-    },
-    {
-      icon: Lightbulb,
-      title: 'Innovative Learning',
-      description:
-        'Activity-based, experiential, and technology-integrated pedagogical approach with practical problem solving.',
-      points: ['STEM & Robotics', 'Language Audio Labs', 'Interactive Whiteboards'],
-    },
-    {
+      id: 'secondary',
+      title: 'Secondary Board Wing',
+      gradeRange: 'Grades IX – X',
+      ageRange: 'Ages 14 – 16',
+      badge: 'Board Excellence',
       icon: Trophy,
-      title: 'Excellence Driven',
+      badgeColor: 'bg-rose-100 text-[#dc2626]',
+      tagline: 'Unbroken 100% board distinction and career gateway preparation.',
       description:
-        'Unrelenting focus on academics, athletic sports, creative arts, and life skills for multifaceted personality development.',
-      points: ['National Champions', 'State Merit Ranks', 'Leadership Councils'],
+        'Intensive State Board preparation with daily doubt resolution, rigorous diagnostic mock tests, and personalized mentoring to secure top state ranks and medical/engineering foundations.',
+      ratio: '1:20',
+      subjects: [
+        'Advanced Physical Sciences',
+        'Advanced Mathematics',
+        'Economics & Social Sciences',
+        'English Language & Literature',
+      ],
+      outcomes: [
+        'Unbroken 100% Class X secondary board clearance record',
+        '92% students securing first-class and distinctions',
+        'Personalized roadmap for IIT-JEE, NEET & Olympiads',
+      ],
     },
   ];
 
+  const coreGuarantees = [
+    {
+      icon: Users2,
+      number: '1:20',
+      title: 'Individual Attention',
+      desc: 'Small class batches ensure teachers know every child’s learning speed and doubts.',
+    },
+    {
+      icon: Trophy,
+      number: '100%',
+      title: 'Board Pass Record',
+      desc: 'Unbroken multi-decade tradition of zero failures and top distinction honors.',
+    },
+    {
+      icon: BookOpen,
+      number: '4K',
+      title: 'Smart Digital Suites',
+      desc: 'Interactive touch panels, modern laboratories, and fully equipped computer workstations.',
+    },
+  ];
+
+  const currentStage = stages[selectedStageIndex];
+  const StageIcon = currentStage.icon;
+
   return (
-    <section id="academics" className="py-20 lg:py-28 bg-[#f8fafc] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="academics" className="py-20 lg:py-28 bg-[#f8f9fa] border-b border-slate-200 relative overflow-hidden">
+      {/* Background ambient lighting */}
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#0284c7]/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="w-[90%] mx-auto px-2 sm:px-4 lg:px-6 relative z-10">
         {/* Section Header */}
-        <div className="mb-14">
-          <span className="text-xs font-extrabold tracking-widest text-[#1d4ed8] uppercase">
-            ACADEMICS
-          </span>
-          <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0a192f] tracking-tight mt-1">
-            Explore. Learn. Excel.
-          </h2>
-          <p className="text-slate-600 text-sm sm:text-base max-w-2xl mt-3">
-            Our progressive academic framework fosters intellectual curiosity, scientific temperament, and ethical leadership at every stage of school life.
-          </p>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
+              <Sparkles className="w-3.5 h-3.5 text-[#daa520]" />
+              <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">
+                ACADEMIC PATHWAYS • GRADES VI TO X
+              </span>
+            </div>
+            <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0a192f] tracking-tight">
+              <TextReveal>Explore. Learn. Excel.</TextReveal>
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base max-w-2xl mt-3 leading-relaxed">
+              We guide students from Grade VI analytical discovery through Class X secondary board distinctions. Select a wing below to explore curriculum, subjects, and outcomes.
+            </p>
+          </div>
+
+          {onNavigateRoute && (
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                onClick={() => onNavigateRoute('home', '#faculty')}
+                className="inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-3 rounded-full text-xs tracking-wider uppercase transition-all shadow-md hover:shadow-lg cursor-pointer"
+              >
+                <span>MEET OUR FACULTY</span>
+                <ArrowRight className="w-4 h-4 text-[#daa520]" />
+              </button>
+
+              <button
+                onClick={() => onNavigateRoute('academics')}
+                className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#0a192f] font-bold px-5 py-3 rounded-full border border-slate-200 text-xs tracking-wider uppercase transition-all cursor-pointer shadow-subtle"
+              >
+                <span>VIEW SYLLABUS</span>
+                <ArrowRight className="w-4 h-4 text-[#0284c7]" />
+              </button>
+            </div>
+          )}
         </div>
 
-        {/* 2-Column Grid: Cards (Left) + Holistic Growth Badge (Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left: 4 Feature Cards */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {cards.map((card, idx) => {
-              const Icon = card.icon;
-              return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  whileHover={{ y: -4 }}
-                  className="bg-white p-6 rounded-2xl border border-blue-100 hover:border-blue-400 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
-                >
-                  <div>
-                    <div className="w-12 h-12 rounded-xl bg-sky-50 border border-blue-200 text-[#1d4ed8] flex items-center justify-center mb-4 group-hover:bg-[#1d4ed8] group-hover:text-white transition-all shadow-sm">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-base font-bold text-slate-900 group-hover:text-[#1d4ed8] transition-colors">
-                      {card.title}
-                    </h3>
-                    <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                      {card.description}
-                    </p>
+        {/* 3 Core Academic Guarantees - Quick scan for parents */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12">
+          {coreGuarantees.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={idx}
+                className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-subtle hover:shadow-card hover:-translate-y-1 transition-all duration-300 flex items-center gap-5"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center shrink-0">
+                  <Icon className="w-7 h-7" />
+                </div>
+                <div>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-2xl font-black text-[#0284c7] font-modern">
+                      {item.number}
+                    </span>
+                    <span className="font-crest font-bold text-sm text-[#0a192f]">
+                      {item.title}
+                    </span>
                   </div>
+                  <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
 
-                  <div className="mt-4 pt-4 border-t border-slate-100 space-y-1">
-                    {card.points.map((pt, pidx) => (
-                      <div key={pidx} className="flex items-center gap-1.5 text-[11px] font-medium text-slate-500">
-                        <CheckCircle className="w-3 h-3 text-[#1d4ed8]" />
-                        <span>{pt}</span>
-                      </div>
-                    ))}
+        {/* Interactive Academic Wings Selector */}
+        <div className="bg-white border border-slate-200/90 rounded-3xl shadow-card overflow-hidden">
+          {/* Step Selector Tabs */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 border-b border-slate-200 bg-slate-50/60 p-2 gap-2">
+            {stages.map((stage, idx) => {
+              const isSelected = selectedStageIndex === idx;
+              const TabIcon = stage.icon;
+              return (
+                <button
+                  key={stage.id}
+                  onClick={() => setSelectedStageIndex(idx)}
+                  className={`p-4 rounded-2xl text-left transition-all duration-300 cursor-pointer flex items-center gap-3.5 ${
+                    isSelected
+                      ? 'bg-white text-[#0a192f] shadow-md border border-slate-200 ring-2 ring-[#0284c7]/20'
+                      : 'hover:bg-white/60 text-slate-600'
+                  }`}
+                >
+                  <div
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                      isSelected
+                        ? 'bg-[#0284c7] text-white'
+                        : 'bg-slate-200/80 text-slate-600'
+                    }`}
+                  >
+                    <TabIcon className="w-5 h-5" />
                   </div>
-                </motion.div>
+                  <div className="min-w-0">
+                    <div className="text-[11px] font-bold text-[#0284c7] uppercase tracking-wider">
+                      {stage.gradeRange}
+                    </div>
+                    <div className="font-crest font-bold text-sm sm:text-base text-[#0a192f] truncate">
+                      {stage.title}
+                    </div>
+                  </div>
+                </button>
               );
             })}
           </div>
 
-          {/* Right: Circular / Crest Feature Spotlight */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="lg:col-span-5 flex flex-col items-center justify-center relative"
+          {/* Active Stage Content Display */}
+          <div className="p-6 sm:p-10 lg:p-12">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentStage.id}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+              >
+                {/* Left: Clear Narrative & Outcomes */}
+                <div className="lg:col-span-7 space-y-6">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2.5 mb-3">
+                      <span className={`text-xs font-bold px-3 py-1 rounded-full ${currentStage.badgeColor}`}>
+                        {currentStage.badge}
+                      </span>
+                      <span className="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+                        {currentStage.ageRange}
+                      </span>
+                      <span className="text-xs font-bold text-[#0284c7] bg-[#0284c7]/10 px-3 py-1 rounded-full">
+                        Mentor Ratio: {currentStage.ratio}
+                      </span>
+                    </div>
+
+                    <h3 className="font-crest text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0a192f] leading-tight">
+                      {currentStage.title} ({currentStage.gradeRange})
+                    </h3>
+
+                    <p className="text-sm sm:text-base font-semibold text-[#0284c7] mt-2">
+                      {currentStage.tagline}
+                    </p>
+
+                    <p className="text-slate-600 text-sm mt-2 leading-relaxed">
+                      {currentStage.description}
+                    </p>
+                  </div>
+
+                  {/* Core Subjects Chips */}
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2.5">
+                      Key Subjects & Learning Areas:
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {currentStage.subjects.map((sub, sidx) => (
+                        <div
+                          key={sidx}
+                          className="flex items-center gap-2.5 bg-slate-50 border border-slate-200/80 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-[#0a192f]"
+                        >
+                          <span className="w-2 h-2 rounded-full bg-[#0284c7] shrink-0" />
+                          <span>{sub}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Key Learning Outcomes */}
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2.5">
+                      What Your Child Achieves:
+                    </h4>
+                    <div className="space-y-2">
+                      {currentStage.outcomes.map((outcome, oidx) => (
+                        <div key={oidx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                          <span>{outcome}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right: Stage Visual Spotlight Card & Fast Action */}
+                <div className="lg:col-span-5 bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white p-7 sm:p-8 rounded-3xl shadow-xl flex flex-col justify-between text-center relative overflow-hidden">
+                  <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-white mx-auto mb-4 backdrop-blur-xs">
+                    <StageIcon className="w-8 h-8 text-[#38bdf8]" />
+                  </div>
+
+                  <span className="text-xs font-bold text-white/80 uppercase tracking-wider">
+                    Academic Wing Spotlight
+                  </span>
+
+                  <h4 className="font-crest text-2xl font-bold mt-1 text-white">
+                    {currentStage.title}
+                  </h4>
+
+                  <div className="my-6 p-4 rounded-2xl bg-white/10 border border-white/10 backdrop-blur-xs text-left space-y-2 text-xs text-slate-200">
+                    <div className="flex justify-between border-b border-white/10 pb-1.5">
+                      <span className="text-slate-300">Grades Offered:</span>
+                      <span className="font-bold text-white">{currentStage.gradeRange}</span>
+                    </div>
+                    <div className="flex justify-between border-b border-white/10 pb-1.5">
+                      <span className="text-slate-300">Target Ages:</span>
+                      <span className="font-bold text-white">{currentStage.ageRange}</span>
+                    </div>
+                    <div className="flex justify-between border-b border-white/10 pb-1.5">
+                      <span className="text-slate-300">Teacher Ratio:</span>
+                      <span className="font-bold text-[#daa520]">{currentStage.ratio}</span>
+                    </div>
+                    <div className="flex justify-between pt-0.5">
+                      <span className="text-slate-300">Curriculum:</span>
+                      <span className="font-bold text-white">AP State Board</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <button
+                      onClick={onOpenAdmission}
+                      className="w-full bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold py-3.5 rounded-full uppercase tracking-wider text-xs transition-all shadow-md hover:shadow-lg cursor-pointer flex items-center justify-center gap-2"
+                    >
+                      <span>Enrol in {currentStage.title}</span>
+                      <ArrowRight className="w-4 h-4 text-[#daa520]" />
+                    </button>
+
+                    {onNavigateRoute && (
+                      <button
+                        onClick={() => onNavigateRoute('contact')}
+                        className="w-full text-xs text-white/80 hover:text-white font-semibold underline underline-offset-4 cursor-pointer"
+                      >
+                        Contact Academic Office for Inquiries →
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Quick Navigation Footer Strip */}
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 p-5 bg-white rounded-2xl border border-slate-200/90 shadow-subtle text-xs text-slate-600">
+          <div className="flex items-center gap-2">
+            <Compass className="w-4 h-4 text-[#0284c7]" />
+            <span>Need personalized counseling for your child's grade transition?</span>
+          </div>
+          <button
+            onClick={onOpenAdmission}
+            className="text-[#0284c7] hover:text-[#0369a1] font-bold uppercase tracking-wider hover:underline cursor-pointer"
           >
-            <div className="relative w-full max-w-md">
-              {/* Circular Student Photo Frame */}
-              <div className="relative w-72 h-72 sm:w-88 sm:h-88 mx-auto rounded-full overflow-hidden border-8 border-white shadow-2xl ring-4 ring-blue-200">
-                <img
-                  src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800&auto=format&fit=crop"
-                  alt="Students experiencing holistic growth"
-                  className="w-full h-full object-cover object-center transform hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-              </div>
-
-              {/* Floating Emblems */}
-              <div className="absolute top-2 right-4 bg-white/95 backdrop-blur-md p-3 rounded-2xl shadow-lg border border-blue-200 text-center animate-pulse">
-                <span className="text-xs font-black text-[#1d4ed8]">High School</span>
-                <span className="block text-[9px] font-bold text-slate-600">Nursery – Grade X</span>
-              </div>
-
-              {/* Dark Navy & White Banner */}
-              <div className="relative -mt-10 sm:-mt-12 mx-auto max-w-xs bg-[#0a192f] text-white p-4 sm:p-5 rounded-2xl shadow-2xl border-2 border-white text-center">
-                <h4 className="font-crest text-lg sm:text-xl font-bold text-white tracking-wide">
-                  Holistic Growth
-                </h4>
-                <p className="text-xs font-semibold text-sky-300 tracking-wider mt-1 uppercase">
-                  Mind • Body • Values
-                </p>
-                <p className="text-[11px] text-blue-100/90 mt-1">
-                  Nurturing intellectual, emotional, and social resilience in every learner.
-                </p>
-              </div>
-            </div>
-          </motion.div>
+            Speak with our Academic Counselor →
+          </button>
         </div>
       </div>
     </section>

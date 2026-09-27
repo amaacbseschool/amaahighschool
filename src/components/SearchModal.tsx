@@ -1,24 +1,31 @@
 import React, { useState } from 'react';
-import { Search, X, ArrowRight, BookOpen, Monitor, Award, Calendar } from 'lucide-react';
+import { Search, X, ArrowRight, BookOpen, Monitor, Award, Calendar, Users, Phone } from 'lucide-react';
+import type { RouteType } from '../types/routes';
 
 interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSelectAction: (target: string) => void;
+  onSelectRoute: (route: RouteType) => void;
 }
 
-export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSelectAction }) => {
+export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSelectRoute }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const searchableItems = [
-    { title: 'Admissions 2025–26 Form', category: 'Admissions', icon: Award, href: '#admission-info' },
-    { title: 'School Curriculum (Nursery to 10th)', category: 'Academics', icon: BookOpen, href: '#academics' },
-    { title: 'Smart Classrooms & Digital Boards', category: 'Facilities', icon: Monitor, href: '#facilities' },
-    { title: 'Science & Robotics Laboratories', category: 'Facilities', icon: Monitor, href: '#facilities' },
-    { title: 'School Bus Fleet & GPS Tracking', category: 'Transport', icon: Monitor, href: '#facilities' },
-    { title: 'Fee Structure & Scholarships', category: 'Admissions', icon: Award, href: '#contact' },
-    { title: 'School Notices & Events', category: 'Circular', icon: Calendar, href: '#notices' },
-    { title: 'Campus Tour & Principal Appointments', category: 'Contact', icon: Award, href: '#contact' },
+  const searchableItems: { title: string; category: string; icon: React.ComponentType<{ className?: string }>; route: RouteType }[] = [
+    { title: 'Campus Visual Chronicle & Photo Archive', category: 'Gallery', icon: Award, route: 'gallery' },
+    { title: 'School Curriculum & Academic Wings', category: 'Academics', icon: BookOpen, route: 'academics' },
+    { title: 'Smart Classrooms & 4K Digital Boards', category: 'Campus', icon: Monitor, route: 'campus' },
+    { title: 'Science & Computer Laboratories', category: 'Campus', icon: Monitor, route: 'campus' },
+    { title: 'Digital Library & Research Carrels', category: 'Campus', icon: Monitor, route: 'campus' },
+    { title: 'School Bus Fleet & Live GPS Tracking', category: 'Campus', icon: Monitor, route: 'campus' },
+    { title: 'Faculty & Distinguished Subject Masters', category: 'Faculty', icon: Users, route: 'faculty' },
+    { title: 'Student Life, Sports, Arts & Cultural Gallery', category: 'Student Life', icon: Calendar, route: 'student-life' },
+    { title: 'Board Toppers, Olympiad & Sports Honours', category: 'Achievements', icon: Award, route: 'achievements' },
+    { title: 'School News, Events, Circulars & Announcements', category: 'News & Events', icon: Calendar, route: 'news-events' },
+    { title: 'Alumni Network, Hall of Fame & Directory', category: 'Alumni', icon: Users, route: 'alumni' },
+    { title: 'Administration & Governing Council Members', category: 'About', icon: Award, route: 'administration' },
+    { title: 'Campus Tour Booking & Counselor Inquiries', category: 'Contact', icon: Phone, route: 'contact' },
+    { title: 'About AMAA High School, Mission & Vision', category: 'About', icon: Award, route: 'about' },
   ];
 
   const results = searchTerm
@@ -27,29 +34,29 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
           item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
           item.category.toLowerCase().includes(searchTerm.toLowerCase())
       )
-    : searchableItems.slice(0, 5);
+    : searchableItems.slice(0, 6);
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-start justify-center pt-20 p-4">
-      <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 relative animate-in fade-in zoom-in-95 duration-150">
+    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-start justify-center pt-20 p-4">
+      <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 border border-slate-200 relative shadow-2xl animate-in fade-in zoom-in-95 duration-150 text-slate-900">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1.5 rounded-full hover:bg-slate-100"
+          className="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-2 rounded-full hover:bg-slate-100 cursor-pointer transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="relative mb-4">
-          <Search className="w-5 h-5 text-slate-400 absolute left-3 top-3.5" />
+        <div className="relative mb-5">
+          <Search className="w-5 h-5 text-slate-400 absolute left-4 top-3.5" />
           <input
             type="text"
             autoFocus
             placeholder="Search classes, facilities, admissions, bus routes..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 text-sm rounded-xl border border-slate-300 focus:border-[#1d4ed8] focus:ring-1 focus:ring-[#1d4ed8] outline-none"
+            className="w-full pl-11 pr-4 py-3 text-sm bg-slate-50 rounded-full border border-slate-200 focus:border-[#44105c] focus:ring-1 focus:ring-[#44105c] focus:bg-white outline-none text-slate-900 transition-colors"
           />
         </div>
 
@@ -58,28 +65,27 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
             results.map((item, idx) => {
               const Icon = item.icon;
               return (
-                <a
+                <button
                   key={idx}
-                  href={item.href}
                   onClick={() => {
                     onClose();
-                    onSelectAction(item.href);
+                    onSelectRoute(item.route);
                   }}
-                  className="flex items-center justify-between p-3 rounded-xl hover:bg-blue-50/70 transition-colors group"
+                  className="w-full text-left flex items-center justify-between p-3 rounded-2xl hover:bg-purple-50/70 transition-colors group cursor-pointer border border-transparent hover:border-purple-100"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-sky-50 text-[#1d4ed8] flex items-center justify-center">
+                    <div className="w-9 h-9 rounded-xl bg-purple-50 text-[#44105c] group-hover:bg-[#44105c] group-hover:text-white flex items-center justify-center shrink-0 transition-colors">
                       <Icon className="w-4 h-4" />
                     </div>
                     <div>
-                      <h5 className="text-xs font-bold text-slate-800 group-hover:text-[#1d4ed8]">
+                      <h5 className="text-xs font-bold text-slate-900 group-hover:text-[#44105c] font-heading">
                         {item.title}
                       </h5>
-                      <span className="text-[10px] text-[#1d4ed8] font-semibold">{item.category}</span>
+                      <span className="text-[10px] text-[#e40046] font-semibold">{item.category}</span>
                     </div>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#1d4ed8] group-hover:translate-x-1 transition-all" />
-                </a>
+                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#44105c] group-hover:translate-x-1 transition-all shrink-0" />
+                </button>
               );
             })
           ) : (

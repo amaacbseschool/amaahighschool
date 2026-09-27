@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { db } from '../lib/db';
+import { TextReveal } from './motion/TextReveal';
+import { MagneticButton } from './motion/MagneticButton';
 
 interface ContactSectionProps {
   onRecordAdded: () => void;
@@ -48,13 +50,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
     <section id="contact" className="py-20 lg:py-28 bg-[#f8fafc] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-extrabold tracking-widest text-[#1d4ed8] uppercase">
-            GET IN TOUCH
-          </span>
+          <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200/80 px-3.5 py-1 rounded-full mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#1d4ed8]" />
+            <span className="text-[11px] font-extrabold tracking-widest text-[#1d4ed8] uppercase">
+              GET IN TOUCH
+            </span>
+          </div>
           <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0a192f] tracking-tight mt-1">
-            Connect With Our Campus
+            <TextReveal>Connect With Our Campus</TextReveal>
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base mt-2">
+          <p className="text-slate-600 text-sm sm:text-base mt-2 leading-relaxed">
             Schedule a personalized campus tour, ask questions about enrollment, or speak with our academic counselors.
           </p>
         </div>
@@ -226,7 +231,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
                   />
                 </div>
 
-                <button
+                <MagneticButton
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full group inline-flex items-center justify-center gap-2 bg-[#1d4ed8] hover:bg-[#1e40af] text-white font-bold py-3.5 rounded-xl shadow-lg transition-all text-xs uppercase tracking-wider disabled:opacity-50"
@@ -239,7 +244,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
                       <span>Dispatch Message</span>
                     </>
                   )}
-                </button>
+                </MagneticButton>
               </form>
             )}
           </div>
