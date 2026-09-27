@@ -98,7 +98,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
         >
           <div>
             <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
-              <Trophy className="w-3.5 h-3.5 text-[#daa520]" />
+              <Trophy className="w-3.5 h-3.5 text-[#cfbb99]" />
               <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">
                 ACADEMIC DISTINCTIONS & BOARD HONORS
               </span>
@@ -117,7 +117,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
               className="shrink-0 inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-3 rounded-full text-xs tracking-wider uppercase transition-all shadow-md hover:shadow-lg cursor-pointer"
             >
               <span>VIEW ACADEMIC HONORS</span>
-              <ArrowRight className="w-4 h-4 text-[#daa520]" />
+              <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
             </button>
           )}
         </motion.div>
@@ -134,7 +134,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             className="md:col-span-12 lg:col-span-6 bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white p-8 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden group flex flex-col justify-between border border-sky-900"
           >
             <div className="relative z-10 flex items-start justify-between gap-4 mb-6">
-              <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-[#daa520] shadow-md group-hover:scale-105 transition-transform">
+              <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-[#cfbb99] shadow-md group-hover:scale-105 transition-transform">
                 <ShieldCheck className="w-8 h-8" />
               </div>
               <span className="text-[11px] font-bold uppercase tracking-widest bg-[#dc2626] text-white px-3.5 py-1.5 rounded-full">
@@ -224,7 +224,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
               <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 text-[#0284c7] flex items-center justify-center shadow-subtle group-hover:scale-105 transition-transform">
                 <Medal className="w-6 h-6" />
               </div>
-              <Sparkles className="w-4 h-4 text-[#daa520]" />
+              <Sparkles className="w-4 h-4 text-[#cfbb99]" />
             </div>
 
             <div className="relative z-10">
@@ -250,7 +250,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             className="md:col-span-6 bg-white border border-slate-200/90 rounded-3xl p-7 sm:p-8 shadow-card hover:border-[#0284c7]/40 transition-all duration-300 relative overflow-hidden group"
           >
             <div className="relative z-10 flex items-center justify-between mb-4">
-              <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 text-[#daa520] flex items-center justify-center shadow-subtle group-hover:scale-105 transition-transform">
+              <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 text-[#cfbb99] flex items-center justify-center shadow-subtle group-hover:scale-105 transition-transform">
                 <Trophy className="w-6 h-6" />
               </div>
               <Sparkles className="w-4 h-4 text-[#0284c7]" />
@@ -281,7 +281,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
           >
             <div>
               <div className="flex items-center gap-2 text-xs font-bold text-[#0284c7] uppercase tracking-wider mb-1">
-                <Star className="w-4 h-4 text-[#daa520]" />
+                <Star className="w-4 h-4 text-[#cfbb99]" />
                 <span>Class X Board Roll of Honor</span>
               </div>
               <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#0a192f]">
@@ -294,7 +294,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                 className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-[#0284c7] bg-white border border-slate-200 px-4 py-2 rounded-full hover:bg-slate-50 transition-colors cursor-pointer shadow-subtle"
               >
                 <span>Merit Scholarships 2025–26</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#daa520]" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#cfbb99]" />
               </button>
             ) : (
               <span className="hidden sm:block text-xs font-bold text-slate-600">100% Pass Rate Record</span>
@@ -487,7 +487,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 mb-10 pb-8 border-b border-white/10">
             <div>
               <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-3.5 py-1 text-xs font-bold text-white uppercase tracking-wider rounded-full mb-2">
-                <GraduationCap className="w-4 h-4 text-[#daa520]" />
+                <GraduationCap className="w-4 h-4 text-[#cfbb99]" />
                 <span>GLOBAL IMPACT & LEADERSHIP</span>
               </div>
               <h3 className="font-crest text-2xl sm:text-3xl font-bold text-white">
@@ -504,7 +504,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                 className="shrink-0 inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-3.5 rounded-full text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg cursor-pointer"
               >
                 <span>VISIT ALUMNI NETWORK</span>
-                <ArrowRight className="w-4 h-4 text-[#daa520]" />
+                <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
               </button>
             )}
           </div>

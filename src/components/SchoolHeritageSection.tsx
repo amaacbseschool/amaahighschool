@@ -49,8 +49,8 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
       title: 'Compassionate Mentorship',
       desc: 'A dedicated 1:20 educator ratio ensures that every child receives individualized encouragement, empathy, and intellectual guidance.',
       icon: HeartHandshake,
-      iconColor: 'text-[#daa520]',
-      badgeColor: 'bg-[#daa520]/10 text-[#daa520]',
+      iconColor: 'text-[#cfbb99]',
+      badgeColor: 'bg-[#cfbb99]/20 text-[#9e8760]',
     },
   ];
 
@@ -69,7 +69,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-[#daa520]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">
               DIAMOND JUBILEE • 60 YEARS OF EXCELLENCE
             </span>
@@ -182,7 +182,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                 </div>
 
                 <div className="text-left border-l border-slate-200 pl-3 sm:pl-4">
-                  <div className="text-2xl sm:text-3xl font-extrabold text-[#daa520] font-modern">
+                  <div className="text-2xl sm:text-3xl font-extrabold text-[#cfbb99] font-modern">
                     <AnimatedCounter value={10000} suffix="+" />
                   </div>
                   <div className="text-[11px] font-bold text-slate-600 uppercase tracking-wider mt-0.5">

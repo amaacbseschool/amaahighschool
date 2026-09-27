@@ -145,7 +145,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
               className="inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-full transition-all shadow-md hover:shadow-lg cursor-pointer"
             >
               <span>APPLY FOR 2025–26</span>
-              <ArrowRight className="w-4 h-4 text-[#daa520]" />
+              <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
             </button>
           </div>
         </motion.div>
@@ -168,7 +168,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
                   <div className="flex items-center gap-3.5">
                     {/* Modern Style Date Badge */}
                     <div className="w-14 h-16 bg-[#0a192f] group-hover:bg-[#0284c7] text-white rounded-xl flex flex-col items-center justify-center shadow-md transition-colors duration-300 shrink-0">
-                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#daa520]">
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#cfbb99]">
                         {evt.date.month}
                       </span>
                       <span className="text-2xl font-black leading-none mt-0.5">

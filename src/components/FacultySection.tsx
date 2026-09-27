@@ -273,7 +273,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
           </div>
 
           <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-card">
-            <div className="text-2xl sm:text-3xl font-black text-[#daa520] font-mono">18+ Yrs</div>
+            <div className="text-2xl sm:text-3xl font-black text-[#cfbb99] font-mono">18+ Yrs</div>
             <div className="text-xs font-bold uppercase tracking-wider text-slate-900 mt-1">Average Pedagogy Tenure</div>
             <div className="text-[11px] text-slate-500 mt-1">Deep institutional stability</div>
           </div>
@@ -353,7 +353,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
 
                   {/* Experience Pill */}
                   <div className="absolute bottom-3.5 left-3.5 text-[11px] font-bold text-white bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full flex items-center gap-1">
-                    <Award className="w-3.5 h-3.5 text-[#daa520]" />
+                    <Award className="w-3.5 h-3.5 text-[#cfbb99]" />
                     <span>{faculty.experience.split(' ')[0]} Yrs Exp.</span>
                   </div>
                 </div>
@@ -533,7 +533,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
 
                 <div className="bg-slate-50 rounded-2xl border border-slate-100 p-5 space-y-3">
                   <h4 className="font-bold text-xs uppercase tracking-wider text-slate-900 flex items-center gap-2">
-                    <Award className="w-4 h-4 text-[#daa520]" />
+                    <Award className="w-4 h-4 text-[#cfbb99]" />
                     Key Milestones & Contributions
                   </h4>
                   <div className="space-y-2">

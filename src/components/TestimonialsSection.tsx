@@ -116,7 +116,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
         >
           <div>
             <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
-              <Sparkles className="w-3.5 h-3.5 text-[#daa520]" />
+              <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
               <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">
                 VOICES OF TRUST & EXCELLENCE
               </span>

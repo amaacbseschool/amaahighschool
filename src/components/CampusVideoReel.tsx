@@ -148,7 +148,7 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
               onClick={handleExploreGallery}
               className="inline-flex items-center gap-2.5 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-3.5 rounded-full text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg cursor-pointer"
             >
-              <Images className="w-4 h-4 text-[#daa520]" />
+              <Images className="w-4 h-4 text-[#cfbb99]" />
               <span>EXPLORE ALL 38 PHOTOS</span>
             </button>
           </div>
@@ -191,7 +191,7 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
               {/* Top Bar inside Card */}
               <div className="relative z-10 flex items-center justify-between gap-4">
                 <div className="bg-[#07111e]/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-[#38bdf8] text-[11px] font-bold uppercase tracking-wider flex items-center gap-2">
-                  <Sparkles className="w-3.5 h-3.5 text-[#daa520]" />
+                  <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
                   <span>{current.badge}</span>
                 </div>
 
@@ -254,7 +254,7 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
             <div className="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 flex-1 flex flex-col justify-between backdrop-blur-xs">
               <div>
                 <div className="flex items-center gap-2 text-xs font-bold text-[#38bdf8] uppercase tracking-wider mb-2">
-                  <Clock className="w-4 h-4 text-[#daa520]" />
+                  <Clock className="w-4 h-4 text-[#cfbb99]" />
                   <span>Student Life Routine</span>
                 </div>
                 <h3 className="font-crest text-2xl font-bold text-white">

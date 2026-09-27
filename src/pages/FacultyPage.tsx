@@ -57,7 +57,7 @@ export const FacultyPage: React.FC<FacultyPageProps> = ({
               <div className="text-xs text-slate-300 mt-1 font-medium">Mentor-Student Ratio</div>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
-              <div className="text-2xl sm:text-3xl font-black text-[#daa520]">15+ Yrs</div>
+              <div className="text-2xl sm:text-3xl font-black text-[#cfbb99]">15+ Yrs</div>
               <div className="text-xs text-slate-300 mt-1 font-medium">Average Pedagogy Tenure</div>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">

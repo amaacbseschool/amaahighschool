@@ -80,7 +80,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       title: 'Inclusive Mentorship',
       desc: 'A student-to-teacher ratio of 1:20 ensuring every child receives tailored academic guidance and emotional care.',
       icon: Users,
-      iconColor: 'text-[#daa520]',
+      iconColor: 'text-[#cfbb99]',
     },
   ];
 
@@ -114,7 +114,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               alt="School Emblem"
               className="w-8 h-8 object-contain"
             />
-            <span className="text-xs font-bold tracking-widest uppercase text-[#daa520]">
+            <span className="text-xs font-bold tracking-widest uppercase text-[#cfbb99]">
               "LEAD KINDLY LIGHT" • ESTD. 1965
             </span>
           </div>
@@ -132,7 +132,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               onClick={onOpenAdmission}
               className="bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-8 py-3.5 rounded-full transition-all text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg hover:shadow-xl cursor-pointer"
             >
-              <GraduationCap className="w-4 h-4 text-[#daa520]" />
+              <GraduationCap className="w-4 h-4 text-[#cfbb99]" />
               <span>Apply for Admission 2025–26</span>
             </button>
             <button
@@ -140,7 +140,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               className="bg-white/10 hover:bg-white/20 text-white font-semibold px-7 py-3.5 rounded-full border border-white/25 transition-all text-xs uppercase tracking-wider flex items-center gap-2 cursor-pointer backdrop-blur-xs"
             >
               <span>Explore Curriculum</span>
-              <ArrowRight className="w-4 h-4 text-[#daa520]" />
+              <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
             </button>
           </div>
         </div>
@@ -313,7 +313,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       <section id="history" className="bg-[#07111e] text-white py-16 lg:py-24 border-t border-slate-800">
         <div className="w-[90%] mx-auto px-2 sm:px-4">
           <div className="text-center max-w-xl mx-auto mb-14">
-            <span className="text-xs font-bold text-[#daa520] uppercase tracking-widest bg-white/10 px-3.5 py-1 rounded-full">
+            <span className="text-xs font-bold text-[#cfbb99] uppercase tracking-widest bg-white/10 px-3.5 py-1 rounded-full">
               JOURNEY OVER TIME
             </span>
             <h2 className="font-crest text-3xl sm:text-4xl font-bold text-white mt-3">

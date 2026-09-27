@@ -109,7 +109,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
-              <Sparkles className="w-3.5 h-3.5 text-[#daa520]" />
+              <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
               <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">
                 ACADEMIC PATHWAYS • GRADES VI TO X
               </span>
@@ -129,7 +129,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                 className="inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-3 rounded-full text-xs tracking-wider uppercase transition-all shadow-md hover:shadow-lg cursor-pointer"
               >
                 <span>MEET OUR FACULTY</span>
-                <ArrowRight className="w-4 h-4 text-[#daa520]" />
+                <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
               </button>
 
               <button
@@ -310,7 +310,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                     </div>
                     <div className="flex justify-between border-b border-white/10 pb-1.5">
                       <span className="text-slate-300">Teacher Ratio:</span>
-                      <span className="font-bold text-[#daa520]">{currentStage.ratio}</span>
+                      <span className="font-bold text-[#cfbb99]">{currentStage.ratio}</span>
                     </div>
                     <div className="flex justify-between pt-0.5">
                       <span className="text-slate-300">Curriculum:</span>
@@ -324,7 +324,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                       className="w-full bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold py-3.5 rounded-full uppercase tracking-wider text-xs transition-all shadow-md hover:shadow-lg cursor-pointer flex items-center justify-center gap-2"
                     >
                       <span>Enrol in {currentStage.title}</span>
-                      <ArrowRight className="w-4 h-4 text-[#daa520]" />
+                      <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
                     </button>
 
                     {onNavigateRoute && (

@@ -169,8 +169,8 @@ export const NewsEventsPage: React.FC<NewsEventsPageProps> = ({ onNavigateRoute 
       <section className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white py-14 lg:py-20 px-4 overflow-hidden border-b border-sky-950">
         <div className="w-[90%] mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 mb-5">
-            <Sparkles className="w-4 h-4 text-[#daa520]" />
-            <span className="text-xs font-bold tracking-widest uppercase text-[#daa520]">Stay Informed</span>
+            <Sparkles className="w-4 h-4 text-[#cfbb99]" />
+            <span className="text-xs font-bold tracking-widest uppercase text-[#cfbb99]">Stay Informed</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight font-crest max-w-3xl">
             <TextReveal>News, Announcements & Campus Events</TextReveal>
@@ -193,7 +193,7 @@ export const NewsEventsPage: React.FC<NewsEventsPageProps> = ({ onNavigateRoute 
                   }}
                   className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold px-4 py-2 rounded-full transition-all cursor-pointer"
                 >
-                  <Icon className="w-3.5 h-3.5 text-[#daa520]" />
+                  <Icon className="w-3.5 h-3.5 text-[#cfbb99]" />
                   {tab.label}
                 </a>
               );

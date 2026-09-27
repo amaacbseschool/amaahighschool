@@ -239,8 +239,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-300 bg-black/40 backdrop-blur-md px-6 py-3.5 rounded-2xl sm:rounded-full border border-white/10 shadow-lg">
           <div className="flex flex-wrap items-center gap-3 sm:gap-4 justify-center sm:justify-start">
             <span className="flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-[#daa520]" />
-              <span className="text-[#daa520] font-bold">Diamond Jubilee (1965–2025)</span>
+              <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
+              <span className="text-[#cfbb99] font-bold">Diamond Jubilee (1965–2025)</span>
             </span>
             <span className="text-white/30 hidden sm:inline">•</span>
             <span>1:20 Mentor Ratio</span>

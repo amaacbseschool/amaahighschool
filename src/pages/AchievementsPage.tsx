@@ -141,8 +141,8 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
       <section className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white py-16 lg:py-24 px-4 overflow-hidden border-b border-sky-950">
         <div className="w-[90%] mx-auto relative z-10 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 mb-6">
-            <Trophy className="w-4 h-4 text-[#daa520]" />
-            <span className="text-xs font-bold tracking-widest uppercase text-[#daa520]">Tradition of Excellence</span>
+            <Trophy className="w-4 h-4 text-[#cfbb99]" />
+            <span className="text-xs font-bold tracking-widest uppercase text-[#cfbb99]">Tradition of Excellence</span>
           </div>
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight font-crest">
             <TextReveal>Academic Distinctions & Board Honours</TextReveal>
@@ -155,7 +155,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
               onClick={onOpenAdmission}
               className="bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-8 py-3.5 rounded-full transition-all text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg hover:shadow-xl cursor-pointer"
             >
-              <GraduationCap className="w-4 h-4 text-[#daa520]" />
+              <GraduationCap className="w-4 h-4 text-[#cfbb99]" />
               <span>Apply for Admission 2025–26</span>
             </button>
           </div>
@@ -181,7 +181,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
                     : 'bg-white text-[#0a192f] border-slate-200/90 hover:border-[#0284c7]/30'
                 }`}
               >
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 ${stat.dark ? 'bg-white/10 text-[#daa520]' : 'bg-[#0284c7]/10 text-[#0284c7]'}`}>
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 ${stat.dark ? 'bg-white/10 text-[#cfbb99]' : 'bg-[#0284c7]/10 text-[#0284c7]'}`}>
                   <Icon className="w-7 h-7" />
                 </div>
                 <div>
@@ -207,7 +207,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
           className="mb-10"
         >
           <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
-            <Star className="w-3.5 h-3.5 text-[#daa520]" />
+            <Star className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">Class X Board Roll of Honour</span>
           </div>
           <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Recent Secondary Board Star Toppers</h2>
@@ -285,7 +285,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
           className="mb-10"
         >
           <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
-            <Medal className="w-3.5 h-3.5 text-[#daa520]" />
+            <Medal className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">National & State Level Competitions</span>
           </div>
           <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Olympiad & Academic Honours</h2>
@@ -303,7 +303,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
               className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-card hover:border-[#0284c7]/40 transition-all duration-300"
             >
               <div className="flex items-center gap-2 mb-3">
-                <Sparkles className="w-4 h-4 text-[#daa520] shrink-0" />
+                <Sparkles className="w-4 h-4 text-[#cfbb99] shrink-0" />
                 <h4 className="font-bold text-[#0a192f] text-sm">{o.category}</h4>
               </div>
               <div className="text-xl font-extrabold text-[#0284c7] font-modern">{o.medals}</div>
@@ -321,7 +321,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
           className="mb-10"
         >
           <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
-            <Trophy className="w-3.5 h-3.5 text-[#daa520]" />
+            <Trophy className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">Inter-School & State Sports</span>
           </div>
           <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Sports Championship Honours</h2>
@@ -358,7 +358,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6 mb-10 pb-8 border-b border-white/10">
             <div>
               <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-3.5 py-1 text-xs font-bold text-white uppercase tracking-wider rounded-full mb-2">
-                <GraduationCap className="w-4 h-4 text-[#daa520]" />
+                <GraduationCap className="w-4 h-4 text-[#cfbb99]" />
                 <span>Global Impact & Leadership</span>
               </div>
               <h3 className="font-crest text-2xl sm:text-3xl font-bold text-white">Six Decades of Leaders Shaping the World</h3>
@@ -369,7 +369,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
               className="shrink-0 inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-3.5 rounded-full text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
             >
               <span>Visit Alumni Network</span>
-              <ArrowRight className="w-4 h-4 text-[#daa520]" />
+              <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
             </button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -412,7 +412,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
             className="shrink-0 inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-8 py-4 rounded-full text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
           >
             <span>Apply for 2025–26</span>
-            <ArrowRight className="w-4 h-4 text-[#daa520]" />
+            <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
           </button>
         </motion.div>
       </section>

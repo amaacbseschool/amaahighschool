@@ -16,7 +16,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onNavigateRoute }) => {
         <div className="flex flex-wrap items-center gap-3 sm:gap-5">
           <div className="flex items-center gap-1.5 bg-white/10 border border-white/20 px-2.5 py-0.5 rounded-full text-[10px] font-bold text-white uppercase tracking-wider">
             <span className="w-1.5 h-1.5 rounded-full bg-[#dc2626] animate-pulse" />
-            <span className="text-[#daa520]">"Lead Kindly Light"</span>
+            <span className="text-[#cfbb99]">"Lead Kindly Light"</span>
             <span className="text-white/40">•</span>
             <span>Estd. 1965</span>
           </div>

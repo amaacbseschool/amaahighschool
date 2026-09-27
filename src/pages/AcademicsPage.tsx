@@ -85,7 +85,7 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
               alt="School Emblem"
               className="w-8 h-8 object-contain"
             />
-            <span className="text-xs font-bold tracking-widest uppercase text-[#daa520]">
+            <span className="text-xs font-bold tracking-widest uppercase text-[#cfbb99]">
               A.M.A. ADINARAYANA ACADEMICS • "LEAD KINDLY LIGHT" (ESTD. 1965)
             </span>
           </div>
@@ -103,7 +103,7 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
               onClick={onOpenAdmission}
               className="bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-8 py-3.5 rounded-full transition-all text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg hover:shadow-xl cursor-pointer"
             >
-              <GraduationCap className="w-4 h-4 text-[#daa520]" />
+              <GraduationCap className="w-4 h-4 text-[#cfbb99]" />
               <span>Enroll for Session 2025–26</span>
             </button>
             {onNavigateRoute && (
@@ -112,7 +112,7 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
                 className="bg-white/10 hover:bg-white/20 text-white font-semibold px-7 py-3.5 rounded-full border border-white/25 transition-all text-xs uppercase tracking-wider flex items-center gap-2 cursor-pointer backdrop-blur-xs"
               >
                 <span>Explore Laboratories</span>
-                <ChevronRight className="w-4 h-4 text-[#daa520]" />
+                <ChevronRight className="w-4 h-4 text-[#cfbb99]" />
               </button>
             )}
           </div>

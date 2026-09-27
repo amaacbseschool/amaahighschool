@@ -129,7 +129,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               <div className="text-xs text-slate-300 mt-1 font-medium">Response Time</div>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
-              <div className="text-2xl sm:text-3xl font-black text-[#daa520]">6 Days</div>
+              <div className="text-2xl sm:text-3xl font-black text-[#cfbb99]">6 Days</div>
               <div className="text-xs text-slate-300 mt-1 font-medium">Visiting Desk Open</div>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
@@ -350,7 +350,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
           {/* Campus Tour Booking Card */}
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white p-8 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden">
-              <div className="flex items-center gap-2 text-xs font-bold text-[#daa520] uppercase tracking-wider mb-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-[#cfbb99] uppercase tracking-wider mb-2">
                 <Sparkles className="w-4 h-4" />
                 <span>Experience Our Campus</span>
               </div>

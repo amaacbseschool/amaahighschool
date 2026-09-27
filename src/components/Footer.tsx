@@ -62,7 +62,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmission, onNavigateRoute
                 <span className="font-crest text-xs font-bold text-[#38bdf8] tracking-widest block mt-0.5">
                   ENG. MED. HIGH SCHOOL
                 </span>
-                <span className="text-[10px] font-bold text-[#daa520] uppercase tracking-wider block mt-1">
+                <span className="text-[10px] font-bold text-[#cfbb99] uppercase tracking-wider block mt-1">
                   "Lead Kindly Light" • Estd. 1965
                 </span>
               </div>

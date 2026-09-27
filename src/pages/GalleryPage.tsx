@@ -175,7 +175,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
                 <div className="text-xs text-slate-300 mt-1 font-medium">Lush Green Campus</div>
               </div>
               <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
-                <div className="text-2xl sm:text-3xl font-black text-[#daa520]">1965</div>
+                <div className="text-2xl sm:text-3xl font-black text-[#cfbb99]">1965</div>
                 <div className="text-xs text-slate-300 mt-1 font-medium">Diamond Jubilee Estd.</div>
               </div>
               <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
@@ -211,7 +211,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
             <div className="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between bg-gradient-to-br from-slate-900 to-[#0a192f] text-white">
               <div>
                 <div className="flex items-center gap-2 text-xs font-bold text-[#38bdf8] uppercase tracking-wider mb-2">
-                  <Sparkles className="w-4 h-4 text-[#daa520]" />
+                  <Sparkles className="w-4 h-4 text-[#cfbb99]" />
                   <span>Campus Landmark</span>
                 </div>
                 <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white leading-tight">
@@ -514,7 +514,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
         <div className="mt-16 bg-gradient-to-r from-[#07111e] via-[#0a192f] to-[#0369a1] rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
           <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-[radial-gradient(ellipse_at_top_right,rgba(2,132,199,0.25),transparent_70%)] pointer-events-none" />
           <div className="relative z-10">
-            <span className="text-xs font-bold text-[#daa520] uppercase tracking-widest bg-white/10 px-3 py-1 rounded-full">
+            <span className="text-xs font-bold text-[#cfbb99] uppercase tracking-widest bg-white/10 px-3 py-1 rounded-full">
               ADMISSIONS OPEN 2025–26
             </span>
             <h3 className="font-heading text-2xl sm:text-3xl font-bold mt-3">
@@ -529,7 +529,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
             className="shrink-0 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-8 py-4 text-xs uppercase tracking-wider rounded-full shadow-lg transition-all inline-flex items-center gap-2 cursor-pointer relative z-10"
           >
             <span>SCHEDULE CAMPUS VISIT</span>
-            <ArrowRight className="w-4 h-4 text-[#daa520]" />
+            <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
           </MagneticButton>
         </div>
       </div>
@@ -644,7 +644,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-3">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-bold text-[#daa520] bg-amber-400/10 border border-amber-400/30 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                    <span className="text-[10px] font-bold text-[#cfbb99] bg-amber-400/10 border border-amber-400/30 px-2 py-0.5 rounded-full uppercase tracking-wider">
                       {selectedPhoto.badge}
                     </span>
                     <h3 className="font-heading text-base sm:text-lg font-bold text-white">

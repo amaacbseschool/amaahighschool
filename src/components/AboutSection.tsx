@@ -73,7 +73,7 @@ export const AboutSection: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
               
               {/* Floating Badge on Image with Real Logo */}
-              <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-4 rounded-xl border-2 border-[#d4af37]/40 shadow-xl flex items-center justify-between">
+              <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-4 rounded-xl border-2 border-[#cfbb99]/60 shadow-xl flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <img
                     src={logoImg}
@@ -85,7 +85,7 @@ export const AboutSection: React.FC = () => {
                     <p className="text-[11px] font-extrabold text-[#991b1b] uppercase tracking-wider">"Lead Kindly Light"</p>
                   </div>
                 </div>
-                <span className="text-[11px] font-black text-[#0a192f] bg-gradient-to-r from-[#fef08a] to-[#d4af37] border border-[#d4af37] px-2.5 py-1 rounded-full shadow-sm">
+                <span className="text-[11px] font-black text-[#0a192f] bg-gradient-to-r from-[#f7f3eb] to-[#cfbb99] border border-[#cfbb99] px-2.5 py-1 rounded-full shadow-sm">
                   Estd. 1965
                 </span>
               </div>

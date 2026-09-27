@@ -163,7 +163,7 @@ export function App() {
         )}
       </AnimatePresence>
 
-      <div className="min-h-screen flex flex-col bg-[#f7f4ee] text-[#1c2228] font-sans selection:bg-[#c29d5b]/30 selection:text-[#1c2228]">
+      <div className="min-h-screen flex flex-col bg-[#f7f4ee] text-[#1c2228] font-sans selection:bg-[#cfbb99]/40 selection:text-[#0a192f]">
         {/* 1. Top Announcement & Contact Bar */}
         <TopBar
           onOpenAdmission={() => setAdmissionModalOpen(true)}

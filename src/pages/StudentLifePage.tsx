@@ -89,8 +89,8 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
       <section className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white py-16 lg:py-24 px-4 overflow-hidden border-b border-sky-950">
         <div className="w-[90%] mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 mb-5">
-            <Sparkles className="w-4 h-4 text-[#daa520]" />
-            <span className="text-xs font-bold tracking-widest uppercase text-[#daa520]">Beyond the Classroom</span>
+            <Sparkles className="w-4 h-4 text-[#cfbb99]" />
+            <span className="text-xs font-bold tracking-widest uppercase text-[#cfbb99]">Beyond the Classroom</span>
           </div>
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight font-crest max-w-4xl">
             <TextReveal>Vibrant Student Life at AMAA</TextReveal>
@@ -134,7 +134,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
           className="mb-12"
         >
           <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
-            <Star className="w-3.5 h-3.5 text-[#daa520]" />
+            <Star className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">Co-curricular Enrichment</span>
           </div>
           <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Activities & Programmes</h2>
@@ -157,7 +157,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
                 <div className="w-12 h-12 rounded-2xl bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center mb-5">
                   <Icon className="w-6 h-6" />
                 </div>
-                <span className="text-[10px] font-bold text-[#daa520] uppercase tracking-widest bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full">{act.tag}</span>
+                <span className="text-[10px] font-bold text-[#cfbb99] uppercase tracking-widest bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full">{act.tag}</span>
                 <h3 className="font-crest text-lg font-bold text-[#0a192f] mt-3 mb-2">{act.title}</h3>
                 <p className="text-sm text-slate-600 leading-relaxed">{act.desc}</p>
               </motion.div>
@@ -178,7 +178,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
           >
             <div>
               <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
-                <Trophy className="w-3.5 h-3.5 text-[#daa520]" />
+                <Trophy className="w-3.5 h-3.5 text-[#cfbb99]" />
                 <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">Athletics & Physical Education</span>
               </div>
               <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Sports at AMAA</h2>
@@ -189,7 +189,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
               className="shrink-0 inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-3 rounded-full text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
             >
               <span>View Sports Honours</span>
-              <ArrowRight className="w-4 h-4 text-[#daa520]" />
+              <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
             </button>
           </motion.div>
 
@@ -227,7 +227,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
               { value: '400m', label: 'Regulation Track' },
             ].map((s, idx) => (
               <div key={idx} className="text-center">
-                <div className="text-2xl font-extrabold text-[#daa520] font-modern">{s.value}</div>
+                <div className="text-2xl font-extrabold text-[#cfbb99] font-modern">{s.value}</div>
                 <div className="text-xs text-slate-300 font-semibold mt-0.5">{s.label}</div>
               </div>
             ))}
@@ -245,7 +245,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
           className="mb-12"
         >
           <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
-            <Music2 className="w-3.5 h-3.5 text-[#daa520]" />
+            <Music2 className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">Creativity & Culture</span>
           </div>
           <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Arts & Cultural Programmes</h2>
@@ -302,7 +302,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
             className="mb-12"
           >
             <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
-              <Users className="w-3.5 h-3.5 text-[#daa520]" />
+              <Users className="w-3.5 h-3.5 text-[#cfbb99]" />
               <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">Student Clubs & Societies</span>
             </div>
             <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Clubs & Interest Groups</h2>
@@ -327,7 +327,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
                     <span>{club.members}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Star className="w-3.5 h-3.5 text-[#daa520] shrink-0" />
+                    <Star className="w-3.5 h-3.5 text-[#cfbb99] shrink-0" />
                     <span>Meets: {club.meets}</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -346,7 +346,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
         {/* Section header overlay before the GalleryPage renders */}
         <div className="w-[90%] mx-auto px-2 sm:px-4 pt-16 pb-6">
           <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
-            <Camera className="w-3.5 h-3.5 text-[#daa520]" />
+            <Camera className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">Photo Gallery</span>
           </div>
           <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Campus Life in Pictures</h2>
@@ -366,7 +366,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
           className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row items-center justify-between gap-6"
         >
           <div>
-            <div className="text-[10px] font-bold uppercase tracking-widest text-[#daa520] mb-2">Become Part of AMAA</div>
+            <div className="text-[10px] font-bold uppercase tracking-widest text-[#cfbb99] mb-2">Become Part of AMAA</div>
             <h3 className="font-crest text-2xl sm:text-3xl font-bold text-white">Join a School Where Life Happens in Full Colour</h3>
             <p className="text-sm text-slate-200 mt-2 max-w-lg">Admissions open for Grades VI to Grade X — Academic Session 2025–26.</p>
           </div>
@@ -375,7 +375,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
             className="shrink-0 inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-8 py-4 rounded-full text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
           >
             <span>Apply for 2025–26</span>
-            <ArrowRight className="w-4 h-4 text-[#daa520]" />
+            <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
           </button>
         </motion.div>
       </div>

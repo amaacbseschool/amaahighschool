@@ -99,7 +99,7 @@ Email: admissions@amaaschool.edu.in
             {/* Left Narrative */}
             <div className="lg:col-span-8 space-y-6">
               <div className="inline-flex items-center gap-2.5 bg-white/10 border border-white/20 px-4 py-1.5 rounded-full">
-                <Sparkles className="w-4 h-4 text-[#daa520]" />
+                <Sparkles className="w-4 h-4 text-[#cfbb99]" />
                 <span className="text-xs font-bold tracking-widest text-white uppercase">
                   ADMISSIONS OPEN • ACADEMIC SESSION 2025–26
                 </span>
@@ -136,14 +136,14 @@ Email: admissions@amaaschool.edu.in
                   className="inline-flex items-center justify-center gap-3 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-8 py-4 rounded-full text-xs sm:text-sm tracking-wider uppercase shadow-lg hover:shadow-xl transition-all cursor-pointer"
                 >
                   <span>APPLY ONLINE FOR 2025–26</span>
-                  <ArrowRight className="w-4 h-4 text-[#daa520]" />
+                  <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
                 </button>
 
                 <button
                   onClick={handleDownloadProspectus}
                   className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-4 rounded-full border border-white/20 text-xs sm:text-sm tracking-wider uppercase transition-all cursor-pointer"
                 >
-                  <Download className="w-4 h-4 text-[#daa520]" />
+                  <Download className="w-4 h-4 text-[#cfbb99]" />
                   <span>{prospectusDownloaded ? 'Prospectus Downloaded ✓' : 'Download Prospectus (PDF)'}</span>
                 </button>
               </div>

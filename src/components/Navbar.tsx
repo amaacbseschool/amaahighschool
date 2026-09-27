@@ -125,7 +125,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 English Medium High School
               </span>
               <span className="text-slate-300 hidden sm:inline">•</span>
-              <span className="text-[11px] font-bold text-[#daa520] hidden sm:inline">
+              <span className="text-[11px] font-bold text-[#cfbb99] hidden sm:inline">
                 Estd. 1965
               </span>
             </div>

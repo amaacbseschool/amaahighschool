@@ -218,7 +218,7 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
               <div className="text-xs text-slate-300 mt-1 font-medium">Library Volumes</div>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
-              <div className="text-2xl sm:text-3xl font-black text-[#daa520]">24/7</div>
+              <div className="text-2xl sm:text-3xl font-black text-[#cfbb99]">24/7</div>
               <div className="text-xs text-slate-300 mt-1 font-medium">CCTV & Resident Nurse</div>
             </div>
           </div>
@@ -391,7 +391,7 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
         <div className="mt-14 bg-gradient-to-r from-[#07111e] via-[#0a192f] to-[#0369a1] rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
           <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-[radial-gradient(ellipse_at_top_right,rgba(2,132,199,0.25),transparent_70%)] pointer-events-none" />
           <div className="relative z-10">
-            <span className="text-xs font-bold text-[#daa520] uppercase tracking-widest bg-white/10 px-3 py-1 rounded-full">
+            <span className="text-xs font-bold text-[#cfbb99] uppercase tracking-widest bg-white/10 px-3 py-1 rounded-full">
               Experience It In Person
             </span>
             <h3 className="font-heading text-2xl sm:text-3xl font-bold mt-3">
@@ -449,7 +449,7 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
 
               <div className="mt-5 bg-slate-50 rounded-2xl p-5 border border-slate-100">
                 <div className="flex items-center gap-2 text-xs font-bold text-[#0a192f] mb-3">
-                  <Sparkles className="w-4 h-4 text-[#daa520]" />
+                  <Sparkles className="w-4 h-4 text-[#cfbb99]" />
                   <span>Technical Specifications & Operational Standards</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">

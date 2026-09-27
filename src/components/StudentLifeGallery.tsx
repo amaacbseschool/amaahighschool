@@ -42,7 +42,7 @@ export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNaviga
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
-              <Sparkles className="w-3.5 h-3.5 text-[#daa520]" />
+              <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
               <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">
                 AUTHENTIC VISUAL CHRONICLE
               </span>
@@ -80,7 +80,7 @@ export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNaviga
               >
                 <Camera className="w-3.5 h-3.5" />
                 <span>EXPLORE ALL 38 PHOTOS</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#daa520]" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#cfbb99]" />
               </button>
             )}
           </div>
@@ -178,7 +178,7 @@ export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNaviga
               <div className="p-6 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-2 text-xs font-bold text-[#0284c7] uppercase tracking-wider mb-1">
-                    <Sparkles className="w-4 h-4 text-[#daa520]" />
+                    <Sparkles className="w-4 h-4 text-[#cfbb99]" />
                     <span>{selectedPhoto.badge} • {selectedPhoto.category}</span>
                   </div>
                   <h3 className="font-crest text-xl font-bold text-[#0a192f]">

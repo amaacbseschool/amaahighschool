@@ -138,7 +138,7 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
               className="shrink-0 inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-3 rounded-full text-xs tracking-wider uppercase transition-all shadow-md hover:shadow-lg cursor-pointer"
             >
               <span>EXPLORE ALL CAMPUS AMENITIES</span>
-              <ArrowRight className="w-4 h-4 text-[#daa520]" />
+              <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
             </button>
           )}
         </motion.div>
@@ -211,7 +211,7 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
 
                     <div className="mt-5 pt-3 flex items-center justify-between text-xs font-bold text-[#0284c7] group-hover:text-[#0369a1] transition-colors">
                       <span className="flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5 text-[#daa520]" />
+                        <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
                         Explore Specifications
                       </span>
                       <ArrowRight className="w-4 h-4 text-[#0284c7] group-hover:translate-x-1.5 transition-transform" />
@@ -232,7 +232,7 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
           className="bg-[#07111e] text-white rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-slate-800"
         >
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center shrink-0 text-[#daa520]">
+            <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center shrink-0 text-[#cfbb99]">
               <ShieldCheck className="w-8 h-8" />
             </div>
             <div>
@@ -326,7 +326,7 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
                     }}
                     className="inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all cursor-pointer shadow-sm"
                   >
-                    <Images className="w-3.5 h-3.5 text-[#daa520]" />
+                    <Images className="w-3.5 h-3.5 text-[#cfbb99]" />
                     <span>View in Photo Gallery</span>
                   </button>
 
