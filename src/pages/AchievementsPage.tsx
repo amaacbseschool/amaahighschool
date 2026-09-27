@@ -124,21 +124,21 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
         <div className="w-[90%] mx-auto px-2 sm:px-4 py-3 flex flex-wrap items-center justify-between gap-3">
           <button
             onClick={() => onNavigateRoute('home')}
-            className="flex items-center gap-2 text-xs font-bold text-slate-700 hover:text-[#0284c7] transition-colors group cursor-pointer"
+            className="flex items-center gap-2 text-xs font-bold text-slate-700 hover:text-[#354024] transition-colors group cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4 text-slate-400 group-hover:-translate-x-1 transition-transform" />
             <span>Back to Homepage</span>
           </button>
           <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-            <span className="hover:text-[#0284c7] cursor-pointer" onClick={() => onNavigateRoute('home')}>Home</span>
+            <span className="hover:text-[#354024] cursor-pointer" onClick={() => onNavigateRoute('home')}>Home</span>
             <span>/</span>
-            <span className="text-[#0284c7] font-bold">Achievements</span>
+            <span className="text-[#354024] font-bold">Achievements</span>
           </div>
         </div>
       </div>
 
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white py-16 lg:py-24 px-4 overflow-hidden border-b border-sky-950">
+      <section className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white py-16 lg:py-24 px-4 overflow-hidden border-b border-sky-950">
         <div className="w-[90%] mx-auto relative z-10 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 mb-6">
             <Trophy className="w-4 h-4 text-[#cfbb99]" />
@@ -153,7 +153,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={onOpenAdmission}
-              className="bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-8 py-3.5 rounded-full transition-all text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg hover:shadow-xl cursor-pointer"
+              className="bg-[#354024] hover:bg-[#252d19] text-white font-bold px-8 py-3.5 rounded-full transition-all text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg hover:shadow-xl cursor-pointer"
             >
               <GraduationCap className="w-4 h-4 text-[#cfbb99]" />
               <span>Apply for Admission 2025–26</span>
@@ -177,15 +177,15 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
                 whileHover={{ y: -4 }}
                 className={`p-7 rounded-3xl flex items-start gap-5 shadow-card border transition-all duration-300 ${
                   stat.dark
-                    ? 'bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white border-sky-900'
-                    : 'bg-white text-[#0a192f] border-slate-200/90 hover:border-[#0284c7]/30'
+                    ? 'bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white border-sky-900'
+                    : 'bg-white text-[#0a192f] border-slate-200/90 hover:border-[#354024]/30'
                 }`}
               >
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 ${stat.dark ? 'bg-white/10 text-[#cfbb99]' : 'bg-[#0284c7]/10 text-[#0284c7]'}`}>
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 ${stat.dark ? 'bg-white/10 text-[#cfbb99]' : 'bg-[#354024]/10 text-[#354024]'}`}>
                   <Icon className="w-7 h-7" />
                 </div>
                 <div>
-                  <div className={`text-3xl font-extrabold tracking-tight font-modern ${stat.dark ? 'text-white' : 'text-[#0284c7]'}`}>
+                  <div className={`text-3xl font-extrabold tracking-tight font-modern ${stat.dark ? 'text-white' : 'text-[#354024]'}`}>
                     <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                   </div>
                   <div className={`font-crest font-bold text-sm mt-0.5 ${stat.dark ? 'text-white' : 'text-[#0a192f]'}`}>{stat.label}</div>
@@ -206,9 +206,9 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
           transition={{ duration: 0.5 }}
           className="mb-10"
         >
-          <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
+          <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
             <Star className="w-3.5 h-3.5 text-[#cfbb99]" />
-            <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">Class X Board Roll of Honour</span>
+            <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Class X Board Roll of Honour</span>
           </div>
           <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Recent Secondary Board Star Toppers</h2>
           <p className="text-slate-600 text-sm mt-2 max-w-2xl">Our students consistently rank among the top in the state board examinations, achieving centum scores and district first positions.</p>
@@ -223,12 +223,12 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: idx * 0.07 }}
               whileHover={{ y: -5 }}
-              className="group bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-7 shadow-card hover:shadow-xl hover:border-[#0284c7]/40 transition-all duration-300 flex flex-col justify-between"
+              className="group bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-7 shadow-card hover:shadow-xl hover:border-[#354024]/40 transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 {/* Header: Student Portrait + Score + Badge */}
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="relative shrink-0 w-20 h-20 sm:w-22 sm:h-22 rounded-2xl overflow-hidden shadow-md border-2 border-slate-100 ring-4 ring-slate-100/80 group-hover:ring-[#0284c7]/20 transition-all">
+                  <div className="relative shrink-0 w-20 h-20 sm:w-22 sm:h-22 rounded-2xl overflow-hidden shadow-md border-2 border-slate-100 ring-4 ring-slate-100/80 group-hover:ring-[#354024]/20 transition-all">
                     <img
                       src={t.image}
                       alt={t.name}
@@ -242,7 +242,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-baseline gap-1.5">
-                      <span className="text-2xl sm:text-3xl font-extrabold text-[#0284c7] font-modern leading-none">
+                      <span className="text-2xl sm:text-3xl font-extrabold text-[#354024] font-modern leading-none">
                         {t.score}
                       </span>
                       <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Score</span>
@@ -253,21 +253,21 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
                   </div>
                 </div>
 
-                <h4 className="font-crest text-lg font-bold text-[#0a192f] group-hover:text-[#0284c7] transition-colors">
+                <h4 className="font-crest text-lg font-bold text-[#0a192f] group-hover:text-[#354024] transition-colors">
                   {t.name}
                 </h4>
                 <div className="text-xs font-semibold text-slate-500 mt-0.5">
                   {t.field}
                 </div>
 
-                <p className="text-xs text-slate-700 mt-3.5 italic leading-relaxed border-l-2 border-[#0284c7] pl-3 py-1 bg-slate-50/80 rounded-r-xl">
+                <p className="text-xs text-slate-700 mt-3.5 italic leading-relaxed border-l-2 border-[#354024] pl-3 py-1 bg-slate-50/80 rounded-r-xl">
                   "{t.quote}"
                 </p>
               </div>
 
-              <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs text-[#0284c7] font-bold">
+              <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs text-[#354024] font-bold">
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#0284c7]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#354024]" />
                   <span>State Board Distinction</span>
                 </div>
                 <span className="text-slate-400 text-[11px] font-medium">{t.year}</span>
@@ -284,9 +284,9 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
           transition={{ duration: 0.5 }}
           className="mb-10"
         >
-          <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
+          <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
             <Medal className="w-3.5 h-3.5 text-[#cfbb99]" />
-            <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">National & State Level Competitions</span>
+            <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">National & State Level Competitions</span>
           </div>
           <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Olympiad & Academic Honours</h2>
         </motion.div>
@@ -300,13 +300,13 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.07 }}
               whileHover={{ y: -4 }}
-              className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-card hover:border-[#0284c7]/40 transition-all duration-300"
+              className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-card hover:border-[#354024]/40 transition-all duration-300"
             >
               <div className="flex items-center gap-2 mb-3">
                 <Sparkles className="w-4 h-4 text-[#cfbb99] shrink-0" />
                 <h4 className="font-bold text-[#0a192f] text-sm">{o.category}</h4>
               </div>
-              <div className="text-xl font-extrabold text-[#0284c7] font-modern">{o.medals}</div>
+              <div className="text-xl font-extrabold text-[#354024] font-modern">{o.medals}</div>
               <div className="text-[11px] text-slate-500 font-medium mt-1">{o.years}</div>
             </motion.div>
           ))}
@@ -320,9 +320,9 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
           transition={{ duration: 0.5 }}
           className="mb-10"
         >
-          <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
+          <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
             <Trophy className="w-3.5 h-3.5 text-[#cfbb99]" />
-            <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">Inter-School & State Sports</span>
+            <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Inter-School & State Sports</span>
           </div>
           <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Sports Championship Honours</h2>
         </motion.div>
@@ -336,12 +336,12 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.07 }}
               whileHover={{ y: -4 }}
-              className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-card hover:border-[#0284c7]/40 transition-all duration-300 flex items-start gap-4"
+              className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-card hover:border-[#354024]/40 transition-all duration-300 flex items-start gap-4"
             >
               <span className="text-3xl shrink-0">{s.icon}</span>
               <div>
                 <h4 className="font-bold text-[#0a192f] text-sm">{s.sport}</h4>
-                <div className="text-xs font-bold text-[#0284c7] mt-1">{s.prize}</div>
+                <div className="text-xs font-bold text-[#354024] mt-1">{s.prize}</div>
               </div>
             </motion.div>
           ))}
@@ -366,7 +366,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
             </div>
             <button
               onClick={() => onNavigateRoute('alumni')}
-              className="shrink-0 inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-3.5 rounded-full text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
+              className="shrink-0 inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-6 py-3.5 rounded-full text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
             >
               <span>Visit Alumni Network</span>
               <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
@@ -381,14 +381,14 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
                 whileHover={{ y: -4 }}
-                className="bg-white/5 border border-white/10 hover:border-[#0284c7]/50 p-5 rounded-2xl transition-all duration-300"
+                className="bg-white/5 border border-white/10 hover:border-[#354024]/50 p-5 rounded-2xl transition-all duration-300"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-bold text-white uppercase tracking-widest bg-[#0284c7] px-2.5 py-1 rounded-full">{alum.tag}</span>
+                  <span className="text-[10px] font-bold text-white uppercase tracking-widest bg-[#354024] px-2.5 py-1 rounded-full">{alum.tag}</span>
                   <span className="text-[11px] text-slate-400 font-mono">{alum.batch}</span>
                 </div>
                 <h4 className="font-crest text-base font-bold text-white leading-snug">{alum.name}</h4>
-                <p className="text-xs text-[#38bdf8] font-medium mt-1">{alum.role}</p>
+                <p className="text-xs text-[#cfbb99] font-medium mt-1">{alum.role}</p>
                 <div className="text-[11px] text-slate-300 mt-3 pt-2 border-t border-white/10 font-medium">{alum.org}</div>
               </motion.div>
             ))}
@@ -409,7 +409,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
           </div>
           <button
             onClick={onOpenAdmission}
-            className="shrink-0 inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-8 py-4 rounded-full text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
+            className="shrink-0 inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-8 py-4 rounded-full text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
           >
             <span>Apply for 2025–26</span>
             <ArrowRight className="w-4 h-4 text-[#cfbb99]" />

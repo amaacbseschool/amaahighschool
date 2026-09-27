@@ -41,9 +41,9 @@ export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNaviga
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
+            <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
               <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
-              <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">
+              <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">
                 AUTHENTIC VISUAL CHRONICLE
               </span>
             </div>
@@ -64,8 +64,8 @@ export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNaviga
                   onClick={() => setActiveCategory(cat)}
                   className={`px-3.5 py-1.5 text-xs font-bold rounded-full transition-all cursor-pointer ${
                     activeCategory === cat
-                      ? 'bg-[#0284c7] text-white shadow-md'
-                      : 'text-slate-600 hover:text-[#0284c7] hover:bg-slate-100'
+                      ? 'bg-[#354024] text-white shadow-md'
+                      : 'text-slate-600 hover:text-[#354024] hover:bg-slate-100'
                   }`}
                 >
                   {cat}
@@ -76,7 +76,7 @@ export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNaviga
             {onNavigateRoute && (
               <button
                 onClick={() => onNavigateRoute('gallery')}
-                className="inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-5 py-2.5 rounded-full text-xs uppercase tracking-wider shadow-subtle hover:shadow-md transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-5 py-2.5 rounded-full text-xs uppercase tracking-wider shadow-subtle hover:shadow-md transition-all cursor-pointer"
               >
                 <Camera className="w-3.5 h-3.5" />
                 <span>EXPLORE ALL 38 PHOTOS</span>
@@ -97,7 +97,7 @@ export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNaviga
               transition={{ duration: 0.45, delay: idx * 0.07 }}
               whileHover={{ y: -4 }}
               onClick={() => setSelectedPhoto(item)}
-              className="group relative h-72 sm:h-80 rounded-3xl overflow-hidden cursor-pointer shadow-card bg-slate-900 border border-slate-200/90 hover:shadow-xl hover:border-[#0284c7]/40 transition-all duration-300"
+              className="group relative h-72 sm:h-80 rounded-3xl overflow-hidden cursor-pointer shadow-card bg-slate-900 border border-slate-200/90 hover:shadow-xl hover:border-[#354024]/40 transition-all duration-300"
             >
               <img
                 src={item.image}
@@ -108,18 +108,18 @@ export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNaviga
               <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f]/95 via-[#0a192f]/30 to-transparent" />
 
               {/* Category Pill Tag */}
-              <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-xs text-[#0284c7] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
+              <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-xs text-[#354024] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
                 {item.badge}
               </div>
 
               {/* Hover Zoom Icon */}
-              <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#0284c7] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+              <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#354024] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
                 <ZoomIn className="w-4 h-4" />
               </div>
 
               {/* Text info bottom */}
               <div className="absolute bottom-5 left-5 right-5 text-white">
-                <div className="text-[10px] font-bold text-[#38bdf8] uppercase tracking-widest mb-1">
+                <div className="text-[10px] font-bold text-[#cfbb99] uppercase tracking-widest mb-1">
                   {item.category}
                 </div>
                 <h4 className="font-crest text-base sm:text-lg font-bold leading-snug group-hover:text-white transition-colors">
@@ -140,7 +140,7 @@ export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNaviga
             className="inline-flex items-center gap-3 bg-white hover:bg-slate-50 border border-slate-200/90 text-slate-800 font-bold px-7 py-3 rounded-full text-xs uppercase tracking-wider shadow-card hover:shadow-lg transition-all cursor-pointer group"
           >
             <span>Browse Full Campus Archives ({SCHOOL_PHOTOS.length} high-res photographs)</span>
-            <ArrowRight className="w-4 h-4 text-[#0284c7] group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 text-[#354024] group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
       </div>
@@ -177,7 +177,7 @@ export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNaviga
 
               <div className="p-6 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <div className="flex items-center gap-2 text-xs font-bold text-[#0284c7] uppercase tracking-wider mb-1">
+                  <div className="flex items-center gap-2 text-xs font-bold text-[#354024] uppercase tracking-wider mb-1">
                     <Sparkles className="w-4 h-4 text-[#cfbb99]" />
                     <span>{selectedPhoto.badge} • {selectedPhoto.category}</span>
                   </div>
@@ -195,7 +195,7 @@ export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNaviga
                       setSelectedPhoto(null);
                       onNavigateRoute('gallery');
                     }}
-                    className="shrink-0 inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white text-xs font-bold px-4 py-2.5 rounded-full transition-colors cursor-pointer"
+                    className="shrink-0 inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white text-xs font-bold px-4 py-2.5 rounded-full transition-colors cursor-pointer"
                   >
                     <span>View in Gallery</span>
                     <ArrowRight className="w-3.5 h-3.5" />

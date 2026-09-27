@@ -1,15 +1,21 @@
 @import "tailwindcss";
 
 @theme {
+  --color-primary: #354024;
+  --color-primary-hover: #252d19;
+  --color-primary-dark: #1b2213;
+  --color-primary-light: #4c5a34;
   --color-secondary: #cfbb99;
   --color-secondary-hover: #bda680;
   --color-secondary-dark: #9e8760;
   --color-secondary-light: #f7f3eb;
-  --color-school-navy: #0a192f;
-  --color-school-navy-dark: #07111e;
-  --color-school-blue: #0284c7;
-  --color-school-blue-dark: #0369a1;
-  --color-school-azure: #38bdf8;
+  --color-school-primary: #354024;
+  --color-school-primary-hover: #252d19;
+  --color-school-navy: #192014;
+  --color-school-navy-dark: #0f150b;
+  --color-school-blue: #354024;
+  --color-school-blue-dark: #252d19;
+  --color-school-azure: #cfbb99;
   --color-school-crimson: #991b1b;
   --color-school-crimson-hover: #7f1d1d;
   --color-school-red: #dc2626;
@@ -19,19 +25,24 @@
 
 @layer base {
   :root {
-    /* AMAA High School Logo Brand Palette */
-    --school-navy: #0a192f;
-    --school-navy-dark: #07111e;
-    --school-blue: #0284c7;
-    --school-blue-dark: #0369a1;
-    --school-azure: #38bdf8;
-    --school-crimson: #991b1b;
-    --school-crimson-hover: #7f1d1d;
-    --school-red: #dc2626;
+    /* AMAA High School Primary & Secondary Brand Palette */
+    --school-primary: #354024;
+    --school-primary-hover: #252d19;
+    --school-primary-dark: #1b2213;
+    --school-primary-light: #4c5a34;
     --school-secondary: #cfbb99;
     --school-secondary-hover: #bda680;
     --school-secondary-dark: #9e8760;
     --school-secondary-light: #f7f3eb;
+    --school-navy: #192014;
+    --school-navy-dark: #0f150b;
+    --school-blue: #354024;
+    --school-blue-dark: #252d19;
+    --school-azure: #cfbb99;
+    --school-crimson: #991b1b;
+    --school-crimson-hover: #7f1d1d;
+    --school-red: #dc2626;
+    --school-secondary: #cfbb99;
     --school-gold: #cfbb99;
     --school-amber: #f59e0b;
     --school-slate: #334155;
@@ -82,7 +93,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0284c7;
+  background: #354024;
 }
 
 /* Modern University Shadows */
@@ -95,11 +106,12 @@
 }
 
 .shadow-card-hover {
-  box-shadow: 0 20px 30px -4px rgba(2, 132, 199, 0.12), 0 8px 12px -2px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 20px 30px -4px rgba(53, 64, 36, 0.18), 0 8px 12px -2px rgba(15, 23, 42, 0.06);
 }
 
-.shadow-blue-glow {
-  box-shadow: 0 0 35px -5px rgba(2, 132, 199, 0.25);
+.shadow-blue-glow,
+.shadow-primary-glow {
+  box-shadow: 0 0 35px -5px rgba(53, 64, 36, 0.4);
 }
 
 .shadow-crimson-glow {

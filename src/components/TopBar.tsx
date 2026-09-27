@@ -25,7 +25,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onNavigateRoute }) => {
             href="tel:+917544010044"
             className="flex items-center gap-1.5 hover:text-white transition-colors duration-200 text-slate-300"
           >
-            <Phone className="w-3.5 h-3.5 text-[#38bdf8]" />
+            <Phone className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span className="font-semibold tracking-wide">+91 75440 10044</span>
           </a>
 
@@ -33,7 +33,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onNavigateRoute }) => {
             href="mailto:info@amaaschool.edu"
             className="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors duration-200 text-slate-300"
           >
-            <Mail className="w-3.5 h-3.5 text-[#38bdf8]" />
+            <Mail className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span>info@amaaschool.edu</span>
           </a>
 
@@ -53,10 +53,10 @@ export const TopBar: React.FC<TopBarProps> = ({ onNavigateRoute }) => {
                 onNavigateRoute('admin');
               }
             }}
-            className="flex items-center gap-1.5 bg-white/10 hover:bg-[#0284c7] text-white px-3 py-1 rounded-full border border-white/20 text-[11px] font-semibold transition-all shadow-subtle cursor-pointer"
+            className="flex items-center gap-1.5 bg-white/10 hover:bg-[#354024] text-white px-3 py-1 rounded-full border border-white/20 text-[11px] font-semibold transition-all shadow-subtle cursor-pointer"
             title="Staff Operations & Admin Dashboard"
           >
-            <ShieldCheck className="w-3 h-3 text-[#38bdf8]" />
+            <ShieldCheck className="w-3 h-3 text-[#cfbb99]" />
             <span>Admin Portal</span>
           </a>
 
@@ -68,7 +68,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onNavigateRoute }) => {
                 onNavigateRoute('about');
               }
             }}
-            className="hidden md:inline hover:text-[#38bdf8] transition-colors cursor-pointer text-slate-300 font-medium"
+            className="hidden md:inline hover:text-[#cfbb99] transition-colors cursor-pointer text-slate-300 font-medium"
           >
             About Us
           </a>
@@ -81,7 +81,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onNavigateRoute }) => {
                 onNavigateRoute('alumni');
               }
             }}
-            className="hidden md:inline hover:text-[#38bdf8] transition-colors font-medium text-slate-300 cursor-pointer"
+            className="hidden md:inline hover:text-[#cfbb99] transition-colors font-medium text-slate-300 cursor-pointer"
           >
             Alumni Portal
           </a>
@@ -94,7 +94,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onNavigateRoute }) => {
                 onNavigateRoute('student-life');
               }
             }}
-            className="hidden md:inline hover:text-[#38bdf8] transition-colors cursor-pointer text-slate-300 font-medium"
+            className="hidden md:inline hover:text-[#cfbb99] transition-colors cursor-pointer text-slate-300 font-medium"
           >
             Student Life
           </a>
@@ -107,9 +107,9 @@ export const TopBar: React.FC<TopBarProps> = ({ onNavigateRoute }) => {
                 onNavigateRoute('contact');
               }
             }}
-            className="hidden sm:flex items-center gap-1 hover:text-[#38bdf8] transition-colors cursor-pointer text-slate-300 font-medium"
+            className="hidden sm:flex items-center gap-1 hover:text-[#cfbb99] transition-colors cursor-pointer text-slate-300 font-medium"
           >
-            <UserCheck className="w-3 h-3 text-[#38bdf8]" />
+            <UserCheck className="w-3 h-3 text-[#cfbb99]" />
             <span>Campus Desk</span>
           </a>
         </div>

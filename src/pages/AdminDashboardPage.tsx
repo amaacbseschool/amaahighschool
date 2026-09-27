@@ -209,7 +209,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#040911] flex items-center justify-center p-4 text-white">
         <div className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl p-8 sm:p-10 max-w-md w-full shadow-2xl relative overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-48 h-48 bg-[#0284c7]/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-20 -right-20 w-48 h-48 bg-[#354024]/20 rounded-full blur-3xl pointer-events-none" />
 
           <div className="text-center">
             <img
@@ -217,7 +217,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
               alt="AMAA High School"
               className="w-16 h-16 object-contain mx-auto mb-4 drop-shadow-md"
             />
-            <div className="inline-flex items-center gap-1.5 bg-[#0284c7]/20 text-[#38bdf8] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
+            <div className="inline-flex items-center gap-1.5 bg-[#354024]/20 text-[#cfbb99] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
               <Lock className="w-3.5 h-3.5" />
               <span>Staff Authorization</span>
             </div>
@@ -245,7 +245,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                     setPinInput(e.target.value);
                     setPinError(null);
                   }}
-                  className="w-full bg-white/10 border border-white/15 focus:border-[#38bdf8] focus:bg-white/15 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-slate-400 outline-none transition-all font-mono tracking-widest text-center"
+                  className="w-full bg-white/10 border border-white/15 focus:border-[#cfbb99] focus:bg-white/15 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-slate-400 outline-none transition-all font-mono tracking-widest text-center"
                   autoFocus
                 />
               </div>
@@ -259,7 +259,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
 
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-[#0284c7] to-[#0369a1] hover:from-[#0369a1] hover:to-[#075985] text-white py-3 rounded-xl font-semibold text-xs tracking-wide shadow-lg shadow-sky-900/40 transition-all hover:scale-[1.01] cursor-pointer"
+              className="w-full bg-gradient-to-r from-[#354024] to-[#252d19] hover:from-[#252d19] hover:to-[#1b2213] text-white py-3 rounded-xl font-semibold text-xs tracking-wide shadow-lg shadow-stone-900/40 transition-all hover:scale-[1.01] cursor-pointer"
             >
               Verify Staff Identity
             </button>
@@ -296,7 +296,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                 alt="AR TECH studio"
                 className="h-4.5 w-auto object-contain transition-transform group-hover:scale-110 drop-shadow-xs"
               />
-              <span className="font-semibold text-slate-300 group-hover:text-[#38bdf8] transition-colors">
+              <span className="font-semibold text-slate-300 group-hover:text-[#cfbb99] transition-colors">
                 AR TECH studio
               </span>
             </a>
@@ -311,8 +311,8 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 pb-20">
       {/* Toast Notification */}
       {toastMsg && (
-        <div className="fixed top-5 right-5 z-50 flex items-center gap-2 bg-[#0a192f] text-white px-5 py-3 rounded-xl shadow-2xl border border-[#38bdf8]/40 animate-bounce text-xs font-semibold">
-          <CheckCircle2 className="w-4 h-4 text-[#38bdf8]" />
+        <div className="fixed top-5 right-5 z-50 flex items-center gap-2 bg-[#0a192f] text-white px-5 py-3 rounded-xl shadow-2xl border border-[#cfbb99]/40 animate-bounce text-xs font-semibold">
+          <CheckCircle2 className="w-4 h-4 text-[#cfbb99]" />
           <span>{toastMsg}</span>
         </div>
       )}
@@ -331,7 +331,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                 <span className="font-crest font-bold text-base text-white">
                   AMAA High School
                 </span>
-                <span className="text-[10px] bg-[#38bdf8]/20 text-[#38bdf8] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">
+                <span className="text-[10px] bg-[#cfbb99]/20 text-[#cfbb99] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">
                   Admin Control Suite
                 </span>
               </div>
@@ -344,7 +344,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
           <div className="flex items-center gap-2.5 sm:gap-3">
             <button
               onClick={onOpenSqlConsole}
-              className="hidden sm:flex items-center gap-1.5 bg-[#0284c7] hover:bg-[#0369a1] text-white text-xs px-3.5 py-1.5 rounded-lg font-semibold shadow-xs transition-colors cursor-pointer"
+              className="hidden sm:flex items-center gap-1.5 bg-[#354024] hover:bg-[#252d19] text-white text-xs px-3.5 py-1.5 rounded-lg font-semibold shadow-xs transition-colors cursor-pointer"
               title="Launch SQL Database Console"
             >
               <Terminal className="w-3.5 h-3.5" />
@@ -393,7 +393,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
           >
             <GraduationCap className="w-3.5 h-3.5" />
             <span>Admissions</span>
-            <span className="bg-[#0284c7] text-white text-[10px] px-1.5 py-0.2 rounded-full font-mono">
+            <span className="bg-[#354024] text-white text-[10px] px-1.5 py-0.2 rounded-full font-mono">
               {admissions.length}
             </span>
           </button>
@@ -451,7 +451,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                 : 'text-slate-300 hover:bg-white/10 hover:text-white'
             }`}
           >
-            <Database className="w-3.5 h-3.5 text-[#38bdf8]" />
+            <Database className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span>SQL Database</span>
           </button>
         </div>
@@ -469,7 +469,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                   <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
                     Total Admissions
                   </span>
-                  <div className="p-2 rounded-xl bg-sky-50 text-[#0284c7]">
+                  <div className="p-2 rounded-xl bg-sky-50 text-[#354024]">
                     <GraduationCap className="w-5 h-5" />
                   </div>
                 </div>
@@ -483,7 +483,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                 </div>
                 <button
                   onClick={() => setActiveTab('admissions')}
-                  className="mt-4 text-xs font-bold text-[#0284c7] hover:underline flex items-center gap-1 cursor-pointer"
+                  className="mt-4 text-xs font-bold text-[#354024] hover:underline flex items-center gap-1 cursor-pointer"
                 >
                   <span>Review Applications</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -509,7 +509,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                 </div>
                 <button
                   onClick={() => setActiveTab('messages')}
-                  className="mt-4 text-xs font-bold text-[#0284c7] hover:underline flex items-center gap-1 cursor-pointer"
+                  className="mt-4 text-xs font-bold text-[#354024] hover:underline flex items-center gap-1 cursor-pointer"
                 >
                   <span>Open Inbox</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -533,7 +533,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                 </div>
                 <button
                   onClick={() => setActiveTab('notices')}
-                  className="mt-4 text-xs font-bold text-[#0284c7] hover:underline flex items-center gap-1 cursor-pointer"
+                  className="mt-4 text-xs font-bold text-[#354024] hover:underline flex items-center gap-1 cursor-pointer"
                 >
                   <span>Publish Notice</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -557,7 +557,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                 </div>
                 <button
                   onClick={() => setActiveTab('governing')}
-                  className="mt-4 text-xs font-bold text-[#0284c7] hover:underline flex items-center gap-1 cursor-pointer"
+                  className="mt-4 text-xs font-bold text-[#354024] hover:underline flex items-center gap-1 cursor-pointer"
                 >
                   <span>Manage Trust</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -568,7 +568,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
             {/* Quick Actions & Launch Banner */}
             <div className="bg-gradient-to-r from-[#0a192f] via-[#0f274a] to-[#071324] text-white p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
               <div className="space-y-1.5">
-                <div className="inline-flex items-center gap-2 bg-[#38bdf8]/15 border border-[#38bdf8]/30 px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-[#38bdf8]">
+                <div className="inline-flex items-center gap-2 bg-[#cfbb99]/15 border border-[#cfbb99]/30 px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-[#cfbb99]">
                   <Database className="w-3 h-3" />
                   <span>Admin Database Engine</span>
                 </div>
@@ -582,7 +582,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
               <div className="flex items-center gap-3">
                 <button
                   onClick={onOpenSqlConsole}
-                  className="bg-[#0284c7] hover:bg-[#0369a1] text-white px-5 py-2.5 rounded-xl text-xs font-semibold shadow-lg shadow-sky-900/50 transition-all cursor-pointer flex items-center gap-2"
+                  className="bg-[#354024] hover:bg-[#252d19] text-white px-5 py-2.5 rounded-xl text-xs font-semibold shadow-lg shadow-stone-900/50 transition-all cursor-pointer flex items-center gap-2"
                 >
                   <Terminal className="w-4 h-4" />
                   <span>Launch SQL Console</span>
@@ -603,7 +603,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                 </div>
                 <button
                   onClick={() => setActiveTab('admissions')}
-                  className="text-xs font-bold text-[#0284c7] hover:underline cursor-pointer"
+                  className="text-xs font-bold text-[#354024] hover:underline cursor-pointer"
                 >
                   View All ({admissions.length})
                 </button>
@@ -699,7 +699,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                     placeholder="Search student, parent, grade..."
                     value={admissionSearch}
                     onChange={(e) => setAdmissionSearch(e.target.value)}
-                    className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl pl-8 pr-3 py-2 outline-none focus:border-[#0284c7] focus:bg-white"
+                    className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl pl-8 pr-3 py-2 outline-none focus:border-[#354024] focus:bg-white"
                   />
                 </div>
 
@@ -815,7 +815,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                   placeholder="Search sender, email, subject..."
                   value={messageSearch}
                   onChange={(e) => setMessageSearch(e.target.value)}
-                  className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl pl-8 pr-3 py-2 outline-none focus:border-[#0284c7] focus:bg-white"
+                  className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl pl-8 pr-3 py-2 outline-none focus:border-[#354024] focus:bg-white"
                 />
               </div>
             </div>
@@ -850,7 +850,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                       <span>{msg.phone}</span>
                     </div>
 
-                    <h4 className="text-xs font-bold text-[#0284c7] mb-1">
+                    <h4 className="text-xs font-bold text-[#354024] mb-1">
                       Subject: {msg.subject}
                     </h4>
 
@@ -913,7 +913,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                     placeholder="e.g. Mid-term examinations schedule announced"
                     value={newNotice.title}
                     onChange={(e) => setNewNotice({ ...newNotice, title: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 outline-none focus:border-[#0284c7] focus:bg-white"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 outline-none focus:border-[#354024] focus:bg-white"
                   />
                 </div>
 
@@ -969,7 +969,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
 
                 <button
                   type="submit"
-                  className="w-full bg-[#0a192f] hover:bg-[#0284c7] text-white py-2.5 rounded-xl font-bold tracking-wide transition-all shadow-md cursor-pointer flex items-center justify-center gap-1.5"
+                  className="w-full bg-[#0a192f] hover:bg-[#354024] text-white py-2.5 rounded-xl font-bold tracking-wide transition-all shadow-md cursor-pointer flex items-center justify-center gap-1.5"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Publish Notice</span>
@@ -1040,7 +1040,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
 
               <button
                 onClick={() => onNavigateRoute('administration')}
-                className="inline-flex items-center gap-1.5 bg-[#0a192f] hover:bg-[#0284c7] text-white text-xs font-semibold px-4 py-2 rounded-xl transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 bg-[#0a192f] hover:bg-[#354024] text-white text-xs font-semibold px-4 py-2 rounded-xl transition-all cursor-pointer"
               >
                 <Users className="w-3.5 h-3.5" />
                 <span>Go to Public Administration Page</span>
@@ -1101,8 +1101,8 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
           <div className="space-y-6">
             <div className="bg-gradient-to-r from-[#0a192f] via-[#0f274a] to-[#071324] text-white p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
               <div className="space-y-2 max-w-xl">
-                <div className="inline-flex items-center gap-2 bg-[#38bdf8]/15 border border-[#38bdf8]/30 px-3 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#38bdf8]">
-                  <Database className="w-3.5 h-3.5 text-[#38bdf8]" />
+                <div className="inline-flex items-center gap-2 bg-[#cfbb99]/15 border border-[#cfbb99]/30 px-3 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#cfbb99]">
+                  <Database className="w-3.5 h-3.5 text-[#cfbb99]" />
                   <span>In-Browser SQLite Relational Engine</span>
                 </div>
                 <h3 className="font-crest text-2xl font-bold">
@@ -1116,9 +1116,9 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
               <div className="flex flex-wrap items-center gap-3">
                 <button
                   onClick={onOpenSqlConsole}
-                  className="bg-gradient-to-r from-[#0284c7] to-[#0369a1] hover:from-[#0369a1] hover:to-[#075985] text-white px-6 py-3 rounded-xl font-bold text-xs tracking-wide shadow-lg shadow-sky-900/50 transition-all cursor-pointer flex items-center gap-2"
+                  className="bg-gradient-to-r from-[#354024] to-[#252d19] hover:from-[#252d19] hover:to-[#1b2213] text-white px-6 py-3 rounded-xl font-bold text-xs tracking-wide shadow-lg shadow-stone-900/50 transition-all cursor-pointer flex items-center gap-2"
                 >
-                  <Terminal className="w-4 h-4 text-[#38bdf8]" />
+                  <Terminal className="w-4 h-4 text-[#cfbb99]" />
                   <span>Open Full SQL Console</span>
                 </button>
               </div>

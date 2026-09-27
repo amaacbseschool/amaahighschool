@@ -94,24 +94,24 @@ export const ContactPage: React.FC<ContactPageProps> = ({
           <nav className="flex items-center gap-2 text-xs font-semibold text-slate-500">
             <button
               onClick={() => onNavigateRoute('home')}
-              className="hover:text-[#0284c7] flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="hover:text-[#354024] flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               <Home className="w-3.5 h-3.5" />
               <span>Home</span>
             </button>
             <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-            <span className="text-[#0284c7] font-bold">Contact Us</span>
+            <span className="text-[#354024] font-bold">Contact Us</span>
           </nav>
         </div>
       </div>
 
       {/* Hero Header - Deep Navy & Azure Blue */}
-      <div className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white py-16 lg:py-24 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white py-16 lg:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(2,132,199,0.25),transparent_50%)] pointer-events-none" />
         <div className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 mb-6">
             <img src={logoImg} alt="School Emblem" className="w-5 h-5 object-contain" />
-            <span className="text-[11px] font-extrabold tracking-widest text-[#38bdf8] uppercase">
+            <span className="text-[11px] font-extrabold tracking-widest text-[#cfbb99] uppercase">
               STUDENT SERVICES & FRONT DESK
             </span>
           </div>
@@ -147,9 +147,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({
       <div className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 space-y-12">
         {/* Contact Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-card flex flex-col justify-between group hover:border-[#0284c7] hover:-translate-y-1 transition-all duration-300">
+          <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-card flex flex-col justify-between group hover:border-[#354024] hover:-translate-y-1 transition-all duration-300">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0284c7] flex items-center justify-center mb-5 group-hover:bg-[#0284c7] group-hover:text-white transition-colors">
+              <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#354024] flex items-center justify-center mb-5 group-hover:bg-[#354024] group-hover:text-white transition-colors">
                 <MapPin className="w-6 h-6" />
               </div>
               <h3 className="text-base font-bold text-slate-900">Campus Address</h3>
@@ -157,14 +157,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 AMAA High School Campus, Beldari, Simri Bakhtiyarpur, Patna – 801113, Bihar, India
               </p>
             </div>
-            <div className="mt-5 pt-4 border-t border-slate-100 text-xs text-[#0284c7] font-bold">
+            <div className="mt-5 pt-4 border-t border-slate-100 text-xs text-[#354024] font-bold">
               GPS: 25.5941° N, 85.1376° E
             </div>
           </div>
 
-          <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-card flex flex-col justify-between group hover:border-[#0284c7] hover:-translate-y-1 transition-all duration-300">
+          <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-card flex flex-col justify-between group hover:border-[#354024] hover:-translate-y-1 transition-all duration-300">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0284c7] flex items-center justify-center mb-5 group-hover:bg-[#0284c7] group-hover:text-white transition-colors">
+              <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#354024] flex items-center justify-center mb-5 group-hover:bg-[#354024] group-hover:text-white transition-colors">
                 <Phone className="w-6 h-6" />
               </div>
               <h3 className="text-base font-bold text-slate-900">Telephone Lines</h3>
@@ -174,31 +174,31 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 <p>Principal's Office: <strong className="text-slate-900">+91 75440 10046</strong></p>
               </div>
             </div>
-            <div className="mt-5 pt-4 border-t border-slate-100 text-xs text-[#0284c7] font-bold">
+            <div className="mt-5 pt-4 border-t border-slate-100 text-xs text-[#354024] font-bold">
               Direct Inward Dialing
             </div>
           </div>
 
-          <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-card flex flex-col justify-between group hover:border-[#0284c7] hover:-translate-y-1 transition-all duration-300">
+          <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-card flex flex-col justify-between group hover:border-[#354024] hover:-translate-y-1 transition-all duration-300">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0284c7] flex items-center justify-center mb-5 group-hover:bg-[#0284c7] group-hover:text-white transition-colors">
+              <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#354024] flex items-center justify-center mb-5 group-hover:bg-[#354024] group-hover:text-white transition-colors">
                 <Mail className="w-6 h-6" />
               </div>
               <h3 className="text-base font-bold text-slate-900">Electronic Mail</h3>
               <div className="text-xs text-slate-600 mt-2.5 space-y-1.5">
-                <p>General: <span className="text-[#0284c7] font-semibold">info@amaaschool.edu</span></p>
-                <p>Admissions: <span className="text-[#0284c7] font-semibold">admissions@amaaschool.edu</span></p>
-                <p>Careers: <span className="text-[#0284c7] font-semibold">careers@amaaschool.edu</span></p>
+                <p>General: <span className="text-[#354024] font-semibold">info@amaaschool.edu</span></p>
+                <p>Admissions: <span className="text-[#354024] font-semibold">admissions@amaaschool.edu</span></p>
+                <p>Careers: <span className="text-[#354024] font-semibold">careers@amaaschool.edu</span></p>
               </div>
             </div>
-            <div className="mt-5 pt-4 border-t border-slate-100 text-xs text-[#0284c7] font-bold">
+            <div className="mt-5 pt-4 border-t border-slate-100 text-xs text-[#354024] font-bold">
               Secure Institutional Server
             </div>
           </div>
 
-          <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-card flex flex-col justify-between group hover:border-[#0284c7] hover:-translate-y-1 transition-all duration-300">
+          <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-card flex flex-col justify-between group hover:border-[#354024] hover:-translate-y-1 transition-all duration-300">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0284c7] flex items-center justify-center mb-5 group-hover:bg-[#0284c7] group-hover:text-white transition-colors">
+              <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#354024] flex items-center justify-center mb-5 group-hover:bg-[#354024] group-hover:text-white transition-colors">
                 <Clock className="w-6 h-6" />
               </div>
               <h3 className="text-base font-bold text-slate-900">Office Timings</h3>
@@ -221,7 +221,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
           <div className="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl border border-slate-200/80 shadow-card relative">
             <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
               <div>
-                <span className="text-xs font-bold text-[#0284c7] uppercase tracking-wider">
+                <span className="text-xs font-bold text-[#354024] uppercase tracking-wider">
                   Direct Inquiries
                 </span>
                 <h3 className="font-heading text-2xl font-bold text-slate-900 mt-1">
@@ -231,7 +231,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   Leave a message for academic coordination or student services.
                 </p>
               </div>
-              <div className="flex items-center gap-1 text-[11px] font-bold text-[#0284c7] bg-sky-50 px-3 py-1 rounded-full border border-sky-200">
+              <div className="flex items-center gap-1 text-[11px] font-bold text-[#354024] bg-sky-50 px-3 py-1 rounded-full border border-sky-200">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>SQL Persisted</span>
               </div>
@@ -239,7 +239,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
             {submitted ? (
               <div className="p-8 text-center bg-sky-50/70 rounded-2xl border border-sky-100 space-y-3">
-                <CheckCircle2 className="w-12 h-12 text-[#0284c7] mx-auto" />
+                <CheckCircle2 className="w-12 h-12 text-[#354024] mx-auto" />
                 <h4 className="font-heading text-xl font-bold text-slate-900">
                   Inquiry Dispatched Successfully!
                 </h4>
@@ -248,7 +248,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="mt-2 text-xs font-bold text-[#0284c7] hover:underline"
+                  className="mt-2 text-xs font-bold text-[#354024] hover:underline"
                 >
                   Send another message
                 </button>
@@ -266,7 +266,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       placeholder="e.g. Mrs. Neha Kulkarni"
                       value={formData.full_name}
                       onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                      className="w-full p-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7] outline-none"
+                      className="w-full p-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#354024] focus:ring-1 focus:ring-[#354024] outline-none"
                     />
                   </div>
 
@@ -280,7 +280,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       placeholder="neha@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full p-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7] outline-none"
+                      className="w-full p-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#354024] focus:ring-1 focus:ring-[#354024] outline-none"
                     />
                   </div>
                 </div>
@@ -296,7 +296,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       placeholder="+91 98220 99887"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full p-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7] outline-none"
+                      className="w-full p-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#354024] focus:ring-1 focus:ring-[#354024] outline-none"
                     />
                   </div>
 
@@ -310,7 +310,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       placeholder="e.g. Bus Routes / Fee Details"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full p-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7] outline-none"
+                      className="w-full p-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#354024] focus:ring-1 focus:ring-[#354024] outline-none"
                     />
                   </div>
                 </div>
@@ -325,14 +325,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     placeholder="Write your questions or notes here..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full p-3.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7] outline-none resize-none"
+                    className="w-full p-3.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#354024] focus:ring-1 focus:ring-[#354024] outline-none resize-none"
                   />
                 </div>
 
                 <MagneticButton
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full group inline-flex items-center justify-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold py-4 rounded-full shadow-lg transition-all text-xs uppercase tracking-wider disabled:opacity-50 cursor-pointer"
+                  className="w-full group inline-flex items-center justify-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold py-4 rounded-full shadow-lg transition-all text-xs uppercase tracking-wider disabled:opacity-50 cursor-pointer"
                 >
                   {isSubmitting ? (
                     <span>Recording Query...</span>
@@ -349,7 +349,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
           {/* Campus Tour Booking Card */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white p-8 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden">
+            <div className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white p-8 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden">
               <div className="flex items-center gap-2 text-xs font-bold text-[#cfbb99] uppercase tracking-wider mb-2">
                 <Sparkles className="w-4 h-4" />
                 <span>Experience Our Campus</span>
@@ -368,7 +368,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   </p>
                   <button
                     onClick={() => setTourBooked(false)}
-                    className="text-xs text-[#38bdf8] hover:underline pt-2 inline-block font-bold cursor-pointer"
+                    className="text-xs text-[#cfbb99] hover:underline pt-2 inline-block font-bold cursor-pointer"
                   >
                     Reschedule or book another date
                   </button>
@@ -435,7 +435,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
                   <button
                     type="submit"
-                    className="w-full bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold py-3.5 rounded-full text-xs uppercase tracking-wider transition-colors shadow-lg mt-2 cursor-pointer"
+                    className="w-full bg-[#354024] hover:bg-[#252d19] text-white font-bold py-3.5 rounded-full text-xs uppercase tracking-wider transition-colors shadow-lg mt-2 cursor-pointer"
                   >
                     CONFIRM TOUR REQUEST
                   </button>
@@ -446,7 +446,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             {/* Location Map Preview */}
             <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-card">
               <div className="flex items-center gap-2 text-xs font-bold text-slate-900 mb-3">
-                <Compass className="w-4 h-4 text-[#0284c7]" />
+                <Compass className="w-4 h-4 text-[#354024]" />
                 <span>How to Reach Our Campus</span>
               </div>
               <p className="text-xs text-slate-600 leading-relaxed">
@@ -457,7 +457,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   href="https://maps.google.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-bold text-[#0284c7] hover:text-[#0369a1] transition-colors"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-[#354024] hover:text-[#252d19] transition-colors"
                 >
                   <span>Open in Google Maps</span>
                   <ChevronRight className="w-3.5 h-3.5" />

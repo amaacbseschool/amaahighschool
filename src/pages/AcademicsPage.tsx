@@ -63,21 +63,21 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
         <div className="w-[90%] mx-auto px-2 sm:px-4 py-3 flex flex-wrap items-center justify-between gap-3">
           <button
             onClick={onNavigateHome}
-            className="flex items-center gap-2 text-xs font-bold text-slate-700 hover:text-[#0284c7] transition-colors group cursor-pointer"
+            className="flex items-center gap-2 text-xs font-bold text-slate-700 hover:text-[#354024] transition-colors group cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4 text-slate-400 group-hover:-translate-x-1 transition-transform" />
             <span>Back to Homepage</span>
           </button>
           <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-            <span className="hover:text-[#0284c7] cursor-pointer" onClick={onNavigateHome}>Home</span>
+            <span className="hover:text-[#354024] cursor-pointer" onClick={onNavigateHome}>Home</span>
             <span>/</span>
-            <span className="text-[#0284c7] font-bold">Academics</span>
+            <span className="text-[#354024] font-bold">Academics</span>
           </div>
         </div>
       </div>
 
       {/* 2. Hero Section */}
-      <section id="curriculum" className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white py-16 lg:py-24 px-4 sm:px-8 xl:px-12 overflow-hidden border-b border-sky-950">
+      <section id="curriculum" className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white py-16 lg:py-24 px-4 sm:px-8 xl:px-12 overflow-hidden border-b border-sky-950">
         <div className="w-[90%] mx-auto relative z-10 text-center">
           <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-5 py-2 rounded-full border border-white/20 mb-6">
             <img
@@ -95,13 +95,13 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-slate-200 max-w-3xl mx-auto leading-relaxed font-normal">
-            From foundational conceptual mastery in Middle School through Class 10 secondary board distinction, our pedagogy translates our motto <strong className="text-[#38bdf8]">"Lead Kindly Light"</strong> into rigorous intellect, moral clarity, and future technologies.
+            From foundational conceptual mastery in Middle School through Class 10 secondary board distinction, our pedagogy translates our motto <strong className="text-[#cfbb99]">"Lead Kindly Light"</strong> into rigorous intellect, moral clarity, and future technologies.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={onOpenAdmission}
-              className="bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-8 py-3.5 rounded-full transition-all text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg hover:shadow-xl cursor-pointer"
+              className="bg-[#354024] hover:bg-[#252d19] text-white font-bold px-8 py-3.5 rounded-full transition-all text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg hover:shadow-xl cursor-pointer"
             >
               <GraduationCap className="w-4 h-4 text-[#cfbb99]" />
               <span>Enroll for Session 2025–26</span>
@@ -132,11 +132,11 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
               key={idx}
               className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-card flex items-start gap-4 hover:-translate-y-1 transition-transform"
             >
-              <div className="p-3 rounded-xl bg-[#0284c7]/10 text-[#0284c7] shrink-0 font-bold text-base font-modern">
+              <div className="p-3 rounded-xl bg-[#354024]/10 text-[#354024] shrink-0 font-bold text-base font-modern">
                 #0{idx + 1}
               </div>
               <div>
-                <div className="text-3xl font-extrabold text-[#0284c7] tracking-tight font-modern">
+                <div className="text-3xl font-extrabold text-[#354024] tracking-tight font-modern">
                   <AnimatedCounter value={m.value} prefix={m.prefix} suffix={m.suffix} />
                 </div>
                 <div className="text-xs font-bold text-[#0a192f] mt-1">{m.label}</div>
@@ -150,7 +150,7 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
       {/* 4. Wing-by-Wing Curriculum Section */}
       <section id="stages" className="w-[90%] mx-auto px-2 sm:px-4 py-16 lg:py-24">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-bold tracking-widest text-[#0284c7] uppercase bg-[#0284c7]/10 px-3.5 py-1 rounded-full">
+          <span className="text-xs font-bold tracking-widest text-[#354024] uppercase bg-[#354024]/10 px-3.5 py-1 rounded-full">
             PROGRESSIVE LEARNING STAGES
           </span>
           <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0f172a] mt-3">
@@ -172,8 +172,8 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
               onClick={() => setActiveWing(tab.id as any)}
               className={`px-5 py-2.5 text-xs font-bold rounded-full transition-all duration-200 cursor-pointer ${
                 activeWing === tab.id
-                  ? 'bg-[#0284c7] text-white shadow-md'
-                  : 'text-slate-600 hover:text-[#0284c7] hover:bg-slate-100'
+                  ? 'bg-[#354024] text-white shadow-md'
+                  : 'text-slate-600 hover:text-[#354024] hover:bg-slate-100'
               }`}
             >
               {tab.label}
@@ -186,7 +186,7 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-8 space-y-5">
               <div className="flex flex-wrap items-center gap-3">
-                <span className="bg-[#0284c7]/10 text-[#0284c7] text-xs font-bold px-3 py-1 rounded-full">
+                <span className="bg-[#354024]/10 text-[#354024] text-xs font-bold px-3 py-1 rounded-full">
                   {currentWing.grades}
                 </span>
                 <span className="text-xs text-slate-500 font-medium">
@@ -223,14 +223,14 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
                 {currentWing.curriculumFocus.map((f, fIdx) => (
                   <div key={fIdx} className="bg-white p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-800 flex items-center justify-between shadow-subtle">
                     <span>{f}</span>
-                    <span className="text-[#0284c7] font-bold">✓</span>
+                    <span className="text-[#354024] font-bold">✓</span>
                   </div>
                 ))}
               </div>
 
               <button
                 onClick={onOpenAdmission}
-                className="w-full mt-4 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg cursor-pointer flex items-center justify-center gap-2"
+                className="w-full mt-4 bg-[#354024] hover:bg-[#252d19] text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg cursor-pointer flex items-center justify-center gap-2"
               >
                 <span>Inquire for {currentWing.grades}</span>
                 <ArrowRight className="w-3.5 h-3.5 text-white" />

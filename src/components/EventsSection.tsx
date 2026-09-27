@@ -118,7 +118,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
         >
           <div>
-            <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 text-[#0284c7] px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+            <div className="inline-flex items-center gap-2 bg-[#354024]/10 text-[#354024] px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
               <Calendar className="w-4 h-4" />
               <span>Institutional Calendar & Highlights</span>
             </div>
@@ -138,7 +138,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
                   activeCategory === cat
-                    ? 'bg-[#0284c7] text-white shadow-sm'
+                    ? 'bg-[#354024] text-white shadow-sm'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >
@@ -172,14 +172,14 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
                   exit={{ opacity: 0, scale: 0.95, y: -20 }}
                   transition={{ duration: 0.35, delay: idx * 0.05, ease: [0.22, 1, 0.36, 1] }}
                   whileHover={{ y: -4 }}
-                  className={`${colSpan} p-7 sm:p-8 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden bg-white rounded-3xl border border-slate-200/80 shadow-card hover:shadow-xl hover:border-[#0284c7]`}
+                  className={`${colSpan} p-7 sm:p-8 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden bg-white rounded-3xl border border-slate-200/80 shadow-card hover:shadow-xl hover:border-[#354024]`}
                 >
                   <div className="relative z-10">
                     {/* Top Strip: Date Block + Badges */}
                     <div className="flex items-start gap-4 mb-5">
                       {/* Calendar Date Block */}
                       <div className="w-16 h-18 rounded-2xl bg-[#07111e] text-white flex flex-col items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
-                        <span className="text-[10px] font-extrabold text-[#38bdf8] uppercase tracking-wider">
+                        <span className="text-[10px] font-extrabold text-[#cfbb99] uppercase tracking-wider">
                           {evt.date.month}
                         </span>
                         <span className="text-2xl font-black leading-none font-mono mt-0.5">
@@ -192,7 +192,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
 
                       <div className="flex-1 min-w-0">
                         <div className="flex flex-wrap items-center gap-2 mb-2">
-                          <span className="text-[10px] font-bold uppercase tracking-wider bg-sky-50 text-[#0284c7] px-3 py-0.5 rounded-full">
+                          <span className="text-[10px] font-bold uppercase tracking-wider bg-sky-50 text-[#354024] px-3 py-0.5 rounded-full">
                             {evt.badge}
                           </span>
                           {isFlagship && (
@@ -201,7 +201,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
                             </span>
                           )}
                         </div>
-                        <h3 className="font-heading text-xl sm:text-2xl font-bold text-slate-900 leading-snug group-hover:text-[#0284c7] transition-colors">
+                        <h3 className="font-heading text-xl sm:text-2xl font-bold text-slate-900 leading-snug group-hover:text-[#354024] transition-colors">
                           {evt.title}
                         </h3>
                       </div>
@@ -215,18 +215,18 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
                   {/* Time & Venue Meta Footer */}
                   <div className="relative z-10 pt-4 border-t border-slate-100 space-y-2.5">
                     <div className="flex items-center gap-2 text-xs text-slate-700 font-medium">
-                      <Clock className="w-3.5 h-3.5 text-[#0284c7] shrink-0" />
+                      <Clock className="w-3.5 h-3.5 text-[#354024] shrink-0" />
                       <span>{evt.time}</span>
                     </div>
                     <div className="flex items-center gap-2 text-xs text-slate-700 font-medium">
-                      <MapPin className="w-3.5 h-3.5 text-[#0284c7] shrink-0" />
+                      <MapPin className="w-3.5 h-3.5 text-[#354024] shrink-0" />
                       <span className="truncate">{evt.venue}</span>
                     </div>
 
                     <div className="pt-3 flex items-center justify-between">
                       <button
                         onClick={() => setSelectedEvent(evt)}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0284c7] hover:text-white bg-sky-50 hover:bg-[#0284c7] px-4 py-2 rounded-full cursor-pointer transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#354024] hover:text-white bg-sky-50 hover:bg-[#354024] px-4 py-2 rounded-full cursor-pointer transition-colors"
                       >
                         <span>RSVP & View Full Details</span>
                         <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -250,7 +250,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
               className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-900 border border-slate-300 font-bold px-7 py-3 rounded-full text-xs uppercase tracking-wider transition-all cursor-pointer shadow-sm"
             >
               <span>Explore Annual Events & Fest Media Archive</span>
-              <ArrowRight className="w-4 h-4 text-[#0284c7]" />
+              <ArrowRight className="w-4 h-4 text-[#354024]" />
             </button>
           </div>
         )}
@@ -273,7 +273,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="flex items-center gap-2 text-xs font-bold text-[#0284c7] uppercase tracking-wider mb-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-[#354024] uppercase tracking-wider mb-2">
                 <CalendarCheck2 className="w-4 h-4" />
                 <span>{selectedEvent.badge}</span>
               </div>
@@ -284,15 +284,15 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
 
               <div className="my-4 p-4 rounded-2xl bg-sky-50/70 border border-sky-100 space-y-2 text-xs text-slate-800">
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-[#0284c7] shrink-0" />
+                  <Calendar className="w-4 h-4 text-[#354024] shrink-0" />
                   <span>Date: {selectedEvent.date.day} {selectedEvent.date.month} {selectedEvent.date.year}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-[#0284c7] shrink-0" />
+                  <Clock className="w-4 h-4 text-[#354024] shrink-0" />
                   <span>Time: {selectedEvent.time}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-[#0284c7] shrink-0" />
+                  <MapPin className="w-4 h-4 text-[#354024] shrink-0" />
                   <span>Venue: {selectedEvent.venue}</span>
                 </div>
               </div>
@@ -313,18 +313,18 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
                       type="text"
                       required
                       placeholder="Your Name"
-                      className="w-full text-xs p-3 rounded-xl border border-slate-300 focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7] outline-none"
+                      className="w-full text-xs p-3 rounded-xl border border-slate-300 focus:border-[#354024] focus:ring-1 focus:ring-[#354024] outline-none"
                     />
                     <input
                       type="tel"
                       required
                       placeholder="Mobile Number"
-                      className="w-full text-xs p-3 rounded-xl border border-slate-300 focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7] outline-none"
+                      className="w-full text-xs p-3 rounded-xl border border-slate-300 focus:border-[#354024] focus:ring-1 focus:ring-[#354024] outline-none"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-[#0284c7] hover:bg-[#0369a1] text-white text-xs font-bold py-3.5 rounded-full uppercase tracking-wider transition-colors shadow-lg cursor-pointer"
+                    className="w-full bg-[#354024] hover:bg-[#252d19] text-white text-xs font-bold py-3.5 rounded-full uppercase tracking-wider transition-colors shadow-lg cursor-pointer"
                   >
                     Confirm RSVP & Add to Calendar
                   </button>

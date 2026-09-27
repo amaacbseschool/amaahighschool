@@ -72,21 +72,21 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
         <div className="w-[90%] mx-auto px-2 sm:px-4 py-3 flex flex-wrap items-center justify-between gap-3">
           <button
             onClick={() => onNavigateRoute('home')}
-            className="flex items-center gap-2 text-xs font-bold text-slate-700 hover:text-[#0284c7] transition-colors group cursor-pointer"
+            className="flex items-center gap-2 text-xs font-bold text-slate-700 hover:text-[#354024] transition-colors group cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4 text-slate-400 group-hover:-translate-x-1 transition-transform" />
             <span>Back to Homepage</span>
           </button>
           <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-            <span className="hover:text-[#0284c7] cursor-pointer" onClick={() => onNavigateRoute('home')}>Home</span>
+            <span className="hover:text-[#354024] cursor-pointer" onClick={() => onNavigateRoute('home')}>Home</span>
             <span>/</span>
-            <span className="text-[#0284c7] font-bold">Student Life</span>
+            <span className="text-[#354024] font-bold">Student Life</span>
           </div>
         </div>
       </div>
 
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white py-16 lg:py-24 px-4 overflow-hidden border-b border-sky-950">
+      <section className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white py-16 lg:py-24 px-4 overflow-hidden border-b border-sky-950">
         <div className="w-[90%] mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 mb-5">
             <Sparkles className="w-4 h-4 text-[#cfbb99]" />
@@ -133,9 +133,9 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
+          <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
             <Star className="w-3.5 h-3.5 text-[#cfbb99]" />
-            <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">Co-curricular Enrichment</span>
+            <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Co-curricular Enrichment</span>
           </div>
           <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Activities & Programmes</h2>
           <p className="text-slate-600 text-sm mt-2 max-w-2xl">Our co-curricular ecosystem is designed to discover, develop, and amplify each student's unique talents alongside their academic journey.</p>
@@ -152,9 +152,9 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: idx * 0.07 }}
                 whileHover={{ y: -4 }}
-                className="bg-white border border-slate-200/90 rounded-3xl p-7 shadow-card hover:shadow-xl hover:border-[#0284c7]/30 transition-all duration-300"
+                className="bg-white border border-slate-200/90 rounded-3xl p-7 shadow-card hover:shadow-xl hover:border-[#354024]/30 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-2xl bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center mb-5">
+                <div className="w-12 h-12 rounded-2xl bg-[#354024]/10 text-[#354024] flex items-center justify-center mb-5">
                   <Icon className="w-6 h-6" />
                 </div>
                 <span className="text-[10px] font-bold text-[#cfbb99] uppercase tracking-widest bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full">{act.tag}</span>
@@ -177,16 +177,16 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
             className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12"
           >
             <div>
-              <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
+              <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
                 <Trophy className="w-3.5 h-3.5 text-[#cfbb99]" />
-                <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">Athletics & Physical Education</span>
+                <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Athletics & Physical Education</span>
               </div>
               <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Sports at AMAA</h2>
               <p className="text-slate-600 text-sm mt-2 max-w-2xl">Our sprawling 15-acre campus includes a regulation 400m athletics track, cricket grounds, indoor sports hall, and certified coaching staff.</p>
             </div>
             <button
               onClick={() => onNavigateRoute('achievements')}
-              className="shrink-0 inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-3 rounded-full text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
+              className="shrink-0 inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-6 py-3 rounded-full text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
             >
               <span>View Sports Honours</span>
               <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
@@ -204,10 +204,10 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.07 }}
                   whileHover={{ y: -3 }}
-                  className="bg-[#f8f9fa] border border-slate-200/90 rounded-2xl p-6 hover:border-[#0284c7]/40 transition-all"
+                  className="bg-[#f8f9fa] border border-slate-200/90 rounded-2xl p-6 hover:border-[#354024]/40 transition-all"
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-[#354024]/10 text-[#354024] flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5" />
                     </div>
                     <h4 className="font-bold text-[#0a192f] text-sm">{sport.name}</h4>
@@ -219,7 +219,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
           </div>
 
           {/* Stats strip */}
-          <div className="mt-10 bg-gradient-to-r from-[#07111e] to-[#0369a1] text-white rounded-3xl p-7 flex flex-wrap gap-6 justify-around items-center">
+          <div className="mt-10 bg-gradient-to-r from-[#07111e] to-[#252d19] text-white rounded-3xl p-7 flex flex-wrap gap-6 justify-around items-center">
             {[
               { value: '45+', label: 'Sports Trophies' },
               { value: '6', label: 'Sports Disciplines' },
@@ -244,9 +244,9 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
+          <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
             <Music2 className="w-3.5 h-3.5 text-[#cfbb99]" />
-            <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">Creativity & Culture</span>
+            <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Creativity & Culture</span>
           </div>
           <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Arts & Cultural Programmes</h2>
           <p className="text-slate-600 text-sm mt-2 max-w-2xl">AMAA celebrates India's rich artistic heritage while nurturing modern creative expression through year-round cultural programming.</p>
@@ -261,10 +261,10 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: idx * 0.08 }}
               whileHover={{ y: -3 }}
-              className="bg-white border border-slate-200/90 rounded-3xl p-8 shadow-card hover:border-[#0284c7]/30 transition-all"
+              className="bg-white border border-slate-200/90 rounded-3xl p-8 shadow-card hover:border-[#354024]/30 transition-all"
             >
               <div className="flex items-center gap-2 mb-3">
-                <CheckCircle2 className="w-4 h-4 text-[#0284c7] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#354024] shrink-0" />
                 <h4 className="font-crest font-bold text-[#0a192f] text-base">{item.year}</h4>
               </div>
               <p className="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
@@ -301,9 +301,9 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
             transition={{ duration: 0.5 }}
             className="mb-12"
           >
-            <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
+            <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
               <Users className="w-3.5 h-3.5 text-[#cfbb99]" />
-              <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">Student Clubs & Societies</span>
+              <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Student Clubs & Societies</span>
             </div>
             <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Clubs & Interest Groups</h2>
             <p className="text-slate-600 text-sm mt-2 max-w-2xl">Six active student-led clubs meeting regularly, open to all students from Grades V onwards.</p>
@@ -318,12 +318,12 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.07 }}
                 whileHover={{ y: -3 }}
-                className="bg-[#f8f9fa] border border-slate-200/90 rounded-2xl p-6 hover:border-[#0284c7]/40 transition-all"
+                className="bg-[#f8f9fa] border border-slate-200/90 rounded-2xl p-6 hover:border-[#354024]/40 transition-all"
               >
                 <h4 className="font-bold text-[#0a192f] text-sm mb-3">{club.name}</h4>
                 <div className="space-y-1.5 text-xs text-slate-600">
                   <div className="flex items-center gap-2">
-                    <Users className="w-3.5 h-3.5 text-[#0284c7] shrink-0" />
+                    <Users className="w-3.5 h-3.5 text-[#354024] shrink-0" />
                     <span>{club.members}</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -331,7 +331,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
                     <span>Meets: {club.meets}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#0284c7] shrink-0" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#354024] shrink-0" />
                     <span>{club.lead}</span>
                   </div>
                 </div>
@@ -345,9 +345,9 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
       <div id="gallery">
         {/* Section header overlay before the GalleryPage renders */}
         <div className="w-[90%] mx-auto px-2 sm:px-4 pt-16 pb-6">
-          <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
+          <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
             <Camera className="w-3.5 h-3.5 text-[#cfbb99]" />
-            <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">Photo Gallery</span>
+            <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Photo Gallery</span>
           </div>
           <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Campus Life in Pictures</h2>
           <p className="text-slate-600 text-sm mt-2">Browse highlights from academics, sports, cultural events, and everyday life at AMAA.</p>
@@ -363,7 +363,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row items-center justify-between gap-6"
+          className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row items-center justify-between gap-6"
         >
           <div>
             <div className="text-[10px] font-bold uppercase tracking-widest text-[#cfbb99] mb-2">Become Part of AMAA</div>
@@ -372,7 +372,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
           </div>
           <button
             onClick={onOpenAdmission}
-            className="shrink-0 inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-8 py-4 rounded-full text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
+            className="shrink-0 inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-8 py-4 rounded-full text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
           >
             <span>Apply for 2025–26</span>
             <ArrowRight className="w-4 h-4 text-[#cfbb99]" />

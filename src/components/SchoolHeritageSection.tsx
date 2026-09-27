@@ -28,8 +28,8 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
       title: 'Rooted in Values',
       desc: 'Guided by our sacred motto "Lead Kindly Light", character formation and ethical integrity accompany every academic triumph.',
       icon: ShieldCheck,
-      iconColor: 'text-[#0284c7]',
-      badgeColor: 'bg-[#0284c7]/10 text-[#0284c7]',
+      iconColor: 'text-[#354024]',
+      badgeColor: 'bg-[#354024]/10 text-[#354024]',
     },
     {
       title: 'Academic Distinction',
@@ -42,8 +42,8 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
       title: 'Global Alumni Legacy',
       desc: 'Our graduates thrive across top institutions like AIIMS, Google DeepMind, Indian Administrative Services, and the Armed Forces.',
       icon: Users,
-      iconColor: 'text-[#0284c7]',
-      badgeColor: 'bg-[#0284c7]/10 text-[#0284c7]',
+      iconColor: 'text-[#354024]',
+      badgeColor: 'bg-[#354024]/10 text-[#354024]',
     },
     {
       title: 'Compassionate Mentorship',
@@ -57,7 +57,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
   return (
     <section id="heritage" className="py-20 lg:py-28 bg-white border-b border-slate-200 relative overflow-hidden">
       {/* Decorative ambient blue light */}
-      <div className="absolute top-1/3 -right-20 w-80 h-80 bg-[#0284c7]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 -right-20 w-80 h-80 bg-[#354024]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="w-[90%] mx-auto px-2 sm:px-4 lg:px-6 relative z-10">
         {/* Section Header */}
@@ -68,9 +68,9 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
           transition={{ duration: 0.55 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
+          <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
             <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
-            <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">
+            <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">
               DIAMOND JUBILEE • 60 YEARS OF EXCELLENCE
             </span>
           </div>
@@ -135,8 +135,8 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
             <div className="lg:col-span-7 p-7 sm:p-10 lg:p-12 flex flex-col justify-between bg-gradient-to-br from-white via-slate-50/50 to-sky-50/20">
               <div>
                 {/* Eyebrow */}
-                <div className="flex items-center gap-2 text-xs font-bold text-[#0284c7] uppercase tracking-wider mb-3">
-                  <span className="w-2 h-2 rounded-full bg-[#0284c7]" />
+                <div className="flex items-center gap-2 text-xs font-bold text-[#354024] uppercase tracking-wider mb-3">
+                  <span className="w-2 h-2 rounded-full bg-[#354024]" />
                   <span>FOUNDING ETHOS & PHILOSOPHY</span>
                   <span className="text-slate-300">•</span>
                   <span className="text-slate-500 font-normal">Tamaso Ma Jyotirgamaya</span>
@@ -151,7 +151,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                 </p>
 
                 {/* Editorial Quote */}
-                <div className="relative my-6 pl-5 border-l-3 border-[#0284c7]">
+                <div className="relative my-6 pl-5 border-l-3 border-[#354024]">
                   <p className="font-serif text-sm sm:text-base text-slate-700 italic leading-relaxed">
                     “True education is not merely the transmission of facts, but the ignition of intellect, character, and humanitarian empathy that guides an individual through life like a kindly light.”
                   </p>
@@ -164,7 +164,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
               {/* 3 Metric Stats with Micro-Dividers */}
               <div className="grid grid-cols-3 gap-3 sm:gap-4 py-5 border-y border-slate-200/80 my-2">
                 <div className="text-left">
-                  <div className="text-2xl sm:text-3xl font-extrabold text-[#0284c7] font-modern">
+                  <div className="text-2xl sm:text-3xl font-extrabold text-[#354024] font-modern">
                     <AnimatedCounter value={60} suffix="+" />
                   </div>
                   <div className="text-[11px] font-bold text-slate-600 uppercase tracking-wider mt-0.5">
@@ -202,7 +202,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                       if (el) el.scrollIntoView({ behavior: 'smooth' });
                     }
                   }}
-                  className="group inline-flex items-center gap-2.5 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-3.5 rounded-full text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all cursor-pointer"
+                  className="group inline-flex items-center gap-2.5 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-6 py-3.5 rounded-full text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all cursor-pointer"
                 >
                   <Images className="w-4 h-4 text-white" />
                   <span>EXPLORE PHOTO ARCHIVES</span>
@@ -212,7 +212,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                 {onNavigateRoute && (
                   <button
                     onClick={() => onNavigateRoute('about')}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0a192f] hover:text-[#0284c7] uppercase tracking-wider transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0a192f] hover:text-[#354024] uppercase tracking-wider transition-colors cursor-pointer"
                   >
                     <span>Read Full History</span>
                     <span>→</span>
@@ -235,13 +235,13 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: idx * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-card hover:shadow-xl hover:border-[#0284c7]/30 transition-all duration-300 flex flex-col justify-between group"
+                className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-card hover:shadow-xl hover:border-[#354024]/30 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                     <Icon className={`w-6 h-6 ${pillar.iconColor}`} />
                   </div>
-                  <h4 className="font-crest text-base font-bold text-[#0a192f] group-hover:text-[#0284c7] transition-colors">
+                  <h4 className="font-crest text-base font-bold text-[#0a192f] group-hover:text-[#354024] transition-colors">
                     {pillar.title}
                   </h4>
                   <p className="text-slate-600 text-xs mt-2.5 leading-relaxed">
@@ -249,9 +249,9 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-400 group-hover:text-[#0284c7] transition-colors">
+                <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-400 group-hover:text-[#354024] transition-colors">
                   <span>Pillar 0{idx + 1}</span>
-                  <span className="text-[#0284c7] font-bold">→</span>
+                  <span className="text-[#354024] font-bold">→</span>
                 </div>
               </motion.div>
             );

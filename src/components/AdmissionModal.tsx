@@ -324,7 +324,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
               <div className="pt-3 flex items-center justify-center">
                 <button
                   onClick={handleReset}
-                  className="w-full sm:w-auto bg-[#0a192f] hover:bg-[#0284c7] text-white font-bold px-8 py-2.5 text-xs rounded-full transition-colors cursor-pointer shadow-md"
+                  className="w-full sm:w-auto bg-[#0a192f] hover:bg-[#354024] text-white font-bold px-8 py-2.5 text-xs rounded-full transition-colors cursor-pointer shadow-md"
                 >
                   Done
                 </button>

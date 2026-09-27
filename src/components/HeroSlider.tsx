@@ -179,7 +179,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
                 {slides[currentSlide].badge}
               </span>
               <span className="text-white/40">•</span>
-              <span className="text-xs font-bold text-[#38bdf8]">
+              <span className="text-xs font-bold text-[#cfbb99]">
                 {slides[currentSlide].badgeHighlight}
               </span>
             </div>
@@ -187,7 +187,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
             {/* High-Impact Headline: Balanced Size, Zero Hard Shadows */}
             <h1 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.16]">
               {slides[currentSlide].title}{' '}
-              <span className="text-[#38bdf8]">
+              <span className="text-[#cfbb99]">
                 {slides[currentSlide].highlightText}
               </span>
             </h1>
@@ -201,7 +201,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <button
                 onClick={onOpenAdmission}
-                className="group inline-flex items-center justify-center gap-3 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-8 py-4 rounded-full text-xs sm:text-sm uppercase tracking-wider shadow-xl hover:shadow-2xl transition-all cursor-pointer"
+                className="group inline-flex items-center justify-center gap-3 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-8 py-4 rounded-full text-xs sm:text-sm uppercase tracking-wider shadow-xl hover:shadow-2xl transition-all cursor-pointer"
               >
                 <span>APPLY FOR 2025–26</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -226,7 +226,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
                 }}
                 className="inline-flex items-center justify-center gap-2 bg-black/40 hover:bg-black/60 text-white font-bold px-6 py-4 rounded-full border border-white/20 backdrop-blur-md text-xs sm:text-sm uppercase tracking-wider transition-all cursor-pointer"
               >
-                <Images className="w-4 h-4 text-[#38bdf8]" />
+                <Images className="w-4 h-4 text-[#cfbb99]" />
                 <span>PHOTO GALLERY</span>
               </button>
             </div>
@@ -258,7 +258,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
                   aria-label={`Go to slide ${idx + 1}`}
                   className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                     currentSlide === idx
-                      ? 'bg-[#38bdf8] w-7'
+                      ? 'bg-[#cfbb99] w-7'
                       : 'bg-white/40 hover:bg-white/70 w-2'
                   }`}
                 />

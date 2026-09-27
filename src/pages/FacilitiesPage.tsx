@@ -174,24 +174,24 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
           <nav className="flex items-center gap-2 text-xs font-semibold text-slate-500">
             <button
               onClick={() => onNavigateRoute('home')}
-              className="hover:text-[#0284c7] flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="hover:text-[#354024] flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               <Home className="w-3.5 h-3.5" />
               <span>Home</span>
             </button>
             <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-            <span className="text-[#0284c7] font-bold">Campus Facilities</span>
+            <span className="text-[#354024] font-bold">Campus Facilities</span>
           </nav>
         </div>
       </div>
 
       {/* Hero Header - Deep Navy & Azure Blue */}
-      <div className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white py-16 lg:py-24 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white py-16 lg:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(2,132,199,0.25),transparent_50%)] pointer-events-none" />
         <div className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 mb-6">
             <img src={logoImg} alt="School Emblem" className="w-5 h-5 object-contain" />
-            <span className="text-[11px] font-extrabold tracking-widest text-[#38bdf8] uppercase">
+            <span className="text-[11px] font-extrabold tracking-widest text-[#cfbb99] uppercase">
               WORLD-CLASS CAMPUS INFRASTRUCTURE
             </span>
           </div>
@@ -210,7 +210,7 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
               <div className="text-xs text-slate-300 mt-1 font-medium">Lush Green Campus</div>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
-              <div className="text-2xl sm:text-3xl font-black text-[#38bdf8]">100%</div>
+              <div className="text-2xl sm:text-3xl font-black text-[#cfbb99]">100%</div>
               <div className="text-xs text-slate-300 mt-1 font-medium">Smart Digital Classrooms</div>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
@@ -230,7 +230,7 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
         {/* Category Filter Bar */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs font-bold text-[#0284c7] uppercase tracking-wider mb-2">
+            <div className="inline-flex items-center gap-2 text-xs font-bold text-[#354024] uppercase tracking-wider mb-2">
               <Building className="w-4 h-4" />
               <span>Campus Directory</span>
             </div>
@@ -249,7 +249,7 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
                 onClick={() => setFilter(cat)}
                 className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
                   filter === cat
-                    ? 'bg-[#0284c7] text-white shadow-sm'
+                    ? 'bg-[#354024] text-white shadow-sm'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >
@@ -287,19 +287,19 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
                     </div>
 
                     {/* Metric pill */}
-                    <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-md text-[#0284c7] text-[11px] font-extrabold px-3 py-1 rounded-full shadow-sm">
+                    <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-md text-[#354024] text-[11px] font-extrabold px-3 py-1 rounded-full shadow-sm">
                       {fac.stats.value}
                     </div>
 
                     {/* Icon badge */}
-                    <div className="absolute -bottom-4 left-6 w-12 h-12 rounded-2xl bg-[#0284c7] group-hover:bg-[#0369a1] text-white flex items-center justify-center shadow-lg border-2 border-white transition-colors duration-300">
+                    <div className="absolute -bottom-4 left-6 w-12 h-12 rounded-2xl bg-[#354024] group-hover:bg-[#252d19] text-white flex items-center justify-center shadow-lg border-2 border-white transition-colors duration-300">
                       <Icon className="w-5 h-5" />
                     </div>
                   </div>
 
                   {/* Body Content */}
                   <div className="p-6 pt-9">
-                    <h3 className="font-heading text-xl font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">
+                    <h3 className="font-heading text-xl font-bold text-slate-900 group-hover:text-[#354024] transition-colors leading-snug">
                       {fac.title}
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed line-clamp-3">
@@ -319,7 +319,7 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
 
                 {/* Footer action */}
                 <div className="px-6 pb-6 pt-2">
-                  <div className="flex items-center justify-between text-xs font-bold text-[#0284c7] group-hover:text-[#0369a1] transition-colors">
+                  <div className="flex items-center justify-between text-xs font-bold text-[#354024] group-hover:text-[#252d19] transition-colors">
                     <span>Inspect Specifications</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -346,7 +346,7 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
             <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80">
-              <div className="w-11 h-11 rounded-xl bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center mb-4">
+              <div className="w-11 h-11 rounded-xl bg-[#354024]/10 text-[#354024] flex items-center justify-center mb-4">
                 <Camera className="w-5 h-5" />
               </div>
               <h4 className="text-sm font-bold text-slate-900">24/7 CCTV Surveillance</h4>
@@ -356,7 +356,7 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
             </div>
 
             <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80">
-              <div className="w-11 h-11 rounded-xl bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center mb-4">
+              <div className="w-11 h-11 rounded-xl bg-[#354024]/10 text-[#354024] flex items-center justify-center mb-4">
                 <HeartPulse className="w-5 h-5" />
               </div>
               <h4 className="text-sm font-bold text-slate-900">Full-Time Medical Infirmary</h4>
@@ -366,7 +366,7 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
             </div>
 
             <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80">
-              <div className="w-11 h-11 rounded-xl bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center mb-4">
+              <div className="w-11 h-11 rounded-xl bg-[#354024]/10 text-[#354024] flex items-center justify-center mb-4">
                 <Droplets className="w-5 h-5" />
               </div>
               <h4 className="text-sm font-bold text-slate-900">Purified RO Water & Hygiene</h4>
@@ -376,7 +376,7 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
             </div>
 
             <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80">
-              <div className="w-11 h-11 rounded-xl bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center mb-4">
+              <div className="w-11 h-11 rounded-xl bg-[#354024]/10 text-[#354024] flex items-center justify-center mb-4">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <h4 className="text-sm font-bold text-slate-900">Verified Personnel & Security</h4>
@@ -388,7 +388,7 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
         </div>
 
         {/* Schedule a Tour CTA */}
-        <div className="mt-14 bg-gradient-to-r from-[#07111e] via-[#0a192f] to-[#0369a1] rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
+        <div className="mt-14 bg-gradient-to-r from-[#07111e] via-[#0a192f] to-[#252d19] rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
           <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-[radial-gradient(ellipse_at_top_right,rgba(2,132,199,0.25),transparent_70%)] pointer-events-none" />
           <div className="relative z-10">
             <span className="text-xs font-bold text-[#cfbb99] uppercase tracking-widest bg-white/10 px-3 py-1 rounded-full">
@@ -403,7 +403,7 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
           </div>
           <MagneticButton
             onClick={() => onNavigateRoute('contact')}
-            className="shrink-0 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-8 py-4 text-xs uppercase tracking-wider rounded-full transition-all inline-flex items-center gap-2 shadow-lg cursor-pointer relative z-10"
+            className="shrink-0 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-8 py-4 text-xs uppercase tracking-wider rounded-full transition-all inline-flex items-center gap-2 shadow-lg cursor-pointer relative z-10"
           >
             <span>BOOK CAMPUS TOUR</span>
             <ArrowRight className="w-4 h-4" />
@@ -436,7 +436,7 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
                 <div className="absolute bottom-4 left-5 text-white">
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#38bdf8] bg-black/40 px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#cfbb99] bg-black/40 px-2 py-0.5 rounded-full">
                     {selectedFacility.category} Amenity Overview
                   </span>
                   <h3 className="font-heading text-2xl font-bold mt-1">{selectedFacility.title}</h3>
@@ -472,7 +472,7 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
                       setSelectedFacility(null);
                       onNavigateRoute('contact');
                     }}
-                    className="flex-1 sm:flex-none text-center bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-2.5 rounded-full text-xs transition-colors shadow-sm"
+                    className="flex-1 sm:flex-none text-center bg-[#354024] hover:bg-[#252d19] text-white font-bold px-6 py-2.5 rounded-full text-xs transition-colors shadow-sm"
                   >
                     Inquire About Facility
                   </button>

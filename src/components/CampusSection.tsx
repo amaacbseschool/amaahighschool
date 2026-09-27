@@ -118,9 +118,9 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14"
         >
           <div>
-            <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
-              <Building2 className="w-3.5 h-3.5 text-[#0284c7]" />
-              <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">
+            <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
+              <Building2 className="w-3.5 h-3.5 text-[#354024]" />
+              <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">
                 WORLD-CLASS INFRASTRUCTURE
               </span>
             </div>
@@ -135,7 +135,7 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
           {onNavigateRoute && (
             <button
               onClick={() => onNavigateRoute('campus')}
-              className="shrink-0 inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-3 rounded-full text-xs tracking-wider uppercase transition-all shadow-md hover:shadow-lg cursor-pointer"
+              className="shrink-0 inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-6 py-3 rounded-full text-xs tracking-wider uppercase transition-all shadow-md hover:shadow-lg cursor-pointer"
             >
               <span>EXPLORE ALL CAMPUS AMENITIES</span>
               <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
@@ -160,7 +160,7 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
                 className={colSpan}
               >
                 <div
-                  className="w-full h-full flex flex-col group cursor-pointer bg-white border border-slate-200/90 rounded-3xl shadow-card hover:shadow-xl hover:border-[#0284c7]/30 overflow-hidden transition-all duration-300"
+                  className="w-full h-full flex flex-col group cursor-pointer bg-white border border-slate-200/90 rounded-3xl shadow-card hover:shadow-xl hover:border-[#354024]/30 overflow-hidden transition-all duration-300"
                   onClick={() => setSelectedFacility(facility)}
                 >
                   {/* Photo Header */}
@@ -174,13 +174,13 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f]/90 via-[#0a192f]/30 to-transparent pointer-events-none" />
 
                     {/* Top Floating Badge */}
-                    <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-xs px-3 py-1 rounded-full text-[11px] font-bold text-[#0284c7] shadow-md">
+                    <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-xs px-3 py-1 rounded-full text-[11px] font-bold text-[#354024] shadow-md">
                       {facility.spec}
                     </div>
 
                     {/* Icon & Title Overlay on Image */}
                     <div className="absolute bottom-4 left-5 right-5 flex items-center gap-3.5 text-white">
-                      <div className="w-11 h-11 rounded-xl bg-white/20 backdrop-blur-xs flex items-center justify-center text-white shadow-md group-hover:bg-[#0284c7] transition-all duration-300 shrink-0">
+                      <div className="w-11 h-11 rounded-xl bg-white/20 backdrop-blur-xs flex items-center justify-center text-white shadow-md group-hover:bg-[#354024] transition-all duration-300 shrink-0">
                         <Icon className="w-5 h-5" />
                       </div>
                       <div>
@@ -203,18 +203,18 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
                     <div className="space-y-2 pt-3 border-t border-slate-100">
                       {facility.features.slice(0, isHero ? 3 : 2).map((feat, fidx) => (
                         <div key={fidx} className="flex items-center gap-2 text-xs text-slate-700 font-medium">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#0284c7] shrink-0" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#354024] shrink-0" />
                           <span className="truncate">{feat}</span>
                         </div>
                       ))}
                     </div>
 
-                    <div className="mt-5 pt-3 flex items-center justify-between text-xs font-bold text-[#0284c7] group-hover:text-[#0369a1] transition-colors">
+                    <div className="mt-5 pt-3 flex items-center justify-between text-xs font-bold text-[#354024] group-hover:text-[#252d19] transition-colors">
                       <span className="flex items-center gap-1.5">
                         <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
                         Explore Specifications
                       </span>
-                      <ArrowRight className="w-4 h-4 text-[#0284c7] group-hover:translate-x-1.5 transition-transform" />
+                      <ArrowRight className="w-4 h-4 text-[#354024] group-hover:translate-x-1.5 transition-transform" />
                     </div>
                   </div>
                 </div>
@@ -249,7 +249,7 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
             {onOpenAdmission && (
               <button
                 onClick={onOpenAdmission}
-                className="bg-[#0284c7] hover:bg-[#0369a1] text-white text-xs font-bold px-6 py-3 rounded-full transition-all uppercase tracking-wider cursor-pointer shadow-md hover:shadow-lg"
+                className="bg-[#354024] hover:bg-[#252d19] text-white text-xs font-bold px-6 py-3 rounded-full transition-all uppercase tracking-wider cursor-pointer shadow-md hover:shadow-lg"
               >
                 Schedule In-Person Tour
               </button>
@@ -282,7 +282,7 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
                   <X className="w-5 h-5" />
                 </button>
                 <div className="absolute bottom-4 left-6 right-6 text-white">
-                  <span className="text-[11px] font-bold text-[#0284c7] uppercase tracking-wider">
+                  <span className="text-[11px] font-bold text-[#354024] uppercase tracking-wider">
                     {selectedFacility.spec}
                   </span>
                   <h3 className="font-crest text-2xl font-bold mt-1">
@@ -306,7 +306,7 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {selectedFacility.features.map((feat: string, fidx: number) => (
                       <div key={fidx} className="flex items-center gap-2 bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-700 font-medium">
-                        <CheckCircle2 className="w-4 h-4 text-[#0284c7] shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-[#354024] shrink-0" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -324,7 +324,7 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
                         if (el) el.scrollIntoView({ behavior: 'smooth' });
                       }
                     }}
-                    className="inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all cursor-pointer shadow-sm"
+                    className="inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all cursor-pointer shadow-sm"
                   >
                     <Images className="w-3.5 h-3.5 text-[#cfbb99]" />
                     <span>View in Photo Gallery</span>

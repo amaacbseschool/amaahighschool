@@ -117,7 +117,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="w-13 h-13 sm:w-14 sm:h-14 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-xs"
           />
           <div className="flex flex-col">
-            <span className="font-crest text-lg sm:text-xl font-extrabold tracking-tight text-[#0a192f] group-hover:text-[#0284c7] transition-colors leading-tight">
+            <span className="font-crest text-lg sm:text-xl font-extrabold tracking-tight text-[#0a192f] group-hover:text-[#354024] transition-colors leading-tight">
               A.M.A. Adinarayana
             </span>
             <div className="flex items-center gap-2 mt-0.5">
@@ -152,15 +152,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                   }}
                   className={`flex items-center gap-1 text-sm font-semibold whitespace-nowrap transition-colors duration-200 cursor-pointer py-2 px-3 rounded-xl relative ${
                     isActive
-                      ? 'text-[#0284c7] font-bold bg-sky-50'
-                      : 'text-slate-700 hover:text-[#0284c7] hover:bg-slate-50'
+                      ? 'text-[#354024] font-bold bg-[#354024]/10'
+                      : 'text-slate-700 hover:text-[#354024] hover:bg-slate-50'
                   }`}
                 >
                   <span>{item.label}</span>
                   {item.dropdown && (
                     <ChevronDown
                       className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                        activeDropdown === item.label ? 'rotate-180 text-[#0284c7]' : 'text-slate-400'
+                        activeDropdown === item.label ? 'rotate-180 text-[#354024]' : 'text-slate-400'
                       }`}
                     />
                   )}
@@ -192,9 +192,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                             }}
                             className="block p-3 rounded-xl hover:bg-sky-50/60 transition-colors group/sub cursor-pointer"
                           >
-                            <div className="text-xs font-bold text-[#0a192f] group-hover/sub:text-[#0284c7] flex items-center justify-between">
+                            <div className="text-xs font-bold text-[#0a192f] group-hover/sub:text-[#354024] flex items-center justify-between">
                               <span>{subItem.title}</span>
-                              <ArrowRight className="w-3.5 h-3.5 text-[#0284c7] opacity-0 group-hover/sub:opacity-100 group-hover/sub:translate-x-1 transition-all" />
+                              <ArrowRight className="w-3.5 h-3.5 text-[#354024] opacity-0 group-hover/sub:opacity-100 group-hover/sub:translate-x-1 transition-all" />
                             </div>
                             <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">
                               {subItem.desc}
@@ -214,7 +214,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="hidden lg:flex items-center gap-3 shrink-0">
           <button
             onClick={onOpenSearch}
-            className="w-10 h-10 rounded-full flex items-center justify-center text-slate-600 hover:text-[#0284c7] hover:bg-slate-100 transition-colors cursor-pointer border border-slate-200"
+            className="w-10 h-10 rounded-full flex items-center justify-center text-slate-600 hover:text-[#354024] hover:bg-slate-100 transition-colors cursor-pointer border border-slate-200"
             title="Search Site"
           >
             <Search className="w-4 h-4" />
@@ -222,9 +222,9 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button
             onClick={onOpenAdmission}
-            className="inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer"
+            className="inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#f59e0b]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span>APPLY FOR 2025–26</span>
             <ArrowRight className="w-3.5 h-3.5 text-white" />
           </button>
@@ -234,9 +234,9 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center gap-2 xl:hidden">
           <button
             onClick={onOpenAdmission}
-            className="bg-[#0284c7] text-white text-xs font-bold px-4 py-2 rounded-full flex items-center gap-1.5 shadow-sm cursor-pointer"
+            className="bg-[#354024] text-white text-xs font-bold px-4 py-2 rounded-full flex items-center gap-1.5 shadow-sm cursor-pointer"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#f59e0b]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span>Apply</span>
           </button>
 
@@ -271,7 +271,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   }}
                   className={`block text-sm font-semibold py-1.5 cursor-pointer ${
                     currentRoute === item.route
-                      ? 'text-[#0284c7] font-bold'
+                      ? 'text-[#354024] font-bold'
                       : 'text-slate-800'
                   }`}
                 >
@@ -292,7 +292,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                             onNavigateRoute(sub.route, sub.hashTarget);
                           }
                         }}
-                        className="block text-xs text-slate-600 hover:text-[#0284c7] py-0.5 cursor-pointer"
+                        className="block text-xs text-slate-600 hover:text-[#354024] py-0.5 cursor-pointer"
                       >
                         • {sub.title}
                       </a>
@@ -308,7 +308,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   setMobileMenuOpen(false);
                   onOpenAdmission();
                 }}
-                className="w-full bg-[#0284c7] hover:bg-[#0369a1] text-white py-3.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-md cursor-pointer transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-[#354024] hover:bg-[#252d19] text-white py-3.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-md cursor-pointer transition-colors flex items-center justify-center gap-2"
               >
                 <span>Apply for Admission 2025–26</span>
                 <ArrowRight className="w-4 h-4 text-white" />

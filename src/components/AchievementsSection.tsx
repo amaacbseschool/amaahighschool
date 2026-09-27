@@ -97,9 +97,9 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14"
         >
           <div>
-            <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
+            <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
               <Trophy className="w-3.5 h-3.5 text-[#cfbb99]" />
-              <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">
+              <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">
                 ACADEMIC DISTINCTIONS & BOARD HONORS
               </span>
             </div>
@@ -114,7 +114,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
           {onNavigateRoute && (
             <button
               onClick={() => onNavigateRoute('academics')}
-              className="shrink-0 inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-3 rounded-full text-xs tracking-wider uppercase transition-all shadow-md hover:shadow-lg cursor-pointer"
+              className="shrink-0 inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-6 py-3 rounded-full text-xs tracking-wider uppercase transition-all shadow-md hover:shadow-lg cursor-pointer"
             >
               <span>VIEW ACADEMIC HONORS</span>
               <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
@@ -131,7 +131,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.5 }}
             whileHover={{ y: -4 }}
-            className="md:col-span-12 lg:col-span-6 bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white p-8 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden group flex flex-col justify-between border border-sky-900"
+            className="md:col-span-12 lg:col-span-6 bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white p-8 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden group flex flex-col justify-between border border-sky-900"
           >
             <div className="relative z-10 flex items-start justify-between gap-4 mb-6">
               <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-[#cfbb99] shadow-md group-hover:scale-105 transition-transform">
@@ -147,7 +147,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                 <div className="text-5xl sm:text-6xl font-extrabold tracking-tight text-white font-modern">
                   <AnimatedCounter value={100} suffix="%" />
                 </div>
-                <span className="text-xs font-bold text-[#38bdf8] uppercase tracking-wider bg-white/10 px-3 py-1 rounded-full border border-white/10">
+                <span className="text-xs font-bold text-[#cfbb99] uppercase tracking-wider bg-white/10 px-3 py-1 rounded-full border border-white/10">
                   Unbroken Legacy
                 </span>
               </div>
@@ -177,13 +177,13 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.5, delay: 0.1 }}
             whileHover={{ y: -4 }}
-            className="md:col-span-12 lg:col-span-6 bg-[#f8f9fa] border border-slate-200/90 rounded-3xl p-8 sm:p-10 shadow-card hover:border-[#0284c7]/40 transition-all duration-300 relative overflow-hidden group flex flex-col justify-between"
+            className="md:col-span-12 lg:col-span-6 bg-[#f8f9fa] border border-slate-200/90 rounded-3xl p-8 sm:p-10 shadow-card hover:border-[#354024]/40 transition-all duration-300 relative overflow-hidden group flex flex-col justify-between"
           >
             <div className="relative z-10 flex items-start justify-between gap-4 mb-6">
-              <div className="w-14 h-14 bg-white rounded-2xl border border-slate-200 text-[#0284c7] flex items-center justify-center shadow-subtle group-hover:scale-105 transition-transform">
+              <div className="w-14 h-14 bg-white rounded-2xl border border-slate-200 text-[#354024] flex items-center justify-center shadow-subtle group-hover:scale-105 transition-transform">
                 <Award className="w-8 h-8" />
               </div>
-              <span className="text-[11px] font-bold uppercase tracking-wider bg-[#0284c7]/10 text-[#0284c7] px-3.5 py-1.5 rounded-full">
+              <span className="text-[11px] font-bold uppercase tracking-wider bg-[#354024]/10 text-[#354024] px-3.5 py-1.5 rounded-full">
                 Secondary Aggregate
               </span>
             </div>
@@ -218,10 +218,10 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.5, delay: 0.15 }}
             whileHover={{ y: -4 }}
-            className="md:col-span-6 bg-white border border-slate-200/90 rounded-3xl p-7 sm:p-8 shadow-card hover:border-[#0284c7]/40 transition-all duration-300 relative overflow-hidden group"
+            className="md:col-span-6 bg-white border border-slate-200/90 rounded-3xl p-7 sm:p-8 shadow-card hover:border-[#354024]/40 transition-all duration-300 relative overflow-hidden group"
           >
             <div className="relative z-10 flex items-center justify-between mb-4">
-              <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 text-[#0284c7] flex items-center justify-center shadow-subtle group-hover:scale-105 transition-transform">
+              <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 text-[#354024] flex items-center justify-center shadow-subtle group-hover:scale-105 transition-transform">
                 <Medal className="w-6 h-6" />
               </div>
               <Sparkles className="w-4 h-4 text-[#cfbb99]" />
@@ -247,13 +247,13 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.5, delay: 0.2 }}
             whileHover={{ y: -4 }}
-            className="md:col-span-6 bg-white border border-slate-200/90 rounded-3xl p-7 sm:p-8 shadow-card hover:border-[#0284c7]/40 transition-all duration-300 relative overflow-hidden group"
+            className="md:col-span-6 bg-white border border-slate-200/90 rounded-3xl p-7 sm:p-8 shadow-card hover:border-[#354024]/40 transition-all duration-300 relative overflow-hidden group"
           >
             <div className="relative z-10 flex items-center justify-between mb-4">
               <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 text-[#cfbb99] flex items-center justify-center shadow-subtle group-hover:scale-105 transition-transform">
                 <Trophy className="w-6 h-6" />
               </div>
-              <Sparkles className="w-4 h-4 text-[#0284c7]" />
+              <Sparkles className="w-4 h-4 text-[#354024]" />
             </div>
 
             <div className="relative z-10">
@@ -280,7 +280,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             className="flex items-center justify-between mb-6"
           >
             <div>
-              <div className="flex items-center gap-2 text-xs font-bold text-[#0284c7] uppercase tracking-wider mb-1">
+              <div className="flex items-center gap-2 text-xs font-bold text-[#354024] uppercase tracking-wider mb-1">
                 <Star className="w-4 h-4 text-[#cfbb99]" />
                 <span>Class X Board Roll of Honor</span>
               </div>
@@ -291,7 +291,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             {onOpenAdmission ? (
               <button
                 onClick={onOpenAdmission}
-                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-[#0284c7] bg-white border border-slate-200 px-4 py-2 rounded-full hover:bg-slate-50 transition-colors cursor-pointer shadow-subtle"
+                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-[#354024] bg-white border border-slate-200 px-4 py-2 rounded-full hover:bg-slate-50 transition-colors cursor-pointer shadow-subtle"
               >
                 <span>Merit Scholarships 2025–26</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#cfbb99]" />
@@ -309,12 +309,12 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
               viewport={{ once: true }}
               transition={{ duration: 0.45 }}
               whileHover={{ y: -4 }}
-              className="lg:col-span-7 bg-white border-2 border-[#0284c7]/30 rounded-3xl p-6 sm:p-8 shadow-card hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+              className="lg:col-span-7 bg-white border-2 border-[#354024]/30 rounded-3xl p-6 sm:p-8 shadow-card hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between gap-4 mb-5">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-3xl sm:text-4xl font-extrabold text-[#0284c7] font-modern">
+                    <span className="text-3xl sm:text-4xl font-extrabold text-[#354024] font-modern">
                       {toppers[0].score}
                     </span>
                     <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Class X Board</span>
@@ -325,7 +325,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-5 items-start sm:items-center">
-                  <div className="relative shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden shadow-md border-2 border-[#0284c7]/30 ring-4 ring-[#0284c7]/10 group">
+                  <div className="relative shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden shadow-md border-2 border-[#354024]/30 ring-4 ring-[#354024]/10 group">
                     <img
                       src={toppers[0].image}
                       alt={toppers[0].name}
@@ -346,16 +346,16 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                     <div className="text-xs font-bold text-slate-500 mt-0.5">
                       {toppers[0].field}
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-700 mt-2.5 italic leading-relaxed border-l-2 border-[#0284c7] pl-3 py-1 bg-slate-50/80 rounded-r-xl">
+                    <p className="text-xs sm:text-sm text-slate-700 mt-2.5 italic leading-relaxed border-l-2 border-[#354024] pl-3 py-1 bg-slate-50/80 rounded-r-xl">
                       "{toppers[0].quote}"
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-[#0284c7] font-bold">
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-[#354024] font-bold">
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#0284c7]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#354024]" />
                   <span>State Board X Distinction</span>
                 </div>
                 <span className="text-slate-500 text-[11px]">{toppers[0].year}</span>
@@ -374,7 +374,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
               <div>
                 <div className="flex items-center justify-between gap-4 mb-5">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-3xl sm:text-4xl font-extrabold text-[#0284c7] font-modern">
+                    <span className="text-3xl sm:text-4xl font-extrabold text-[#354024] font-modern">
                       {toppers[1].score}
                     </span>
                     <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Class X Board</span>
@@ -411,9 +411,9 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-[#0284c7] font-bold">
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-[#354024] font-bold">
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#0284c7]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#354024]" />
                   <span>Centum 100/100 Math & Science</span>
                 </div>
                 <span className="text-slate-500 text-[11px]">{toppers[1].year}</span>
@@ -446,10 +446,10 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-2xl sm:text-3xl font-extrabold text-[#0284c7] font-modern">
+                      <span className="text-2xl sm:text-3xl font-extrabold text-[#354024] font-modern">
                         {toppers[2].score}
                       </span>
-                      <span className="text-[10px] font-bold uppercase tracking-wider bg-[#0284c7]/10 text-[#0284c7] px-2.5 py-0.5 rounded-full">
+                      <span className="text-[10px] font-bold uppercase tracking-wider bg-[#354024]/10 text-[#354024] px-2.5 py-0.5 rounded-full">
                         {toppers[2].badge}
                       </span>
                     </div>
@@ -463,11 +463,11 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                 </div>
 
                 <div className="md:col-span-7">
-                  <p className="text-xs sm:text-sm text-slate-700 italic leading-relaxed border-l-2 border-[#0284c7] pl-4 py-1.5 bg-slate-50/80 rounded-r-xl">
+                  <p className="text-xs sm:text-sm text-slate-700 italic leading-relaxed border-l-2 border-[#354024] pl-4 py-1.5 bg-slate-50/80 rounded-r-xl">
                     "{toppers[2].quote}"
                   </p>
-                  <div className="mt-3 flex items-center gap-2 text-xs font-bold text-[#0284c7]">
-                    <CheckCircle2 className="w-4 h-4 text-[#0284c7]" />
+                  <div className="mt-3 flex items-center gap-2 text-xs font-bold text-[#354024]">
+                    <CheckCircle2 className="w-4 h-4 text-[#354024]" />
                     <span>State Level Athletics & Oratory Champion • Class X Distinction</span>
                   </div>
                 </div>
@@ -501,7 +501,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             {onNavigateRoute && (
               <button
                 onClick={() => onNavigateRoute('alumni')}
-                className="shrink-0 inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-3.5 rounded-full text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg cursor-pointer"
+                className="shrink-0 inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-6 py-3.5 rounded-full text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg cursor-pointer"
               >
                 <span>VISIT ALUMNI NETWORK</span>
                 <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
@@ -518,11 +518,11 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: idx * 0.08 }}
                 whileHover={{ y: -4 }}
-                className="bg-white/5 border border-white/10 hover:border-[#0284c7]/50 p-5 rounded-2xl transition-all duration-300 flex flex-col justify-between"
+                className="bg-white/5 border border-white/10 hover:border-[#354024]/50 p-5 rounded-2xl transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] font-bold text-white uppercase tracking-widest bg-[#0284c7] px-2.5 py-1 rounded-full">
+                    <span className="text-[10px] font-bold text-white uppercase tracking-widest bg-[#354024] px-2.5 py-1 rounded-full">
                       {alum.tag}
                     </span>
                     <span className="text-[11px] text-slate-400 font-mono">{alum.batch}</span>
@@ -530,7 +530,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                   <h4 className="font-crest text-base font-bold text-white leading-snug">
                     {alum.name}
                   </h4>
-                  <p className="text-xs text-[#38bdf8] font-medium mt-1">{alum.role}</p>
+                  <p className="text-xs text-[#cfbb99] font-medium mt-1">{alum.role}</p>
                 </div>
                 <div className="text-[11px] text-slate-300 mt-3 pt-2 border-t border-white/10 font-medium">
                   {alum.org}

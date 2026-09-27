@@ -93,7 +93,7 @@ Email: admissions@amaaschool.edu.in
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.55 }}
-          className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] rounded-3xl p-8 sm:p-12 lg:p-14 shadow-2xl overflow-hidden mb-16 border border-sky-900"
+          className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] rounded-3xl p-8 sm:p-12 lg:p-14 shadow-2xl overflow-hidden mb-16 border border-sky-900"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
             {/* Left Narrative */}
@@ -116,15 +116,15 @@ Email: admissions@amaaschool.edu.in
               {/* Badges Matrix */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
                 <div className="flex items-center gap-2 text-xs text-slate-200">
-                  <CheckCircle2 className="w-4 h-4 text-[#38bdf8] shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#cfbb99] shrink-0" />
                   <span>1:20 Mentor-Student Attention</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-slate-200">
-                  <CheckCircle2 className="w-4 h-4 text-[#38bdf8] shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#cfbb99] shrink-0" />
                   <span>State Board 100% Pass Record</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-slate-200">
-                  <CheckCircle2 className="w-4 h-4 text-[#38bdf8] shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#cfbb99] shrink-0" />
                   <span>City-Wide GPS Bus Transport</span>
                 </div>
               </div>
@@ -133,7 +133,7 @@ Email: admissions@amaaschool.edu.in
               <div className="flex flex-wrap items-center gap-4 pt-4">
                 <button
                   onClick={onOpenAdmission}
-                  className="inline-flex items-center justify-center gap-3 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-8 py-4 rounded-full text-xs sm:text-sm tracking-wider uppercase shadow-lg hover:shadow-xl transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center gap-3 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-8 py-4 rounded-full text-xs sm:text-sm tracking-wider uppercase shadow-lg hover:shadow-xl transition-all cursor-pointer"
                 >
                   <span>APPLY ONLINE FOR 2025–26</span>
                   <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
@@ -167,13 +167,13 @@ Email: admissions@amaaschool.edu.in
 
               <div className="space-y-3 pt-2 text-xs text-slate-200 relative z-10">
                 <div className="flex items-center gap-2.5">
-                  <PhoneCall className="w-4 h-4 text-[#38bdf8] shrink-0" />
+                  <PhoneCall className="w-4 h-4 text-[#cfbb99] shrink-0" />
                   <a href="tel:+918912548900" className="hover:text-white font-bold transition-colors">
                     +91 891 2548900 / +91 94401 23456
                   </a>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <MapPin className="w-4 h-4 text-[#38bdf8] shrink-0" />
+                  <MapPin className="w-4 h-4 text-[#cfbb99] shrink-0" />
                   <span>AMAA High School Campus, Main Road</span>
                 </div>
                 <div className="flex items-center gap-2.5">
@@ -185,7 +185,7 @@ Email: admissions@amaaschool.edu.in
               {onNavigateRoute && (
                 <button
                   onClick={() => onNavigateRoute('contact')}
-                  className="w-full text-center text-xs text-[#38bdf8] hover:underline font-bold pt-2 block relative z-10 cursor-pointer"
+                  className="w-full text-center text-xs text-[#cfbb99] hover:underline font-bold pt-2 block relative z-10 cursor-pointer"
                 >
                   Contact School Admissions Helpdesk →
                 </button>
@@ -220,9 +220,9 @@ Email: admissions@amaaschool.edu.in
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: idx * 0.08 }}
                 whileHover={{ y: -4 }}
-                className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-card hover:shadow-xl hover:border-[#0284c7]/30 transition-all duration-300 relative group overflow-hidden"
+                className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-card hover:shadow-xl hover:border-[#354024]/30 transition-all duration-300 relative group overflow-hidden"
               >
-                <span className="text-3xl font-mono font-extrabold text-[#0284c7] group-hover:text-[#dc2626] transition-colors block mb-3">
+                <span className="text-3xl font-mono font-extrabold text-[#354024] group-hover:text-[#dc2626] transition-colors block mb-3">
                   {s.step}
                 </span>
                 <h4 className="font-crest text-lg font-bold text-[#0a192f]">

@@ -138,13 +138,13 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
             <nav className="flex items-center gap-2 text-xs font-semibold text-slate-500">
               <button
                 onClick={() => onNavigateRoute('home')}
-                className="hover:text-[#0284c7] flex items-center gap-1.5 transition-colors cursor-pointer"
+                className="hover:text-[#354024] flex items-center gap-1.5 transition-colors cursor-pointer"
               >
                 <Home className="w-3.5 h-3.5" />
                 <span>Home</span>
               </button>
               <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-              <span className="text-[#0284c7] font-bold">Campus Visual Chronicle</span>
+              <span className="text-[#354024] font-bold">Campus Visual Chronicle</span>
             </nav>
           </div>
         </div>
@@ -152,12 +152,12 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
 
       {/* Hero Header - Deep Navy & Azure Blue — hidden when embedded */}
       {!embedded && (
-        <div className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white py-16 lg:py-24 relative overflow-hidden">
+        <div className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white py-16 lg:py-24 relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(2,132,199,0.28),transparent_50%)] pointer-events-none" />
           <div className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 mb-6">
               <img src={logoImg} alt="School Emblem" className="w-5 h-5 object-contain" />
-              <span className="text-[11px] font-extrabold tracking-widest text-[#38bdf8] uppercase">
+              <span className="text-[11px] font-extrabold tracking-widest text-[#cfbb99] uppercase">
                 AUTHENTIC CAMPUS ARCHIVE • 38 PHOTOGRAPHS
               </span>
             </div>
@@ -203,14 +203,14 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent lg:hidden" />
               <div className="absolute top-4 left-4">
-                <span className="bg-[#0284c7] text-white text-[11px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">
+                <span className="bg-[#354024] text-white text-[11px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">
                   Featured Panorama
                 </span>
               </div>
             </div>
             <div className="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between bg-gradient-to-br from-slate-900 to-[#0a192f] text-white">
               <div>
-                <div className="flex items-center gap-2 text-xs font-bold text-[#38bdf8] uppercase tracking-wider mb-2">
+                <div className="flex items-center gap-2 text-xs font-bold text-[#cfbb99] uppercase tracking-wider mb-2">
                   <Sparkles className="w-4 h-4 text-[#cfbb99]" />
                   <span>Campus Landmark</span>
                 </div>
@@ -245,7 +245,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
                     const idx = filteredPhotos.findIndex((p) => p.id === 'jai00311');
                     if (idx !== -1) setSelectedPhotoIndex(idx);
                   }}
-                  className="inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white text-xs font-bold px-4 py-2 rounded-full transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white text-xs font-bold px-4 py-2 rounded-full transition-colors cursor-pointer"
                 >
                   <Maximize2 className="w-3.5 h-3.5" />
                   <span>Full View</span>
@@ -260,7 +260,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
         {/* Gallery Controls: Filter Tabs & Search */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs font-bold text-[#0284c7] uppercase tracking-wider mb-1">
+            <div className="inline-flex items-center gap-2 text-xs font-bold text-[#354024] uppercase tracking-wider mb-1">
               <Camera className="w-4 h-4" />
               <span>Campus Chronicle</span>
             </div>
@@ -281,7 +281,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search photos (e.g. lab, cadet, bus)..."
-                className="w-full pl-10 pr-4 py-2 text-xs bg-white border border-slate-200 rounded-full focus:outline-none focus:border-[#0284c7] focus:ring-2 focus:ring-[#0284c7]/20 transition-all text-slate-800"
+                className="w-full pl-10 pr-4 py-2 text-xs bg-white border border-slate-200 rounded-full focus:outline-none focus:border-[#354024] focus:ring-2 focus:ring-[#354024]/20 transition-all text-slate-800"
               />
               {searchQuery && (
                 <button
@@ -309,7 +309,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
                 }}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-[#0284c7] text-white shadow-md'
+                    ? 'bg-[#354024] text-white shadow-md'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >
@@ -338,7 +338,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
                 setSearchQuery('');
                 setActiveCategory('All');
               }}
-              className="mt-4 px-4 py-2 bg-[#0284c7] text-white text-xs font-bold rounded-full hover:bg-[#0369a1] transition-colors"
+              className="mt-4 px-4 py-2 bg-[#354024] text-white text-xs font-bold rounded-full hover:bg-[#252d19] transition-colors"
             >
               Reset Filters
             </button>
@@ -356,7 +356,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
                   setSelectedPhotoIndex(idx);
                   setIsZoomed(false);
                 }}
-                className="group relative bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-card hover:shadow-xl hover:border-[#0284c7]/40 transition-all duration-300 cursor-pointer flex flex-col"
+                className="group relative bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-card hover:shadow-xl hover:border-[#354024]/40 transition-all duration-300 cursor-pointer flex flex-col"
               >
                 {/* Image Container */}
                 <div className="relative h-56 bg-slate-100 overflow-hidden">
@@ -378,7 +378,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
 
                   {/* Hover Zoom Icon */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                    <div className="w-11 h-11 rounded-full bg-[#0284c7] text-white flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
+                    <div className="w-11 h-11 rounded-full bg-[#354024] text-white flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
                       <ZoomIn className="w-5 h-5" />
                     </div>
                   </div>
@@ -388,14 +388,14 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
                 <div className="p-4 flex-1 flex flex-col justify-between">
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-1.5">
-                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#0284c7]">
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#354024]">
                         {photo.category}
                       </span>
                       <span className="text-[10px] font-mono text-slate-400">
                         {photo.filename}
                       </span>
                     </div>
-                    <h3 className="font-heading font-bold text-slate-900 text-sm group-hover:text-[#0284c7] transition-colors leading-snug">
+                    <h3 className="font-heading font-bold text-slate-900 text-sm group-hover:text-[#354024] transition-colors leading-snug">
                       {photo.title}
                     </h3>
                     <p className="text-xs text-slate-600 mt-1 line-clamp-2 leading-relaxed">
@@ -411,8 +411,8 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
         {/* Featured Campus Stories Section */}
         <div className="mt-20 pt-12 border-t border-slate-200">
           <div className="mb-8">
-            <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 text-[#0284c7] px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
-              <Camera className="w-3.5 h-3.5 text-[#0284c7]" />
+            <div className="inline-flex items-center gap-2 bg-[#354024]/10 text-[#354024] px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
+              <Camera className="w-3.5 h-3.5 text-[#354024]" />
               <span>Campus Life Chronicles</span>
             </div>
             <h3 className="font-heading text-2xl font-bold text-slate-900">
@@ -429,7 +429,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
                 const targetIdx = filteredPhotos.findIndex((p) => p.id === 'jai00486');
                 handleOpenLightbox(targetIdx >= 0 ? targetIdx : 0);
               }}
-              className="rounded-3xl overflow-hidden border border-slate-200/80 bg-slate-900 group relative cursor-pointer hover:border-[#0284c7] shadow-card hover:shadow-xl transition-all"
+              className="rounded-3xl overflow-hidden border border-slate-200/80 bg-slate-900 group relative cursor-pointer hover:border-[#354024] shadow-card hover:shadow-xl transition-all"
             >
               <div className="relative h-48">
                 <img
@@ -438,14 +438,14 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-[#0284c7] transition-all border border-white/30">
+                  <div className="w-12 h-12 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-[#354024] transition-all border border-white/30">
                     <Maximize2 className="w-5 h-5" />
                   </div>
                 </div>
               </div>
               <div className="p-5 bg-white">
-                <span className="text-[10px] font-bold text-[#0284c7] uppercase">Safety &amp; Disaster Drill</span>
-                <h4 className="font-heading font-bold text-slate-900 text-sm mt-1 group-hover:text-[#0284c7] transition-colors">
+                <span className="text-[10px] font-bold text-[#354024] uppercase">Safety &amp; Disaster Drill</span>
+                <h4 className="font-heading font-bold text-slate-900 text-sm mt-1 group-hover:text-[#354024] transition-colors">
                   Fire Safety Demonstration &amp; Live Training
                 </h4>
                 <p className="text-xs text-slate-500 mt-1">Visiting Fire Brigade • Courtyard Practical</p>
@@ -457,7 +457,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
                 const targetIdx = filteredPhotos.findIndex((p) => p.id === 'jai00447');
                 handleOpenLightbox(targetIdx >= 0 ? targetIdx : 0);
               }}
-              className="rounded-3xl overflow-hidden border border-slate-200/80 bg-slate-900 group relative cursor-pointer hover:border-[#0284c7] shadow-card hover:shadow-xl transition-all"
+              className="rounded-3xl overflow-hidden border border-slate-200/80 bg-slate-900 group relative cursor-pointer hover:border-[#354024] shadow-card hover:shadow-xl transition-all"
             >
               <div className="relative h-48">
                 <img
@@ -466,14 +466,14 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-[#0284c7] transition-all border border-white/30">
+                  <div className="w-12 h-12 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-[#354024] transition-all border border-white/30">
                     <Maximize2 className="w-5 h-5" />
                   </div>
                 </div>
               </div>
               <div className="p-5 bg-white">
-                <span className="text-[10px] font-bold text-[#0284c7] uppercase">Cadet Platoon</span>
-                <h4 className="font-heading font-bold text-slate-900 text-sm mt-1 group-hover:text-[#0284c7] transition-colors">
+                <span className="text-[10px] font-bold text-[#354024] uppercase">Cadet Platoon</span>
+                <h4 className="font-heading font-bold text-slate-900 text-sm mt-1 group-hover:text-[#354024] transition-colors">
                   NCC Cadets Ceremonial March Past
                 </h4>
                 <p className="text-xs text-slate-500 mt-1">Parade Ground • State Cadet Unit</p>
@@ -485,7 +485,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
                 const targetIdx = filteredPhotos.findIndex((p) => p.id === 'jai00343');
                 handleOpenLightbox(targetIdx >= 0 ? targetIdx : 0);
               }}
-              className="rounded-3xl overflow-hidden border border-slate-200/80 bg-slate-900 group relative cursor-pointer hover:border-[#0284c7] shadow-card hover:shadow-xl transition-all"
+              className="rounded-3xl overflow-hidden border border-slate-200/80 bg-slate-900 group relative cursor-pointer hover:border-[#354024] shadow-card hover:shadow-xl transition-all"
             >
               <div className="relative h-48">
                 <img
@@ -494,14 +494,14 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-[#0284c7] transition-all border border-white/30">
+                  <div className="w-12 h-12 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-[#354024] transition-all border border-white/30">
                     <Maximize2 className="w-5 h-5" />
                   </div>
                 </div>
               </div>
               <div className="p-5 bg-white">
-                <span className="text-[10px] font-bold text-[#0284c7] uppercase">IT &amp; Digital Literacy</span>
-                <h4 className="font-heading font-bold text-slate-900 text-sm mt-1 group-hover:text-[#0284c7] transition-colors">
+                <span className="text-[10px] font-bold text-[#354024] uppercase">IT &amp; Digital Literacy</span>
+                <h4 className="font-heading font-bold text-slate-900 text-sm mt-1 group-hover:text-[#354024] transition-colors">
                   Computer Laboratory Practical Sessions
                 </h4>
                 <p className="text-xs text-slate-500 mt-1">Networked Terminals • Hands-on Coding</p>
@@ -511,7 +511,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
         </div>
 
         {/* Admissions CTA strip */}
-        <div className="mt-16 bg-gradient-to-r from-[#07111e] via-[#0a192f] to-[#0369a1] rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
+        <div className="mt-16 bg-gradient-to-r from-[#07111e] via-[#0a192f] to-[#252d19] rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
           <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-[radial-gradient(ellipse_at_top_right,rgba(2,132,199,0.25),transparent_70%)] pointer-events-none" />
           <div className="relative z-10">
             <span className="text-xs font-bold text-[#cfbb99] uppercase tracking-widest bg-white/10 px-3 py-1 rounded-full">
@@ -526,7 +526,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
           </div>
           <MagneticButton
             onClick={() => onNavigateRoute('contact')}
-            className="shrink-0 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-8 py-4 text-xs uppercase tracking-wider rounded-full shadow-lg transition-all inline-flex items-center gap-2 cursor-pointer relative z-10"
+            className="shrink-0 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-8 py-4 text-xs uppercase tracking-wider rounded-full shadow-lg transition-all inline-flex items-center gap-2 cursor-pointer relative z-10"
           >
             <span>SCHEDULE CAMPUS VISIT</span>
             <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
@@ -550,7 +550,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
               className="flex items-center justify-between gap-4 py-2 px-4 bg-slate-900/80 backdrop-blur-md rounded-2xl border border-white/10 z-20"
             >
               <div className="flex items-center gap-3">
-                <span className="text-xs font-bold text-[#38bdf8] uppercase tracking-wider bg-white/10 px-2.5 py-1 rounded-md">
+                <span className="text-xs font-bold text-[#cfbb99] uppercase tracking-wider bg-white/10 px-2.5 py-1 rounded-md">
                   {selectedPhoto.category}
                 </span>
                 <span className="text-xs text-slate-300 font-semibold truncate hidden sm:inline">
@@ -602,7 +602,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
               {/* Left Arrow */}
               <button
                 onClick={handlePrev}
-                className="absolute left-2 sm:left-4 z-20 w-12 h-12 rounded-full bg-black/60 hover:bg-[#0284c7] text-white flex items-center justify-center transition-all shadow-xl cursor-pointer"
+                className="absolute left-2 sm:left-4 z-20 w-12 h-12 rounded-full bg-black/60 hover:bg-[#354024] text-white flex items-center justify-center transition-all shadow-xl cursor-pointer"
                 title="Previous image (Left Arrow)"
               >
                 <ChevronLeft className="w-7 h-7" />
@@ -629,7 +629,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
               {/* Right Arrow */}
               <button
                 onClick={handleNext}
-                className="absolute right-2 sm:right-4 z-20 w-12 h-12 rounded-full bg-black/60 hover:bg-[#0284c7] text-white flex items-center justify-center transition-all shadow-xl cursor-pointer"
+                className="absolute right-2 sm:right-4 z-20 w-12 h-12 rounded-full bg-black/60 hover:bg-[#354024] text-white flex items-center justify-center transition-all shadow-xl cursor-pointer"
                 title="Next image (Right Arrow)"
               >
                 <ChevronRight className="w-7 h-7" />
@@ -671,7 +671,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
                     }}
                     className={`shrink-0 w-14 h-10 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
                       tIdx === selectedPhotoIndex
-                        ? 'border-[#0284c7] scale-105 shadow-md'
+                        ? 'border-[#354024] scale-105 shadow-md'
                         : 'border-white/20 opacity-60 hover:opacity-100'
                     }`}
                   >

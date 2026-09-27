@@ -117,7 +117,7 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
   return (
     <section className="py-20 lg:py-28 bg-[#07111e] text-white border-b border-slate-800 relative overflow-hidden">
       {/* Subtle background ambient glow */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-[#0284c7]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-[#354024]/20 rounded-full blur-3xl pointer-events-none" />
 
       <div className="w-[90%] mx-auto px-2 sm:px-4 lg:px-6 relative z-10">
         {/* Section Header */}
@@ -130,8 +130,8 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
         >
           <div>
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-1.5 rounded-full mb-3 backdrop-blur-xs">
-              <Camera className="w-3.5 h-3.5 text-[#38bdf8]" />
-              <span className="text-[11px] font-bold tracking-widest text-[#38bdf8] uppercase">
+              <Camera className="w-3.5 h-3.5 text-[#cfbb99]" />
+              <span className="text-[11px] font-bold tracking-widest text-[#cfbb99] uppercase">
                 AUTHENTIC CAMPUS PHOTO SHOWCASE
               </span>
             </div>
@@ -146,7 +146,7 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={handleExploreGallery}
-              className="inline-flex items-center gap-2.5 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-3.5 rounded-full text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg cursor-pointer"
+              className="inline-flex items-center gap-2.5 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-6 py-3.5 rounded-full text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg cursor-pointer"
             >
               <Images className="w-4 h-4 text-[#cfbb99]" />
               <span>EXPLORE ALL 38 PHOTOS</span>
@@ -167,7 +167,7 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
             {/* Main Interactive Photo Card */}
             <div
               onClick={() => setLightboxPhoto(current)}
-              className="group relative h-[380px] sm:h-[440px] bg-slate-900 border border-white/15 rounded-3xl hover:border-[#0284c7]/60 transition-all duration-300 overflow-hidden cursor-pointer shadow-2xl flex flex-col justify-between p-6 sm:p-8"
+              className="group relative h-[380px] sm:h-[440px] bg-slate-900 border border-white/15 rounded-3xl hover:border-[#354024]/60 transition-all duration-300 overflow-hidden cursor-pointer shadow-2xl flex flex-col justify-between p-6 sm:p-8"
             >
               {/* Background Photo */}
               <AnimatePresence mode="wait">
@@ -190,13 +190,13 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
 
               {/* Top Bar inside Card */}
               <div className="relative z-10 flex items-center justify-between gap-4">
-                <div className="bg-[#07111e]/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-[#38bdf8] text-[11px] font-bold uppercase tracking-wider flex items-center gap-2">
+                <div className="bg-[#07111e]/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-[#cfbb99] text-[11px] font-bold uppercase tracking-wider flex items-center gap-2">
                   <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
                   <span>{current.badge}</span>
                 </div>
 
                 <div className="bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 text-white font-mono text-xs font-bold flex items-center gap-1.5">
-                  <Maximize2 className="w-3 h-3 text-[#38bdf8]" />
+                  <Maximize2 className="w-3 h-3 text-[#cfbb99]" />
                   <span>CLICK TO EXPAND</span>
                 </div>
               </div>
@@ -209,7 +209,7 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
                 <p className="text-slate-200 text-xs sm:text-sm mt-1 leading-relaxed">
                   {current.description}
                 </p>
-                <div className="flex items-center gap-2 mt-3 text-xs text-[#38bdf8] font-semibold">
+                <div className="flex items-center gap-2 mt-3 text-xs text-[#cfbb99] font-semibold">
                   <span>{current.subtitle}</span>
                   <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -224,7 +224,7 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
                   onClick={() => setActiveIndex(idx)}
                   className={`relative rounded-xl overflow-hidden h-16 sm:h-20 border-2 transition-all cursor-pointer ${
                     activeIndex === idx
-                      ? 'border-[#38bdf8] ring-2 ring-[#38bdf8]/40 scale-102 shadow-lg'
+                      ? 'border-[#cfbb99] ring-2 ring-[#cfbb99]/40 scale-102 shadow-lg'
                       : 'border-white/20 opacity-60 hover:opacity-100 hover:border-white/50'
                   }`}
                   aria-label={`View ${item.title}`}
@@ -253,7 +253,7 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
           >
             <div className="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 flex-1 flex flex-col justify-between backdrop-blur-xs">
               <div>
-                <div className="flex items-center gap-2 text-xs font-bold text-[#38bdf8] uppercase tracking-wider mb-2">
+                <div className="flex items-center gap-2 text-xs font-bold text-[#cfbb99] uppercase tracking-wider mb-2">
                   <Clock className="w-4 h-4 text-[#cfbb99]" />
                   <span>Student Life Routine</span>
                 </div>
@@ -270,10 +270,10 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
                 {dailySchedule.map((item, idx) => (
                   <div
                     key={idx}
-                    className="p-4 bg-white/5 rounded-2xl border border-white/10 hover:border-[#0284c7]/40 transition-colors"
+                    className="p-4 bg-white/5 rounded-2xl border border-white/10 hover:border-[#354024]/40 transition-colors"
                   >
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-xs font-bold text-[#38bdf8] font-mono">
+                      <span className="text-xs font-bold text-[#cfbb99] font-mono">
                         {item.time}
                       </span>
                       <span className="text-[10px] font-bold text-white/80 bg-white/10 px-2.5 py-0.5 rounded-full">
@@ -293,7 +293,7 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
               {onOpenAdmission && (
                 <button
                   onClick={onOpenAdmission}
-                  className="w-full bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold py-3.5 rounded-xl uppercase tracking-wider text-xs transition-all shadow-md hover:shadow-lg cursor-pointer"
+                  className="w-full bg-[#354024] hover:bg-[#252d19] text-white font-bold py-3.5 rounded-xl uppercase tracking-wider text-xs transition-all shadow-md hover:shadow-lg cursor-pointer"
                 >
                   Schedule an In-Person Campus Walkthrough
                 </button>
@@ -338,7 +338,7 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
 
               <div className="p-6 bg-slate-900 text-white border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <span className="text-xs font-bold text-[#38bdf8] uppercase tracking-wider">
+                  <span className="text-xs font-bold text-[#cfbb99] uppercase tracking-wider">
                     {lightboxPhoto.badge} • {lightboxPhoto.subtitle}
                   </span>
                   <h4 className="font-crest text-xl font-bold mt-0.5">
@@ -353,7 +353,7 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
                     setLightboxPhoto(null);
                     handleExploreGallery();
                   }}
-                  className="shrink-0 bg-[#0284c7] hover:bg-[#0369a1] text-white text-xs font-bold px-5 py-3 rounded-full uppercase tracking-wider transition-colors cursor-pointer"
+                  className="shrink-0 bg-[#354024] hover:bg-[#252d19] text-white text-xs font-bold px-5 py-3 rounded-full uppercase tracking-wider transition-colors cursor-pointer"
                 >
                   View Full Gallery
                 </button>

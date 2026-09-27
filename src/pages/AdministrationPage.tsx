@@ -167,11 +167,11 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-[#0284c7] selection:text-white pb-20">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-[#354024] selection:text-white pb-20">
       {/* Toast Notification */}
       {successToast && (
-        <div className="fixed top-5 right-5 z-50 flex items-center gap-3 bg-[#0a192f] text-white px-5 py-3.5 rounded-xl shadow-2xl border border-[#38bdf8]/40 animate-bounce">
-          <CheckCircle2 className="w-5 h-5 text-[#38bdf8] shrink-0" />
+        <div className="fixed top-5 right-5 z-50 flex items-center gap-3 bg-[#0a192f] text-white px-5 py-3.5 rounded-xl shadow-2xl border border-[#cfbb99]/40 animate-bounce">
+          <CheckCircle2 className="w-5 h-5 text-[#cfbb99] shrink-0" />
           <span className="text-sm font-medium">{successToast}</span>
         </div>
       )}
@@ -201,9 +201,9 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
               <span className="text-slate-500">·</span>
               <button
                 onClick={() => onNavigateRoute('admin')}
-                className="text-xs text-[#38bdf8] hover:text-white font-semibold flex items-center gap-1 cursor-pointer bg-white/10 hover:bg-white/15 px-2.5 py-1 rounded-full border border-white/10"
+                className="text-xs text-[#cfbb99] hover:text-white font-semibold flex items-center gap-1 cursor-pointer bg-white/10 hover:bg-white/15 px-2.5 py-1 rounded-full border border-white/10"
               >
-                <Lock className="w-3 h-3 text-[#38bdf8]" />
+                <Lock className="w-3 h-3 text-[#cfbb99]" />
                 <span>Staff Portal (/admin)</span>
               </button>
             </div>
@@ -216,8 +216,8 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                 alt="AMAA High School Crest"
                 className="w-10 h-10 object-contain drop-shadow-md"
               />
-              <div className="inline-flex items-center gap-2 bg-[#38bdf8]/15 border border-[#38bdf8]/30 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#38bdf8]">
-                <ShieldCheck className="w-4 h-4 text-[#38bdf8]" />
+              <div className="inline-flex items-center gap-2 bg-[#cfbb99]/15 border border-[#cfbb99]/30 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#cfbb99]">
+                <ShieldCheck className="w-4 h-4 text-[#cfbb99]" />
                 <span>Institutional Governance & Stewardship</span>
               </div>
             </div>
@@ -235,7 +235,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <button
                 onClick={handleOpenAdd}
-                className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#0284c7] to-[#0369a1] hover:from-[#0369a1] hover:to-[#075985] text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-sky-900/40 transition-all hover:scale-[1.02] cursor-pointer"
+                className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#354024] to-[#252d19] hover:from-[#252d19] hover:to-[#1b2213] text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-stone-900/40 transition-all hover:scale-[1.02] cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add Governing Member</span>
@@ -245,7 +245,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                 onClick={() => onNavigateRoute('admin')}
                 className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2.5 rounded-xl text-xs font-semibold border border-white/15 transition-all cursor-pointer"
               >
-                <Lock className="w-3.5 h-3.5 text-[#38bdf8]" />
+                <Lock className="w-3.5 h-3.5 text-[#cfbb99]" />
                 <span>Go to Admin Dashboard</span>
               </button>
 
@@ -264,7 +264,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
           {/* Quick Metrics Strip */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 pt-8 border-t border-slate-800/80">
             <div className="bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-xs">
-              <div className="text-2xl font-crest font-extrabold text-[#38bdf8]">
+              <div className="text-2xl font-crest font-extrabold text-[#cfbb99]">
                 <AnimatedCounter value={members.length} />
               </div>
               <p className="text-xs text-slate-400 mt-0.5 font-medium">Council Members</p>
@@ -314,7 +314,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
               placeholder="Search by name, role, qualification..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full text-xs bg-slate-50 border border-slate-200 focus:border-[#0284c7] focus:bg-white rounded-xl pl-9 pr-3 py-2.5 text-slate-800 placeholder-slate-400 outline-none transition-all"
+              className="w-full text-xs bg-slate-50 border border-slate-200 focus:border-[#354024] focus:bg-white rounded-xl pl-9 pr-3 py-2.5 text-slate-800 placeholder-slate-400 outline-none transition-all"
             />
             {searchQuery && (
               <button
@@ -340,7 +340,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
 
           <button
             onClick={handleOpenAdd}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0284c7] hover:text-[#0369a1] bg-[#0284c7]/10 hover:bg-[#0284c7]/15 px-3.5 py-1.5 rounded-lg transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#354024] hover:text-[#252d19] bg-[#354024]/10 hover:bg-[#354024]/15 px-3.5 py-1.5 rounded-lg transition-colors cursor-pointer"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Add Member</span>
@@ -360,7 +360,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                 setSelectedCommittee('All Wings');
                 setSearchQuery('');
               }}
-              className="text-xs font-bold text-[#0284c7] hover:underline cursor-pointer"
+              className="text-xs font-bold text-[#354024] hover:underline cursor-pointer"
             >
               Reset Filters
             </button>
@@ -373,7 +373,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                 className="group relative bg-white rounded-2xl border border-slate-200/90 shadow-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden"
               >
                 {/* Top Accent Bar */}
-                <div className="h-1.5 w-full bg-gradient-to-r from-[#0a192f] via-[#0284c7] to-[#d97706]" />
+                <div className="h-1.5 w-full bg-gradient-to-r from-[#0a192f] via-[#354024] to-[#d97706]" />
 
                 <div className="p-6">
                   {/* Header: Photo / Monogram & Badges */}
@@ -390,7 +390,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                           }}
                         />
                       ) : (
-                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0a192f] to-[#0284c7] flex items-center justify-center text-white font-crest font-bold text-xl shadow-xs">
+                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0a192f] to-[#354024] flex items-center justify-center text-white font-crest font-bold text-xl shadow-xs">
                           {member.name.replace(/Sri|Dr\.|Mrs\.|Mr\./gi, '').trim().charAt(0) || 'A'}
                         </div>
                       )}
@@ -400,7 +400,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                     </div>
 
                     <div className="flex flex-col items-end gap-1.5">
-                      <span className="text-[11px] font-bold text-[#0284c7] bg-[#0284c7]/10 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                      <span className="text-[11px] font-bold text-[#354024] bg-[#354024]/10 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
                         {member.designation}
                       </span>
                       <span className="text-[10px] font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">
@@ -410,7 +410,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                   </div>
 
                   {/* Name & Academic Credentials */}
-                  <h3 className="font-crest text-lg font-bold text-[#0a192f] group-hover:text-[#0284c7] transition-colors">
+                  <h3 className="font-crest text-lg font-bold text-[#0a192f] group-hover:text-[#354024] transition-colors">
                     {member.name}
                   </h3>
                   <p className="text-xs font-mono font-medium text-slate-600 mt-1">
@@ -428,7 +428,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                       {member.email && (
                         <a
                           href={`mailto:${member.email}`}
-                          className="flex items-center gap-1.5 hover:text-[#0284c7] transition-colors truncate"
+                          className="flex items-center gap-1.5 hover:text-[#354024] transition-colors truncate"
                         >
                           <Mail className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                           <span className="truncate">{member.email}</span>
@@ -454,7 +454,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleOpenEdit(member)}
-                      className="p-1.5 text-slate-500 hover:text-[#0284c7] hover:bg-white rounded-lg transition-colors cursor-pointer"
+                      className="p-1.5 text-slate-500 hover:text-[#354024] hover:bg-white rounded-lg transition-colors cursor-pointer"
                       title="Edit Member Information"
                     >
                       <Edit2 className="w-3.5 h-3.5" />
@@ -475,11 +475,11 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
 
         {/* Staff Operations & Administrative Dashboard Banner */}
         <section className="mt-12 bg-gradient-to-r from-[#0a192f] via-[#0f274a] to-[#071324] text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[#0284c7]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-80 h-80 bg-[#354024]/10 rounded-full blur-3xl pointer-events-none" />
           <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="space-y-2 max-w-xl">
-              <div className="inline-flex items-center gap-2 bg-[#38bdf8]/15 border border-[#38bdf8]/30 px-3 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider text-[#38bdf8]">
-                <Lock className="w-3.5 h-3.5 text-[#38bdf8]" />
+              <div className="inline-flex items-center gap-2 bg-[#cfbb99]/15 border border-[#cfbb99]/30 px-3 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider text-[#cfbb99]">
+                <Lock className="w-3.5 h-3.5 text-[#cfbb99]" />
                 <span>Authorized Staff Portal</span>
               </div>
               <h3 className="font-crest text-xl sm:text-2xl font-bold text-white">
@@ -493,9 +493,9 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto shrink-0">
               <button
                 onClick={() => onNavigateRoute('admin')}
-                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#0284c7] to-[#0369a1] hover:from-[#0369a1] hover:to-[#075985] text-white px-5 py-3 rounded-xl font-semibold text-xs shadow-lg shadow-sky-900/50 transition-all hover:scale-[1.02] cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#354024] to-[#252d19] hover:from-[#252d19] hover:to-[#1b2213] text-white px-5 py-3 rounded-xl font-semibold text-xs shadow-lg shadow-stone-900/50 transition-all hover:scale-[1.02] cursor-pointer"
               >
-                <Lock className="w-4 h-4 text-[#38bdf8]" />
+                <Lock className="w-4 h-4 text-[#cfbb99]" />
                 <span>Open Staff Dashboard (/admin)</span>
               </button>
             </div>
@@ -519,7 +519,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/80">
-              <Scale className="w-6 h-6 text-[#0284c7] mb-3" />
+              <Scale className="w-6 h-6 text-[#354024] mb-3" />
               <h4 className="font-crest text-base font-bold text-[#0a192f]">Fiduciary Oversight</h4>
               <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
                 Independent annual chartered audits, transparent fee structures, and disciplined allocation of resources toward lab and library modernization.
@@ -527,7 +527,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
             </div>
 
             <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/80">
-              <BookOpen className="w-6 h-6 text-[#0284c7] mb-3" />
+              <BookOpen className="w-6 h-6 text-[#354024] mb-3" />
               <h4 className="font-crest text-base font-bold text-[#0a192f]">Academic Autonomy</h4>
               <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
                 Empowering the Principal and faculty council with complete pedagogical freedom to introduce enriched science practicals, Olympiad training, and arts.
@@ -535,7 +535,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
             </div>
 
             <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/80">
-              <Building2 className="w-6 h-6 text-[#0284c7] mb-3" />
+              <Building2 className="w-6 h-6 text-[#354024] mb-3" />
               <h4 className="font-crest text-base font-bold text-[#0a192f]">Campus Safety & Health</h4>
               <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
                 Statutory fire safety audits, CCTV surveillance protocols, seismic structural compliance, and strict background checks for all campus personnel.
@@ -543,7 +543,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
             </div>
 
             <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/80">
-              <Users className="w-6 h-6 text-[#0284c7] mb-3" />
+              <Users className="w-6 h-6 text-[#354024] mb-3" />
               <h4 className="font-crest text-base font-bold text-[#0a192f]">Parent & Alumni Voice</h4>
               <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
                 Formal representation of parent councils and alumni advisors in all strategic expansion and student wellness decisions.
@@ -560,7 +560,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
             {/* Modal Header */}
             <div className="bg-[#0a192f] text-white px-6 py-5 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-xl bg-[#0284c7]/20 border border-[#0284c7]/40 text-[#38bdf8]">
+                <div className="p-2 rounded-xl bg-[#354024]/20 border border-[#354024]/40 text-[#cfbb99]">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
@@ -593,7 +593,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                     placeholder="e.g. Dr. S. K. Narayana"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#0284c7] focus:bg-white outline-none"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none"
                   />
                 </div>
 
@@ -607,7 +607,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                     placeholder="e.g. Vice-Chairman / Trustee"
                     value={formData.designation}
                     onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#0284c7] focus:bg-white outline-none"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none"
                   />
                 </div>
               </div>
@@ -620,7 +620,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                   <select
                     value={formData.committee}
                     onChange={(e) => setFormData({ ...formData, committee: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#0284c7] focus:bg-white outline-none"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none"
                   >
                     <option value="Board of Trustees">Board of Trustees</option>
                     <option value="Academic Committee">Academic Committee</option>
@@ -639,7 +639,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                     placeholder="e.g. M.Sc., Ph.D. — IIT Madras"
                     value={formData.qualification}
                     onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#0284c7] focus:bg-white outline-none"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none"
                   />
                 </div>
               </div>
@@ -653,7 +653,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                   placeholder="Describe professional background, achievements, and responsibilities in governing the school..."
                   value={formData.experience}
                   onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#0284c7] focus:bg-white outline-none resize-none"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none resize-none"
                 />
               </div>
 
@@ -667,7 +667,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                     placeholder="member@amaaschool.edu.in"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#0284c7] focus:bg-white outline-none"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none"
                   />
                 </div>
 
@@ -680,7 +680,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                     placeholder="+91 94400 00000"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#0284c7] focus:bg-white outline-none"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none"
                   />
                 </div>
               </div>
@@ -695,7 +695,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                     placeholder="https://images.unsplash.com/photo-..."
                     value={formData.photo_url}
                     onChange={(e) => setFormData({ ...formData, photo_url: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#0284c7] focus:bg-white outline-none"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none"
                   />
                 </div>
 
@@ -709,7 +709,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                     max={99}
                     value={formData.order_index}
                     onChange={(e) => setFormData({ ...formData, order_index: Number(e.target.value) })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#0284c7] focus:bg-white outline-none"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none"
                   />
                 </div>
               </div>
@@ -725,7 +725,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-[#0a192f] to-[#0284c7] hover:from-[#0f274a] hover:to-[#0369a1] text-white font-semibold shadow-md shadow-slate-900/20 cursor-pointer"
+                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-[#0a192f] to-[#354024] hover:from-[#0f274a] hover:to-[#252d19] text-white font-semibold shadow-md shadow-slate-900/20 cursor-pointer"
                 >
                   {editingMember ? 'Save Changes' : 'Confirm Appointment'}
                 </button>

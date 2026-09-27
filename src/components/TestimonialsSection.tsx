@@ -39,7 +39,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
       rating: 5,
       content:
         'AMAA High School provided the bedrock of disciplined scientific inquiry, analytical rigor, and human empathy that defines my medical practice today. The science faculty laid foundations that carried me through AIIMS.',
-      avatarBg: 'bg-[#0284c7]',
+      avatarBg: 'bg-[#354024]',
       initials: 'PS',
     },
     {
@@ -78,7 +78,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
       rating: 5,
       content:
         'What sets AMAA apart is the individual care. The 1:20 mentor ratio is not just on paper—teachers know each student by name, monitor their emotional well-being, and provide personalized extra guidance.',
-      avatarBg: 'bg-[#0284c7]',
+      avatarBg: 'bg-[#354024]',
       initials: 'LN',
     },
     {
@@ -115,9 +115,9 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
         >
           <div>
-            <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
+            <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
               <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
-              <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">
+              <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">
                 VOICES OF TRUST & EXCELLENCE
               </span>
             </div>
@@ -137,8 +137,8 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 text-xs font-bold rounded-full transition-all cursor-pointer ${
                   activeCategory === cat
-                    ? 'bg-[#0284c7] text-white shadow-md'
-                    : 'text-slate-600 hover:text-[#0284c7] hover:bg-slate-100'
+                    ? 'bg-[#354024] text-white shadow-md'
+                    : 'text-slate-600 hover:text-[#354024] hover:bg-slate-100'
                 }`}
               >
                 {cat}
@@ -169,7 +169,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
                   exit={{ opacity: 0, scale: 0.95, y: -20 }}
                   transition={{ duration: 0.35, delay: idx * 0.05 }}
                   whileHover={{ y: -4 }}
-                  className={`${colSpan} bg-white border border-slate-200/90 rounded-3xl p-7 sm:p-8 shadow-card hover:shadow-xl hover:border-[#0284c7]/30 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden`}
+                  className={`${colSpan} bg-white border border-slate-200/90 rounded-3xl p-7 sm:p-8 shadow-card hover:shadow-xl hover:border-[#354024]/30 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden`}
                 >
                   <div className="relative z-10">
                     {/* Top Row: Stars + Category Badge */}
@@ -180,7 +180,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
                         ))}
                       </div>
 
-                      <span className="text-[10px] font-bold uppercase tracking-wider bg-[#0284c7]/10 text-[#0284c7] px-3 py-1 rounded-full">
+                      <span className="text-[10px] font-bold uppercase tracking-wider bg-[#354024]/10 text-[#354024] px-3 py-1 rounded-full">
                         {t.tag}
                       </span>
                     </div>
@@ -209,7 +209,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
                       <p className="text-xs text-slate-500 font-medium truncate mt-0.5">
                         {t.role}
                       </p>
-                      <span className="text-[11px] font-bold text-[#0284c7] block mt-0.5">
+                      <span className="text-[11px] font-bold text-[#354024] block mt-0.5">
                         {t.batchOrGrade}
                       </span>
                     </div>

@@ -226,7 +226,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div>
-            <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 text-[#0284c7] px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+            <div className="inline-flex items-center gap-2 bg-[#354024]/10 text-[#354024] px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
               <Sparkles className="w-4 h-4" />
               <span>Academic Leadership & Mentorship</span>
             </div>
@@ -245,7 +245,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
                 onClick={() => onNavigateRoute?.('contact', '#careers')}
                 className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold px-6 py-3 rounded-full text-xs uppercase tracking-wider border border-slate-300 transition-all cursor-pointer shadow-xs"
               >
-                <Briefcase className="w-4 h-4 text-[#0284c7]" />
+                <Briefcase className="w-4 h-4 text-[#354024]" />
                 <span>Join Our Faculty</span>
               </button>
             </MagneticButton>
@@ -254,7 +254,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
               <MagneticButton>
                 <button
                   onClick={onOpenAdmission}
-                  className="inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-7 py-3 rounded-full text-xs uppercase tracking-wider transition-all cursor-pointer shadow-md"
+                  className="inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-7 py-3 rounded-full text-xs uppercase tracking-wider transition-all cursor-pointer shadow-md"
                 >
                   <span>Schedule Academic Tour</span>
                   <ArrowRight className="w-4 h-4 text-white" />
@@ -267,7 +267,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
         {/* 4 Pillars of Pedagogical Excellence */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-12">
           <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-card">
-            <div className="text-2xl sm:text-3xl font-black text-[#0284c7] font-mono">100%</div>
+            <div className="text-2xl sm:text-3xl font-black text-[#354024] font-mono">100%</div>
             <div className="text-xs font-bold uppercase tracking-wider text-slate-900 mt-1">Post-Graduate Certified</div>
             <div className="text-[11px] text-slate-500 mt-1">M.Sc., M.A. & B.Ed. Qualified</div>
           </div>
@@ -279,7 +279,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
           </div>
 
           <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-card">
-            <div className="text-2xl sm:text-3xl font-black text-[#0284c7] font-mono">1 : 20</div>
+            <div className="text-2xl sm:text-3xl font-black text-[#354024] font-mono">1 : 20</div>
             <div className="text-xs font-bold uppercase tracking-wider text-slate-900 mt-1">Mentor-Student Ratio</div>
             <div className="text-[11px] text-slate-500 mt-1">Individual attention for every child</div>
           </div>
@@ -300,7 +300,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
                 onClick={() => setActiveDepartment(dept.key)}
                 className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
                   activeDepartment === dept.key
-                    ? 'bg-[#0284c7] text-white shadow-sm'
+                    ? 'bg-[#354024] text-white shadow-sm'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >
@@ -316,7 +316,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search faculty by name or subject..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-full bg-slate-50 border border-slate-200 text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#0284c7] focus:bg-white transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 rounded-full bg-slate-50 border border-slate-200 text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#354024] focus:bg-white transition-colors"
             />
           </div>
         </div>
@@ -332,7 +332,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: -25 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-white rounded-3xl border border-slate-200/80 hover:border-[#0284c7] shadow-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group overflow-hidden"
+                className="bg-white rounded-3xl border border-slate-200/80 hover:border-[#354024] shadow-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group overflow-hidden"
               >
                 {/* Image & Video Trigger Header */}
                 <div className="relative h-64 overflow-hidden bg-slate-900">
@@ -361,10 +361,10 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
                 {/* Card Body */}
                 <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                   <div>
-                    <h3 className="font-heading font-bold text-lg text-slate-900 group-hover:text-[#0284c7] transition-colors tracking-tight">
+                    <h3 className="font-heading font-bold text-lg text-slate-900 group-hover:text-[#354024] transition-colors tracking-tight">
                       {faculty.name}
                     </h3>
-                    <div className="text-xs font-semibold text-[#0284c7] mt-0.5">
+                    <div className="text-xs font-semibold text-[#354024] mt-0.5">
                       {faculty.role}
                     </div>
                     <div className="text-[11px] text-slate-500 mt-1 font-mono">
@@ -372,7 +372,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
                     </div>
 
                     {/* Quote Snippet */}
-                    <blockquote className="mt-3 text-xs text-slate-600 italic border-l-2 border-[#0284c7] pl-3 py-0.5 leading-relaxed line-clamp-2">
+                    <blockquote className="mt-3 text-xs text-slate-600 italic border-l-2 border-[#354024] pl-3 py-0.5 leading-relaxed line-clamp-2">
                       {faculty.quote}
                     </blockquote>
 
@@ -381,7 +381,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
                       {faculty.subjects.map((sub, idx) => (
                         <span
                           key={idx}
-                          className="bg-sky-50 text-[#0284c7] text-[10px] font-semibold px-2.5 py-0.5 rounded-full"
+                          className="bg-sky-50 text-[#354024] text-[10px] font-semibold px-2.5 py-0.5 rounded-full"
                         >
                           {sub}
                         </span>
@@ -393,7 +393,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
                   <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
                     <button
                       onClick={() => setSelectedFaculty(faculty)}
-                      className="text-xs font-bold text-[#0284c7] hover:text-[#0369a1] inline-flex items-center gap-1 transition-colors cursor-pointer"
+                      className="text-xs font-bold text-[#354024] hover:text-[#252d19] inline-flex items-center gap-1 transition-colors cursor-pointer"
                     >
                       <span>Full Credentials</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -401,7 +401,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
 
                     <a
                       href={`mailto:${faculty.email}`}
-                      className="p-2 rounded-full text-slate-400 hover:text-[#0284c7] hover:bg-sky-50 transition-colors"
+                      className="p-2 rounded-full text-slate-400 hover:text-[#354024] hover:bg-sky-50 transition-colors"
                       title={`Email ${faculty.name}`}
                     >
                       <Mail className="w-4 h-4" />
@@ -426,7 +426,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
                 setActiveDepartment('All');
                 setSearchQuery('');
               }}
-              className="mt-4 bg-[#0284c7] text-white text-xs font-bold px-5 py-2.5 rounded-full"
+              className="mt-4 bg-[#354024] text-white text-xs font-bold px-5 py-2.5 rounded-full"
             >
               Reset Filters
             </button>
@@ -434,9 +434,9 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
         )}
 
         {/* Institutional Academic Ethos Callout Box */}
-        <div className="mt-14 bg-gradient-to-r from-[#07111e] via-[#0a192f] to-[#0369a1] rounded-3xl p-8 sm:p-12 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+        <div className="mt-14 bg-gradient-to-r from-[#07111e] via-[#0a192f] to-[#252d19] rounded-3xl p-8 sm:p-12 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
           <div className="space-y-2 max-w-2xl relative z-10">
-            <div className="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-xs font-bold text-[#38bdf8] uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-xs font-bold text-[#cfbb99] uppercase tracking-wider">
               <ShieldCheck className="w-3.5 h-3.5" />
               Continuous Pedagogy Excellence
             </div>
@@ -452,7 +452,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
           <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 relative z-10">
             <button
               onClick={() => onNavigateRoute?.('contact', '#careers')}
-              className="w-full sm:w-auto bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-7 py-3.5 rounded-full text-xs uppercase tracking-wider transition-all text-center cursor-pointer shadow-lg"
+              className="w-full sm:w-auto bg-[#354024] hover:bg-[#252d19] text-white font-bold px-7 py-3.5 rounded-full text-xs uppercase tracking-wider transition-all text-center cursor-pointer shadow-lg"
             >
               Explore Faculty Openings
             </button>
@@ -489,7 +489,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
               className="relative w-full max-w-3xl bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden z-10 max-h-[90vh] flex flex-col"
             >
               {/* Header */}
-              <div className="flex items-start justify-between p-6 sm:p-8 bg-gradient-to-r from-[#07111e] via-[#0a192f] to-[#0369a1] text-white">
+              <div className="flex items-start justify-between p-6 sm:p-8 bg-gradient-to-r from-[#07111e] via-[#0a192f] to-[#252d19] text-white">
                 <div className="flex items-start gap-4">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/10 border-2 border-white/20 shrink-0 overflow-hidden shadow-md">
                     <img
@@ -499,7 +499,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
                     />
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase px-3 py-1 rounded-full bg-[#0284c7] text-white font-bold">
+                    <span className="text-[10px] uppercase px-3 py-1 rounded-full bg-[#354024] text-white font-bold">
                       {selectedFaculty.department}
                     </span>
                     <h3 className="font-heading font-bold text-xl sm:text-2xl text-white mt-1.5">
@@ -549,7 +549,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                   <div className="p-4 rounded-2xl bg-sky-50/70 border border-sky-100">
                     <div className="font-bold text-[#0a192f] flex items-center gap-1.5 mb-1">
-                      <Clock className="w-4 h-4 text-[#0284c7]" />
+                      <Clock className="w-4 h-4 text-[#354024]" />
                       Parent-Teacher Office Hours
                     </div>
                     <div className="text-slate-700 font-mono text-[11px]">
@@ -559,7 +559,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
 
                   <div className="p-4 rounded-2xl bg-sky-50/70 border border-sky-100">
                     <div className="font-bold text-[#0a192f] flex items-center gap-1.5 mb-1">
-                      <Mail className="w-4 h-4 text-[#0284c7]" />
+                      <Mail className="w-4 h-4 text-[#354024]" />
                       Direct Academic Email
                     </div>
                     <div className="text-slate-700 font-mono text-[11px]">
@@ -574,7 +574,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
               <div className="p-4 sm:p-6 bg-slate-50 border-t border-slate-100 flex justify-end">
                 <button
                   onClick={() => setSelectedFaculty(null)}
-                  className="bg-[#0284c7] hover:bg-[#0369a1] text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+                  className="bg-[#354024] hover:bg-[#252d19] text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
                 >
                   Close Window
                 </button>

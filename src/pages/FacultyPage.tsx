@@ -22,24 +22,24 @@ export const FacultyPage: React.FC<FacultyPageProps> = ({
           <nav className="flex items-center gap-2 text-xs font-semibold text-slate-500">
             <button
               onClick={() => onNavigateRoute('home')}
-              className="hover:text-[#0284c7] flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="hover:text-[#354024] flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               <Home className="w-3.5 h-3.5" />
               <span>Home</span>
             </button>
             <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-            <span className="text-[#0284c7] font-bold">Faculty & Mentors</span>
+            <span className="text-[#354024] font-bold">Faculty & Mentors</span>
           </nav>
         </div>
       </div>
 
       {/* Hero Header - Deep Navy & Azure Blue */}
-      <div className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white py-16 lg:py-24 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white py-16 lg:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(2,132,199,0.25),transparent_50%)] pointer-events-none" />
         <div className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 mb-6">
             <img src={logoImg} alt="School Emblem" className="w-5 h-5 object-contain" />
-            <span className="text-[11px] font-extrabold tracking-widest text-[#38bdf8] uppercase">
+            <span className="text-[11px] font-extrabold tracking-widest text-[#cfbb99] uppercase">
               EXCELLENCE IN PEDAGOGY & MENTORSHIP
             </span>
           </div>
@@ -61,7 +61,7 @@ export const FacultyPage: React.FC<FacultyPageProps> = ({
               <div className="text-xs text-slate-300 mt-1 font-medium">Average Pedagogy Tenure</div>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
-              <div className="text-2xl sm:text-3xl font-black text-[#38bdf8]">100%</div>
+              <div className="text-2xl sm:text-3xl font-black text-[#cfbb99]">100%</div>
               <div className="text-xs text-slate-300 mt-1 font-medium">Postgraduate Qualified</div>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">

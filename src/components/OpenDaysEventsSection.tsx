@@ -67,7 +67,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
       description:
         'Over 25 regional schools presenting student scientific models, chemistry exhibits, and physics inquiry experiments evaluated by university educators.',
       badge: 'Science Olympiad',
-      badgeColor: 'bg-[#0284c7] text-white',
+      badgeColor: 'bg-[#354024] text-white',
       spotsLeft: 'Open for Visitors',
     },
     {
@@ -113,7 +113,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
   return (
     <section id="open-days" className="py-20 lg:py-28 bg-[#f8f9fa] border-b border-slate-200 relative overflow-hidden">
       {/* Decorative ambient gradient */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0284c7]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#354024]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="w-[90%] mx-auto px-2 sm:px-4 lg:px-6 relative z-10">
         {/* Section Header */}
@@ -125,9 +125,9 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14"
         >
           <div>
-            <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-3.5 py-1.5 rounded-full mb-3">
-              <Calendar className="w-3.5 h-3.5 text-[#0284c7]" />
-              <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">
+            <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-3.5 py-1.5 rounded-full mb-3">
+              <Calendar className="w-3.5 h-3.5 text-[#354024]" />
+              <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">
                 EXPERIENCE THE HERITAGE FIRST-HAND
               </span>
             </div>
@@ -142,7 +142,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
           <div className="flex items-center gap-3">
             <button
               onClick={onOpenAdmission}
-              className="inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-full transition-all shadow-md hover:shadow-lg cursor-pointer"
+              className="inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-full transition-all shadow-md hover:shadow-lg cursor-pointer"
             >
               <span>APPLY FOR 2025–26</span>
               <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
@@ -160,14 +160,14 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: idx * 0.1 }}
               whileHover={{ y: -4 }}
-              className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-card hover:shadow-xl hover:border-[#0284c7]/40 transition-all duration-300 flex flex-col justify-between group"
+              className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-card hover:shadow-xl hover:border-[#354024]/40 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 {/* Header row: Date Badge + Category Badge */}
                 <div className="flex items-start justify-between gap-4 mb-5">
                   <div className="flex items-center gap-3.5">
                     {/* Modern Style Date Badge */}
-                    <div className="w-14 h-16 bg-[#0a192f] group-hover:bg-[#0284c7] text-white rounded-xl flex flex-col items-center justify-center shadow-md transition-colors duration-300 shrink-0">
+                    <div className="w-14 h-16 bg-[#0a192f] group-hover:bg-[#354024] text-white rounded-xl flex flex-col items-center justify-center shadow-md transition-colors duration-300 shrink-0">
                       <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#cfbb99]">
                         {evt.date.month}
                       </span>
@@ -192,7 +192,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
                   </span>
                 </div>
 
-                <h3 className="font-crest text-xl font-bold text-[#0a192f] group-hover:text-[#0284c7] transition-colors leading-snug mb-2.5">
+                <h3 className="font-crest text-xl font-bold text-[#0a192f] group-hover:text-[#354024] transition-colors leading-snug mb-2.5">
                   {evt.title}
                 </h3>
 
@@ -211,7 +211,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
                 <span className="text-xs text-slate-500 font-medium">Free Admission • Families Welcome</span>
                 <button
                   onClick={() => setSelectedEvent(evt)}
-                  className="inline-flex items-center gap-2 text-xs font-bold text-[#0284c7] group-hover:text-[#0369a1] uppercase tracking-wider hover:underline cursor-pointer"
+                  className="inline-flex items-center gap-2 text-xs font-bold text-[#354024] group-hover:text-[#252d19] uppercase tracking-wider hover:underline cursor-pointer"
                 >
                   <span>BOOK OPEN DAY</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -240,7 +240,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
               </button>
 
               <div className="mb-6">
-                <span className="text-[11px] font-bold text-[#0284c7] uppercase tracking-wider">
+                <span className="text-[11px] font-bold text-[#354024] uppercase tracking-wider">
                   Campus Visit Registration
                 </span>
                 <h3 className="font-crest text-xl font-bold text-[#0a192f] mt-1">
@@ -273,7 +273,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
                       placeholder="e.g. Dr. Rajesh Sharma"
                       value={parentName}
                       onChange={(e) => setParentName(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-hidden focus:border-[#0284c7] focus:ring-2 focus:ring-[#0284c7]/10"
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-hidden focus:border-[#354024] focus:ring-2 focus:ring-[#354024]/10"
                     />
                   </div>
 
@@ -287,7 +287,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
                       placeholder="+91 98765 43210"
                       value={parentPhone}
                       onChange={(e) => setParentPhone(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-hidden focus:border-[#0284c7] focus:ring-2 focus:ring-[#0284c7]/10"
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-hidden focus:border-[#354024] focus:ring-2 focus:ring-[#354024]/10"
                     />
                   </div>
 
@@ -298,7 +298,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
                     <select
                       value={childGrade}
                       onChange={(e) => setChildGrade(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-hidden focus:border-[#0284c7] focus:ring-2 focus:ring-[#0284c7]/10"
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-hidden focus:border-[#354024] focus:ring-2 focus:ring-[#354024]/10"
                     >
                       <option value="Middle (Grades 6-8)">Middle School: Grades 6 – 8</option>
                       <option value="Secondary (Grades 9-10)">Secondary School: Grades 9 – 10</option>
@@ -307,7 +307,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
 
                   <button
                     type="submit"
-                    className="w-full bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold py-3.5 rounded-xl uppercase tracking-wider text-xs transition-all shadow-md hover:shadow-lg cursor-pointer mt-4"
+                    className="w-full bg-[#354024] hover:bg-[#252d19] text-white font-bold py-3.5 rounded-xl uppercase tracking-wider text-xs transition-all shadow-md hover:shadow-lg cursor-pointer mt-4"
                   >
                     Confirm My Attendance (Free)
                   </button>

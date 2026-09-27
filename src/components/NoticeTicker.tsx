@@ -42,7 +42,7 @@ export const NoticeTicker: React.FC<NoticeTickerProps> = ({ notices }) => {
                   <span className="group-hover:underline underline-offset-2 font-medium">
                     {notice.title}
                   </span>
-                  <span className="text-[11px] text-[#38bdf8] font-mono">({notice.date})</span>
+                  <span className="text-[11px] text-[#cfbb99] font-mono">({notice.date})</span>
                 </button>
               ))
             )}
@@ -71,7 +71,7 @@ export const NoticeTicker: React.FC<NoticeTickerProps> = ({ notices }) => {
             </h3>
 
             <div className="flex items-center gap-2 text-xs text-slate-500 my-3">
-              <Calendar className="w-3.5 h-3.5 text-[#0284c7]" />
+              <Calendar className="w-3.5 h-3.5 text-[#354024]" />
               <span>Published on: {selectedNotice.date}</span>
             </div>
 
@@ -82,7 +82,7 @@ export const NoticeTicker: React.FC<NoticeTickerProps> = ({ notices }) => {
             <div className="mt-6 flex justify-end">
               <button
                 onClick={() => setSelectedNotice(null)}
-                className="bg-[#0284c7] hover:bg-[#0369a1] text-white text-xs font-bold px-6 py-2.5 rounded-full flex items-center gap-2 transition-all shadow-md cursor-pointer"
+                className="bg-[#354024] hover:bg-[#252d19] text-white text-xs font-bold px-6 py-2.5 rounded-full flex items-center gap-2 transition-all shadow-md cursor-pointer"
               >
                 <span>Acknowledge Notice</span>
                 <ChevronRight className="w-4 h-4" />

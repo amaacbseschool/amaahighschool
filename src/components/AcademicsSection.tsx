@@ -102,15 +102,15 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
   return (
     <section id="academics" className="py-20 lg:py-28 bg-[#f8f9fa] border-b border-slate-200 relative overflow-hidden">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#0284c7]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#354024]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="w-[90%] mx-auto px-2 sm:px-4 lg:px-6 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 border border-[#0284c7]/20 px-4 py-1.5 rounded-full mb-3">
+            <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
               <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
-              <span className="text-[11px] font-bold tracking-widest text-[#0284c7] uppercase">
+              <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">
                 ACADEMIC PATHWAYS • GRADES VI TO X
               </span>
             </div>
@@ -126,7 +126,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
             <div className="flex flex-wrap items-center gap-3">
               <button
                 onClick={() => onNavigateRoute('home', '#faculty')}
-                className="inline-flex items-center gap-2 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-6 py-3 rounded-full text-xs tracking-wider uppercase transition-all shadow-md hover:shadow-lg cursor-pointer"
+                className="inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-6 py-3 rounded-full text-xs tracking-wider uppercase transition-all shadow-md hover:shadow-lg cursor-pointer"
               >
                 <span>MEET OUR FACULTY</span>
                 <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
@@ -137,7 +137,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                 className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#0a192f] font-bold px-5 py-3 rounded-full border border-slate-200 text-xs tracking-wider uppercase transition-all cursor-pointer shadow-subtle"
               >
                 <span>VIEW SYLLABUS</span>
-                <ArrowRight className="w-4 h-4 text-[#0284c7]" />
+                <ArrowRight className="w-4 h-4 text-[#354024]" />
               </button>
             </div>
           )}
@@ -152,12 +152,12 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                 key={idx}
                 className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-subtle hover:shadow-card hover:-translate-y-1 transition-all duration-300 flex items-center gap-5"
               >
-                <div className="w-14 h-14 rounded-2xl bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center shrink-0">
+                <div className="w-14 h-14 rounded-2xl bg-[#354024]/10 text-[#354024] flex items-center justify-center shrink-0">
                   <Icon className="w-7 h-7" />
                 </div>
                 <div>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-black text-[#0284c7] font-modern">
+                    <span className="text-2xl font-black text-[#354024] font-modern">
                       {item.number}
                     </span>
                     <span className="font-crest font-bold text-sm text-[#0a192f]">
@@ -186,21 +186,21 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                   onClick={() => setSelectedStageIndex(idx)}
                   className={`p-4 rounded-2xl text-left transition-all duration-300 cursor-pointer flex items-center gap-3.5 ${
                     isSelected
-                      ? 'bg-white text-[#0a192f] shadow-md border border-slate-200 ring-2 ring-[#0284c7]/20'
+                      ? 'bg-white text-[#0a192f] shadow-md border border-slate-200 ring-2 ring-[#354024]/20'
                       : 'hover:bg-white/60 text-slate-600'
                   }`}
                 >
                   <div
                     className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
                       isSelected
-                        ? 'bg-[#0284c7] text-white'
+                        ? 'bg-[#354024] text-white'
                         : 'bg-slate-200/80 text-slate-600'
                     }`}
                   >
                     <TabIcon className="w-5 h-5" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-[11px] font-bold text-[#0284c7] uppercase tracking-wider">
+                    <div className="text-[11px] font-bold text-[#354024] uppercase tracking-wider">
                       {stage.gradeRange}
                     </div>
                     <div className="font-crest font-bold text-sm sm:text-base text-[#0a192f] truncate">
@@ -233,7 +233,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                       <span className="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
                         {currentStage.ageRange}
                       </span>
-                      <span className="text-xs font-bold text-[#0284c7] bg-[#0284c7]/10 px-3 py-1 rounded-full">
+                      <span className="text-xs font-bold text-[#354024] bg-[#354024]/10 px-3 py-1 rounded-full">
                         Mentor Ratio: {currentStage.ratio}
                       </span>
                     </div>
@@ -242,7 +242,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                       {currentStage.title} ({currentStage.gradeRange})
                     </h3>
 
-                    <p className="text-sm sm:text-base font-semibold text-[#0284c7] mt-2">
+                    <p className="text-sm sm:text-base font-semibold text-[#354024] mt-2">
                       {currentStage.tagline}
                     </p>
 
@@ -262,7 +262,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                           key={sidx}
                           className="flex items-center gap-2.5 bg-slate-50 border border-slate-200/80 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-[#0a192f]"
                         >
-                          <span className="w-2 h-2 rounded-full bg-[#0284c7] shrink-0" />
+                          <span className="w-2 h-2 rounded-full bg-[#354024] shrink-0" />
                           <span>{sub}</span>
                         </div>
                       ))}
@@ -286,9 +286,9 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                 </div>
 
                 {/* Right: Stage Visual Spotlight Card & Fast Action */}
-                <div className="lg:col-span-5 bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white p-7 sm:p-8 rounded-3xl shadow-xl flex flex-col justify-between text-center relative overflow-hidden">
+                <div className="lg:col-span-5 bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white p-7 sm:p-8 rounded-3xl shadow-xl flex flex-col justify-between text-center relative overflow-hidden">
                   <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-white mx-auto mb-4 backdrop-blur-xs">
-                    <StageIcon className="w-8 h-8 text-[#38bdf8]" />
+                    <StageIcon className="w-8 h-8 text-[#cfbb99]" />
                   </div>
 
                   <span className="text-xs font-bold text-white/80 uppercase tracking-wider">
@@ -321,7 +321,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                   <div className="space-y-3">
                     <button
                       onClick={onOpenAdmission}
-                      className="w-full bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold py-3.5 rounded-full uppercase tracking-wider text-xs transition-all shadow-md hover:shadow-lg cursor-pointer flex items-center justify-center gap-2"
+                      className="w-full bg-[#354024] hover:bg-[#252d19] text-white font-bold py-3.5 rounded-full uppercase tracking-wider text-xs transition-all shadow-md hover:shadow-lg cursor-pointer flex items-center justify-center gap-2"
                     >
                       <span>Enrol in {currentStage.title}</span>
                       <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
@@ -345,12 +345,12 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
         {/* Quick Navigation Footer Strip */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 p-5 bg-white rounded-2xl border border-slate-200/90 shadow-subtle text-xs text-slate-600">
           <div className="flex items-center gap-2">
-            <Compass className="w-4 h-4 text-[#0284c7]" />
+            <Compass className="w-4 h-4 text-[#354024]" />
             <span>Need personalized counseling for your child's grade transition?</span>
           </div>
           <button
             onClick={onOpenAdmission}
-            className="text-[#0284c7] hover:text-[#0369a1] font-bold uppercase tracking-wider hover:underline cursor-pointer"
+            className="text-[#354024] hover:text-[#252d19] font-bold uppercase tracking-wider hover:underline cursor-pointer"
           >
             Speak with our Academic Counselor →
           </button>

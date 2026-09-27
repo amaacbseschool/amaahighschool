@@ -62,7 +62,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       title: 'Intellectual Rigor',
       desc: 'Instilling disciplined analytical thinking, scientific inquiry, and deep conceptual clarity from early childhood to Class 10.',
       icon: BookOpen,
-      iconColor: 'text-[#0284c7]',
+      iconColor: 'text-[#354024]',
     },
     {
       title: 'Moral Integrity & Ethics',
@@ -74,7 +74,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       title: 'Future-Ready Innovation',
       desc: 'Active immersion in scientific exploration, computer literacy, and creative arts that prepare young learners for secondary and higher academic pursuits.',
       icon: Sparkles,
-      iconColor: 'text-[#0284c7]',
+      iconColor: 'text-[#354024]',
     },
     {
       title: 'Inclusive Mentorship',
@@ -91,21 +91,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         <div className="w-[90%] mx-auto px-2 sm:px-4 py-3 flex flex-wrap items-center justify-between gap-3">
           <button
             onClick={onNavigateHome}
-            className="flex items-center gap-2 text-xs font-bold text-slate-700 hover:text-[#0284c7] transition-colors group cursor-pointer"
+            className="flex items-center gap-2 text-xs font-bold text-slate-700 hover:text-[#354024] transition-colors group cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4 text-slate-400 group-hover:-translate-x-1 transition-transform" />
             <span>Back to Homepage</span>
           </button>
           <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-            <span className="hover:text-[#0284c7] cursor-pointer" onClick={onNavigateHome}>Home</span>
+            <span className="hover:text-[#354024] cursor-pointer" onClick={onNavigateHome}>Home</span>
             <span>/</span>
-            <span className="text-[#0284c7] font-bold">About Us</span>
+            <span className="text-[#354024] font-bold">About Us</span>
           </div>
         </div>
       </div>
 
       {/* 2. Hero Section */}
-      <section id="our-story" className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#0369a1] text-white py-16 lg:py-24 px-4 sm:px-8 xl:px-12 overflow-hidden border-b border-sky-950">
+      <section id="our-story" className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white py-16 lg:py-24 px-4 sm:px-8 xl:px-12 overflow-hidden border-b border-sky-950">
         <div className="w-[90%] mx-auto relative z-10 text-center">
           {/* Logo & Motto Badge */}
           <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-5 py-2 rounded-full border border-white/20 mb-6">
@@ -130,7 +130,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={onOpenAdmission}
-              className="bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-8 py-3.5 rounded-full transition-all text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg hover:shadow-xl cursor-pointer"
+              className="bg-[#354024] hover:bg-[#252d19] text-white font-bold px-8 py-3.5 rounded-full transition-all text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg hover:shadow-xl cursor-pointer"
             >
               <GraduationCap className="w-4 h-4 text-[#cfbb99]" />
               <span>Apply for Admission 2025–26</span>
@@ -159,11 +159,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               key={idx}
               className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-card flex items-start gap-4 hover:-translate-y-1 transition-transform"
             >
-              <div className="p-3 rounded-xl bg-[#0284c7]/10 text-[#0284c7] shrink-0 font-bold text-base font-modern">
+              <div className="p-3 rounded-xl bg-[#354024]/10 text-[#354024] shrink-0 font-bold text-base font-modern">
                 #0{idx + 1}
               </div>
               <div>
-                <div className="text-3xl font-extrabold text-[#0284c7] tracking-tight font-modern">
+                <div className="text-3xl font-extrabold text-[#354024] tracking-tight font-modern">
                   <AnimatedCounter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
                 </div>
                 <div className="text-xs font-bold text-[#0a192f] mt-1">{stat.label}</div>
@@ -180,10 +180,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           {/* Vision Card */}
           <div className="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200/90 shadow-card flex flex-col justify-between">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-[#354024]/10 text-[#354024] flex items-center justify-center mb-6">
                 <Compass className="w-6 h-6" />
               </div>
-              <span className="text-[11px] font-bold text-[#0284c7] uppercase tracking-widest">
+              <span className="text-[11px] font-bold text-[#354024] uppercase tracking-widest">
                 Our Guiding Horizon
               </span>
               <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#0a192f] mt-1 mb-4">
@@ -193,7 +193,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 To be a transformative center of secondary education that empowers young minds to achieve the pinnacle of academic distinction, technological fluency, and ethical clarity, inspiring them to lead positively in an interconnected global society.
               </p>
             </div>
-            <div className="mt-8 pt-6 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-[#0284c7]">
+            <div className="mt-8 pt-6 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-[#354024]">
               <CheckCircle2 className="w-4 h-4 text-[#dc2626]" />
               <span>Recognised Educational Excellence</span>
             </div>
@@ -215,7 +215,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 To provide an inclusive, safe, and academically stimulating learning ecosystem where qualified educators ignite curiosity, foster critical problem solving through hands-on science practicals and arts, and cultivate unwavering moral integrity in every student from Grade VI through Grade X.
               </p>
             </div>
-            <div className="mt-8 pt-6 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-[#0284c7]">
+            <div className="mt-8 pt-6 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-[#354024]">
               <CheckCircle2 className="w-4 h-4 text-[#dc2626]" />
               <span>Dedicated to Holistic Student Welfare</span>
             </div>
@@ -238,7 +238,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f] via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 text-white text-left">
                   <h4 className="font-crest text-lg font-bold">Dr. Shailendra K. Verma</h4>
-                  <p className="text-xs text-[#38bdf8] font-semibold">Principal & Academic Director</p>
+                  <p className="text-xs text-[#cfbb99] font-semibold">Principal & Academic Director</p>
                   <span className="text-[10px] text-slate-300 font-mono">M.Sc., M.Ed., Ph.D. in Education</span>
                 </div>
               </div>
@@ -246,14 +246,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 
             {/* Narrative */}
             <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-2 bg-[#0284c7]/10 text-[#0284c7] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
-                <Building2 className="w-3.5 h-3.5 text-[#0284c7]" />
+              <div className="inline-flex items-center gap-2 bg-[#354024]/10 text-[#354024] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
+                <Building2 className="w-3.5 h-3.5 text-[#354024]" />
                 <span>Leadership Perspective</span>
               </div>
               <h2 className="font-crest text-3xl sm:text-4xl font-bold text-[#0a192f] leading-tight">
                 "We don't merely instruct for examinations; we cultivate thinkers who illuminate society."
               </h2>
-              <blockquote className="text-sm sm:text-base text-slate-700 leading-relaxed italic border-l-4 border-[#0284c7] pl-4">
+              <blockquote className="text-sm sm:text-base text-slate-700 leading-relaxed italic border-l-4 border-[#354024] pl-4">
                 Dear Parents, Students, and Well-Wishers,<br /><br />
                 Welcome to AMAA High School. Education is the greatest catalyst for human dignity and progress. In our classrooms, laboratories, and sports grounds, we view each child as an individual universe of boundless potential. Our responsibility is to nurture their questions, fortify their resilience, and anchor them in timeless moral values.
               </blockquote>
@@ -265,9 +265,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <div className="pt-2">
                 <button
                   onClick={() => onNavigateRoute('administration')}
-                  className="inline-flex items-center gap-2 text-xs font-bold text-white bg-[#0a192f] hover:bg-[#0284c7] px-4 py-2.5 rounded-xl transition-all shadow-sm cursor-pointer group"
+                  className="inline-flex items-center gap-2 text-xs font-bold text-white bg-[#0a192f] hover:bg-[#354024] px-4 py-2.5 rounded-xl transition-all shadow-sm cursor-pointer group"
                 >
-                  <ShieldCheck className="w-4 h-4 text-[#38bdf8]" />
+                  <ShieldCheck className="w-4 h-4 text-[#cfbb99]" />
                   <span>Meet the Governing Body & Trustees</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </button>
@@ -280,7 +280,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       {/* 6. Core Pillars 4-Grid */}
       <section id="values" className="w-[90%] mx-auto px-2 sm:px-4 py-16 lg:py-20">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-bold tracking-widest text-[#0284c7] uppercase bg-[#0284c7]/10 px-3.5 py-1 rounded-full">
+          <span className="text-xs font-bold tracking-widest text-[#354024] uppercase bg-[#354024]/10 px-3.5 py-1 rounded-full">
             INSTITUTIONAL PILLARS
           </span>
           <h2 className="font-crest text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0a192f] mt-3">
@@ -330,13 +330,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 } gap-6 sm:gap-10`}
               >
                 {/* Center Badge Dot */}
-                <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#0284c7] border-4 border-[#07111e] text-white flex items-center justify-center z-10 shadow-md">
+                <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#354024] border-4 border-[#07111e] text-white flex items-center justify-center z-10 shadow-md">
                   <Calendar className="w-3.5 h-3.5 text-white" />
                 </div>
 
                 {/* Content Box */}
                 <div className="ml-10 sm:ml-0 sm:w-1/2 bg-white/5 rounded-2xl p-5 sm:p-6 border border-white/10 shadow-card backdrop-blur-xs">
-                  <span className="inline-block bg-[#0284c7]/20 text-[#38bdf8] font-bold text-xs px-3 py-0.5 rounded-full mb-2">
+                  <span className="inline-block bg-[#354024]/20 text-[#cfbb99] font-bold text-xs px-3 py-0.5 rounded-full mb-2">
                     {m.year}
                   </span>
                   <h4 className="font-bold text-base text-white">{m.title}</h4>
