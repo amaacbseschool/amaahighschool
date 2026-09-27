@@ -85,57 +85,64 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
           </p>
         </motion.div>
 
-        {/* Redesigned Heritage & Founding Ethos Showcase Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-6xl mx-auto mb-20 bg-white border border-slate-200/90 rounded-[32px] shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden ring-1 ring-slate-900/5"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+        {/* Unboxed Editorial Showcase Layout (No Card Container) */}
+        <div className="max-w-6xl mx-auto mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left: Photographic Archival Visual (5 cols) */}
-            <div className="lg:col-span-5 relative min-h-[340px] lg:min-h-[480px] bg-slate-950 overflow-hidden group">
-              <img
-                src="/gallery/jai00286.webp"
-                alt="A.M.A. Adinarayana High School Campus Quadrangle"
-                className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/20" />
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/50 via-transparent to-transparent hidden lg:block" />
+            <motion.div
+              initial={{ opacity: 0, x: -25 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-5"
+            >
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 group">
+                <img
+                  src="/gallery/jai00286.webp"
+                  alt="A.M.A. Adinarayana High School Campus Quadrangle"
+                  className="w-full h-[380px] sm:h-[440px] lg:h-[500px] object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
 
-              {/* Floating Top Badge */}
-              <div className="absolute top-6 left-6 right-6 flex items-center justify-between z-10">
-                <div className="inline-flex items-center gap-2.5 bg-black/60 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-full shadow-lg">
-                  <img src={logoImg} alt="Crest" className="w-5 h-5 object-contain" />
-                  <span className="text-[11px] font-bold text-white tracking-widest uppercase">
-                    ESTD. 1965
+                {/* Floating Top Badge */}
+                <div className="absolute top-5 left-5 right-5 flex items-center justify-between z-10">
+                  <div className="inline-flex items-center gap-2 bg-black/65 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-full shadow-lg">
+                    <img src={logoImg} alt="Crest" className="w-5 h-5 object-contain" />
+                    <span className="text-[11px] font-bold text-white tracking-widest uppercase">
+                      ESTD. 1965
+                    </span>
+                  </div>
+                  <span className="bg-[#dc2626] text-white text-[11px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full shadow-md">
+                    60 YEARS
                   </span>
                 </div>
-                <span className="bg-[#dc2626] text-white text-[11px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full shadow-md">
-                  60 YEARS
-                </span>
-              </div>
 
-              {/* Bottom Archival Caption */}
-              <div className="absolute bottom-6 left-6 right-6 z-10">
-                <div className="bg-black/55 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-white">
-                  <div className="flex items-center gap-2 text-xs font-bold text-amber-300 uppercase tracking-wider mb-1">
-                    <Sparkles className="w-3.5 h-3.5 fill-amber-300" />
-                    <span>Diamond Jubilee Milestone</span>
+                {/* Bottom Archival Caption */}
+                <div className="absolute bottom-5 left-5 right-5 z-10">
+                  <div className="bg-black/60 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-white">
+                    <div className="flex items-center gap-2 text-xs font-bold text-[#cfbb99] uppercase tracking-wider mb-1">
+                      <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
+                      <span>Diamond Jubilee Milestone</span>
+                    </div>
+                    <p className="text-xs text-slate-200 font-medium leading-relaxed">
+                      Sixty uninterrupted years of academic distinction, ethical leadership, and character formation.
+                    </p>
                   </div>
-                  <p className="text-xs text-slate-200 font-medium leading-relaxed">
-                    Sixty uninterrupted years of academic distinction, ethical leadership, and character formation.
-                  </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Right: Rich Editorial Content & Ethos (7 cols) */}
-            <div className="lg:col-span-7 p-7 sm:p-10 lg:p-12 flex flex-col justify-between bg-gradient-to-br from-white via-slate-50/50 to-sky-50/20">
+            {/* Right: Editorial Content & Ethos directly on page (7 cols) */}
+            <motion.div
+              initial={{ opacity: 0, x: 25 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-7 flex flex-col justify-center space-y-6"
+            >
               <div>
                 {/* Eyebrow */}
-                <div className="flex items-center gap-2 text-xs font-bold text-[#354024] uppercase tracking-wider mb-3">
+                <div className="flex items-center gap-2 text-xs font-bold text-[#354024] uppercase tracking-wider mb-2">
                   <span className="w-2 h-2 rounded-full bg-[#354024]" />
                   <span>FOUNDING ETHOS & PHILOSOPHY</span>
                   <span className="text-slate-300">•</span>
@@ -143,56 +150,56 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                 </div>
 
                 {/* Main Heading */}
-                <h3 className="font-crest text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0a192f] tracking-tight leading-tight">
+                <h3 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0a192f] tracking-tight leading-tight">
                   “Lead Kindly Light”
                 </h3>
-                <p className="text-xs font-semibold text-amber-700 tracking-wider uppercase mt-1">
+                <p className="text-xs font-semibold text-[#cfbb99] tracking-wider uppercase mt-1.5">
                   The Sacred Inscription of A.M.A. Adinarayana
                 </p>
+              </div>
 
-                {/* Editorial Quote */}
-                <div className="relative my-6 pl-5 border-l-3 border-[#354024]">
-                  <p className="font-serif text-sm sm:text-base text-slate-700 italic leading-relaxed">
-                    “True education is not merely the transmission of facts, but the ignition of intellect, character, and humanitarian empathy that guides an individual through life like a kindly light.”
-                  </p>
-                  <div className="mt-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                    — Institutional Motto, Estd. 1965
-                  </div>
+              {/* Editorial Quote */}
+              <div className="relative pl-6 border-l-4 border-[#354024] py-1">
+                <p className="font-serif text-base sm:text-lg text-slate-700 italic leading-relaxed">
+                  “True education is not merely the transmission of facts, but the ignition of intellect, character, and humanitarian empathy that guides an individual through life like a kindly light.”
+                </p>
+                <div className="mt-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
+                  — Institutional Motto, Estd. 1965
                 </div>
               </div>
 
-              {/* 3 Metric Stats with Micro-Dividers */}
-              <div className="grid grid-cols-3 gap-3 sm:gap-4 py-5 border-y border-slate-200/80 my-2">
+              {/* 3 Metric Stats with Clean Dividers */}
+              <div className="grid grid-cols-3 gap-4 py-5 border-y border-slate-200">
                 <div className="text-left">
-                  <div className="text-2xl sm:text-3xl font-extrabold text-[#354024] font-modern">
+                  <div className="text-3xl sm:text-4xl font-extrabold text-[#354024] font-modern">
                     <AnimatedCounter value={60} suffix="+" />
                   </div>
-                  <div className="text-[11px] font-bold text-slate-600 uppercase tracking-wider mt-0.5">
+                  <div className="text-xs font-bold text-slate-600 uppercase tracking-wider mt-1">
                     Years Heritage
                   </div>
                 </div>
 
-                <div className="text-left border-l border-slate-200 pl-3 sm:pl-4">
-                  <div className="text-2xl sm:text-3xl font-extrabold text-[#0a192f] font-modern">
+                <div className="text-left border-l border-slate-200 pl-4 sm:pl-6">
+                  <div className="text-3xl sm:text-4xl font-extrabold text-[#0a192f] font-modern">
                     <AnimatedCounter value={100} suffix="%" />
                   </div>
-                  <div className="text-[11px] font-bold text-slate-600 uppercase tracking-wider mt-0.5">
+                  <div className="text-xs font-bold text-slate-600 uppercase tracking-wider mt-1">
                     Board Pass Rate
                   </div>
                 </div>
 
-                <div className="text-left border-l border-slate-200 pl-3 sm:pl-4">
-                  <div className="text-2xl sm:text-3xl font-extrabold text-[#cfbb99] font-modern">
+                <div className="text-left border-l border-slate-200 pl-4 sm:pl-6">
+                  <div className="text-3xl sm:text-4xl font-extrabold text-[#cfbb99] font-modern">
                     <AnimatedCounter value={10000} suffix="+" />
                   </div>
-                  <div className="text-[11px] font-bold text-slate-600 uppercase tracking-wider mt-0.5">
+                  <div className="text-xs font-bold text-slate-600 uppercase tracking-wider mt-1">
                     Global Alumni
                   </div>
                 </div>
               </div>
 
               {/* Action Buttons Row */}
-              <div className="flex flex-wrap items-center justify-between gap-4 pt-4">
+              <div className="flex flex-wrap items-center gap-4 pt-2">
                 <button
                   onClick={() => {
                     if (onNavigateRoute) {
@@ -202,7 +209,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                       if (el) el.scrollIntoView({ behavior: 'smooth' });
                     }
                   }}
-                  className="group inline-flex items-center gap-2.5 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-6 py-3.5 rounded-full text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all cursor-pointer"
+                  className="group inline-flex items-center gap-2.5 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-7 py-3.5 rounded-full text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all cursor-pointer"
                 >
                   <Images className="w-4 h-4 text-white" />
                   <span>EXPLORE PHOTO ARCHIVES</span>
@@ -212,19 +219,19 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                 {onNavigateRoute && (
                   <button
                     onClick={() => onNavigateRoute('about')}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0a192f] hover:text-[#354024] uppercase tracking-wider transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-2 text-xs font-bold text-[#0a192f] hover:text-[#354024] uppercase tracking-wider transition-colors py-3.5 px-4 cursor-pointer"
                   >
                     <span>Read Full History</span>
                     <span>→</span>
                   </button>
                 )}
               </div>
-            </div>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
 
-        {/* 4 Core Heritage Pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 4 Core Heritage Pillars - Clean Editorial Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-6 border-t border-slate-200">
           {heritagePillars.map((pillar, idx) => {
             const Icon = pillar.icon;
             return (
@@ -235,21 +242,21 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: idx * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-card hover:shadow-xl hover:border-[#354024]/30 transition-all duration-300 flex flex-col justify-between group"
+                className="p-5 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                    <Icon className={`w-6 h-6 ${pillar.iconColor}`} />
+                  <div className="w-11 h-11 rounded-xl bg-slate-100/80 border border-slate-200/60 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <Icon className={`w-5 h-5 ${pillar.iconColor}`} />
                   </div>
                   <h4 className="font-crest text-base font-bold text-[#0a192f] group-hover:text-[#354024] transition-colors">
                     {pillar.title}
                   </h4>
-                  <p className="text-slate-600 text-xs mt-2.5 leading-relaxed">
+                  <p className="text-slate-600 text-xs mt-2 leading-relaxed">
                     {pillar.desc}
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-400 group-hover:text-[#354024] transition-colors">
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-400 group-hover:text-[#354024] transition-colors">
                   <span>Pillar 0{idx + 1}</span>
                   <span className="text-[#354024] font-bold">→</span>
                 </div>
