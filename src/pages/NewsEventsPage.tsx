@@ -111,7 +111,7 @@ const upcomingEvents = [
     category: 'Sports',
     spots: 'Spectator Entry Open',
     desc: 'District-level athletics including 100m–1500m track events, long jump, and relay races.',
-    color: 'bg-[#0a192f]',
+    color: 'bg-[#1b2213]',
   },
   {
     id: 5,
@@ -166,7 +166,7 @@ export const NewsEventsPage: React.FC<NewsEventsPageProps> = ({ onNavigateRoute 
       </div>
 
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white py-14 lg:py-20 px-4 overflow-hidden border-b border-sky-950">
+      <section className="relative bg-gradient-to-br from-[#141a0e] via-[#1b2213] to-[#252d19] text-white py-14 lg:py-20 px-4 overflow-hidden border-b border-[#141a0e]">
         <div className="w-[90%] mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 mb-5">
             <Sparkles className="w-4 h-4 text-[#cfbb99]" />
@@ -210,7 +210,7 @@ export const NewsEventsPage: React.FC<NewsEventsPageProps> = ({ onNavigateRoute 
               <Newspaper className="w-3.5 h-3.5 text-[#354024]" />
               <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">School News</span>
             </div>
-            <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Latest from AMAA</h2>
+            <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">Latest from AMAA</h2>
           </div>
         </div>
 
@@ -227,7 +227,7 @@ export const NewsEventsPage: React.FC<NewsEventsPageProps> = ({ onNavigateRoute 
             >
               <div className="h-56 overflow-hidden relative">
                 <img src={article.image} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f]/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1b2213]/80 to-transparent" />
                 <span className="absolute top-4 left-4 bg-[#354024] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">{article.category}</span>
               </div>
               <div className="p-7">
@@ -235,7 +235,7 @@ export const NewsEventsPage: React.FC<NewsEventsPageProps> = ({ onNavigateRoute 
                   <Clock className="w-3.5 h-3.5" />
                   <span>{article.date}</span>
                 </div>
-                <h3 className="font-crest text-xl font-bold text-[#0a192f] leading-snug mb-3">{article.title}</h3>
+                <h3 className="font-crest text-xl font-bold text-[#1b2213] leading-snug mb-3">{article.title}</h3>
                 <p className="text-sm text-slate-600 leading-relaxed">{article.summary}</p>
               </div>
             </motion.div>
@@ -260,7 +260,7 @@ export const NewsEventsPage: React.FC<NewsEventsPageProps> = ({ onNavigateRoute 
                     <span className="text-[10px] font-bold text-[#354024] uppercase tracking-wider bg-[#354024]/10 px-2 py-0.5 rounded-full">{article.category}</span>
                     <span className="text-[10px] text-slate-400">{article.date}</span>
                   </div>
-                  <h4 className="font-bold text-[#0a192f] text-sm leading-snug line-clamp-2">{article.title}</h4>
+                  <h4 className="font-bold text-[#1b2213] text-sm leading-snug line-clamp-2">{article.title}</h4>
                   <p className="text-xs text-slate-500 mt-1 line-clamp-2">{article.summary}</p>
                 </div>
               </motion.div>
@@ -277,7 +277,7 @@ export const NewsEventsPage: React.FC<NewsEventsPageProps> = ({ onNavigateRoute 
               <Megaphone className="w-3.5 h-3.5 text-[#354024]" />
               <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Official Notices</span>
             </div>
-            <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Announcements</h2>
+            <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">Announcements</h2>
             <p className="text-slate-600 text-sm mt-2">Important notices and official communications from the school administration.</p>
           </div>
 
@@ -304,7 +304,7 @@ export const NewsEventsPage: React.FC<NewsEventsPageProps> = ({ onNavigateRoute 
                         <span className="text-[10px] font-bold text-[#354024] uppercase tracking-wider bg-[#354024]/10 px-2.5 py-0.5 rounded-full">{ann.category}</span>
                         <span className="text-[10px] text-slate-400 flex items-center gap-1"><Clock className="w-3 h-3" />{ann.date}</span>
                       </div>
-                      <h4 className="font-bold text-[#0a192f] text-sm">{ann.title}</h4>
+                      <h4 className="font-bold text-[#1b2213] text-sm">{ann.title}</h4>
                     </div>
                   </div>
                   {expandedAnnouncement === ann.id ? <ChevronUp className="w-4 h-4 text-slate-400 shrink-0 mt-1" /> : <ChevronDown className="w-4 h-4 text-slate-400 shrink-0 mt-1" />}
@@ -335,7 +335,7 @@ export const NewsEventsPage: React.FC<NewsEventsPageProps> = ({ onNavigateRoute 
             <CalendarDays className="w-3.5 h-3.5 text-[#354024]" />
             <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Campus Calendar</span>
           </div>
-          <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Upcoming Events</h2>
+          <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">Upcoming Events</h2>
           <p className="text-slate-600 text-sm mt-2">Mark your calendar — open days, competitions, cultural programmes and more.</p>
         </div>
 
@@ -383,7 +383,7 @@ export const NewsEventsPage: React.FC<NewsEventsPageProps> = ({ onNavigateRoute 
               <FileText className="w-3.5 h-3.5 text-[#354024]" />
               <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Official Documents</span>
             </div>
-            <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Circulars & Letters</h2>
+            <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">Circulars & Letters</h2>
             <p className="text-slate-600 text-sm mt-2">Official school circulars for parents and students. Click to download.</p>
           </div>
 
@@ -406,7 +406,7 @@ export const NewsEventsPage: React.FC<NewsEventsPageProps> = ({ onNavigateRoute 
                       <span className="text-[10px] font-bold text-slate-500 bg-slate-200 px-2 py-0.5 rounded-full">{circ.type}</span>
                       <span className="text-[10px] text-slate-400">{circ.pages}</span>
                     </div>
-                    <h4 className="font-bold text-[#0a192f] text-sm leading-snug">{circ.title}</h4>
+                    <h4 className="font-bold text-[#1b2213] text-sm leading-snug">{circ.title}</h4>
                     <div className="flex items-center gap-1 text-[10px] text-slate-500 mt-1">
                       <Clock className="w-3 h-3" />
                       {circ.date}

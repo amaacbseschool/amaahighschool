@@ -75,13 +75,13 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
             </span>
           </div>
 
-          <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0a192f] tracking-tight">
+          <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] tracking-tight">
             <TextReveal>School Heritage & Founding Ethos</TextReveal>
           </h2>
 
           <p className="text-slate-600 text-sm sm:text-base mt-4 leading-relaxed">
             Since 1965, A.M.A. Adinarayana English Medium High School has illuminated young minds under the timeless invocation{' '}
-            <strong className="text-[#0a192f] font-bold">"Lead Kindly Light"</strong>. We combine traditional moral fortitude with contemporary academic excellence.
+            <strong className="text-[#1b2213] font-bold">"Lead Kindly Light"</strong>. We combine traditional moral fortitude with contemporary academic excellence.
           </p>
         </motion.div>
 
@@ -150,7 +150,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                 </div>
 
                 {/* Main Heading */}
-                <h3 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0a192f] tracking-tight leading-tight">
+                <h3 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] tracking-tight leading-tight">
                   “Lead Kindly Light”
                 </h3>
                 <p className="text-xs font-semibold text-[#cfbb99] tracking-wider uppercase mt-1.5">
@@ -180,7 +180,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                 </div>
 
                 <div className="text-left border-l border-slate-200 pl-4 sm:pl-6">
-                  <div className="text-3xl sm:text-4xl font-extrabold text-[#0a192f] font-modern">
+                  <div className="text-3xl sm:text-4xl font-extrabold text-[#1b2213] font-modern">
                     <AnimatedCounter value={100} suffix="%" />
                   </div>
                   <div className="text-xs font-bold text-slate-600 uppercase tracking-wider mt-1">
@@ -219,7 +219,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                 {onNavigateRoute && (
                   <button
                     onClick={() => onNavigateRoute('about')}
-                    className="inline-flex items-center gap-2 text-xs font-bold text-[#0a192f] hover:text-[#354024] uppercase tracking-wider transition-colors py-3.5 px-4 cursor-pointer"
+                    className="inline-flex items-center gap-2 text-xs font-bold text-[#1b2213] hover:text-[#354024] uppercase tracking-wider transition-colors py-3.5 px-4 cursor-pointer"
                   >
                     <span>Read Full History</span>
                     <span>→</span>
@@ -248,7 +248,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                   <div className="w-11 h-11 rounded-xl bg-slate-100/80 border border-slate-200/60 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <Icon className={`w-5 h-5 ${pillar.iconColor}`} />
                   </div>
-                  <h4 className="font-crest text-base font-bold text-[#0a192f] group-hover:text-[#354024] transition-colors">
+                  <h4 className="font-crest text-base font-bold text-[#1b2213] group-hover:text-[#354024] transition-colors">
                     {pillar.title}
                   </h4>
                   <p className="text-slate-600 text-xs mt-2 leading-relaxed">

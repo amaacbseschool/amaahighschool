@@ -124,7 +124,7 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
                 WORLD-CLASS INFRASTRUCTURE
               </span>
             </div>
-            <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0a192f] tracking-tight mt-1">
+            <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] tracking-tight mt-1">
               <TextReveal>Our Campus & Facilities</TextReveal>
             </h2>
             <p className="text-slate-600 text-sm sm:text-base max-w-2xl mt-3 leading-relaxed">
@@ -171,7 +171,7 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
                       loading="lazy"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-95"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f]/90 via-[#0a192f]/30 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1b2213]/90 via-[#1b2213]/30 to-transparent pointer-events-none" />
 
                     {/* Top Floating Badge */}
                     <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-xs px-3 py-1 rounded-full text-[11px] font-bold text-[#354024] shadow-md">
@@ -229,7 +229,7 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="bg-[#07111e] text-white rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-slate-800"
+          className="bg-[#141a0e] text-white rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-slate-800"
         >
           <div className="flex items-center gap-4">
             <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center shrink-0 text-[#cfbb99]">
@@ -274,7 +274,7 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
                   alt={selectedFacility.title}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f] via-[#0a192f]/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1b2213] via-[#1b2213]/40 to-transparent" />
                 <button
                   onClick={() => setSelectedFacility(null)}
                   className="absolute top-4 right-4 bg-black/60 hover:bg-black text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors cursor-pointer"
@@ -300,7 +300,7 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
                 </p>
 
                 <div>
-                  <h4 className="text-xs font-bold text-[#0a192f] uppercase tracking-wider mb-3">
+                  <h4 className="text-xs font-bold text-[#1b2213] uppercase tracking-wider mb-3">
                     Facility Specifications & Standards:
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">

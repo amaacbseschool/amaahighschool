@@ -93,7 +93,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
       description:
         'Regulation 400m sprint heats, high jump records, taekwondo self-defence demonstration, and the presentation of the coveted Diamond Jubilee House Trophy.',
       badge: 'Sports Showcase',
-      badgeColor: 'bg-[#0a192f] text-white',
+      badgeColor: 'bg-[#1b2213] text-white',
       spotsLeft: 'Spectator Entry Open',
     },
   ];
@@ -131,7 +131,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
                 EXPERIENCE THE HERITAGE FIRST-HAND
               </span>
             </div>
-            <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0a192f] tracking-tight">
+            <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] tracking-tight">
               <TextReveal>Open Days & Campus Events</TextReveal>
             </h2>
             <p className="text-slate-600 text-sm sm:text-base max-w-2xl mt-3 leading-relaxed">
@@ -167,7 +167,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
                 <div className="flex items-start justify-between gap-4 mb-5">
                   <div className="flex items-center gap-3.5">
                     {/* Modern Style Date Badge */}
-                    <div className="w-14 h-16 bg-[#0a192f] group-hover:bg-[#354024] text-white rounded-xl flex flex-col items-center justify-center shadow-md transition-colors duration-300 shrink-0">
+                    <div className="w-14 h-16 bg-[#1b2213] group-hover:bg-[#354024] text-white rounded-xl flex flex-col items-center justify-center shadow-md transition-colors duration-300 shrink-0">
                       <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#cfbb99]">
                         {evt.date.month}
                       </span>
@@ -192,7 +192,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
                   </span>
                 </div>
 
-                <h3 className="font-crest text-xl font-bold text-[#0a192f] group-hover:text-[#354024] transition-colors leading-snug mb-2.5">
+                <h3 className="font-crest text-xl font-bold text-[#1b2213] group-hover:text-[#354024] transition-colors leading-snug mb-2.5">
                   {evt.title}
                 </h3>
 
@@ -243,7 +243,7 @@ export const OpenDaysEventsSection: React.FC<OpenDaysEventsSectionProps> = ({
                 <span className="text-[11px] font-bold text-[#354024] uppercase tracking-wider">
                   Campus Visit Registration
                 </span>
-                <h3 className="font-crest text-xl font-bold text-[#0a192f] mt-1">
+                <h3 className="font-crest text-xl font-bold text-[#1b2213] mt-1">
                   {selectedEvent.title}
                 </h3>
                 <p className="text-xs text-slate-500 mt-1 flex items-center gap-2">

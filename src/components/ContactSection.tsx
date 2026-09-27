@@ -50,13 +50,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
     <section id="contact" className="py-20 lg:py-28 bg-[#f8fafc] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200/80 px-3.5 py-1 rounded-full mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#1d4ed8]" />
-            <span className="text-[11px] font-extrabold tracking-widest text-[#1d4ed8] uppercase">
+          <div className="inline-flex items-center gap-2 bg-[#354024]/5 border border-[#354024]/20 px-3.5 py-1 rounded-full mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#354024]" />
+            <span className="text-[11px] font-extrabold tracking-widest text-[#354024] uppercase">
               GET IN TOUCH
             </span>
           </div>
-          <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0a192f] tracking-tight mt-1">
+          <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1b2213] tracking-tight mt-1">
             <TextReveal>Connect With Our Campus</TextReveal>
           </h2>
           <p className="text-slate-600 text-sm sm:text-base mt-2 leading-relaxed">
@@ -67,9 +67,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left: Contact Info Cards */}
           <div className="lg:col-span-5 space-y-5">
-            <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#1d4ed8] flex items-center justify-center shrink-0 border border-blue-200">
-                <MapPin className="w-6 h-6 text-[#1d4ed8]" />
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-[#354024]/5 text-[#354024] flex items-center justify-center shrink-0 border border-[#354024]/20">
+                <MapPin className="w-6 h-6 text-[#354024]" />
               </div>
               <div>
                 <h4 className="text-sm font-bold text-slate-900">Campus Location</h4>
@@ -79,9 +79,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#1d4ed8] flex items-center justify-center shrink-0 border border-blue-200">
-                <Phone className="w-6 h-6 text-[#1d4ed8]" />
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-[#354024]/5 text-[#354024] flex items-center justify-center shrink-0 border border-[#354024]/20">
+                <Phone className="w-6 h-6 text-[#354024]" />
               </div>
               <div>
                 <h4 className="text-sm font-bold text-slate-900">Telephone Lines</h4>
@@ -94,24 +94,24 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#1d4ed8] flex items-center justify-center shrink-0 border border-blue-200">
-                <Mail className="w-6 h-6 text-[#1d4ed8]" />
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-[#354024]/5 text-[#354024] flex items-center justify-center shrink-0 border border-[#354024]/20">
+                <Mail className="w-6 h-6 text-[#354024]" />
               </div>
               <div>
                 <h4 className="text-sm font-bold text-slate-900">Official Correspondence</h4>
                 <p className="text-xs text-slate-600 mt-1">
-                  General: <span className="text-[#1d4ed8] font-medium">info@amaaschool.edu</span>
+                  General: <span className="text-[#354024] font-medium">info@amaaschool.edu</span>
                 </p>
                 <p className="text-xs text-slate-600">
-                  Admissions: <span className="text-[#1d4ed8] font-medium">admissions@amaaschool.edu</span>
+                  Admissions: <span className="text-[#354024] font-medium">admissions@amaaschool.edu</span>
                 </p>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#1d4ed8] flex items-center justify-center shrink-0 border border-blue-200">
-                <Clock className="w-6 h-6 text-[#1d4ed8]" />
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-[#354024]/5 text-[#354024] flex items-center justify-center shrink-0 border border-[#354024]/20">
+                <Clock className="w-6 h-6 text-[#354024]" />
               </div>
               <div>
                 <h4 className="text-sm font-bold text-slate-900">Visiting Hours</h4>
@@ -124,26 +124,26 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
           </div>
 
           {/* Right: Contact Inquiry Form */}
-          <div className="lg:col-span-7 bg-white p-8 rounded-3xl border border-blue-100 shadow-xl relative">
+          <div className="lg:col-span-7 bg-white p-8 rounded-3xl border border-slate-200 shadow-xl relative">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="font-crest text-xl sm:text-2xl font-bold text-[#0a192f]">
+                <h3 className="font-crest text-xl sm:text-2xl font-bold text-[#1b2213]">
                   Send an Inquiry
                 </h3>
                 <p className="text-xs text-slate-500 mt-1">
                   Direct message our principal or admissions department.
                 </p>
               </div>
-              <div className="hidden sm:flex items-center gap-1 text-[11px] font-bold text-[#1d4ed8] bg-sky-50 px-3 py-1 rounded-full border border-blue-200">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#1d4ed8]" />
+              <div className="hidden sm:flex items-center gap-1 text-[11px] font-bold text-[#354024] bg-[#354024]/5 px-3 py-1 rounded-full border border-[#354024]/20">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#354024]" />
                 <span>SQL Persisted</span>
               </div>
             </div>
 
             {submitted ? (
-              <div className="p-8 text-center bg-sky-50/70 rounded-2xl border border-blue-100 space-y-3">
-                <CheckCircle2 className="w-12 h-12 text-[#1d4ed8] mx-auto" />
-                <h4 className="font-crest text-lg font-bold text-[#0a192f]">
+              <div className="p-8 text-center bg-[#354024]/5 rounded-2xl border border-slate-200 space-y-3">
+                <CheckCircle2 className="w-12 h-12 text-[#354024] mx-auto" />
+                <h4 className="font-crest text-lg font-bold text-[#1b2213]">
                   Message Logged Successfully!
                 </h4>
                 <p className="text-xs text-slate-600 max-w-sm mx-auto">
@@ -151,7 +151,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="mt-2 text-xs font-bold text-[#1d4ed8] hover:underline"
+                  className="mt-2 text-xs font-bold text-[#354024] hover:underline"
                 >
                   Send another query
                 </button>
@@ -169,7 +169,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
                       placeholder="e.g. Mrs. Neha Kulkarni"
                       value={formData.full_name}
                       onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                      className="w-full p-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#1d4ed8] focus:ring-1 focus:ring-[#1d4ed8] outline-none"
+                      className="w-full p-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#354024] focus:ring-1 focus:ring-[#354024] outline-none"
                     />
                   </div>
 
@@ -183,7 +183,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
                       placeholder="neha@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full p-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#1d4ed8] focus:ring-1 focus:ring-[#1d4ed8] outline-none"
+                      className="w-full p-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#354024] focus:ring-1 focus:ring-[#354024] outline-none"
                     />
                   </div>
                 </div>
@@ -198,7 +198,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
                       placeholder="+91 98220 99887"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full p-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#1d4ed8] focus:ring-1 focus:ring-[#1d4ed8] outline-none"
+                      className="w-full p-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#354024] focus:ring-1 focus:ring-[#354024] outline-none"
                     />
                   </div>
 
@@ -212,7 +212,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
                       placeholder="e.g. Campus Tour / Fee Structure"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full p-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#1d4ed8] focus:ring-1 focus:ring-[#1d4ed8] outline-none"
+                      className="w-full p-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#354024] focus:ring-1 focus:ring-[#354024] outline-none"
                     />
                   </div>
                 </div>
@@ -227,14 +227,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
                     placeholder="Write your questions or notes here..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full p-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#1d4ed8] focus:ring-1 focus:ring-[#1d4ed8] outline-none resize-none"
+                    className="w-full p-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-[#354024] focus:ring-1 focus:ring-[#354024] outline-none resize-none"
                   />
                 </div>
 
                 <MagneticButton
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full group inline-flex items-center justify-center gap-2 bg-[#1d4ed8] hover:bg-[#1e40af] text-white font-bold py-3.5 rounded-xl shadow-lg transition-all text-xs uppercase tracking-wider disabled:opacity-50"
+                  className="w-full group inline-flex items-center justify-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold py-3.5 rounded-xl shadow-lg transition-all text-xs uppercase tracking-wider disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <span>Recording Query...</span>

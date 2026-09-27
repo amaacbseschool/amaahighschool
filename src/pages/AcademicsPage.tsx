@@ -77,7 +77,7 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
       </div>
 
       {/* 2. Hero Section */}
-      <section id="curriculum" className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white py-16 lg:py-24 px-4 sm:px-8 xl:px-12 overflow-hidden border-b border-sky-950">
+      <section id="curriculum" className="relative bg-gradient-to-br from-[#141a0e] via-[#1b2213] to-[#252d19] text-white py-16 lg:py-24 px-4 sm:px-8 xl:px-12 overflow-hidden border-b border-[#141a0e]">
         <div className="w-[90%] mx-auto relative z-10 text-center">
           <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-5 py-2 rounded-full border border-white/20 mb-6">
             <img
@@ -139,7 +139,7 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
                 <div className="text-3xl font-extrabold text-[#354024] tracking-tight font-modern">
                   <AnimatedCounter value={m.value} prefix={m.prefix} suffix={m.suffix} />
                 </div>
-                <div className="text-xs font-bold text-[#0a192f] mt-1">{m.label}</div>
+                <div className="text-xs font-bold text-[#1b2213] mt-1">{m.label}</div>
                 <div className="text-[11px] text-slate-500 mt-0.5">{m.desc}</div>
               </div>
             </div>

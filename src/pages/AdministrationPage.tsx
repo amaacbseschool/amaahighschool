@@ -170,15 +170,15 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-[#354024] selection:text-white pb-20">
       {/* Toast Notification */}
       {successToast && (
-        <div className="fixed top-5 right-5 z-50 flex items-center gap-3 bg-[#0a192f] text-white px-5 py-3.5 rounded-xl shadow-2xl border border-[#cfbb99]/40 animate-bounce">
+        <div className="fixed top-5 right-5 z-50 flex items-center gap-3 bg-[#1b2213] text-white px-5 py-3.5 rounded-xl shadow-2xl border border-[#cfbb99]/40 animate-bounce">
           <CheckCircle2 className="w-5 h-5 text-[#cfbb99] shrink-0" />
           <span className="text-sm font-medium">{successToast}</span>
         </div>
       )}
 
       {/* Hero / Header Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0a192f] via-[#0f274a] to-[#071324] text-white pt-12 pb-20 border-b border-slate-800">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(2,132,199,0.15),transparent_70%)] pointer-events-none" />
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#1b2213] via-[#0f274a] to-[#071324] text-white pt-12 pb-20 border-b border-slate-800">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(53,64,36,0.15),transparent_70%)] pointer-events-none" />
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#d97706]/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="w-[90%] mx-auto relative z-10">
@@ -297,7 +297,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                 onClick={() => setSelectedCommittee(comm)}
                 className={`text-xs font-semibold px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer ${
                   selectedCommittee === comm
-                    ? 'bg-[#0a192f] text-white shadow-xs'
+                    ? 'bg-[#1b2213] text-white shadow-xs'
                     : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                 }`}
               >
@@ -330,7 +330,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
         {/* Directory Count Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="font-crest text-xl sm:text-2xl font-bold text-[#0a192f]">
+            <h2 className="font-crest text-xl sm:text-2xl font-bold text-[#1b2213]">
               Governing Body Members
             </h2>
             <p className="text-xs text-slate-500 mt-0.5">
@@ -373,7 +373,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                 className="group relative bg-white rounded-2xl border border-slate-200/90 shadow-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden"
               >
                 {/* Top Accent Bar */}
-                <div className="h-1.5 w-full bg-gradient-to-r from-[#0a192f] via-[#354024] to-[#d97706]" />
+                <div className="h-1.5 w-full bg-gradient-to-r from-[#1b2213] via-[#354024] to-[#d97706]" />
 
                 <div className="p-6">
                   {/* Header: Photo / Monogram & Badges */}
@@ -390,7 +390,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                           }}
                         />
                       ) : (
-                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0a192f] to-[#354024] flex items-center justify-center text-white font-crest font-bold text-xl shadow-xs">
+                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1b2213] to-[#354024] flex items-center justify-center text-white font-crest font-bold text-xl shadow-xs">
                           {member.name.replace(/Sri|Dr\.|Mrs\.|Mr\./gi, '').trim().charAt(0) || 'A'}
                         </div>
                       )}
@@ -410,7 +410,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                   </div>
 
                   {/* Name & Academic Credentials */}
-                  <h3 className="font-crest text-lg font-bold text-[#0a192f] group-hover:text-[#354024] transition-colors">
+                  <h3 className="font-crest text-lg font-bold text-[#1b2213] group-hover:text-[#354024] transition-colors">
                     {member.name}
                   </h3>
                   <p className="text-xs font-mono font-medium text-slate-600 mt-1">
@@ -474,7 +474,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
         )}
 
         {/* Staff Operations & Administrative Dashboard Banner */}
-        <section className="mt-12 bg-gradient-to-r from-[#0a192f] via-[#0f274a] to-[#071324] text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl relative overflow-hidden">
+        <section className="mt-12 bg-gradient-to-r from-[#1b2213] via-[#0f274a] to-[#071324] text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-80 bg-[#354024]/10 rounded-full blur-3xl pointer-events-none" />
           <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="space-y-2 max-w-xl">
@@ -508,7 +508,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
             <span className="text-xs font-bold text-[#d97706] uppercase tracking-widest bg-amber-50 border border-amber-200/60 px-3 py-1 rounded-full">
               ORGANISATIONAL FRAMEWORK
             </span>
-            <h2 className="font-crest text-2xl sm:text-3xl font-extrabold text-[#0a192f] mt-3">
+            <h2 className="font-crest text-2xl sm:text-3xl font-extrabold text-[#1b2213] mt-3">
               Governance Standards & Fiduciary Charter
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
@@ -520,7 +520,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/80">
               <Scale className="w-6 h-6 text-[#354024] mb-3" />
-              <h4 className="font-crest text-base font-bold text-[#0a192f]">Fiduciary Oversight</h4>
+              <h4 className="font-crest text-base font-bold text-[#1b2213]">Fiduciary Oversight</h4>
               <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
                 Independent annual chartered audits, transparent fee structures, and disciplined allocation of resources toward lab and library modernization.
               </p>
@@ -528,7 +528,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
 
             <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/80">
               <BookOpen className="w-6 h-6 text-[#354024] mb-3" />
-              <h4 className="font-crest text-base font-bold text-[#0a192f]">Academic Autonomy</h4>
+              <h4 className="font-crest text-base font-bold text-[#1b2213]">Academic Autonomy</h4>
               <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
                 Empowering the Principal and faculty council with complete pedagogical freedom to introduce enriched science practicals, Olympiad training, and arts.
               </p>
@@ -536,7 +536,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
 
             <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/80">
               <Building2 className="w-6 h-6 text-[#354024] mb-3" />
-              <h4 className="font-crest text-base font-bold text-[#0a192f]">Campus Safety & Health</h4>
+              <h4 className="font-crest text-base font-bold text-[#1b2213]">Campus Safety & Health</h4>
               <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
                 Statutory fire safety audits, CCTV surveillance protocols, seismic structural compliance, and strict background checks for all campus personnel.
               </p>
@@ -544,7 +544,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
 
             <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/80">
               <Users className="w-6 h-6 text-[#354024] mb-3" />
-              <h4 className="font-crest text-base font-bold text-[#0a192f]">Parent & Alumni Voice</h4>
+              <h4 className="font-crest text-base font-bold text-[#1b2213]">Parent & Alumni Voice</h4>
               <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
                 Formal representation of parent councils and alumni advisors in all strategic expansion and student wellness decisions.
               </p>
@@ -558,7 +558,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
           <div className="bg-white w-full max-w-xl rounded-3xl shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200 max-h-[92vh] flex flex-col">
             {/* Modal Header */}
-            <div className="bg-[#0a192f] text-white px-6 py-5 flex items-center justify-between">
+            <div className="bg-[#1b2213] text-white px-6 py-5 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-xl bg-[#354024]/20 border border-[#354024]/40 text-[#cfbb99]">
                   <ShieldCheck className="w-5 h-5" />
@@ -725,7 +725,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-[#0a192f] to-[#354024] hover:from-[#0f274a] hover:to-[#252d19] text-white font-semibold shadow-md shadow-slate-900/20 cursor-pointer"
+                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-[#1b2213] to-[#354024] hover:from-[#0f274a] hover:to-[#252d19] text-white font-semibold shadow-md shadow-slate-900/20 cursor-pointer"
                 >
                   {editingMember ? 'Save Changes' : 'Confirm Appointment'}
                 </button>

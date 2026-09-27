@@ -34,8 +34,8 @@ export const FacultyPage: React.FC<FacultyPageProps> = ({
       </div>
 
       {/* Hero Header - Deep Navy & Azure Blue */}
-      <div className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white py-16 lg:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(2,132,199,0.25),transparent_50%)] pointer-events-none" />
+      <div className="bg-gradient-to-br from-[#141a0e] via-[#1b2213] to-[#252d19] text-white py-16 lg:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(53,64,36,0.25),transparent_50%)] pointer-events-none" />
         <div className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 mb-6">
             <img src={logoImg} alt="School Emblem" className="w-5 h-5 object-contain" />

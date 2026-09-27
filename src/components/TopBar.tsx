@@ -10,7 +10,7 @@ interface TopBarProps {
 
 export const TopBar: React.FC<TopBarProps> = ({ onNavigateRoute }) => {
   return (
-    <div className="bg-[#07111e] text-slate-300 text-xs py-2 border-b border-white/10 relative z-30">
+    <div className="bg-[#141a0e] text-slate-300 text-xs py-2 border-b border-white/10 relative z-30">
       <div className="w-[90%] mx-auto flex flex-wrap items-center justify-between gap-3">
         {/* Contact info & Official Motto */}
         <div className="flex flex-wrap items-center gap-3 sm:gap-5">

@@ -18,7 +18,7 @@ export const AdmissionBanner: React.FC<AdmissionBannerProps> = ({ onOpenAdmissio
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative bg-gradient-to-r from-[#0a192f] via-[#0c2340] to-[#16325c] rounded-3xl p-6 sm:p-10 shadow-2xl border-2 border-[#cfbb99]/60 overflow-hidden"
+          className="relative bg-gradient-to-r from-[#1b2213] via-[#252d19] to-[#354024] rounded-3xl p-6 sm:p-10 shadow-2xl border-2 border-[#cfbb99]/60 overflow-hidden"
         >
           {/* Subtle Background Elements */}
           <div className="absolute -right-10 -bottom-10 w-60 h-60 bg-[#cfbb99]/15 rounded-full blur-3xl pointer-events-none" />
@@ -45,7 +45,7 @@ export const AdmissionBanner: React.FC<AdmissionBannerProps> = ({ onOpenAdmissio
             </div>
 
             {/* Center: Tagline with vertical separator */}
-            <div className="hidden xl:flex items-center gap-6 text-blue-100/90 border-x border-[#cfbb99]/40 px-8">
+            <div className="hidden xl:flex items-center gap-6 text-[#cfbb99] border-x border-[#cfbb99]/40 px-8">
               <p className="text-base font-medium max-w-xs leading-snug">
                 Give your child the best foundation at A.M.A. Adinarayana Eng. Med. High School.
               </p>
@@ -55,7 +55,7 @@ export const AdmissionBanner: React.FC<AdmissionBannerProps> = ({ onOpenAdmissio
             <div className="shrink-0 w-full sm:w-auto text-center">
               <MagneticButton
                 onClick={onOpenAdmission}
-                className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#f7f3eb] via-[#cfbb99] to-[#b8a27d] hover:from-white hover:to-[#cfbb99] text-[#0a192f] font-black px-8 py-4 rounded-xl shadow-secondary-glow transition-all duration-300 text-xs sm:text-sm tracking-wider uppercase border-2 border-white/60"
+                className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#f7f3eb] via-[#cfbb99] to-[#b8a27d] hover:from-white hover:to-[#cfbb99] text-[#1b2213] font-black px-8 py-4 rounded-xl shadow-secondary-glow transition-all duration-300 text-xs sm:text-sm tracking-wider uppercase border-2 border-white/60"
               >
                 <span>ENQUIRE NOW</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

@@ -114,7 +114,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                 ACADEMIC PATHWAYS • GRADES VI TO X
               </span>
             </div>
-            <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0a192f] tracking-tight">
+            <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] tracking-tight">
               <TextReveal>Explore. Learn. Excel.</TextReveal>
             </h2>
             <p className="text-slate-600 text-sm sm:text-base max-w-2xl mt-3 leading-relaxed">
@@ -134,7 +134,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
 
               <button
                 onClick={() => onNavigateRoute('academics')}
-                className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#0a192f] font-bold px-5 py-3 rounded-full border border-slate-200 text-xs tracking-wider uppercase transition-all cursor-pointer shadow-subtle"
+                className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#1b2213] font-bold px-5 py-3 rounded-full border border-slate-200 text-xs tracking-wider uppercase transition-all cursor-pointer shadow-subtle"
               >
                 <span>VIEW SYLLABUS</span>
                 <ArrowRight className="w-4 h-4 text-[#354024]" />
@@ -160,7 +160,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                     <span className="text-2xl font-black text-[#354024] font-modern">
                       {item.number}
                     </span>
-                    <span className="font-crest font-bold text-sm text-[#0a192f]">
+                    <span className="font-crest font-bold text-sm text-[#1b2213]">
                       {item.title}
                     </span>
                   </div>
@@ -186,7 +186,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                   onClick={() => setSelectedStageIndex(idx)}
                   className={`p-4 rounded-2xl text-left transition-all duration-300 cursor-pointer flex items-center gap-3.5 ${
                     isSelected
-                      ? 'bg-white text-[#0a192f] shadow-md border border-slate-200 ring-2 ring-[#354024]/20'
+                      ? 'bg-white text-[#1b2213] shadow-md border border-slate-200 ring-2 ring-[#354024]/20'
                       : 'hover:bg-white/60 text-slate-600'
                   }`}
                 >
@@ -203,7 +203,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                     <div className="text-[11px] font-bold text-[#354024] uppercase tracking-wider">
                       {stage.gradeRange}
                     </div>
-                    <div className="font-crest font-bold text-sm sm:text-base text-[#0a192f] truncate">
+                    <div className="font-crest font-bold text-sm sm:text-base text-[#1b2213] truncate">
                       {stage.title}
                     </div>
                   </div>
@@ -238,7 +238,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                       </span>
                     </div>
 
-                    <h3 className="font-crest text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0a192f] leading-tight">
+                    <h3 className="font-crest text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1b2213] leading-tight">
                       {currentStage.title} ({currentStage.gradeRange})
                     </h3>
 
@@ -260,7 +260,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                       {currentStage.subjects.map((sub, sidx) => (
                         <div
                           key={sidx}
-                          className="flex items-center gap-2.5 bg-slate-50 border border-slate-200/80 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-[#0a192f]"
+                          className="flex items-center gap-2.5 bg-slate-50 border border-slate-200/80 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-[#1b2213]"
                         >
                           <span className="w-2 h-2 rounded-full bg-[#354024] shrink-0" />
                           <span>{sub}</span>
@@ -286,7 +286,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                 </div>
 
                 {/* Right: Stage Visual Spotlight Card & Fast Action */}
-                <div className="lg:col-span-5 bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white p-7 sm:p-8 rounded-3xl shadow-xl flex flex-col justify-between text-center relative overflow-hidden">
+                <div className="lg:col-span-5 bg-gradient-to-br from-[#141a0e] via-[#1b2213] to-[#252d19] text-white p-7 sm:p-8 rounded-3xl shadow-xl flex flex-col justify-between text-center relative overflow-hidden">
                   <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-white mx-auto mb-4 backdrop-blur-xs">
                     <StageIcon className="w-8 h-8 text-[#cfbb99]" />
                   </div>

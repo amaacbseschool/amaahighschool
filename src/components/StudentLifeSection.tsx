@@ -37,9 +37,9 @@ export const StudentLifeSection: React.FC<StudentLifeSectionProps> = ({
     {
       name: 'Godavari House',
       motto: 'Wisdom & Grace',
-      color: 'bg-blue-600',
-      textColor: 'text-blue-600',
-      bgLight: 'bg-blue-50 border-blue-200',
+      color: 'bg-[#354024]',
+      textColor: 'text-[#354024]',
+      bgLight: 'bg-[#354024]/10 border-[#354024]/20',
       symbol: '🌊',
     },
     {

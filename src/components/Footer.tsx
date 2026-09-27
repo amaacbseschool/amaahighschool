@@ -42,7 +42,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmission, onNavigateRoute
   };
 
   return (
-    <footer className="bg-[#07111e] text-slate-300 pt-16 pb-8 border-t border-slate-800 relative z-10">
+    <footer className="bg-[#141a0e] text-slate-300 pt-16 pb-8 border-t border-slate-800 relative z-10">
       <div className="w-[90%] mx-auto px-2 sm:px-4 lg:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
           {/* Column 1: School Identity */}

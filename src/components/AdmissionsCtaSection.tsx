@@ -93,7 +93,7 @@ Email: admissions@amaaschool.edu.in
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.55 }}
-          className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] rounded-3xl p-8 sm:p-12 lg:p-14 shadow-2xl overflow-hidden mb-16 border border-sky-900"
+          className="relative bg-gradient-to-br from-[#141a0e] via-[#1b2213] to-[#252d19] rounded-3xl p-8 sm:p-12 lg:p-14 shadow-2xl overflow-hidden mb-16 border border-[#1b2213]"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
             {/* Left Narrative */}
@@ -203,7 +203,7 @@ Email: admissions@amaaschool.edu.in
             transition={{ duration: 0.5 }}
             className="text-center mb-10"
           >
-            <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#0a192f]">
+            <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#1b2213]">
               Simple 4-Step Enrollment Roadmap
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-xl mx-auto">
@@ -225,7 +225,7 @@ Email: admissions@amaaschool.edu.in
                 <span className="text-3xl font-mono font-extrabold text-[#354024] group-hover:text-[#dc2626] transition-colors block mb-3">
                   {s.step}
                 </span>
-                <h4 className="font-crest text-lg font-bold text-[#0a192f]">
+                <h4 className="font-crest text-lg font-bold text-[#1b2213]">
                   {s.title}
                 </h4>
                 <p className="text-xs text-slate-600 mt-2 leading-relaxed">

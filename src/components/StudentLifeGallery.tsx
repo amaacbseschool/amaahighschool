@@ -47,7 +47,7 @@ export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNaviga
                 AUTHENTIC VISUAL CHRONICLE
               </span>
             </div>
-            <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0a192f] tracking-tight mt-1">
+            <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] tracking-tight mt-1">
               <TextReveal>Life &amp; Learning at AMAA</TextReveal>
             </h2>
             <p className="text-slate-600 text-sm sm:text-base max-w-xl mt-2 leading-relaxed">
@@ -105,7 +105,7 @@ export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNaviga
                 loading="lazy"
                 className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 brightness-95 group-hover:brightness-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f]/95 via-[#0a192f]/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1b2213]/95 via-[#1b2213]/30 to-transparent" />
 
               {/* Category Pill Tag */}
               <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-xs text-[#354024] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
@@ -181,7 +181,7 @@ export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNaviga
                     <Sparkles className="w-4 h-4 text-[#cfbb99]" />
                     <span>{selectedPhoto.badge} • {selectedPhoto.category}</span>
                   </div>
-                  <h3 className="font-crest text-xl font-bold text-[#0a192f]">
+                  <h3 className="font-crest text-xl font-bold text-[#1b2213]">
                     {selectedPhoto.title}
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed max-w-2xl">

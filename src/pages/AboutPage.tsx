@@ -105,7 +105,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       </div>
 
       {/* 2. Hero Section */}
-      <section id="our-story" className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white py-16 lg:py-24 px-4 sm:px-8 xl:px-12 overflow-hidden border-b border-sky-950">
+      <section id="our-story" className="relative bg-gradient-to-br from-[#141a0e] via-[#1b2213] to-[#252d19] text-white py-16 lg:py-24 px-4 sm:px-8 xl:px-12 overflow-hidden border-b border-[#141a0e]">
         <div className="w-[90%] mx-auto relative z-10 text-center">
           {/* Logo & Motto Badge */}
           <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-5 py-2 rounded-full border border-white/20 mb-6">
@@ -166,7 +166,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 <div className="text-3xl font-extrabold text-[#354024] tracking-tight font-modern">
                   <AnimatedCounter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
                 </div>
-                <div className="text-xs font-bold text-[#0a192f] mt-1">{stat.label}</div>
+                <div className="text-xs font-bold text-[#1b2213] mt-1">{stat.label}</div>
                 <div className="text-[11px] text-slate-500 mt-0.5">{stat.desc}</div>
               </div>
             </div>
@@ -186,7 +186,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <span className="text-[11px] font-bold text-[#354024] uppercase tracking-widest">
                 Our Guiding Horizon
               </span>
-              <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#0a192f] mt-1 mb-4">
+              <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#1b2213] mt-1 mb-4">
                 Our Vision
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed">
@@ -208,7 +208,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <span className="text-[11px] font-bold text-[#dc2626] uppercase tracking-widest">
                 Our Daily Commitment
               </span>
-              <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#0a192f] mt-1 mb-4">
+              <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#1b2213] mt-1 mb-4">
                 Our Mission
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed">
@@ -235,7 +235,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                   alt="Principal & Leadership of AMAA High School"
                   className="w-72 h-96 sm:w-80 sm:h-[420px] object-cover object-top"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f] via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1b2213] via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 text-white text-left">
                   <h4 className="font-crest text-lg font-bold">Dr. Shailendra K. Verma</h4>
                   <p className="text-xs text-[#cfbb99] font-semibold">Principal & Academic Director</p>
@@ -250,7 +250,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 <Building2 className="w-3.5 h-3.5 text-[#354024]" />
                 <span>Leadership Perspective</span>
               </div>
-              <h2 className="font-crest text-3xl sm:text-4xl font-bold text-[#0a192f] leading-tight">
+              <h2 className="font-crest text-3xl sm:text-4xl font-bold text-[#1b2213] leading-tight">
                 "We don't merely instruct for examinations; we cultivate thinkers who illuminate society."
               </h2>
               <blockquote className="text-sm sm:text-base text-slate-700 leading-relaxed italic border-l-4 border-[#354024] pl-4">
@@ -265,7 +265,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <div className="pt-2">
                 <button
                   onClick={() => onNavigateRoute('administration')}
-                  className="inline-flex items-center gap-2 text-xs font-bold text-white bg-[#0a192f] hover:bg-[#354024] px-4 py-2.5 rounded-xl transition-all shadow-sm cursor-pointer group"
+                  className="inline-flex items-center gap-2 text-xs font-bold text-white bg-[#1b2213] hover:bg-[#354024] px-4 py-2.5 rounded-xl transition-all shadow-sm cursor-pointer group"
                 >
                   <ShieldCheck className="w-4 h-4 text-[#cfbb99]" />
                   <span>Meet the Governing Body & Trustees</span>
@@ -283,7 +283,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           <span className="text-xs font-bold tracking-widest text-[#354024] uppercase bg-[#354024]/10 px-3.5 py-1 rounded-full">
             INSTITUTIONAL PILLARS
           </span>
-          <h2 className="font-crest text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0a192f] mt-3">
+          <h2 className="font-crest text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1b2213] mt-3">
             Foundations of Student Success
           </h2>
         </div>
@@ -300,7 +300,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                   <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center mb-4">
                     <Icon className={`w-6 h-6 ${val.iconColor}`} />
                   </div>
-                  <h3 className="font-bold text-[#0a192f] text-base">{val.title}</h3>
+                  <h3 className="font-bold text-[#1b2213] text-base">{val.title}</h3>
                   <p className="text-xs text-slate-600 mt-2 leading-relaxed">{val.desc}</p>
                 </div>
               </div>
@@ -310,7 +310,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       </section>
 
       {/* 7. Milestones Timeline */}
-      <section id="history" className="bg-[#07111e] text-white py-16 lg:py-24 border-t border-slate-800">
+      <section id="history" className="bg-[#141a0e] text-white py-16 lg:py-24 border-t border-slate-800">
         <div className="w-[90%] mx-auto px-2 sm:px-4">
           <div className="text-center max-w-xl mx-auto mb-14">
             <span className="text-xs font-bold text-[#cfbb99] uppercase tracking-widest bg-white/10 px-3.5 py-1 rounded-full">
@@ -330,7 +330,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 } gap-6 sm:gap-10`}
               >
                 {/* Center Badge Dot */}
-                <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#354024] border-4 border-[#07111e] text-white flex items-center justify-center z-10 shadow-md">
+                <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#354024] border-4 border-[#141a0e] text-white flex items-center justify-center z-10 shadow-md">
                   <Calendar className="w-3.5 h-3.5 text-white" />
                 </div>
 

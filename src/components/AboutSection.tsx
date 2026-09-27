@@ -81,19 +81,19 @@ export const AboutSection: React.FC = () => {
                     className="w-12 h-12 object-contain"
                   />
                   <div>
-                    <h5 className="text-xs font-black text-[#0a192f]">A.M.A. Adinarayana High School</h5>
+                    <h5 className="text-xs font-black text-[#1b2213]">A.M.A. Adinarayana High School</h5>
                     <p className="text-[11px] font-extrabold text-[#991b1b] uppercase tracking-wider">"Lead Kindly Light"</p>
                   </div>
                 </div>
-                <span className="text-[11px] font-black text-[#0a192f] bg-gradient-to-r from-[#f7f3eb] to-[#cfbb99] border border-[#cfbb99] px-2.5 py-1 rounded-full shadow-sm">
+                <span className="text-[11px] font-black text-[#1b2213] bg-gradient-to-r from-[#f7f3eb] to-[#cfbb99] border border-[#cfbb99] px-2.5 py-1 rounded-full shadow-sm">
                   Estd. 1965
                 </span>
               </div>
             </div>
 
             {/* Decorative background accent blob */}
-            <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-blue-500/10 rounded-full filter blur-2xl -z-10" />
-            <div className="absolute -top-6 -left-6 w-48 h-48 bg-sky-400/15 rounded-full filter blur-2xl -z-10" />
+            <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-[#354024]/50/10 rounded-full filter blur-2xl -z-10" />
+            <div className="absolute -top-6 -left-6 w-48 h-48 bg-[#354024]/15 rounded-full filter blur-2xl -z-10" />
           </motion.div>
 
           {/* Right Column: Narrative & Stats */}
@@ -105,13 +105,13 @@ export const AboutSection: React.FC = () => {
             className="lg:col-span-6 space-y-6"
           >
             <div>
-              <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200/80 px-3.5 py-1 rounded-full mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#1d4ed8]" />
-                <span className="text-[11px] font-extrabold tracking-widest text-[#1d4ed8] uppercase">
+              <div className="inline-flex items-center gap-2 bg-[#354024]/5 border border-[#354024]/20 px-3.5 py-1 rounded-full mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#354024]" />
+                <span className="text-[11px] font-extrabold tracking-widest text-[#354024] uppercase">
                   ABOUT AMAA HIGH SCHOOL
                 </span>
               </div>
-              <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0a192f] tracking-tight mt-1.5">
+              <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1b2213] tracking-tight mt-1.5">
                 <TextReveal>Empowering Minds, Shaping Tomorrow</TextReveal>
               </h2>
             </div>
@@ -136,11 +136,11 @@ export const AboutSection: React.FC = () => {
                 return (
                   <div
                     key={idx}
-                    className="p-3.5 bg-slate-50/70 rounded-xl border border-blue-100/80 shadow-2xs hover:shadow-md hover:border-blue-300 transition-all group"
+                    className="p-3.5 bg-slate-50/70 rounded-xl border border-slate-200 shadow-2xs hover:shadow-md hover:border-[#354024]/30 transition-all group"
                   >
-                    <div className="flex items-center gap-1.5 text-[#1d4ed8] mb-1">
-                      <Icon className="w-4 h-4 text-[#1d4ed8] group-hover:scale-110 transition-transform" />
-                      <span className="text-base sm:text-lg font-black text-[#0a192f] tracking-tight">
+                    <div className="flex items-center gap-1.5 text-[#354024] mb-1">
+                      <Icon className="w-4 h-4 text-[#354024] group-hover:scale-110 transition-transform" />
+                      <span className="text-base sm:text-lg font-black text-[#1b2213] tracking-tight">
                         {stat.isNumeric && stat.numericVal ? (
                           <AnimatedCounter value={stat.numericVal} suffix={stat.suffix} />
                         ) : (
@@ -159,7 +159,7 @@ export const AboutSection: React.FC = () => {
             <div className="pt-2">
               <MagneticButton
                 onClick={() => setModalOpen(true)}
-                className="inline-flex items-center gap-2 bg-[#1d4ed8] hover:bg-[#1e40af] text-white font-bold px-7 py-3.5 rounded-xl shadow-glow-blue transition-all duration-300 text-xs uppercase tracking-wider"
+                className="inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-7 py-3.5 rounded-xl shadow-md transition-all duration-300 text-xs uppercase tracking-wider"
               >
                 <span>DISCOVER OUR FULL STORY</span>
                 <ArrowRight className="w-4 h-4" />
@@ -180,12 +180,12 @@ export const AboutSection: React.FC = () => {
               <X className="w-5 h-5" />
             </button>
 
-            <div className="flex items-center gap-2 text-xs font-bold text-[#1d4ed8] uppercase tracking-wider mb-2">
-              <GraduationCap className="w-5 h-5 text-[#1d4ed8]" />
+            <div className="flex items-center gap-2 text-xs font-bold text-[#354024] uppercase tracking-wider mb-2">
+              <GraduationCap className="w-5 h-5 text-[#354024]" />
               <span>Our Vision & Legacy</span>
             </div>
 
-            <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#0a192f]">
+            <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#1b2213]">
               About AMAA High School
             </h3>
 
@@ -196,23 +196,23 @@ export const AboutSection: React.FC = () => {
                 as a sanctuary of learning where curiosity thrives and individuality is cherished.
               </p>
 
-              <div className="bg-sky-50/70 p-4 rounded-xl border border-blue-100 space-y-2">
-                <h4 className="font-bold text-[#0a192f] text-sm">Our Core Pillars:</h4>
+              <div className="bg-[#354024]/5 p-4 rounded-xl border border-slate-200 space-y-2">
+                <h4 className="font-bold text-[#1b2213] text-sm">Our Core Pillars:</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   <div className="flex items-center gap-2 text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-[#1d4ed8] shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#354024] shrink-0" />
                     <span>Holistic Mind, Body & Character Cultivation</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-[#1d4ed8] shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#354024] shrink-0" />
                     <span>Holistic High School Curriculum (Grades 6 to 10)</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-[#1d4ed8] shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#354024] shrink-0" />
                     <span>State-of-the-Art Science & Computer Laboratories</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-[#1d4ed8] shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#354024] shrink-0" />
                     <span>100% Secure GPS Transportation & CCTV Care</span>
                   </div>
                 </div>
@@ -228,7 +228,7 @@ export const AboutSection: React.FC = () => {
             <div className="mt-6 pt-4 border-t border-slate-100 flex justify-end">
               <button
                 onClick={() => setModalOpen(false)}
-                className="bg-[#1d4ed8] text-white px-6 py-2.5 rounded-lg text-xs font-bold hover:bg-[#1e40af] transition-colors"
+                className="bg-[#354024] text-white px-6 py-2.5 rounded-lg text-xs font-bold hover:bg-[#252d19] transition-colors"
               >
                 Close Window
               </button>

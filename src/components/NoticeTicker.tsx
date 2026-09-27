@@ -12,7 +12,7 @@ export const NoticeTicker: React.FC<NoticeTickerProps> = ({ notices }) => {
   if (!notices || notices.length === 0) return null;
 
   return (
-    <section id="notices" className="w-full bg-[#07111e] border-b border-white/10 py-2.5 relative overflow-hidden">
+    <section id="notices" className="w-full bg-[#141a0e] border-b border-white/10 py-2.5 relative overflow-hidden">
       <div className="w-[90%] max-w-7xl mx-auto flex items-center px-4 sm:px-6 relative">
         {/* Badge Label */}
         <div className="shrink-0 z-20 flex items-center gap-2 bg-[#dc2626] text-white px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mr-4 shadow-sm">
@@ -21,8 +21,8 @@ export const NoticeTicker: React.FC<NoticeTickerProps> = ({ notices }) => {
         </div>
 
         {/* Edge Fade Gradients for visual polish */}
-        <div className="pointer-events-none absolute left-40 sm:left-48 top-0 bottom-0 w-8 bg-gradient-to-r from-[#07111e] to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#07111e] to-transparent z-10" />
+        <div className="pointer-events-none absolute left-40 sm:left-48 top-0 bottom-0 w-8 bg-gradient-to-r from-[#141a0e] to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#141a0e] to-transparent z-10" />
 
         {/* Auto-scrolling Continuous Marquee Ticker */}
         <div className="flex-1 overflow-hidden relative">

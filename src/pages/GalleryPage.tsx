@@ -152,8 +152,8 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
 
       {/* Hero Header - Deep Navy & Azure Blue — hidden when embedded */}
       {!embedded && (
-        <div className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white py-16 lg:py-24 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(2,132,199,0.28),transparent_50%)] pointer-events-none" />
+        <div className="bg-gradient-to-br from-[#141a0e] via-[#1b2213] to-[#252d19] text-white py-16 lg:py-24 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(53,64,36,0.28),transparent_50%)] pointer-events-none" />
           <div className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 mb-6">
               <img src={logoImg} alt="School Emblem" className="w-5 h-5 object-contain" />
@@ -208,7 +208,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
                 </span>
               </div>
             </div>
-            <div className="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between bg-gradient-to-br from-slate-900 to-[#0a192f] text-white">
+            <div className="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between bg-gradient-to-br from-slate-900 to-[#1b2213] text-white">
               <div>
                 <div className="flex items-center gap-2 text-xs font-bold text-[#cfbb99] uppercase tracking-wider mb-2">
                   <Sparkles className="w-4 h-4 text-[#cfbb99]" />
@@ -511,8 +511,8 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
         </div>
 
         {/* Admissions CTA strip */}
-        <div className="mt-16 bg-gradient-to-r from-[#07111e] via-[#0a192f] to-[#252d19] rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
-          <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-[radial-gradient(ellipse_at_top_right,rgba(2,132,199,0.25),transparent_70%)] pointer-events-none" />
+        <div className="mt-16 bg-gradient-to-r from-[#141a0e] via-[#1b2213] to-[#252d19] rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
+          <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-[radial-gradient(ellipse_at_top_right,rgba(53,64,36,0.25),transparent_70%)] pointer-events-none" />
           <div className="relative z-10">
             <span className="text-xs font-bold text-[#cfbb99] uppercase tracking-widest bg-white/10 px-3 py-1 rounded-full">
               ADMISSIONS OPEN 2025–26

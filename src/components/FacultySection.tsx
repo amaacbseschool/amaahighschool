@@ -437,7 +437,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
         )}
 
         {/* Institutional Academic Ethos Callout Box */}
-        <div className="mt-14 bg-gradient-to-r from-[#07111e] via-[#0a192f] to-[#252d19] rounded-3xl p-8 sm:p-12 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+        <div className="mt-14 bg-gradient-to-r from-[#141a0e] via-[#1b2213] to-[#252d19] rounded-3xl p-8 sm:p-12 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
           <div className="space-y-2 max-w-2xl relative z-10">
             <div className="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-xs font-bold text-[#cfbb99] uppercase tracking-wider">
               <ShieldCheck className="w-3.5 h-3.5" />
@@ -492,7 +492,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
               className="relative w-full max-w-3xl bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden z-10 max-h-[90vh] flex flex-col"
             >
               {/* Header */}
-              <div className="flex items-start justify-between p-6 sm:p-8 bg-gradient-to-r from-[#07111e] via-[#0a192f] to-[#252d19] text-white">
+              <div className="flex items-start justify-between p-6 sm:p-8 bg-gradient-to-r from-[#141a0e] via-[#1b2213] to-[#252d19] text-white">
                 <div className="flex items-start gap-4">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/10 border-2 border-[#cfbb99]/40 shrink-0 flex items-center justify-center shadow-md font-crest font-extrabold text-2xl sm:text-3xl text-[#cfbb99]">
                     {getInitials(selectedFaculty.name)}
@@ -505,7 +505,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
                       {selectedFaculty.name}
                     </h3>
                     <p className="text-xs text-slate-200">{selectedFaculty.role}</p>
-                    <p className="text-[11px] text-sky-200 font-mono mt-0.5">
+                    <p className="text-[11px] text-[#cfbb99] font-mono mt-0.5">
                       {selectedFaculty.qualification}
                     </p>
                   </div>
@@ -546,8 +546,8 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                  <div className="p-4 rounded-2xl bg-sky-50/70 border border-sky-100">
-                    <div className="font-bold text-[#0a192f] flex items-center gap-1.5 mb-1">
+                  <div className="p-4 rounded-2xl bg-[#354024]/5 border border-[#354024]/15">
+                    <div className="font-bold text-[#1b2213] flex items-center gap-1.5 mb-1">
                       <Clock className="w-4 h-4 text-[#354024]" />
                       Parent-Teacher Office Hours
                     </div>
@@ -556,8 +556,8 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-sky-50/70 border border-sky-100">
-                    <div className="font-bold text-[#0a192f] flex items-center gap-1.5 mb-1">
+                  <div className="p-4 rounded-2xl bg-[#354024]/5 border border-[#354024]/15">
+                    <div className="font-bold text-[#1b2213] flex items-center gap-1.5 mb-1">
                       <Mail className="w-4 h-4 text-[#354024]" />
                       Direct Academic Email
                     </div>

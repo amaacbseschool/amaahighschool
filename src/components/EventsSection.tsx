@@ -178,7 +178,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
                     {/* Top Strip: Date Block + Badges */}
                     <div className="flex items-start gap-4 mb-5">
                       {/* Calendar Date Block */}
-                      <div className="w-16 h-18 rounded-2xl bg-[#07111e] text-white flex flex-col items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
+                      <div className="w-16 h-18 rounded-2xl bg-[#141a0e] text-white flex flex-col items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
                         <span className="text-[10px] font-extrabold text-[#cfbb99] uppercase tracking-wider">
                           {evt.date.month}
                         </span>
@@ -192,7 +192,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
 
                       <div className="flex-1 min-w-0">
                         <div className="flex flex-wrap items-center gap-2 mb-2">
-                          <span className="text-[10px] font-bold uppercase tracking-wider bg-sky-50 text-[#354024] px-3 py-0.5 rounded-full">
+                          <span className="text-[10px] font-bold uppercase tracking-wider bg-[#354024]/5 text-[#354024] px-3 py-0.5 rounded-full">
                             {evt.badge}
                           </span>
                           {isFlagship && (
@@ -226,7 +226,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
                     <div className="pt-3 flex items-center justify-between">
                       <button
                         onClick={() => setSelectedEvent(evt)}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#354024] hover:text-white bg-sky-50 hover:bg-[#354024] px-4 py-2 rounded-full cursor-pointer transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#354024] hover:text-white bg-[#354024]/5 hover:bg-[#354024] px-4 py-2 rounded-full cursor-pointer transition-colors"
                       >
                         <span>RSVP & View Full Details</span>
                         <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -282,7 +282,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
                 {selectedEvent.title}
               </h3>
 
-              <div className="my-4 p-4 rounded-2xl bg-sky-50/70 border border-sky-100 space-y-2 text-xs text-slate-800">
+              <div className="my-4 p-4 rounded-2xl bg-[#354024]/5 border border-[#354024]/15 space-y-2 text-xs text-slate-800">
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-[#354024] shrink-0" />
                   <span>Date: {selectedEvent.date.day} {selectedEvent.date.month} {selectedEvent.date.year}</span>

@@ -103,7 +103,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                 ACADEMIC DISTINCTIONS & BOARD HONORS
               </span>
             </div>
-            <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0a192f] tracking-tight mt-1">
+            <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] tracking-tight mt-1">
               <TextReveal>Tradition of Excellence</TextReveal>
             </h2>
             <p className="text-slate-600 text-sm sm:text-base max-w-2xl mt-3 leading-relaxed">
@@ -131,7 +131,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.5 }}
             whileHover={{ y: -4 }}
-            className="md:col-span-12 lg:col-span-6 bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white p-8 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden group flex flex-col justify-between border border-sky-900"
+            className="md:col-span-12 lg:col-span-6 bg-gradient-to-br from-[#141a0e] via-[#1b2213] to-[#252d19] text-white p-8 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden group flex flex-col justify-between border border-[#1b2213]"
           >
             <div className="relative z-10 flex items-start justify-between gap-4 mb-6">
               <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-[#cfbb99] shadow-md group-hover:scale-105 transition-transform">
@@ -189,11 +189,11 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             </div>
 
             <div className="relative z-10">
-              <div className="text-4xl sm:text-5xl font-extrabold text-[#0a192f] tracking-tight font-modern">
+              <div className="text-4xl sm:text-5xl font-extrabold text-[#1b2213] tracking-tight font-modern">
                 <AnimatedCounter value={92} suffix="%" />
               </div>
 
-              <h3 className="font-crest text-2xl font-bold text-[#0a192f] mt-2">
+              <h3 className="font-crest text-2xl font-bold text-[#1b2213] mt-2">
                 Distinctions & First Class Honors
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
@@ -228,10 +228,10 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             </div>
 
             <div className="relative z-10">
-              <div className="text-3xl sm:text-4xl font-extrabold text-[#0a192f] tracking-tight font-modern">
+              <div className="text-3xl sm:text-4xl font-extrabold text-[#1b2213] tracking-tight font-modern">
                 <AnimatedCounter value={140} suffix="+" />
               </div>
-              <h4 className="font-crest text-xl font-bold text-[#0a192f] mt-1">
+              <h4 className="font-crest text-xl font-bold text-[#1b2213] mt-1">
                 Olympiad State & National Medals
               </h4>
               <p className="text-xs text-slate-600 mt-1 leading-relaxed">
@@ -257,10 +257,10 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             </div>
 
             <div className="relative z-10">
-              <div className="text-3xl sm:text-4xl font-extrabold text-[#0a192f] tracking-tight font-modern">
+              <div className="text-3xl sm:text-4xl font-extrabold text-[#1b2213] tracking-tight font-modern">
                 <AnimatedCounter value={45} suffix="+" />
               </div>
-              <h4 className="font-crest text-xl font-bold text-[#0a192f] mt-1">
+              <h4 className="font-crest text-xl font-bold text-[#1b2213] mt-1">
                 Inter-School Sports Trophies
               </h4>
               <p className="text-xs text-slate-600 mt-1 leading-relaxed">
@@ -284,7 +284,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                 <Star className="w-4 h-4 text-[#cfbb99]" />
                 <span>Class X Board Roll of Honor</span>
               </div>
-              <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#0a192f]">
+              <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#1b2213]">
                 Recent Secondary Board Star Toppers
               </h3>
             </div>
@@ -340,7 +340,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-crest text-2xl font-bold text-[#0a192f]">
+                    <h4 className="font-crest text-2xl font-bold text-[#1b2213]">
                       {toppers[0].name}
                     </h4>
                     <div className="text-xs font-bold text-slate-500 mt-0.5">
@@ -379,7 +379,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                     </span>
                     <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Class X Board</span>
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-[#0a192f] px-3 py-1 rounded-full">
+                  <span className="text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-[#1b2213] px-3 py-1 rounded-full">
                     {toppers[1].badge}
                   </span>
                 </div>
@@ -393,12 +393,12 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                       loading="lazy"
                     />
                     <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/75 to-transparent py-0.5 text-center">
-                      <span className="text-[9px] font-bold text-sky-300">100/100</span>
+                      <span className="text-[9px] font-bold text-[#cfbb99]">100/100</span>
                     </div>
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-crest text-xl font-bold text-[#0a192f]">
+                    <h4 className="font-crest text-xl font-bold text-[#1b2213]">
                       {toppers[1].name}
                     </h4>
                     <div className="text-xs font-bold text-slate-500 mt-0.5">
@@ -453,7 +453,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                         {toppers[2].badge}
                       </span>
                     </div>
-                    <h4 className="font-crest text-xl font-bold text-[#0a192f]">
+                    <h4 className="font-crest text-xl font-bold text-[#1b2213]">
                       {toppers[2].name}
                     </h4>
                     <div className="text-xs font-bold text-slate-500 mt-0.5">
@@ -482,7 +482,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="bg-[#07111e] text-white p-8 sm:p-12 rounded-3xl shadow-xl border border-slate-800 relative overflow-hidden"
+          className="bg-[#141a0e] text-white p-8 sm:p-12 rounded-3xl shadow-xl border border-slate-800 relative overflow-hidden"
         >
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 mb-10 pb-8 border-b border-white/10">
             <div>

@@ -207,7 +207,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
   // If Not Authenticated -> Render PIN Passcode Screen
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#040911] flex items-center justify-center p-4 text-white">
+      <div className="min-h-screen bg-gradient-to-br from-[#141a0e] via-[#1b2213] to-[#0e1309] flex items-center justify-center p-4 text-white">
         <div className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl p-8 sm:p-10 max-w-md w-full shadow-2xl relative overflow-hidden">
           <div className="absolute -top-20 -right-20 w-48 h-48 bg-[#354024]/20 rounded-full blur-3xl pointer-events-none" />
 
@@ -311,14 +311,14 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 pb-20">
       {/* Toast Notification */}
       {toastMsg && (
-        <div className="fixed top-5 right-5 z-50 flex items-center gap-2 bg-[#0a192f] text-white px-5 py-3 rounded-xl shadow-2xl border border-[#cfbb99]/40 animate-bounce text-xs font-semibold">
+        <div className="fixed top-5 right-5 z-50 flex items-center gap-2 bg-[#1b2213] text-white px-5 py-3 rounded-xl shadow-2xl border border-[#cfbb99]/40 animate-bounce text-xs font-semibold">
           <CheckCircle2 className="w-4 h-4 text-[#cfbb99]" />
           <span>{toastMsg}</span>
         </div>
       )}
 
       {/* Dashboard Top Header Bar */}
-      <header className="bg-[#0a192f] text-white border-b border-slate-800 sticky top-0 z-40">
+      <header className="bg-[#1b2213] text-white border-b border-slate-800 sticky top-0 z-40">
         <div className="w-[92%] mx-auto py-3.5 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <img
@@ -376,7 +376,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
             onClick={() => setActiveTab('overview')}
             className={`px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer ${
               activeTab === 'overview'
-                ? 'bg-white text-[#0a192f] shadow-xs'
+                ? 'bg-white text-[#1b2213] shadow-xs'
                 : 'text-slate-300 hover:bg-white/10 hover:text-white'
             }`}
           >
@@ -387,7 +387,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
             onClick={() => setActiveTab('admissions')}
             className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer ${
               activeTab === 'admissions'
-                ? 'bg-white text-[#0a192f] shadow-xs'
+                ? 'bg-white text-[#1b2213] shadow-xs'
                 : 'text-slate-300 hover:bg-white/10 hover:text-white'
             }`}
           >
@@ -402,7 +402,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
             onClick={() => setActiveTab('messages')}
             className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer ${
               activeTab === 'messages'
-                ? 'bg-white text-[#0a192f] shadow-xs'
+                ? 'bg-white text-[#1b2213] shadow-xs'
                 : 'text-slate-300 hover:bg-white/10 hover:text-white'
             }`}
           >
@@ -417,7 +417,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
             onClick={() => setActiveTab('notices')}
             className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer ${
               activeTab === 'notices'
-                ? 'bg-white text-[#0a192f] shadow-xs'
+                ? 'bg-white text-[#1b2213] shadow-xs'
                 : 'text-slate-300 hover:bg-white/10 hover:text-white'
             }`}
           >
@@ -432,7 +432,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
             onClick={() => setActiveTab('governing')}
             className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer ${
               activeTab === 'governing'
-                ? 'bg-white text-[#0a192f] shadow-xs'
+                ? 'bg-white text-[#1b2213] shadow-xs'
                 : 'text-slate-300 hover:bg-white/10 hover:text-white'
             }`}
           >
@@ -447,7 +447,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
             onClick={() => setActiveTab('sql')}
             className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer ${
               activeTab === 'sql'
-                ? 'bg-white text-[#0a192f] shadow-xs'
+                ? 'bg-white text-[#1b2213] shadow-xs'
                 : 'text-slate-300 hover:bg-white/10 hover:text-white'
             }`}
           >
@@ -469,12 +469,12 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                   <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
                     Total Admissions
                   </span>
-                  <div className="p-2 rounded-xl bg-sky-50 text-[#354024]">
+                  <div className="p-2 rounded-xl bg-[#354024]/5 text-[#354024]">
                     <GraduationCap className="w-5 h-5" />
                   </div>
                 </div>
                 <div className="mt-3 flex items-baseline gap-2">
-                  <span className="text-3xl font-crest font-extrabold text-[#0a192f]">
+                  <span className="text-3xl font-crest font-extrabold text-[#1b2213]">
                     {admissions.length}
                   </span>
                   <span className="text-xs font-semibold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md">
@@ -500,7 +500,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                   </div>
                 </div>
                 <div className="mt-3 flex items-baseline gap-2">
-                  <span className="text-3xl font-crest font-extrabold text-[#0a192f]">
+                  <span className="text-3xl font-crest font-extrabold text-[#1b2213]">
                     {messages.length}
                   </span>
                   <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">
@@ -526,7 +526,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                   </div>
                 </div>
                 <div className="mt-3 flex items-baseline gap-2">
-                  <span className="text-3xl font-crest font-extrabold text-[#0a192f]">
+                  <span className="text-3xl font-crest font-extrabold text-[#1b2213]">
                     {notices.length}
                   </span>
                   <span className="text-xs text-slate-500">Live on Ticker</span>
@@ -550,7 +550,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                   </div>
                 </div>
                 <div className="mt-3 flex items-baseline gap-2">
-                  <span className="text-3xl font-crest font-extrabold text-[#0a192f]">
+                  <span className="text-3xl font-crest font-extrabold text-[#1b2213]">
                     {governing.length}
                   </span>
                   <span className="text-xs text-slate-500">Council Members</span>
@@ -566,7 +566,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
             </div>
 
             {/* Quick Actions & Launch Banner */}
-            <div className="bg-gradient-to-r from-[#0a192f] via-[#0f274a] to-[#071324] text-white p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="bg-gradient-to-r from-[#1b2213] via-[#0f274a] to-[#071324] text-white p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
               <div className="space-y-1.5">
                 <div className="inline-flex items-center gap-2 bg-[#cfbb99]/15 border border-[#cfbb99]/30 px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-[#cfbb99]">
                   <Database className="w-3 h-3" />
@@ -594,7 +594,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
             <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-card">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h3 className="font-crest text-lg font-bold text-[#0a192f]">
+                  <h3 className="font-crest text-lg font-bold text-[#1b2213]">
                     Recent Admission Enquiries
                   </h3>
                   <p className="text-xs text-slate-500">
@@ -627,7 +627,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                         <td className="py-3 px-4 font-mono font-bold text-slate-500">
                           #{adm.id}
                         </td>
-                        <td className="py-3 px-4 font-semibold text-[#0a192f]">
+                        <td className="py-3 px-4 font-semibold text-[#1b2213]">
                           {adm.student_name}
                         </td>
                         <td className="py-3 px-4 font-medium text-slate-700">
@@ -643,7 +643,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                               adm.status === 'Pending Review'
                                 ? 'bg-amber-100 text-amber-700'
                                 : adm.status === 'Document Verification'
-                                ? 'bg-sky-100 text-sky-700'
+                                ? 'bg-[#354024]/10 text-[#354024]'
                                 : adm.status === 'Interview Scheduled'
                                 ? 'bg-purple-100 text-purple-700'
                                 : 'bg-emerald-100 text-emerald-700'
@@ -683,7 +683,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
           <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-card space-y-6">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <h2 className="font-crest text-xl font-bold text-[#0a192f]">
+                <h2 className="font-crest text-xl font-bold text-[#1b2213]">
                   Admissions Applications Registry
                 </h2>
                 <p className="text-xs text-slate-500 mt-0.5">
@@ -737,7 +737,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                       <td className="py-3 px-4 font-mono font-bold text-slate-500">
                         #{adm.id}
                       </td>
-                      <td className="py-3 px-4 font-bold text-[#0a192f]">
+                      <td className="py-3 px-4 font-bold text-[#1b2213]">
                         {adm.student_name}
                       </td>
                       <td className="py-3 px-4">
@@ -800,7 +800,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
           <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-card space-y-6">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <h2 className="font-crest text-xl font-bold text-[#0a192f]">
+                <h2 className="font-crest text-xl font-bold text-[#1b2213]">
                   Contact Messages & Parent Inquiries
                 </h2>
                 <p className="text-xs text-slate-500 mt-0.5">
@@ -828,7 +828,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                 >
                   <div>
                     <div className="flex items-start justify-between gap-2 mb-2">
-                      <span className="font-bold text-[#0a192f] text-sm">
+                      <span className="font-bold text-[#1b2213] text-sm">
                         {msg.full_name}
                       </span>
                       <span
@@ -836,7 +836,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                           msg.status === 'Unread'
                             ? 'bg-amber-100 text-amber-800'
                             : msg.status === 'In Progress'
-                            ? 'bg-sky-100 text-sky-800'
+                            ? 'bg-[#354024]/10 text-[#354024]'
                             : 'bg-emerald-100 text-emerald-800'
                         }`}
                       >
@@ -894,7 +894,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
             {/* Publisher Form */}
             <div className="lg:col-span-5 bg-white rounded-3xl border border-slate-200/90 p-6 shadow-card space-y-4">
               <div>
-                <h3 className="font-crest text-lg font-bold text-[#0a192f]">
+                <h3 className="font-crest text-lg font-bold text-[#1b2213]">
                   Publish Notice / Circular
                 </h3>
                 <p className="text-xs text-slate-500">
@@ -969,7 +969,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
 
                 <button
                   type="submit"
-                  className="w-full bg-[#0a192f] hover:bg-[#354024] text-white py-2.5 rounded-xl font-bold tracking-wide transition-all shadow-md cursor-pointer flex items-center justify-center gap-1.5"
+                  className="w-full bg-[#1b2213] hover:bg-[#354024] text-white py-2.5 rounded-xl font-bold tracking-wide transition-all shadow-md cursor-pointer flex items-center justify-center gap-1.5"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Publish Notice</span>
@@ -980,7 +980,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
             {/* Active Notices List */}
             <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 p-6 shadow-card space-y-4">
               <div>
-                <h3 className="font-crest text-lg font-bold text-[#0a192f]">
+                <h3 className="font-crest text-lg font-bold text-[#1b2213]">
                   Active Published Circulars ({notices.length})
                 </h3>
                 <p className="text-xs text-slate-500">
@@ -996,14 +996,14 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                   >
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-bold uppercase tracking-wider bg-sky-100 text-sky-800 px-2 py-0.5 rounded-md">
+                        <span className="text-[10px] font-bold uppercase tracking-wider bg-[#354024]/10 text-[#354024] px-2 py-0.5 rounded-md">
                           {notice.category}
                         </span>
                         <span className="text-[11px] font-mono text-slate-400">
                           {notice.date}
                         </span>
                       </div>
-                      <h4 className="text-xs font-bold text-[#0a192f]">
+                      <h4 className="text-xs font-bold text-[#1b2213]">
                         {notice.title}
                       </h4>
                       {notice.content && (
@@ -1030,7 +1030,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
           <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-card space-y-6">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <h2 className="font-crest text-xl font-bold text-[#0a192f]">
+                <h2 className="font-crest text-xl font-bold text-[#1b2213]">
                   Governing Body & Institutional Trustees
                 </h2>
                 <p className="text-xs text-slate-500 mt-0.5">
@@ -1040,7 +1040,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
 
               <button
                 onClick={() => onNavigateRoute('administration')}
-                className="inline-flex items-center gap-1.5 bg-[#0a192f] hover:bg-[#354024] text-white text-xs font-semibold px-4 py-2 rounded-xl transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 bg-[#1b2213] hover:bg-[#354024] text-white text-xs font-semibold px-4 py-2 rounded-xl transition-all cursor-pointer"
               >
                 <Users className="w-3.5 h-3.5" />
                 <span>Go to Public Administration Page</span>
@@ -1055,7 +1055,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                 >
                   <div>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-[10px] font-bold uppercase tracking-wider bg-sky-100 text-sky-800 px-2 py-0.5 rounded-full">
+                      <span className="text-[10px] font-bold uppercase tracking-wider bg-[#354024]/10 text-[#354024] px-2 py-0.5 rounded-full">
                         {m.designation}
                       </span>
                       <span className="text-[10px] font-mono text-slate-400">
@@ -1063,7 +1063,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                       </span>
                     </div>
 
-                    <h4 className="font-crest text-sm font-bold text-[#0a192f]">
+                    <h4 className="font-crest text-sm font-bold text-[#1b2213]">
                       {m.name}
                     </h4>
                     <p className="text-[11px] font-mono text-slate-600 mt-0.5">
@@ -1099,7 +1099,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
         {/* TAB 6: SQL DATABASE */}
         {activeTab === 'sql' && (
           <div className="space-y-6">
-            <div className="bg-gradient-to-r from-[#0a192f] via-[#0f274a] to-[#071324] text-white p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="bg-gradient-to-r from-[#1b2213] via-[#0f274a] to-[#071324] text-white p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
               <div className="space-y-2 max-w-xl">
                 <div className="inline-flex items-center gap-2 bg-[#cfbb99]/15 border border-[#cfbb99]/30 px-3 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#cfbb99]">
                   <Database className="w-3.5 h-3.5 text-[#cfbb99]" />
@@ -1128,10 +1128,10 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-card">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-mono text-xs font-bold text-[#0a192f]">
+                  <h4 className="font-mono text-xs font-bold text-[#1b2213]">
                     admissions_enquiries
                   </h4>
-                  <span className="text-[10px] font-bold bg-sky-100 text-sky-800 px-2 py-0.5 rounded-md">
+                  <span className="text-[10px] font-bold bg-[#354024]/10 text-[#354024] px-2 py-0.5 rounded-md">
                     {admissions.length} rows
                   </span>
                 </div>
@@ -1142,10 +1142,10 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
 
               <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-card">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-mono text-xs font-bold text-[#0a192f]">
+                  <h4 className="font-mono text-xs font-bold text-[#1b2213]">
                     governing_body_members
                   </h4>
-                  <span className="text-[10px] font-bold bg-sky-100 text-sky-800 px-2 py-0.5 rounded-md">
+                  <span className="text-[10px] font-bold bg-[#354024]/10 text-[#354024] px-2 py-0.5 rounded-md">
                     {governing.length} rows
                   </span>
                 </div>
@@ -1156,10 +1156,10 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
 
               <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-card">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-mono text-xs font-bold text-[#0a192f]">
+                  <h4 className="font-mono text-xs font-bold text-[#1b2213]">
                     contact_messages
                   </h4>
-                  <span className="text-[10px] font-bold bg-sky-100 text-sky-800 px-2 py-0.5 rounded-md">
+                  <span className="text-[10px] font-bold bg-[#354024]/10 text-[#354024] px-2 py-0.5 rounded-md">
                     {messages.length} rows
                   </span>
                 </div>
@@ -1170,10 +1170,10 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
 
               <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-card">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-mono text-xs font-bold text-[#0a192f]">
+                  <h4 className="font-mono text-xs font-bold text-[#1b2213]">
                     school_notices
                   </h4>
-                  <span className="text-[10px] font-bold bg-sky-100 text-sky-800 px-2 py-0.5 rounded-md">
+                  <span className="text-[10px] font-bold bg-[#354024]/10 text-[#354024] px-2 py-0.5 rounded-md">
                     {notices.length} rows
                   </span>
                 </div>
@@ -1184,10 +1184,10 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
 
               <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-card">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-mono text-xs font-bold text-[#0a192f]">
+                  <h4 className="font-mono text-xs font-bold text-[#1b2213]">
                     alumni_members
                   </h4>
-                  <span className="text-[10px] font-bold bg-sky-100 text-sky-800 px-2 py-0.5 rounded-md">
+                  <span className="text-[10px] font-bold bg-[#354024]/10 text-[#354024] px-2 py-0.5 rounded-md">
                     {db.getAlumni().length} rows
                   </span>
                 </div>
@@ -1198,10 +1198,10 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
 
               <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-card">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-mono text-xs font-bold text-[#0a192f]">
+                  <h4 className="font-mono text-xs font-bold text-[#1b2213]">
                     newsletter_subscribers
                   </h4>
-                  <span className="text-[10px] font-bold bg-sky-100 text-sky-800 px-2 py-0.5 rounded-md">
+                  <span className="text-[10px] font-bold bg-[#354024]/10 text-[#354024] px-2 py-0.5 rounded-md">
                     {db.getNewsletterSubscribers().length} rows
                   </span>
                 </div>

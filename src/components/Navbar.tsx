@@ -117,7 +117,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="w-13 h-13 sm:w-14 sm:h-14 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-xs"
           />
           <div className="flex flex-col">
-            <span className="font-crest text-lg sm:text-xl font-extrabold tracking-tight text-[#0a192f] group-hover:text-[#354024] transition-colors leading-tight">
+            <span className="font-crest text-lg sm:text-xl font-extrabold tracking-tight text-[#1b2213] group-hover:text-[#354024] transition-colors leading-tight">
               A.M.A. Adinarayana
             </span>
             <div className="flex items-center gap-2 mt-0.5">
@@ -190,9 +190,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                                 setActiveDropdown(null);
                               }
                             }}
-                            className="block p-3 rounded-xl hover:bg-sky-50/60 transition-colors group/sub cursor-pointer"
+                            className="block p-3 rounded-xl hover:bg-[#354024]/5 transition-colors group/sub cursor-pointer"
                           >
-                            <div className="text-xs font-bold text-[#0a192f] group-hover/sub:text-[#354024] flex items-center justify-between">
+                            <div className="text-xs font-bold text-[#1b2213] group-hover/sub:text-[#354024] flex items-center justify-between">
                               <span>{subItem.title}</span>
                               <ArrowRight className="w-3.5 h-3.5 text-[#354024] opacity-0 group-hover/sub:opacity-100 group-hover/sub:translate-x-1 transition-all" />
                             </div>

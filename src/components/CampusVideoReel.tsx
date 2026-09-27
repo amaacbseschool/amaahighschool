@@ -115,7 +115,7 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
   };
 
   return (
-    <section className="py-20 lg:py-28 bg-[#07111e] text-white border-b border-slate-800 relative overflow-hidden">
+    <section className="py-20 lg:py-28 bg-[#141a0e] text-white border-b border-slate-800 relative overflow-hidden">
       {/* Subtle background ambient glow */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-[#354024]/20 rounded-full blur-3xl pointer-events-none" />
 
@@ -184,13 +184,13 @@ export const CampusVideoReel: React.FC<CampusVideoReelProps> = ({
                     alt={current.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#07111e] via-[#07111e]/40 to-black/30" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#141a0e] via-[#141a0e]/40 to-black/30" />
                 </motion.div>
               </AnimatePresence>
 
               {/* Top Bar inside Card */}
               <div className="relative z-10 flex items-center justify-between gap-4">
-                <div className="bg-[#07111e]/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-[#cfbb99] text-[11px] font-bold uppercase tracking-wider flex items-center gap-2">
+                <div className="bg-[#141a0e]/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-[#cfbb99] text-[11px] font-bold uppercase tracking-wider flex items-center gap-2">
                   <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
                   <span>{current.badge}</span>
                 </div>

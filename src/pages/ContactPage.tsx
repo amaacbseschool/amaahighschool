@@ -106,8 +106,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
       </div>
 
       {/* Hero Header - Deep Navy & Azure Blue */}
-      <div className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white py-16 lg:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(2,132,199,0.25),transparent_50%)] pointer-events-none" />
+      <div className="bg-gradient-to-br from-[#141a0e] via-[#1b2213] to-[#252d19] text-white py-16 lg:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(53,64,36,0.25),transparent_50%)] pointer-events-none" />
         <div className="w-[90%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 mb-6">
             <img src={logoImg} alt="School Emblem" className="w-5 h-5 object-contain" />
@@ -149,7 +149,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-card flex flex-col justify-between group hover:border-[#354024] hover:-translate-y-1 transition-all duration-300">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#354024] flex items-center justify-center mb-5 group-hover:bg-[#354024] group-hover:text-white transition-colors">
+              <div className="w-12 h-12 rounded-2xl bg-[#354024]/5 text-[#354024] flex items-center justify-center mb-5 group-hover:bg-[#354024] group-hover:text-white transition-colors">
                 <MapPin className="w-6 h-6" />
               </div>
               <h3 className="text-base font-bold text-slate-900">Campus Address</h3>
@@ -164,7 +164,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
           <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-card flex flex-col justify-between group hover:border-[#354024] hover:-translate-y-1 transition-all duration-300">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#354024] flex items-center justify-center mb-5 group-hover:bg-[#354024] group-hover:text-white transition-colors">
+              <div className="w-12 h-12 rounded-2xl bg-[#354024]/5 text-[#354024] flex items-center justify-center mb-5 group-hover:bg-[#354024] group-hover:text-white transition-colors">
                 <Phone className="w-6 h-6" />
               </div>
               <h3 className="text-base font-bold text-slate-900">Telephone Lines</h3>
@@ -181,7 +181,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
           <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-card flex flex-col justify-between group hover:border-[#354024] hover:-translate-y-1 transition-all duration-300">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#354024] flex items-center justify-center mb-5 group-hover:bg-[#354024] group-hover:text-white transition-colors">
+              <div className="w-12 h-12 rounded-2xl bg-[#354024]/5 text-[#354024] flex items-center justify-center mb-5 group-hover:bg-[#354024] group-hover:text-white transition-colors">
                 <Mail className="w-6 h-6" />
               </div>
               <h3 className="text-base font-bold text-slate-900">Electronic Mail</h3>
@@ -198,7 +198,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
           <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-card flex flex-col justify-between group hover:border-[#354024] hover:-translate-y-1 transition-all duration-300">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#354024] flex items-center justify-center mb-5 group-hover:bg-[#354024] group-hover:text-white transition-colors">
+              <div className="w-12 h-12 rounded-2xl bg-[#354024]/5 text-[#354024] flex items-center justify-center mb-5 group-hover:bg-[#354024] group-hover:text-white transition-colors">
                 <Clock className="w-6 h-6" />
               </div>
               <h3 className="text-base font-bold text-slate-900">Office Timings</h3>
@@ -231,14 +231,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   Leave a message for academic coordination or student services.
                 </p>
               </div>
-              <div className="flex items-center gap-1 text-[11px] font-bold text-[#354024] bg-sky-50 px-3 py-1 rounded-full border border-sky-200">
+              <div className="flex items-center gap-1 text-[11px] font-bold text-[#354024] bg-[#354024]/5 px-3 py-1 rounded-full border border-[#354024]/20">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>SQL Persisted</span>
               </div>
             </div>
 
             {submitted ? (
-              <div className="p-8 text-center bg-sky-50/70 rounded-2xl border border-sky-100 space-y-3">
+              <div className="p-8 text-center bg-[#354024]/5 rounded-2xl border border-[#354024]/15 space-y-3">
                 <CheckCircle2 className="w-12 h-12 text-[#354024] mx-auto" />
                 <h4 className="font-heading text-xl font-bold text-slate-900">
                   Inquiry Dispatched Successfully!
@@ -349,7 +349,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
           {/* Campus Tour Booking Card */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white p-8 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden">
+            <div className="bg-gradient-to-br from-[#141a0e] via-[#1b2213] to-[#252d19] text-white p-8 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden">
               <div className="flex items-center gap-2 text-xs font-bold text-[#cfbb99] uppercase tracking-wider mb-2">
                 <Sparkles className="w-4 h-4" />
                 <span>Experience Our Campus</span>
@@ -426,7 +426,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     <select
                       value={tourData.time_slot}
                       onChange={(e) => setTourData({ ...tourData, time_slot: e.target.value })}
-                      className="w-full p-3 text-xs rounded-xl bg-[#0a192f] border border-white/20 text-white outline-none"
+                      className="w-full p-3 text-xs rounded-xl bg-[#1b2213] border border-white/20 text-white outline-none"
                     >
                       <option value="Morning (9:30 AM – 11:30 AM)">Morning (9:30 AM – 11:30 AM)</option>
                       <option value="Afternoon (1:30 PM – 3:30 PM)">Afternoon (1:30 PM – 3:30 PM)</option>

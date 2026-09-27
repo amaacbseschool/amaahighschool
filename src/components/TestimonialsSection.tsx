@@ -65,7 +65,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
       rating: 5,
       content:
         'The computer applications lab and mathematics training gave me a decade-long head start. The focus on fundamental concepts over rote learning is AMAA High School’s greatest secret.',
-      avatarBg: 'bg-[#0a192f]',
+      avatarBg: 'bg-[#1b2213]',
       initials: 'VR',
     },
     {
@@ -91,7 +91,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
       rating: 5,
       content:
         'The teachers were always approachable for doubts even after regular hours. Regular diagnostic tests, calm encouragement, and state-of-the-art labs gave our batch the clarity to achieve 100% board distinction.',
-      avatarBg: 'bg-[#0a192f]',
+      avatarBg: 'bg-[#1b2213]',
       initials: 'SV',
     },
   ];
@@ -121,7 +121,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
                 VOICES OF TRUST & EXCELLENCE
               </span>
             </div>
-            <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0a192f] tracking-tight mt-1">
+            <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] tracking-tight mt-1">
               <TextReveal>What Parents & Alumni Say</TextReveal>
             </h2>
             <p className="text-slate-600 text-sm sm:text-base max-w-2xl mt-3 leading-relaxed">
@@ -203,7 +203,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
                       {t.initials}
                     </div>
                     <div className="min-w-0">
-                      <h4 className="font-crest text-base font-bold text-[#0a192f] leading-tight truncate">
+                      <h4 className="font-crest text-base font-bold text-[#1b2213] leading-tight truncate">
                         {t.name}
                       </h4>
                       <p className="text-xs text-slate-500 font-medium truncate mt-0.5">

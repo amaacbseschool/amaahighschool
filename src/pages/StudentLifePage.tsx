@@ -86,7 +86,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
       </div>
 
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white py-16 lg:py-24 px-4 overflow-hidden border-b border-sky-950">
+      <section className="relative bg-gradient-to-br from-[#141a0e] via-[#1b2213] to-[#252d19] text-white py-16 lg:py-24 px-4 overflow-hidden border-b border-[#141a0e]">
         <div className="w-[90%] mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 mb-5">
             <Sparkles className="w-4 h-4 text-[#cfbb99]" />
@@ -137,7 +137,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
             <Star className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Co-curricular Enrichment</span>
           </div>
-          <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Activities & Programmes</h2>
+          <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">Activities & Programmes</h2>
           <p className="text-slate-600 text-sm mt-2 max-w-2xl">Our co-curricular ecosystem is designed to discover, develop, and amplify each student's unique talents alongside their academic journey.</p>
         </motion.div>
 
@@ -158,7 +158,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
                   <Icon className="w-6 h-6" />
                 </div>
                 <span className="text-[10px] font-bold text-[#cfbb99] uppercase tracking-widest bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full">{act.tag}</span>
-                <h3 className="font-crest text-lg font-bold text-[#0a192f] mt-3 mb-2">{act.title}</h3>
+                <h3 className="font-crest text-lg font-bold text-[#1b2213] mt-3 mb-2">{act.title}</h3>
                 <p className="text-sm text-slate-600 leading-relaxed">{act.desc}</p>
               </motion.div>
             );
@@ -181,7 +181,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
                 <Trophy className="w-3.5 h-3.5 text-[#cfbb99]" />
                 <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Athletics & Physical Education</span>
               </div>
-              <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Sports at AMAA</h2>
+              <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">Sports at AMAA</h2>
               <p className="text-slate-600 text-sm mt-2 max-w-2xl">Our sprawling 15-acre campus includes a regulation 400m athletics track, cricket grounds, indoor sports hall, and certified coaching staff.</p>
             </div>
             <button
@@ -210,7 +210,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
                     <div className="w-10 h-10 rounded-xl bg-[#354024]/10 text-[#354024] flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h4 className="font-bold text-[#0a192f] text-sm">{sport.name}</h4>
+                    <h4 className="font-bold text-[#1b2213] text-sm">{sport.name}</h4>
                   </div>
                   <p className="text-xs text-slate-600 leading-relaxed">{sport.detail}</p>
                 </motion.div>
@@ -219,7 +219,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
           </div>
 
           {/* Stats strip */}
-          <div className="mt-10 bg-gradient-to-r from-[#07111e] to-[#252d19] text-white rounded-3xl p-7 flex flex-wrap gap-6 justify-around items-center">
+          <div className="mt-10 bg-gradient-to-r from-[#141a0e] to-[#252d19] text-white rounded-3xl p-7 flex flex-wrap gap-6 justify-around items-center">
             {[
               { value: '45+', label: 'Sports Trophies' },
               { value: '6', label: 'Sports Disciplines' },
@@ -248,7 +248,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
             <Music2 className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Creativity & Culture</span>
           </div>
-          <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Arts & Cultural Programmes</h2>
+          <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">Arts & Cultural Programmes</h2>
           <p className="text-slate-600 text-sm mt-2 max-w-2xl">AMAA celebrates India's rich artistic heritage while nurturing modern creative expression through year-round cultural programming.</p>
         </motion.div>
 
@@ -265,7 +265,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
             >
               <div className="flex items-center gap-2 mb-3">
                 <CheckCircle2 className="w-4 h-4 text-[#354024] shrink-0" />
-                <h4 className="font-crest font-bold text-[#0a192f] text-base">{item.year}</h4>
+                <h4 className="font-crest font-bold text-[#1b2213] text-base">{item.year}</h4>
               </div>
               <p className="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
             </motion.div>
@@ -305,7 +305,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
               <Users className="w-3.5 h-3.5 text-[#cfbb99]" />
               <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Student Clubs & Societies</span>
             </div>
-            <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Clubs & Interest Groups</h2>
+            <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">Clubs & Interest Groups</h2>
             <p className="text-slate-600 text-sm mt-2 max-w-2xl">Six active student-led clubs meeting regularly, open to all students from Grades V onwards.</p>
           </motion.div>
 
@@ -320,7 +320,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
                 whileHover={{ y: -3 }}
                 className="bg-[#f8f9fa] border border-slate-200/90 rounded-2xl p-6 hover:border-[#354024]/40 transition-all"
               >
-                <h4 className="font-bold text-[#0a192f] text-sm mb-3">{club.name}</h4>
+                <h4 className="font-bold text-[#1b2213] text-sm mb-3">{club.name}</h4>
                 <div className="space-y-1.5 text-xs text-slate-600">
                   <div className="flex items-center gap-2">
                     <Users className="w-3.5 h-3.5 text-[#354024] shrink-0" />
@@ -349,7 +349,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
             <Camera className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Photo Gallery</span>
           </div>
-          <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0a192f]">Campus Life in Pictures</h2>
+          <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">Campus Life in Pictures</h2>
           <p className="text-slate-600 text-sm mt-2">Browse highlights from academics, sports, cultural events, and everyday life at AMAA.</p>
         </div>
         {/* Embed the full Gallery component without its header/hero */}
@@ -363,7 +363,7 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-gradient-to-br from-[#07111e] via-[#0a192f] to-[#252d19] text-white rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row items-center justify-between gap-6"
+          className="bg-gradient-to-br from-[#141a0e] via-[#1b2213] to-[#252d19] text-white rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row items-center justify-between gap-6"
         >
           <div>
             <div className="text-[10px] font-bold uppercase tracking-widest text-[#cfbb99] mb-2">Become Part of AMAA</div>
