@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { TextReveal } from './motion/TextReveal';
 import { MagneticButton } from './motion/MagneticButton';
+import logoImg from '../assets/logo.png';
 import type { RouteType } from '../types/routes';
 
 interface FacultySectionProps {
@@ -274,6 +275,64 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
             )}
           </div>
         </div>
+
+        {/* Collective Teaching Fraternity Group Showcase (JAI00544) */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-14"
+        >
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200/90 group bg-slate-950">
+            <img
+              src="/gallery/jai00544.webp"
+              alt="A.M.A. Adinarayana High School Faculty & Mentors Group Photo"
+              className="w-full h-[360px] sm:h-[480px] lg:h-[580px] object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+              loading="eager"
+            />
+            
+            {/* Top Bar Badges */}
+            <div className="absolute top-5 left-5 right-5 flex items-center justify-between z-10">
+              <div className="inline-flex items-center gap-2 bg-black/65 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-full shadow-lg">
+                <img src={logoImg} alt="Crest" className="w-5 h-5 object-contain" />
+                <span className="text-[11px] font-bold text-white tracking-widest uppercase">
+                  TEACHING FACULTY ASSEMBLY • ESTD. 1965
+                </span>
+              </div>
+              <span className="bg-[#354024] border border-[#cfbb99]/40 text-[#cfbb99] text-[11px] font-extrabold uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-md">
+                1:20 MENTOR RATIO
+              </span>
+            </div>
+
+            {/* Bottom Caption Overlay */}
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent p-6 sm:p-8 z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+              <div className="max-w-2xl">
+                <div className="flex items-center gap-2 text-xs font-bold text-[#cfbb99] uppercase tracking-wider mb-1.5">
+                  <Sparkles className="w-4 h-4 text-[#cfbb99]" />
+                  <span>The Custodians of "Lead Kindly Light"</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-crest font-extrabold text-white tracking-tight">
+                  Our Distinguished Teaching Fraternity
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-200 mt-1 leading-relaxed">
+                  The dedicated educators, subject chairpersons, and research mentors shaping generations of young minds at A.M.A. Adinarayana English Medium High School.
+                </p>
+              </div>
+
+              <div className="flex items-center gap-3 shrink-0">
+                <div className="bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl text-center">
+                  <div className="text-lg font-bold text-[#cfbb99] font-mono">100%</div>
+                  <div className="text-[10px] text-slate-300 uppercase tracking-wider">Post-Grad Qualified</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl text-center">
+                  <div className="text-lg font-bold text-white font-mono">18+ Yrs</div>
+                  <div className="text-[10px] text-slate-300 uppercase tracking-wider">Avg. Pedagogy Tenure</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
         {/* 4 Pillars of Pedagogical Excellence */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-12">
