@@ -6,7 +6,6 @@ import {
   ArrowRight,
   Compass,
   Images,
-  Sparkles,
 } from 'lucide-react';
 import type { RouteType } from '../types/routes';
 
@@ -234,54 +233,41 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
         </AnimatePresence>
       </div>
 
-      {/* 3. Slider Controls & Trust Stats */}
-      <div className="relative z-20 w-[90%] mx-auto pb-8">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-300 bg-black/40 backdrop-blur-md px-6 py-3.5 rounded-2xl sm:rounded-full border border-white/10 shadow-lg">
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 justify-center sm:justify-start">
-            <span className="flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
-              <span className="text-[#cfbb99] font-bold">Diamond Jubilee (1965–2025)</span>
-            </span>
-            <span className="text-white/30 hidden sm:inline">•</span>
-            <span>1:20 Mentor Ratio</span>
-            <span className="text-white/30 hidden sm:inline">•</span>
-            <span>100% Board Pass Record</span>
+      {/* 3. Slider Controls */}
+      <div className="relative z-20 w-[90%] mx-auto pb-8 flex justify-end items-center">
+        <div className="flex items-center gap-3 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 shadow-lg">
+          {/* Slide Navigation Dots */}
+          <div className="flex items-center gap-1.5">
+            {slides.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => goToSlide(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  currentSlide === idx
+                    ? 'bg-[#cfbb99] w-7'
+                    : 'bg-white/40 hover:bg-white/70 w-2'
+                }`}
+              />
+            ))}
           </div>
 
-          <div className="flex items-center gap-3">
-            {/* Slide Navigation Dots */}
-            <div className="flex items-center gap-1.5">
-              {slides.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => goToSlide(idx)}
-                  aria-label={`Go to slide ${idx + 1}`}
-                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    currentSlide === idx
-                      ? 'bg-[#cfbb99] w-7'
-                      : 'bg-white/40 hover:bg-white/70 w-2'
-                  }`}
-                />
-              ))}
-            </div>
-
-            {/* Prev/Next arrows */}
-            <div className="flex items-center gap-1">
-              <button
-                onClick={prevSlide}
-                aria-label="Previous Slide"
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md text-white flex items-center justify-center transition-colors cursor-pointer"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={nextSlide}
-                aria-label="Next Slide"
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md text-white flex items-center justify-center transition-colors cursor-pointer"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
+          {/* Prev/Next arrows */}
+          <div className="flex items-center gap-1">
+            <button
+              onClick={prevSlide}
+              aria-label="Previous Slide"
+              className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md text-white flex items-center justify-center transition-colors cursor-pointer"
+            >
+              <ChevronLeft className="w-3.5 h-3.5" />
+            </button>
+            <button
+              onClick={nextSlide}
+              aria-label="Next Slide"
+              className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md text-white flex items-center justify-center transition-colors cursor-pointer"
+            >
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
       </div>
