@@ -20,9 +20,11 @@ import { NewsEventsPage } from './pages/NewsEventsPage';
 import { AdministrationPage } from './pages/AdministrationPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
 import { Preloader } from './components/Preloader';
-import { supabase } from './lib/supabase';
+import { supabase, isSupabaseConfigured } from './lib/supabase';
 import { initLenis, destroyLenis, scrollToElement } from './lib/lenis';
 import { CmsShellProvider } from './context/CmsShellContext';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import type { PublicNotice } from './components/NoticeTicker';
 import type { RouteType } from './types/routes';
 
@@ -210,6 +212,11 @@ export function App() {
       </AnimatePresence>
 
       <div className="min-h-screen flex flex-col bg-[#f7f4ee] text-[#1c2228] font-sans selection:bg-[#cfbb99]/40 selection:text-[#1b2213]">
+        {!isSupabaseConfigured && (
+          <div className="bg-amber-600 text-white text-xs sm:text-sm font-medium py-2.5 px-4 text-center sticky top-0 z-[100] shadow-md flex items-center justify-center gap-2">
+            <span>⚠️ <strong>Setup Required:</strong> Supabase credentials missing. Add <code>VITE_SUPABASE_URL</code> and <code>VITE_SUPABASE_ANON_KEY</code> in Vercel Project Settings &gt; Environment Variables.</span>
+          </div>
+        )}
         {/* 1. Top Announcement & Contact Bar */}
         <TopBar
           onOpenAdmission={() => setAdmissionModalOpen(true)}
@@ -353,6 +360,10 @@ export function App() {
         onClose={() => setSearchModalOpen(false)}
         onSelectRoute={(targetRoute) => navigateToRoute(targetRoute)}
       />
+
+      {/* Vercel Web Analytics & Real Experience Performance Monitoring */}
+      <Analytics />
+      <SpeedInsights />
     </div>
     </CmsShellProvider>
   );
