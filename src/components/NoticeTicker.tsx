@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import { Bell, ChevronRight, X, Calendar, Sparkles } from 'lucide-react';
-import type { SchoolNotice } from '../lib/db';
+
+export interface PublicNotice {
+  id: string | number;
+  title: string;
+  category: string;
+  date: string;
+  content: string;
+}
 
 interface NoticeTickerProps {
-  notices: SchoolNotice[];
+  notices: PublicNotice[];
 }
 
 export const NoticeTicker: React.FC<NoticeTickerProps> = ({ notices }) => {
-  const [selectedNotice, setSelectedNotice] = useState<SchoolNotice | null>(null);
+  const [selectedNotice, setSelectedNotice] = useState<PublicNotice | null>(null);
 
   if (!notices || notices.length === 0) return null;
 

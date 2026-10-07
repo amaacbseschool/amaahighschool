@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   GraduationCap,
   Users,
@@ -15,8 +15,10 @@ import {
   BookOpen,
   HeartHandshake,
 } from 'lucide-react';
-import { db } from '../lib/db';
-import type { AlumniMember } from '../lib/db';
+import { supabase } from '../lib/supabase';
+
+import { getPageWithSections } from '../lib/cms';
+import type { CmsPageWithSections } from '../types/cms';
 
 import { AnimatedCounter } from './motion/AnimatedCounter';
 import { InteractiveCard } from './motion/InteractiveCard';
@@ -29,8 +31,23 @@ interface AlumniPageProps {
   onOpenAdmission: () => void;
 }
 
+export interface PublicAlumniMember {
+  id: string;
+  full_name: string;
+  batch_year: string;
+  email: string;
+  phone: string;
+  current_role: string;
+  organization: string;
+  city: string;
+  testimonial: string;
+  created_at: string;
+}
+
 export const AlumniPage: React.FC<AlumniPageProps> = ({ onNavigateHome, onOpenAdmission }) => {
-  const [alumniList, setAlumniList] = useState<AlumniMember[]>(() => db.getAlumni());
+  const [alumniList, setAlumniList] = useState<PublicAlumniMember[]>([]);
+  const [pageData, setPageData] = useState<CmsPageWithSections | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [formData, setFormData] = useState({
     fullName: '',
     batchYear: '2020',
@@ -43,37 +60,130 @@ export const AlumniPage: React.FC<AlumniPageProps> = ({ onNavigateHome, onOpenAd
     linkedin: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'spotlight' | 'directory' | 'reunions'>('spotlight');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    let isMounted = true;
+
+    getPageWithSections('alumni')
+      .then((data) => {
+        if (isMounted && data) {
+          setPageData(data);
+        }
+      })
+      .catch((err) => {
+        console.error('[CMS] Failed to load alumni page data:', err);
+      });
+
+    const fetchAlumni = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('alumni_members')
+          .select('*')
+          .eq('verified', true)
+          .order('graduation_year', { ascending: false });
+
+        if (error) {
+          console.error('[Public Alumni Error] Failed to load verified alumni from Supabase:', error);
+          if (isMounted) setAlumniList([]);
+          return;
+        }
+
+        if (data && isMounted) {
+          const mapped: PublicAlumniMember[] = data.map((m) => ({
+            id: m.id,
+            full_name: m.full_name,
+            batch_year: m.graduation_year ? `Batch of ${m.graduation_year}` : 'Alumni',
+            email: m.email,
+            phone: m.phone || '',
+            current_role: m.current_profession || 'Professional',
+            organization: m.current_organization || 'Independent',
+            city: m.location || 'Patna',
+            testimonial: m.message || 'AMAA High School provided the launchpad for my journey.',
+            created_at: m.created_at || new Date().toISOString(),
+          }));
+          setAlumniList(mapped);
+        }
+      } catch (err: unknown) {
+        console.error('[Public Alumni Error] Unexpected exception querying alumni_members:', err);
+        if (isMounted) setAlumniList([]);
+      } finally {
+        if (isMounted) setIsLoading(false);
+      }
+    };
+
+    fetchAlumni();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const heroSection = pageData?.sections?.find((s) => s.section_key === 'alumni.hero');
+  const heroHeading =
+    heroSection?.heading || 'Connecting Six Decades of Leaders, Innovators & Achievers';
+  const heroSubheading =
+    heroSection?.subheading ||
+    'From the historic classrooms of A.M.A. Adinarayana Eng. Med. High School to premier universities, research laboratories, and civic leadership worldwide—our alumni illuminate society under our sacred motto: "Lead Kindly Light".';
+  const heroEyebrow =
+    heroSection?.eyebrow || 'ALUMNI FEDERATION • ESTD. 1965 • "LEAD KINDLY LIGHT"';
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.fullName || !formData.email || !formData.currentRole) return;
+    setSubmitError(null);
 
-    const newAlumnus = db.addAlumni({
-      full_name: formData.fullName,
-      batch_year: `Batch of ${formData.batchYear}`,
-      email: formData.email,
-      phone: formData.phone || '+91 90000 00000',
-      current_role: formData.currentRole,
-      organization: formData.organization || 'Self-Employed / Independent',
-      city: formData.city || 'Patna',
-      testimonial: formData.testimonial || 'AMAA High School provided the launchpad for my career.',
-      linkedin: formData.linkedin || undefined,
-    });
+    const full_name = formData.fullName.trim();
+    const email = formData.email.trim();
+    const current_profession = formData.currentRole.trim();
+    const graduation_year = parseInt(formData.batchYear, 10) || 2020;
+    const phone = formData.phone.trim() || null;
+    const current_organization = formData.organization.trim() || null;
+    const location = formData.city.trim() || null;
+    const message = formData.testimonial.trim() || null;
 
-    setAlumniList([newAlumnus, ...alumniList]);
-    setSubmitted(true);
-    setFormData({
-      fullName: '',
-      batchYear: '2020',
-      email: '',
-      phone: '',
-      currentRole: '',
-      organization: '',
-      city: '',
-      testimonial: '',
-      linkedin: '',
-    });
+    if (!full_name || !email || !current_profession) return;
+
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase
+        .from('alumni_members')
+        .insert({
+          full_name,
+          graduation_year,
+          email,
+          phone,
+          current_profession,
+          current_organization,
+          location,
+          message,
+        });
+
+      if (error) {
+        console.error('[Public Alumni Error] Failed to submit registration to Supabase:', error);
+        setSubmitError('Unable to submit your registration at this moment. Please verify your details or try again later.');
+        return;
+      }
+
+      setSubmitted(true);
+      setFormData({
+        fullName: '',
+        batchYear: '2020',
+        email: '',
+        phone: '',
+        currentRole: '',
+        organization: '',
+        city: '',
+        testimonial: '',
+        linkedin: '',
+      });
+    } catch (err: unknown) {
+      console.error('[Public Alumni Error] Unexpected exception during registration:', err);
+      setSubmitError('A network or unexpected error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const stats = [
@@ -136,15 +246,15 @@ export const AlumniPage: React.FC<AlumniPageProps> = ({ onNavigateHome, onOpenAd
         <div className="w-[90%] max-w-7xl mx-auto relative z-10 text-center">
           <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md px-5 py-2 rounded-full text-xs font-black tracking-widest uppercase text-[#e40046] border border-white/20 mb-6">
             <img src={logoImg} alt="School Emblem" className="w-5 h-5 object-contain" />
-            <span>ALUMNI FEDERATION • ESTD. 1965 • "LEAD KINDLY LIGHT"</span>
+            <span>{heroEyebrow}</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1] font-heading max-w-4xl mx-auto">
-            <TextReveal>Connecting Six Decades of Leaders, Innovators & Achievers</TextReveal>
+            <TextReveal>{heroHeading}</TextReveal>
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-slate-200 max-w-3xl mx-auto leading-relaxed font-normal">
-            From the historic classrooms of A.M.A. Adinarayana Eng. Med. High School to premier universities, research laboratories, and civic leadership worldwide—our alumni illuminate society under our sacred motto: <strong className="text-white">"Lead Kindly Light"</strong>.
+            {heroSubheading}
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -245,63 +355,77 @@ export const AlumniPage: React.FC<AlumniPageProps> = ({ onNavigateHome, onOpenAd
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {alumniList.slice(0, 4).map((alumnus) => (
-                <div
-                  key={alumnus.id}
-                  className="bg-white rounded-3xl p-7 shadow-card border border-slate-200/80 hover:border-[#44105c] hover:shadow-xl transition-all flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex items-start justify-between gap-3 mb-5">
-                      <div className="flex items-center gap-3.5">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#44105c] to-[#e40046] text-white font-bold flex items-center justify-center text-base shadow-sm">
-                          {alumnus.full_name
-                            .split(' ')
-                            .filter(Boolean)
-                            .slice(0, 2)
-                            .map((n) => n[0])
-                            .join('')}
+            {alumniList.length === 0 ? (
+              <div className="bg-white rounded-3xl p-10 text-center shadow-card border border-slate-200/80">
+                <Award className="w-10 h-10 text-purple-300 mx-auto mb-3" />
+                <h3 className="font-heading font-bold text-slate-800 text-base">
+                  {isLoading ? 'Loading Verified Alumni...' : 'Alumni Profiles Being Curated'}
+                </h3>
+                <p className="text-xs text-slate-500 max-w-md mx-auto mt-1">
+                  {isLoading
+                    ? 'Retrieving verified alumni achievements from official school records...'
+                    : 'New verified alumni spotlights will be published here once verified by the school administration.'}
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {alumniList.slice(0, 4).map((alumnus) => (
+                  <div
+                    key={alumnus.id}
+                    className="bg-white rounded-3xl p-7 shadow-card border border-slate-200/80 hover:border-[#44105c] hover:shadow-xl transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-start justify-between gap-3 mb-5">
+                        <div className="flex items-center gap-3.5">
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#44105c] to-[#e40046] text-white font-bold flex items-center justify-center text-base shadow-sm">
+                            {alumnus.full_name
+                              .split(' ')
+                              .filter(Boolean)
+                              .slice(0, 2)
+                              .map((n) => n[0])
+                              .join('')}
+                          </div>
+                          <div>
+                            <h3 className="font-heading font-bold text-slate-900 text-base">{alumnus.full_name}</h3>
+                            <span className="inline-block bg-purple-50 text-[#44105c] text-[11px] font-bold px-2.5 py-0.5 rounded-full">
+                              {alumnus.batch_year}
+                            </span>
+                          </div>
                         </div>
-                        <div>
-                          <h3 className="font-heading font-bold text-slate-900 text-base">{alumnus.full_name}</h3>
-                          <span className="inline-block bg-purple-50 text-[#44105c] text-[11px] font-bold px-2.5 py-0.5 rounded-full">
-                            {alumnus.batch_year}
+                        <div className="text-right">
+                          <span className="text-[11px] text-slate-400 flex items-center gap-1">
+                            <MapPin className="w-3 h-3 text-slate-400" />
+                            {alumnus.city}
                           </span>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <span className="text-[11px] text-slate-400 flex items-center gap-1">
-                          <MapPin className="w-3 h-3 text-slate-400" />
-                          {alumnus.city}
-                        </span>
+
+                      <div className="space-y-1.5 mb-4 text-xs">
+                        <div className="flex items-center gap-2 text-slate-800 font-semibold">
+                          <Briefcase className="w-3.5 h-3.5 text-[#e40046]" />
+                          <span>{alumnus.current_role}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-slate-600">
+                          <Building2 className="w-3.5 h-3.5 text-slate-400" />
+                          <span>{alumnus.organization}</span>
+                        </div>
                       </div>
+
+                      <blockquote className="text-xs text-slate-600 italic bg-slate-50 p-4 rounded-2xl border-l-4 border-[#44105c] leading-relaxed">
+                        "{alumnus.testimonial}"
+                      </blockquote>
                     </div>
 
-                    <div className="space-y-1.5 mb-4 text-xs">
-                      <div className="flex items-center gap-2 text-slate-800 font-semibold">
-                        <Briefcase className="w-3.5 h-3.5 text-[#e40046]" />
-                        <span>{alumnus.current_role}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-slate-600">
-                        <Building2 className="w-3.5 h-3.5 text-slate-400" />
-                        <span>{alumnus.organization}</span>
-                      </div>
+                    <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+                      <span>Verified AMAA High School Alumnus</span>
+                      <span className="text-[#44105c] font-bold hover:underline cursor-pointer">
+                        Connect via Portal →
+                      </span>
                     </div>
-
-                    <blockquote className="text-xs text-slate-600 italic bg-slate-50 p-4 rounded-2xl border-l-4 border-[#44105c] leading-relaxed">
-                      "{alumnus.testimonial}"
-                    </blockquote>
                   </div>
-
-                  <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
-                    <span>Verified AMAA High School Alumnus</span>
-                    <span className="text-[#44105c] font-bold hover:underline cursor-pointer">
-                      Connect via Portal →
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
@@ -331,23 +455,33 @@ export const AlumniPage: React.FC<AlumniPageProps> = ({ onNavigateHome, onOpenAd
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 font-medium">
-                    {alumniList.map((alumnus) => (
-                      <tr key={alumnus.id} className="hover:bg-purple-50/40 transition-colors">
-                        <td className="py-4 px-5 font-bold text-slate-900 flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                          {alumnus.full_name}
+                    {alumniList.length === 0 ? (
+                      <tr>
+                        <td colSpan={6} className="py-12 text-center text-slate-500 text-xs">
+                          {isLoading ? 'Loading verified alumni registry...' : 'No verified alumni records currently published.'}
                         </td>
-                        <td className="py-4 px-5">
-                          <span className="bg-purple-50 text-[#44105c] px-2.5 py-0.5 rounded-full font-semibold text-[11px]">
-                            {alumnus.batch_year}
-                          </span>
-                        </td>
-                        <td className="py-4 px-5 text-slate-800">{alumnus.current_role}</td>
-                        <td className="py-4 px-5 text-slate-600">{alumnus.organization}</td>
-                        <td className="py-4 px-5">{alumnus.city}</td>
-                        <td className="py-4 px-5 text-slate-400 font-mono text-[11px]">{alumnus.created_at.split(' ')[0]}</td>
                       </tr>
-                    ))}
+                    ) : (
+                      alumniList.map((alumnus) => (
+                        <tr key={alumnus.id} className="hover:bg-purple-50/40 transition-colors">
+                          <td className="py-4 px-5 font-bold text-slate-900 flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                            {alumnus.full_name}
+                          </td>
+                          <td className="py-4 px-5">
+                            <span className="bg-purple-50 text-[#44105c] px-2.5 py-0.5 rounded-full font-semibold text-[11px]">
+                              {alumnus.batch_year}
+                            </span>
+                          </td>
+                          <td className="py-4 px-5 text-slate-800">{alumnus.current_role}</td>
+                          <td className="py-4 px-5 text-slate-600">{alumnus.organization}</td>
+                          <td className="py-4 px-5">{alumnus.city}</td>
+                          <td className="py-4 px-5 text-slate-400 font-mono text-[11px]">
+                            {alumnus.created_at ? alumnus.created_at.slice(0, 10) : ''}
+                          </td>
+                        </tr>
+                      ))
+                    )}
                   </tbody>
                 </table>
               </div>
@@ -417,8 +551,17 @@ export const AlumniPage: React.FC<AlumniPageProps> = ({ onNavigateHome, onOpenAd
               <div className="mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 flex items-center gap-3">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
                 <div className="text-xs">
-                  <span className="font-bold">Welcome back! Your alumni profile has been successfully saved.</span>
-                  <p className="mt-0.5 text-emerald-700">Your record is now part of the active school alumni directory.</p>
+                  <span className="font-bold">Welcome back! Your alumni profile has been successfully submitted.</span>
+                  <p className="mt-0.5 text-emerald-700">Your registration has been queued for verification by the school administration.</p>
+                </div>
+              </div>
+            )}
+
+            {submitError && (
+              <div className="mb-6 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 flex items-center gap-3">
+                <div className="text-xs">
+                  <span className="font-bold">Registration submission error</span>
+                  <p className="mt-0.5 text-rose-700">{submitError}</p>
                 </div>
               </div>
             )}
@@ -544,10 +687,11 @@ export const AlumniPage: React.FC<AlumniPageProps> = ({ onNavigateHome, onOpenAd
               <div className="flex justify-end pt-3">
                 <button
                   type="submit"
-                  className="bg-[#e40046] hover:bg-[#c9003c] text-white font-bold px-8 py-3.5 rounded-full shadow-lg transition-all text-xs flex items-center gap-2 cursor-pointer"
+                  disabled={isSubmitting}
+                  className="bg-[#e40046] hover:bg-[#c9003c] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold px-8 py-3.5 rounded-full shadow-lg transition-all text-xs flex items-center gap-2 cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
-                  <span>Submit Alumni Registration</span>
+                  <span>{isSubmitting ? 'Submitting Registration...' : 'Submit Alumni Registration'}</span>
                 </button>
               </div>
             </form>

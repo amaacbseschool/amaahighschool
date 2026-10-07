@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   MapPin,
   Phone,
@@ -13,7 +13,9 @@ import {
   Home,
   Compass,
 } from 'lucide-react';
-import { db } from '../lib/db';
+import { addContactMessage } from '../lib/submissions';
+import { getPageWithSections } from '../lib/cms';
+import type { CmsPageWithSections } from '../types/cms';
 import { MagneticButton } from '../components/motion/MagneticButton';
 import { TextReveal } from '../components/motion/TextReveal';
 import logoImg from '../assets/logo.png';
@@ -28,6 +30,26 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   onNavigateRoute,
   onRecordAdded,
 }) => {
+  const [cmsPage, setCmsPage] = useState<CmsPageWithSections | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    getPageWithSections('contact')
+      .then((data) => {
+        if (isMounted && data) {
+          setCmsPage(data);
+        }
+      })
+      .catch((err) => {
+        console.error('Error fetching contact page CMS data:', err);
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const heroSec = cmsPage?.sections?.find((s) => s.section_key === 'contact.hero');
+
   const [formData, setFormData] = useState({
     full_name: '',
     email: '',
@@ -37,8 +59,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   });
 
   const [tourBooked, setTourBooked] = useState(false);
+  const [tourError, setTourError] = useState<string | null>(null);
+  const [isSubmittingTour, setIsSubmittingTour] = useState(false);
   const [tourData, setTourData] = useState({
     parent_name: '',
+    email: '',
     phone: '',
     date: '',
     time_slot: 'Morning (9:30 AM – 11:30 AM)',
@@ -46,21 +71,22 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [contactError, setContactError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setContactError(null);
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      db.addContactMessage({
-        full_name: formData.full_name,
-        email: formData.email,
-        phone: formData.phone,
-        subject: formData.subject,
-        message: formData.message,
+    try {
+      await addContactMessage({
+        full_name: formData.full_name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        subject: formData.subject.trim(),
+        message: formData.message.trim(),
       });
 
-      setIsSubmitting(false);
       setSubmitted(true);
       onRecordAdded();
       setFormData({
@@ -70,20 +96,41 @@ export const ContactPage: React.FC<ContactPageProps> = ({
         subject: '',
         message: '',
       });
-    }, 500);
+    } catch (error) {
+      console.error('Error submitting contact message:', error);
+      setContactError(
+        'Unable to submit your message right now. Please check your network connection and try again, or call our admissions helpline directly.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const handleTourSubmit = (e: React.FormEvent) => {
+  const handleTourSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    db.addContactMessage({
-      full_name: tourData.parent_name,
-      email: 'tour-booking@internal.school',
-      phone: tourData.phone,
-      subject: `Campus Tour Request: ${tourData.date} (${tourData.time_slot})`,
-      message: `Parent requested in-person guided campus walkthrough on ${tourData.date} during ${tourData.time_slot}.`,
-    });
-    setTourBooked(true);
-    onRecordAdded();
+    setTourError(null);
+    const parent_name = tourData.parent_name.trim();
+    const email = tourData.email.trim();
+    const phone = tourData.phone.trim();
+    if (!parent_name || !email || !phone) return;
+
+    setIsSubmittingTour(true);
+    try {
+      await addContactMessage({
+        full_name: parent_name,
+        email: email,
+        phone: phone,
+        subject: `Campus Tour Request: ${tourData.date} (${tourData.time_slot})`,
+        message: `Parent requested in-person guided campus walkthrough on ${tourData.date} during ${tourData.time_slot}.`,
+      });
+      setTourBooked(true);
+      onRecordAdded();
+    } catch (error) {
+      console.error('Error submitting tour request:', error);
+      setTourError('Unable to schedule campus tour right now. Please try again or call our front desk.');
+    } finally {
+      setIsSubmittingTour(false);
+    }
   };
 
   return (
@@ -112,15 +159,15 @@ export const ContactPage: React.FC<ContactPageProps> = ({
           <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 mb-6">
             <img src={logoImg} alt="School Emblem" className="w-5 h-5 object-contain" />
             <span className="text-[11px] font-extrabold tracking-widest text-[#cfbb99] uppercase">
-              STUDENT SERVICES & FRONT DESK
+              {heroSec?.eyebrow || 'STUDENT SERVICES & FRONT DESK'}
             </span>
           </div>
 
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white max-w-3xl leading-[1.1]">
-            <TextReveal>Connect With Our Campus</TextReveal>
+            <TextReveal>{heroSec?.heading || 'Connect With Our Campus'}</TextReveal>
           </h1>
           <p className="text-slate-200 text-base sm:text-lg max-w-2xl mt-5 leading-relaxed font-normal">
-            We invite you to reach out to the admissions office and administration at A.M.A. Adinarayana Eng. Med. High School. We are here to guide your child's journey.
+            {heroSec?.subheading || "We invite you to reach out to the admissions office and administration at A.M.A. Adinarayana Eng. Med. High School. We are here to guide your child's journey."}
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 pt-8 border-t border-white/15 max-w-4xl">
@@ -247,14 +294,23 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   Your message has been stored in our communications database. Our front office counselor will respond within 24 business hours.
                 </p>
                 <button
-                  onClick={() => setSubmitted(false)}
-                  className="mt-2 text-xs font-bold text-[#354024] hover:underline"
+                  onClick={() => {
+                    setSubmitted(false);
+                    setContactError(null);
+                  }}
+                  className="mt-2 text-xs font-bold text-[#354024] hover:underline cursor-pointer"
                 >
                   Send another message
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                {contactError && (
+                  <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs flex items-center gap-2">
+                    <span className="font-bold">Notice:</span>
+                    <span>{contactError}</span>
+                  </div>
+                )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
@@ -377,7 +433,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 <form onSubmit={handleTourSubmit} className="mt-6 space-y-3.5">
                   <div>
                     <label className="block text-[11px] font-bold text-slate-200 mb-1">
-                      Parent / Guardian Name
+                      Parent / Guardian Name *
                     </label>
                     <input
                       type="text"
@@ -391,7 +447,21 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
                   <div>
                     <label className="block text-[11px] font-bold text-slate-200 mb-1">
-                      Phone Number
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="e.g. ramesh.verma@example.com"
+                      value={tourData.email}
+                      onChange={(e) => setTourData({ ...tourData, email: e.target.value })}
+                      className="w-full p-3 text-xs rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:bg-white/20 outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold text-slate-200 mb-1">
+                      Phone Number *
                     </label>
                     <input
                       type="tel"
@@ -405,7 +475,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
                   <div>
                     <label className="block text-[11px] font-bold text-slate-200 mb-1">
-                      Preferred Date
+                      Preferred Date *
                     </label>
                     <div className="relative">
                       <Calendar className="w-4 h-4 text-slate-300 absolute left-3.5 top-3 pointer-events-none" />
@@ -421,7 +491,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
                   <div>
                     <label className="block text-[11px] font-bold text-slate-200 mb-1">
-                      Preferred Slot
+                      Preferred Slot *
                     </label>
                     <select
                       value={tourData.time_slot}
@@ -433,11 +503,18 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     </select>
                   </div>
 
+                  {tourError && (
+                    <div className="p-3 bg-red-500/20 border border-red-500/40 rounded-xl text-red-200 text-xs">
+                      {tourError}
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full bg-[#354024] hover:bg-[#252d19] text-white font-bold py-3.5 rounded-full text-xs uppercase tracking-wider transition-colors shadow-lg mt-2 cursor-pointer"
+                    disabled={isSubmittingTour}
+                    className="w-full bg-[#354024] hover:bg-[#252d19] text-white font-bold py-3.5 rounded-full text-xs uppercase tracking-wider transition-colors shadow-lg mt-2 cursor-pointer disabled:opacity-50"
                   >
-                    CONFIRM TOUR REQUEST
+                    {isSubmittingTour ? 'RECORDING VISIT...' : 'CONFIRM TOUR REQUEST'}
                   </button>
                 </form>
               )}

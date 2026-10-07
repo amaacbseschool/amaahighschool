@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   ArrowLeft,
   Sparkles,
@@ -16,6 +16,8 @@ import {
 import { TextReveal } from '../components/motion/TextReveal';
 import { AnimatedCounter } from '../components/motion/AnimatedCounter';
 import logoImg from '../assets/logo.png';
+import { getPageWithSections } from '../lib/cms';
+import type { CmsPageWithSections, CmsSectionWithItems } from '../types/cms';
 import type { RouteType } from '../types/routes';
 
 interface AboutPageProps {
@@ -24,65 +26,247 @@ interface AboutPageProps {
   onOpenAdmission: () => void;
 }
 
+const DEFAULT_MILESTONES = [
+  {
+    year: '1965',
+    title: 'Foundation of A.M.A. Adinarayana High School',
+    desc: 'Founded under the sacred motto "Lead Kindly Light" to impart disciplined, values-based English medium education to children across the region.',
+  },
+  {
+    year: '1985',
+    title: 'Board Recognition & Secondary Expansion',
+    desc: 'Official high school board accreditation and expansion of comprehensive physics, chemistry, and biology laboratory wings.',
+  },
+  {
+    year: '2005',
+    title: 'Athletic Infrastructure & Library Hub',
+    desc: 'Development of multi-sport grounds, regulation athletic tracks, and a 25,000+ volume knowledge library.',
+  },
+  {
+    year: '2018',
+    title: 'Digital Classrooms & Science Laboratories',
+    desc: 'Integration of 4K interactive smart panels and modernized science and computer laboratories for practical learning.',
+  },
+  {
+    year: '2025–26',
+    title: '60 Glorious Years of Diamond Jubilee Excellence',
+    desc: 'Celebrating 60 years of transformative education, over 10,000 alumni excelling globally, and continuous 100% board pass distinction.',
+  },
+];
+
+const DEFAULT_VALUES = [
+  {
+    title: 'Intellectual Rigor',
+    desc: 'Instilling disciplined analytical thinking, scientific inquiry, and deep conceptual clarity from early childhood to Class 10.',
+    icon: BookOpen,
+    iconColor: 'text-[#354024]',
+  },
+  {
+    title: 'Moral Integrity & Ethics',
+    desc: 'Rooting education in honesty, respect, empathy, and social responsibility under our motto "Lead Kindly Light".',
+    icon: ShieldCheck,
+    iconColor: 'text-[#dc2626]',
+  },
+  {
+    title: 'Future-Ready Innovation',
+    desc: 'Active immersion in scientific exploration, computer literacy, and creative arts that prepare young learners for secondary and higher academic pursuits.',
+    icon: Sparkles,
+    iconColor: 'text-[#354024]',
+  },
+  {
+    title: 'Inclusive Mentorship',
+    desc: 'A student-to-teacher ratio of 1:20 ensuring every child receives tailored academic guidance and emotional care.',
+    icon: Users,
+    iconColor: 'text-[#cfbb99]',
+  },
+];
+
+const DEFAULT_STATS = [
+  { label: 'Years of Heritage', value: 60, suffix: '+', prefix: '', desc: 'Diamond Jubilee (1965)' },
+  { label: 'Teacher Ratio', value: 20, prefix: '1:', suffix: '', desc: 'Personalized mentoring' },
+  { label: 'Global Alumni', value: 10000, suffix: '+', prefix: '', desc: 'AIIMS, Tech & Governance' },
+  { label: 'Smart Green Campus', value: 15, suffix: ' Acres', prefix: '', desc: 'World-class infrastructure' },
+];
+
 export const AboutPage: React.FC<AboutPageProps> = ({
   onNavigateHome,
   onNavigateRoute,
   onOpenAdmission,
 }) => {
-  const milestones = [
-    {
-      year: '1965',
-      title: 'Foundation of A.M.A. Adinarayana High School',
-      desc: 'Founded under the sacred motto "Lead Kindly Light" to impart disciplined, values-based English medium education to children across the region.',
-    },
-    {
-      year: '1985',
-      title: 'Board Recognition & Secondary Expansion',
-      desc: 'Official high school board accreditation and expansion of comprehensive physics, chemistry, and biology laboratory wings.',
-    },
-    {
-      year: '2005',
-      title: 'Athletic Infrastructure & Library Hub',
-      desc: 'Development of multi-sport grounds, regulation athletic tracks, and a 25,000+ volume knowledge library.',
-    },
-    {
-      year: '2018',
-      title: 'Digital Classrooms & Science Laboratories',
-      desc: 'Integration of 4K interactive smart panels and modernized science and computer laboratories for practical learning.',
-    },
-    {
-      year: '2025–26',
-      title: '60 Glorious Years of Diamond Jubilee Excellence',
-      desc: 'Celebrating 60 years of transformative education, over 10,000 alumni excelling globally, and continuous 100% board pass distinction.',
-    },
-  ];
+  const [pageData, setPageData] = useState<CmsPageWithSections | null>(null);
 
-  const coreValues = [
-    {
-      title: 'Intellectual Rigor',
-      desc: 'Instilling disciplined analytical thinking, scientific inquiry, and deep conceptual clarity from early childhood to Class 10.',
-      icon: BookOpen,
-      iconColor: 'text-[#354024]',
-    },
-    {
-      title: 'Moral Integrity & Ethics',
-      desc: 'Rooting education in honesty, respect, empathy, and social responsibility under our motto "Lead Kindly Light".',
-      icon: ShieldCheck,
-      iconColor: 'text-[#dc2626]',
-    },
-    {
-      title: 'Future-Ready Innovation',
-      desc: 'Active immersion in scientific exploration, computer literacy, and creative arts that prepare young learners for secondary and higher academic pursuits.',
-      icon: Sparkles,
-      iconColor: 'text-[#354024]',
-    },
-    {
-      title: 'Inclusive Mentorship',
-      desc: 'A student-to-teacher ratio of 1:20 ensuring every child receives tailored academic guidance and emotional care.',
-      icon: Users,
-      iconColor: 'text-[#cfbb99]',
-    },
-  ];
+  useEffect(() => {
+    let isMounted = true;
+    getPageWithSections('about')
+      .then((data) => {
+        if (isMounted && data) {
+          setPageData(data);
+        }
+      })
+      .catch((err) => {
+        console.error('[CMS] Failed to load about page with sections:', err);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const sectionMap = useMemo(() => {
+    const map = new Map<string, CmsSectionWithItems>();
+    if (pageData?.sections) {
+      for (const sec of pageData.sections) {
+        map.set(sec.section_key, sec);
+      }
+    }
+    return map;
+  }, [pageData]);
+
+  // Section 1: Hero
+  const heroSection = sectionMap.get('about.hero');
+  const heroHeading = heroSection?.heading || '60 Years of Academic Rigor & Moral Enlightenment';
+  const heroSubheading =
+    heroSection?.subheading ||
+    'Established in 1965, A.M.A. Adinarayana English Medium High School has illuminated the paths of generations of young learners under the timeless motto "Lead Kindly Light."';
+  const heroCtaText = heroSection?.cta_text || 'Apply for Admission 2025–26';
+  const heroSecondaryCtaText = heroSection?.secondary_cta_text || 'Explore Curriculum';
+
+  // Section 2: Stats Strip
+  const statsSection = sectionMap.get('about.stats');
+  const statsList = useMemo(() => {
+    if (statsSection?.items && statsSection.items.length > 0) {
+      return statsSection.items.map((item, idx) => {
+        const fallback = DEFAULT_STATS[idx] || DEFAULT_STATS[0];
+        const rawBadge = (item.badge || '').trim();
+        let value = fallback.value;
+        let prefix = fallback.prefix;
+        let suffix = fallback.suffix;
+
+        if (rawBadge.startsWith('1:')) {
+          prefix = '1:';
+          const num = parseInt(rawBadge.replace('1:', '').trim(), 10);
+          if (!isNaN(num)) value = num;
+          suffix = '';
+        } else {
+          const match = rawBadge.match(/^([0-9,]+)(.*)$/);
+          if (match) {
+            value = parseInt(match[1].replace(/,/g, ''), 10);
+            suffix = match[2];
+            prefix = '';
+          }
+        }
+
+        return {
+          label: item.title || fallback.label,
+          value,
+          prefix,
+          suffix,
+          desc: item.description || fallback.desc,
+        };
+      });
+    }
+    return DEFAULT_STATS;
+  }, [statsSection]);
+
+  // Section 3: Vision & Mission
+  const visionMissionSection = sectionMap.get('about.vision_mission');
+  const visionItem = visionMissionSection?.items?.[0];
+  const missionItem = visionMissionSection?.items?.[1];
+
+  const visionTitle = visionItem?.title || 'Our Vision';
+  const visionDesc =
+    visionItem?.description ||
+    'To be a transformative center of secondary education that empowers young minds to achieve the pinnacle of academic distinction, technological fluency, and ethical clarity, inspiring them to lead positively in an interconnected global society.';
+  const visionBadge = visionItem?.badge || 'Recognised Educational Excellence';
+
+  const missionTitle = missionItem?.title || 'Our Mission';
+  const missionDesc =
+    missionItem?.description ||
+    'To provide an inclusive, safe, and academically stimulating learning ecosystem where qualified educators ignite curiosity, foster critical problem solving through hands-on science practicals and arts, and cultivate unwavering moral integrity in every student from Grade VI through Grade X.';
+  const missionBadge = missionItem?.badge || 'Dedicated to Holistic Student Welfare';
+
+  // Section 4: Leadership Spotlight
+  const leadershipSection = sectionMap.get('about.leadership');
+  const leadershipQuote =
+    leadershipSection?.heading ||
+    `"We don't merely instruct for examinations; we cultivate thinkers who illuminate society."`;
+  const leadershipSubheading =
+    leadershipSection?.subheading ||
+    'Dr. Shailendra K. Verma, Principal & Academic Director (M.Sc., M.Ed., Ph.D. in Education)';
+  const leadershipImg = leadershipSection?.image_url || '/gallery/jai00525.webp';
+  const leadershipCtaText = leadershipSection?.cta_text || 'Meet the Governing Body & Trustees';
+
+  // Parse Dr. Shailendra K. Verma info
+  const { leaderName, leaderRole, leaderQual } = useMemo(() => {
+    if (leadershipSubheading.includes('(')) {
+      const parts = leadershipSubheading.split('(');
+      const nameAndRole = parts[0].trim();
+      const qual = parts[1].replace(')', '').trim();
+      const commaIdx = nameAndRole.indexOf(',');
+      if (commaIdx !== -1) {
+        return {
+          leaderName: nameAndRole.substring(0, commaIdx).trim(),
+          leaderRole: nameAndRole.substring(commaIdx + 1).trim(),
+          leaderQual: qual,
+        };
+      }
+      return { leaderName: nameAndRole, leaderRole: 'Principal & Academic Director', leaderQual: qual };
+    }
+    return {
+      leaderName: 'Dr. Shailendra K. Verma',
+      leaderRole: 'Principal & Academic Director',
+      leaderQual: 'M.Sc., M.Ed., Ph.D. in Education',
+    };
+  }, [leadershipSubheading]);
+
+  const leadershipBody = useMemo(() => {
+    if (leadershipSection?.content_html) {
+      const paragraphs = leadershipSection.content_html
+        .split('\n\n')
+        .map((p) => p.trim())
+        .filter(Boolean);
+      return paragraphs;
+    }
+    return [
+      'Dear Parents, Students, and Well-Wishers,\n\nWelcome to AMAA High School. Education is the greatest catalyst for human dignity and progress. In our classrooms, laboratories, and sports grounds, we view each child as an individual universe of boundless potential. Our responsibility is to nurture their questions, fortify their resilience, and anchor them in timeless moral values.',
+      'As we advance into an era shaped by artificial intelligence and scientific leaps, we remain steadfast in our dedication to humanistic empathy, athletic vigor, and artistic sensibility.',
+    ];
+  }, [leadershipSection]);
+
+  // Section 5: Values Grid
+  const valuesSection = sectionMap.get('about.values');
+  const valuesHeading = valuesSection?.heading || 'Foundations of Student Success';
+  const valuesList = useMemo(() => {
+    if (valuesSection?.items && valuesSection.items.length > 0) {
+      return valuesSection.items.map((item, idx) => {
+        const fallback = DEFAULT_VALUES[idx] || DEFAULT_VALUES[0];
+        return {
+          title: item.title || fallback.title,
+          desc: item.description || fallback.desc,
+          icon: fallback.icon,
+          iconColor: fallback.iconColor,
+        };
+      });
+    }
+    return DEFAULT_VALUES;
+  }, [valuesSection]);
+
+  // Section 6: History / Timeline
+  const historySection = sectionMap.get('about.history');
+  const historyHeading = historySection?.heading || 'Milestones of Growth (1965 – Present)';
+  const historyMilestones = useMemo(() => {
+    if (historySection?.items && historySection.items.length > 0) {
+      return historySection.items.map((item, idx) => {
+        const fallback = DEFAULT_MILESTONES[idx] || DEFAULT_MILESTONES[0];
+        return {
+          year: item.badge || fallback.year,
+          title: item.title || fallback.title,
+          desc: item.description || fallback.desc,
+        };
+      });
+    }
+    return DEFAULT_MILESTONES;
+  }, [historySection]);
 
   return (
     <div className="bg-[#f8f9fa] min-h-screen">
@@ -120,11 +304,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight font-crest">
-            <TextReveal>60 Years of Academic Rigor & Moral Enlightenment</TextReveal>
+            <TextReveal>{heroHeading}</TextReveal>
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-slate-200 max-w-3xl mx-auto leading-relaxed font-normal">
-            Established in 1965, A.M.A. Adinarayana English Medium High School has illuminated the paths of generations of young learners under the timeless motto "Lead Kindly Light."
+            {heroSubheading}
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -133,13 +317,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               className="bg-[#354024] hover:bg-[#252d19] text-white font-bold px-8 py-3.5 rounded-full transition-all text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg hover:shadow-xl cursor-pointer"
             >
               <GraduationCap className="w-4 h-4 text-[#cfbb99]" />
-              <span>Apply for Admission 2025–26</span>
+              <span>{heroCtaText}</span>
             </button>
             <button
               onClick={() => onNavigateRoute('academics')}
               className="bg-white/10 hover:bg-white/20 text-white font-semibold px-7 py-3.5 rounded-full border border-white/25 transition-all text-xs uppercase tracking-wider flex items-center gap-2 cursor-pointer backdrop-blur-xs"
             >
-              <span>Explore Curriculum</span>
+              <span>{heroSecondaryCtaText}</span>
               <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
             </button>
           </div>
@@ -149,12 +333,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       {/* 3. Stats Strip */}
       <section className="relative -mt-8 w-[90%] mx-auto px-2 sm:px-4 z-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            { label: 'Years of Heritage', value: 60, suffix: '+', desc: 'Diamond Jubilee (1965)' },
-            { label: 'Teacher Ratio', value: 20, prefix: '1:', suffix: '', desc: 'Personalized mentoring' },
-            { label: 'Global Alumni', value: 10000, suffix: '+', desc: 'AIIMS, Tech & Governance' },
-            { label: 'Smart Green Campus', value: 15, suffix: ' Acres', desc: 'World-class infrastructure' },
-          ].map((stat, idx) => (
+          {statsList.map((stat, idx) => (
             <div
               key={idx}
               className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-card flex items-start gap-4 hover:-translate-y-1 transition-transform"
@@ -187,15 +366,15 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 Our Guiding Horizon
               </span>
               <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#1b2213] mt-1 mb-4">
-                Our Vision
+                {visionTitle}
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                To be a transformative center of secondary education that empowers young minds to achieve the pinnacle of academic distinction, technological fluency, and ethical clarity, inspiring them to lead positively in an interconnected global society.
+                {visionDesc}
               </p>
             </div>
             <div className="mt-8 pt-6 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-[#354024]">
               <CheckCircle2 className="w-4 h-4 text-[#dc2626]" />
-              <span>Recognised Educational Excellence</span>
+              <span>{visionBadge}</span>
             </div>
           </div>
 
@@ -209,15 +388,15 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 Our Daily Commitment
               </span>
               <h3 className="font-crest text-2xl sm:text-3xl font-bold text-[#1b2213] mt-1 mb-4">
-                Our Mission
+                {missionTitle}
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                To provide an inclusive, safe, and academically stimulating learning ecosystem where qualified educators ignite curiosity, foster critical problem solving through hands-on science practicals and arts, and cultivate unwavering moral integrity in every student from Grade VI through Grade X.
+                {missionDesc}
               </p>
             </div>
             <div className="mt-8 pt-6 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-[#354024]">
               <CheckCircle2 className="w-4 h-4 text-[#dc2626]" />
-              <span>Dedicated to Holistic Student Welfare</span>
+              <span>{missionBadge}</span>
             </div>
           </div>
         </div>
@@ -231,15 +410,15 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             <div className="lg:col-span-5 text-center">
               <div className="relative inline-block overflow-hidden rounded-3xl border-4 border-slate-100 shadow-2xl">
                 <img
-                  src="/gallery/jai00525.webp"
+                  src={leadershipImg}
                   alt="Principal & Leadership of AMAA High School"
                   className="w-72 h-96 sm:w-80 sm:h-[420px] object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1b2213] via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 text-white text-left">
-                  <h4 className="font-crest text-lg font-bold">Dr. Shailendra K. Verma</h4>
-                  <p className="text-xs text-[#cfbb99] font-semibold">Principal & Academic Director</p>
-                  <span className="text-[10px] text-slate-300 font-mono">M.Sc., M.Ed., Ph.D. in Education</span>
+                  <h4 className="font-crest text-lg font-bold">{leaderName}</h4>
+                  <p className="text-xs text-[#cfbb99] font-semibold">{leaderRole}</p>
+                  <span className="text-[10px] text-slate-300 font-mono">{leaderQual}</span>
                 </div>
               </div>
             </div>
@@ -251,15 +430,22 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 <span>Leadership Perspective</span>
               </div>
               <h2 className="font-crest text-3xl sm:text-4xl font-bold text-[#1b2213] leading-tight">
-                "We don't merely instruct for examinations; we cultivate thinkers who illuminate society."
+                {leadershipQuote}
               </h2>
-              <blockquote className="text-sm sm:text-base text-slate-700 leading-relaxed italic border-l-4 border-[#354024] pl-4">
-                Dear Parents, Students, and Well-Wishers,<br /><br />
-                Welcome to AMAA High School. Education is the greatest catalyst for human dignity and progress. In our classrooms, laboratories, and sports grounds, we view each child as an individual universe of boundless potential. Our responsibility is to nurture their questions, fortify their resilience, and anchor them in timeless moral values.
-              </blockquote>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                As we advance into an era shaped by artificial intelligence and scientific leaps, we remain steadfast in our dedication to humanistic empathy, athletic vigor, and artistic sensibility.
-              </p>
+              {leadershipBody.map((paragraph, pIdx) => {
+                if (pIdx === 0) {
+                  return (
+                    <blockquote key={pIdx} className="text-sm sm:base text-slate-700 leading-relaxed italic border-l-4 border-[#354024] pl-4 whitespace-pre-line">
+                      {paragraph}
+                    </blockquote>
+                  );
+                }
+                return (
+                  <p key={pIdx} className="text-xs text-slate-500 leading-relaxed whitespace-pre-line">
+                    {paragraph}
+                  </p>
+                );
+              })}
 
               {/* Governing Body Link */}
               <div className="pt-2">
@@ -268,7 +454,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                   className="inline-flex items-center gap-2 text-xs font-bold text-white bg-[#1b2213] hover:bg-[#354024] px-4 py-2.5 rounded-xl transition-all shadow-sm cursor-pointer group"
                 >
                   <ShieldCheck className="w-4 h-4 text-[#cfbb99]" />
-                  <span>Meet the Governing Body & Trustees</span>
+                  <span>{leadershipCtaText}</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </button>
               </div>
@@ -284,12 +470,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             INSTITUTIONAL PILLARS
           </span>
           <h2 className="font-crest text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1b2213] mt-3">
-            Foundations of Student Success
+            {valuesHeading}
           </h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {coreValues.map((val, idx) => {
+          {valuesList.map((val, idx) => {
             const Icon = val.icon;
             return (
               <div
@@ -317,12 +503,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               JOURNEY OVER TIME
             </span>
             <h2 className="font-crest text-3xl sm:text-4xl font-bold text-white mt-3">
-              Milestones of Growth (1965 – Present)
+              {historyHeading}
             </h2>
           </div>
 
           <div className="space-y-6 relative before:absolute before:inset-0 before:left-4 sm:before:left-1/2 before:w-0.5 before:bg-white/10">
-            {milestones.map((m, idx) => (
+            {historyMilestones.map((m, idx) => (
               <div
                 key={idx}
                 className={`relative flex flex-col sm:flex-row items-start ${

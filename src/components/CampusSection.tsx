@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Monitor,
@@ -16,95 +16,135 @@ import {
 } from 'lucide-react';
 import { TextReveal } from './motion/TextReveal';
 import type { RouteType } from '../types/routes';
+import type { CmsSectionWithItems } from '../types/cms';
 
 interface CampusSectionProps {
+  cmsSection?: CmsSectionWithItems;
   onNavigateRoute?: (route: RouteType, hashTarget?: string) => void;
   onOpenAdmission?: () => void;
 }
 
+interface Facility {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+  image: string;
+  features: string[];
+  spec: string;
+}
+
+const DEFAULT_FACILITIES: Facility[] = [
+  {
+    id: 'smart-classrooms',
+    title: 'Smart 4K Classrooms',
+    subtitle: 'Digitally Immersive Learning Environments',
+    description: 'Acoustically tuned, climate-controlled classrooms equipped with 75-inch 4K interactive touch panels and digital stylus annotation.',
+    icon: Monitor,
+    image: '/gallery/jai00385.webp',
+    features: [
+      'Interactive 4K Digital Panels with cloud lessons',
+      'Ergonomic child-safe anti-fatigue furniture',
+      'Acoustic soundproofing & glare-free lighting',
+      'Hybrid digital connectivity for interactive masterclasses',
+    ],
+    spec: '100% Digitalized',
+  },
+  {
+    id: 'science-labs',
+    title: 'Modern Science & Computer Suites',
+    subtitle: 'Physics, Chemistry, Biology & IT Wings',
+    description: 'Individual experiment stations with certified safety apparatus, fume exhausts, digital microscopes, and networked computer workstations.',
+    icon: FlaskConical,
+    image: '/gallery/jai00399.webp',
+    features: [
+      'Certified fire-safe chemical ventilation hoods',
+      'Precision optical & digital projection microscopes',
+      'Sensor interface bays for data logging',
+      'Dedicated practical experiment benches with certified apparatus',
+    ],
+    spec: 'Secondary Certified',
+  },
+  {
+    id: 'grand-library',
+    title: 'Grand Reference Library',
+    subtitle: '25,000+ Literary & Research Volumes',
+    description: 'Two-tier reading gallery featuring academic encyclopedias, national journals, digital e-reading carrels, and peaceful study pods.',
+    icon: BookMarked,
+    image: '/gallery/jai00368.webp',
+    features: [
+      'RFID self-checkout & digital catalog search',
+      'Quiet individual research carrels with Wi-Fi',
+      'Curated international children’s literature',
+      'Weekly book club conclaves & debates',
+    ],
+    spec: '25,000+ Books',
+  },
+  {
+    id: 'sports-complex',
+    title: 'Athletic Sports Complex',
+    subtitle: '400m Track, Cricket, Football & Martial Arts',
+    description: 'Sprawling grass fields, certified cricket practice nets, synthetic volleyball courts, and an indoor taekwondo dojo.',
+    icon: Trophy,
+    image: '/gallery/jai00329.webp',
+    features: [
+      'Regulation 400m running track with sprint blocks',
+      'Fenced turf cricket practice pitches',
+      'Dedicated martial arts & yoga pavilion',
+      'Professional coaches with NIS certification',
+    ],
+    spec: 'Olympic Guidelines',
+  },
+  {
+    id: 'transport',
+    title: 'GPS-Monitored Fleet',
+    subtitle: 'Safe, Air-Cooled City Transit',
+    description: 'Modern fleet covering all major city neighborhoods with real-time GPS tracking, speed governors, female attendants, and first-aid kits.',
+    icon: Bus,
+    image: '/gallery/jai00331.webp',
+    features: [
+      'Live parent mobile app tracking with ETA alerts',
+      'Dedicated female attender on every route',
+      'Speed governors locked to safe city limits',
+      'Emergency SOS alarm & first responder kits',
+    ],
+    spec: '100% Monitored',
+  },
+];
+
 export const CampusSection: React.FC<CampusSectionProps> = ({
+  cmsSection,
   onNavigateRoute,
   onOpenAdmission,
 }) => {
-  const [selectedFacility, setSelectedFacility] = useState<any | null>(null);
+  const [selectedFacility, setSelectedFacility] = useState<Facility | null>(null);
 
-  const campusFacilities = [
-    {
-      id: 'smart-classrooms',
-      title: 'Smart 4K Classrooms',
-      subtitle: 'Digitally Immersive Learning Environments',
-      description: 'Acoustically tuned, climate-controlled classrooms equipped with 75-inch 4K interactive touch panels and digital stylus annotation.',
-      icon: Monitor,
-      image: '/gallery/jai00385.webp',
-      features: [
-        'Interactive 4K Digital Panels with cloud lessons',
-        'Ergonomic child-safe anti-fatigue furniture',
-        'Acoustic soundproofing & glare-free lighting',
-        'Hybrid digital connectivity for interactive masterclasses',
-      ],
-      spec: '100% Digitalized',
-    },
-    {
-      id: 'science-labs',
-      title: 'Modern Science & Computer Suites',
-      subtitle: 'Physics, Chemistry, Biology & IT Wings',
-      description: 'Individual experiment stations with certified safety apparatus, fume exhausts, digital microscopes, and networked computer workstations.',
-      icon: FlaskConical,
-      image: '/gallery/jai00399.webp',
-      features: [
-        'Certified fire-safe chemical ventilation hoods',
-        'Precision optical & digital projection microscopes',
-        'Sensor interface bays for data logging',
-        'Dedicated practical experiment benches with certified apparatus',
-      ],
-      spec: 'Secondary Certified',
-    },
-    {
-      id: 'grand-library',
-      title: 'Grand Reference Library',
-      subtitle: '25,000+ Literary & Research Volumes',
-      description: 'Two-tier reading gallery featuring academic encyclopedias, national journals, digital e-reading carrels, and peaceful study pods.',
-      icon: BookMarked,
-      image: '/gallery/jai00368.webp',
-      features: [
-        'RFID self-checkout & digital catalog search',
-        'Quiet individual research carrels with Wi-Fi',
-        'Curated international children’s literature',
-        'Weekly book club conclaves & debates',
-      ],
-      spec: '25,000+ Books',
-    },
-    {
-      id: 'sports-complex',
-      title: 'Athletic Sports Complex',
-      subtitle: '400m Track, Cricket, Football & Martial Arts',
-      description: 'Sprawling grass fields, certified cricket practice nets, synthetic volleyball courts, and an indoor taekwondo dojo.',
-      icon: Trophy,
-      image: '/gallery/jai00329.webp',
-      features: [
-        'Regulation 400m running track with sprint blocks',
-        'Fenced turf cricket practice pitches',
-        'Dedicated martial arts & yoga pavilion',
-        'Professional coaches with NIS certification',
-      ],
-      spec: 'Olympic Guidelines',
-    },
-    {
-      id: 'transport',
-      title: 'GPS-Monitored Fleet',
-      subtitle: 'Safe, Air-Cooled City Transit',
-      description: 'Modern fleet covering all major city neighborhoods with real-time GPS tracking, speed governors, female attendants, and first-aid kits.',
-      icon: Bus,
-      image: '/gallery/jai00331.webp',
-      features: [
-        'Live parent mobile app tracking with ETA alerts',
-        'Dedicated female attender on every route',
-        'Speed governors locked to safe city limits',
-        'Emergency SOS alarm & first responder kits',
-      ],
-      spec: '100% Monitored',
-    },
-  ];
+  const eyebrow = cmsSection?.eyebrow || 'WORLD-CLASS INFRASTRUCTURE';
+  const heading = cmsSection?.heading || 'Our Campus & Facilities';
+  const subheading =
+    cmsSection?.subheading ||
+    'Spanning a lush 15-acre sanctuary of learning, our campus blends state-of-the-art academic suites with expansive athletic complexes and vigilant safety infrastructure.';
+  const ctaText = cmsSection?.cta_text || 'EXPLORE ALL CAMPUS AMENITIES';
+
+  const campusFacilities: Facility[] = useMemo(() => {
+    if (cmsSection?.items && cmsSection.items.length >= 5) {
+      return cmsSection.items.map((item, idx) => {
+        const fallback = DEFAULT_FACILITIES[idx] || DEFAULT_FACILITIES[0];
+        return {
+          id: `facility-${idx}`,
+          title: item.title || fallback.title,
+          subtitle: item.subtitle || fallback.subtitle,
+          description: item.description || fallback.description,
+          icon: fallback.icon,
+          image: item.image_url || fallback.image,
+          features: fallback.features,
+          spec: item.badge || fallback.spec,
+        };
+      });
+    }
+    return DEFAULT_FACILITIES;
+  }, [cmsSection]);
 
   return (
     <section id="campus" className="py-20 lg:py-28 bg-white border-b border-slate-200 relative overflow-hidden">
@@ -121,14 +161,14 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
             <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
               <Building2 className="w-3.5 h-3.5 text-[#354024]" />
               <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">
-                WORLD-CLASS INFRASTRUCTURE
+                {eyebrow}
               </span>
             </div>
             <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] tracking-tight mt-1">
-              <TextReveal>Our Campus & Facilities</TextReveal>
+              <TextReveal>{heading}</TextReveal>
             </h2>
             <p className="text-slate-600 text-sm sm:text-base max-w-2xl mt-3 leading-relaxed">
-              Spanning a lush 15-acre sanctuary of learning, our campus blends state-of-the-art academic suites with expansive athletic complexes and vigilant safety infrastructure.
+              {subheading}
             </p>
           </div>
 
@@ -137,7 +177,7 @@ export const CampusSection: React.FC<CampusSectionProps> = ({
               onClick={() => onNavigateRoute('campus')}
               className="shrink-0 inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-6 py-3 rounded-full text-xs tracking-wider uppercase transition-all shadow-md hover:shadow-lg cursor-pointer"
             >
-              <span>EXPLORE ALL CAMPUS AMENITIES</span>
+              <span>{ctaText}</span>
               <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
             </button>
           )}

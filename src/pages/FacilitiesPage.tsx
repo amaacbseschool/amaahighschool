@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Monitor,
@@ -22,6 +22,8 @@ import {
 import { MagneticButton } from '../components/motion/MagneticButton';
 import { TextReveal } from '../components/motion/TextReveal';
 import logoImg from '../assets/logo.png';
+import { getPageWithSections } from '../lib/cms';
+import type { CmsPageWithSections, CmsSectionWithItems } from '../types/cms';
 import type { RouteType } from '../types/routes';
 
 interface FacilitiesPageProps {
@@ -39,122 +41,184 @@ interface FacilityItem {
   stats: { label: string; value: string };
 }
 
+const DEFAULT_FACILITIES: FacilityItem[] = [
+  {
+    id: 'smart-classrooms',
+    title: 'Next-Gen Smart Classrooms',
+    category: 'Academic',
+    description: 'Acoustically treated, climate-controlled learning studios featuring 4K interactive touch panels and hybrid streaming systems.',
+    icon: Monitor,
+    image: '/gallery/jai00385.webp',
+    features: [
+      'Interactive 4K Digital Panels with multi-touch styluses',
+      'Ergonomic child-safe modular furniture for flexible seating',
+      'High-speed Wi-Fi 6 connectivity with educational firewalls',
+      'Acoustic sound dampening and anti-glare balanced illumination',
+    ],
+    stats: { label: 'Interactive Panels', value: '45+ Units' },
+  },
+  {
+    id: 'science-labs',
+    title: 'Integrated Science Laboratories',
+    category: 'Laboratories',
+    description: 'Dedicated Physics, Chemistry, and Biology research suites equipped with modern sensory apparatus and emergency safety showers.',
+    icon: FlaskConical,
+    image: '/gallery/jai00399.webp',
+    features: [
+      'Individual apparatus workstations (1:1 student-to-equipment ratio)',
+      'Individual practical experiment benches with certified safety apparatus',
+      'Chemical fume hoods, safety eyewash, and certified first-aid kits',
+      'High-resolution digital microscopes with digital capture & projection',
+    ],
+    stats: { label: 'Workstations', value: '60 Seats' },
+  },
+  {
+    id: 'library',
+    title: 'Digital & Heritage Learning Library',
+    category: 'Academic',
+    description: 'A serene sanctum housing over 25,000 physical volumes, international scientific periodicals, and high-speed digital research terminals.',
+    icon: BookMarked,
+    image: '/gallery/jai00368.webp',
+    features: [
+      'Over 25,000 curated titles across literature, science, and humanities',
+      'E-library subscriptions to JSTOR, National Geographic, and Britannica',
+      'Acoustically insulated individual study carrels',
+      'Junior reading corner with pictorial storytelling resources',
+    ],
+    stats: { label: 'Books & Resources', value: '25,000+' },
+  },
+  {
+    id: 'sports-complex',
+    title: 'Olympic-Standard Sports Complex',
+    category: 'Athletics',
+    description: 'Multi-sport athletic grounds comprising synthetic track, basketball arena, cricket pitch, badminton courts, and indoor martial arts dojo.',
+    icon: Trophy,
+    image: '/gallery/jai00329.webp',
+    features: [
+      'Regulation 200m all-weather athletic running track',
+      'Floodlit synthetic surface basketball & tennis courts',
+      'Natural turf football ground and turf cricket batting nets',
+      'Taekwondo and karate dojo with certified safety flooring',
+    ],
+    stats: { label: 'Dedicated Area', value: '4+ Acres' },
+  },
+  {
+    id: 'transport',
+    title: 'GPS-Monitored Fleet Transport',
+    category: 'Safety',
+    description: 'Safe, GPS-tracked, speed-governed air-conditioned fleet covering major nodal pickup points across the municipal district.',
+    icon: Bus,
+    image: '/gallery/jai00331.webp',
+    features: [
+      'Live parent bus-tracking smartphone application',
+      'Mandatory verified female attendants on every trip route',
+      'Onboard high-definition CCTV cameras & speed limiters',
+      'Emergency response panic buttons and certified first-aid equipment',
+    ],
+    stats: { label: 'City Routes', value: '22 Lines' },
+  },
+  {
+    id: 'performing-arts',
+    title: 'Auditorium & Fine Arts Pavilion',
+    category: 'Cultural',
+    description: 'An open-air amphitheater stage and quadrangle with acoustic architecture for morning assemblies and grand school events.',
+    icon: Music,
+    image: '/gallery/jai00308.webp',
+    features: [
+      'Dolby surround acoustic sound architecture and wireless mics',
+      'Motorized stage lighting trusses and programmable spotlights',
+      'Dedicated vocal, instrumental (piano/violin/tabla) practice cubicles',
+      'Spacious classical and western dance mirror rehearsal hall',
+    ],
+    stats: { label: 'Seating Capacity', value: '800 Seats' },
+  },
+  {
+    id: 'water-purification',
+    title: 'Commercial RO Drinking Water Plant',
+    category: 'Safety',
+    description: 'In-house heavy-duty reverse osmosis water purification plant with multi-stage mineral filtration delivering 100% pure drinking water.',
+    icon: ShieldCheck,
+    image: '/gallery/jai00405.webp',
+    features: [
+      'Continuous industrial 10,000 LPH multi-membrane filtration',
+      'Chilled stainless-steel touchless water stations across campus',
+      'Daily digital water purity and TDS testing certifications',
+      'Direct pipe distribution to all academic blocks and dining halls',
+    ],
+    stats: { label: 'Purity Standard', value: '100% Certified' },
+  },
+];
+
 export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute }) => {
   const [selectedFacility, setSelectedFacility] = useState<FacilityItem | null>(null);
   const [filter, setFilter] = useState<string>('All');
+  const [pageData, setPageData] = useState<CmsPageWithSections | null>(null);
 
-  const facilities: FacilityItem[] = [
-    {
-      id: 'smart-classrooms',
-      title: 'Next-Gen Smart Classrooms',
-      category: 'Academic',
-      description: 'Acoustically treated, climate-controlled learning studios featuring 4K interactive touch panels and hybrid streaming systems.',
-      icon: Monitor,
-      image: '/gallery/jai00385.webp',
-      features: [
-        'Interactive 4K Digital Panels with multi-touch styluses',
-        'Ergonomic child-safe modular furniture for flexible seating',
-        'High-speed Wi-Fi 6 connectivity with educational firewalls',
-        'Acoustic sound dampening and anti-glare balanced illumination',
-      ],
-      stats: { label: 'Interactive Panels', value: '45+ Units' },
-    },
-    {
-      id: 'science-labs',
-      title: 'Integrated Science Laboratories',
-      category: 'Laboratories',
-      description: 'Dedicated Physics, Chemistry, and Biology research suites equipped with modern sensory apparatus and emergency safety showers.',
-      icon: FlaskConical,
-      image: '/gallery/jai00399.webp',
-      features: [
-        'Individual apparatus workstations (1:1 student-to-equipment ratio)',
-        'Individual practical experiment benches with certified safety apparatus',
-        'Chemical fume hoods, safety eyewash, and certified first-aid kits',
-        'High-resolution digital microscopes with digital capture & projection',
-      ],
-      stats: { label: 'Workstations', value: '60 Seats' },
-    },
-    {
-      id: 'library',
-      title: 'Digital & Heritage Learning Library',
-      category: 'Academic',
-      description: 'A serene sanctum housing over 25,000 physical volumes, international scientific periodicals, and high-speed digital research terminals.',
-      icon: BookMarked,
-      image: '/gallery/jai00368.webp',
-      features: [
-        'Over 25,000 curated titles across literature, science, and humanities',
-        'E-library subscriptions to JSTOR, National Geographic, and Britannica',
-        'Acoustically insulated individual study carrels',
-        'Junior reading corner with pictorial storytelling resources',
-      ],
-      stats: { label: 'Books & Resources', value: '25,000+' },
-    },
-    {
-      id: 'sports-complex',
-      title: 'Olympic-Standard Sports Complex',
-      category: 'Athletics',
-      description: 'Multi-sport athletic grounds comprising synthetic track, basketball arena, cricket pitch, badminton courts, and indoor martial arts dojo.',
-      icon: Trophy,
-      image: '/gallery/jai00329.webp',
-      features: [
-        'Regulation 200m all-weather athletic running track',
-        'Floodlit synthetic surface basketball & tennis courts',
-        'Natural turf football ground and turf cricket batting nets',
-        'Taekwondo and karate dojo with certified safety flooring',
-      ],
-      stats: { label: 'Dedicated Area', value: '4+ Acres' },
-    },
-    {
-      id: 'transport',
-      title: 'GPS-Monitored Fleet Transport',
-      category: 'Safety',
-      description: 'Safe, GPS-tracked, speed-governed air-conditioned fleet covering major nodal pickup points across the municipal district.',
-      icon: Bus,
-      image: '/gallery/jai00331.webp',
-      features: [
-        'Live parent bus-tracking smartphone application',
-        'Mandatory verified female attendants on every trip route',
-        'Onboard high-definition CCTV cameras & speed limiters',
-        'Emergency response panic buttons and certified first-aid equipment',
-      ],
-      stats: { label: 'City Routes', value: '22 Lines' },
-    },
-    {
-      id: 'performing-arts',
-      title: 'Auditorium & Fine Arts Pavilion',
-      category: 'Cultural',
-      description: 'An open-air amphitheater stage and quadrangle with acoustic architecture for morning assemblies and grand school events.',
-      icon: Music,
-      image: '/gallery/jai00308.webp',
-      features: [
-        'Dolby surround acoustic sound architecture and wireless mics',
-        'Motorized stage lighting trusses and programmable spotlights',
-        'Dedicated vocal, instrumental (piano/violin/tabla) practice cubicles',
-        'Spacious classical and western dance mirror rehearsal hall',
-      ],
-      stats: { label: 'Seating Capacity', value: '800 Seats' },
-    },
-    {
-      id: 'water-purification',
-      title: 'Commercial RO Drinking Water Plant',
-      category: 'Safety',
-      description: 'In-house heavy-duty reverse osmosis water purification plant with multi-stage mineral filtration delivering 100% pure drinking water.',
-      icon: ShieldCheck,
-      image: '/gallery/jai00405.webp',
-      features: [
-        'Continuous industrial 10,000 LPH multi-membrane filtration',
-        'Chilled stainless-steel touchless water stations across campus',
-        'Daily digital water purity and TDS testing certifications',
-        'Direct pipe distribution to all academic blocks and dining halls',
-      ],
-      stats: { label: 'Purity Standard', value: '100% Certified' },
-    },
-  ];
+  useEffect(() => {
+    let isMounted = true;
+    getPageWithSections('campus')
+      .then((data) => {
+        if (isMounted && data) {
+          setPageData(data);
+        }
+      })
+      .catch((err) => {
+        console.error('[CMS] Failed to load campus facilities page data:', err);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const sectionMap = useMemo(() => {
+    const map = new Map<string, CmsSectionWithItems>();
+    if (pageData?.sections) {
+      for (const sec of pageData.sections) {
+        map.set(sec.section_key, sec);
+      }
+    }
+    return map;
+  }, [pageData]);
+
+  const heroSection = sectionMap.get('campus.hero');
+  const heroHeading = heroSection?.heading || 'State-of-the-Art Learning Spaces';
+  const heroSubheading =
+    heroSection?.subheading ||
+    'Every square foot of our 15-acre campus is purposely engineered to inspire intellectual curiosity, ensure child safety, and provide an enriching environment for holistic growth.';
+
+  const gridSection = sectionMap.get('campus.facilities_grid');
+  const facilitiesList: FacilityItem[] = useMemo(() => {
+    if (gridSection?.items && gridSection.items.length > 0) {
+      const defaultMap = new Map<string, FacilityItem>();
+      for (const def of DEFAULT_FACILITIES) {
+        defaultMap.set(def.title.toLowerCase().trim(), def);
+      }
+
+      return gridSection.items.map((item, idx) => {
+        const fallback = defaultMap.get((item.title || '').toLowerCase().trim()) || DEFAULT_FACILITIES[idx] || DEFAULT_FACILITIES[0];
+        return {
+          id: fallback.id,
+          title: item.title || fallback.title,
+          category: fallback.category,
+          description: item.description || fallback.description,
+          icon: fallback.icon,
+          image: item.image_url || fallback.image,
+          features: fallback.features,
+          stats: {
+            label: fallback.stats.label,
+            value: item.badge || fallback.stats.value,
+          },
+        };
+      });
+    }
+    return DEFAULT_FACILITIES;
+  }, [gridSection]);
 
   const categories = ['All', 'Academic', 'Laboratories', 'Athletics', 'Cultural', 'Safety'];
 
   const filteredFacilities =
-    filter === 'All' ? facilities : facilities.filter((f) => f.category === filter);
+    filter === 'All' ? facilitiesList : facilitiesList.filter((f) => f.category === filter);
 
   // Maps facility.id → the anchor hash used in navbar dropdown links
   const facilityAnchorMap: Record<string, string> = {
@@ -197,10 +261,10 @@ export const FacilitiesPage: React.FC<FacilitiesPageProps> = ({ onNavigateRoute 
           </div>
 
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white max-w-3xl leading-[1.1]">
-            <TextReveal>State-of-the-Art Learning Spaces</TextReveal>
+            <TextReveal>{heroHeading}</TextReveal>
           </h1>
           <p className="text-slate-200 text-base sm:text-lg max-w-2xl mt-5 leading-relaxed font-normal">
-            Every square foot of our 15-acre campus is purposely engineered to inspire intellectual curiosity, ensure child safety, and provide an enriching environment for holistic growth.
+            {heroSubheading}
           </p>
 
           {/* Quick Metrics Bar */}

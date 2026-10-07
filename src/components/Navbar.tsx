@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Search, Menu, X, ArrowRight, Sparkles } from 'lucide-react';
 import logoImg from '../assets/logo.png';
 import type { RouteType } from '../types/routes';
+import { useCmsShell } from '../context/CmsShellContext';
 
 interface NavbarProps {
   currentRoute?: RouteType;
@@ -27,15 +28,91 @@ interface NavItem {
   dropdown?: DropdownItem[];
 }
 
+const DROPDOWN_DESCRIPTIONS: Record<string, string> = {
+  'Our Story': '60 years of academic excellence since 1965',
+  'Vision & Mission': 'Guiding principles and institutional commitments',
+  'Administration': 'Governing body members & trust operations',
+  'Leadership': "Principal's message and school governance",
+  'Values': 'The pillars of character and integrity we build',
+  'History': 'Key milestones from 1965 to Diamond Jubilee',
+  'Curriculum': 'Holistic learning framework for Grades VI to Class 10',
+  'Academic Stages': 'Middle (Grades VI–VIII) & Secondary (Grades IX–X) wings',
+  'Teaching & Learning': 'Our pedagogical philosophy and methodology',
+  'Faculty & Mentors': 'Experienced subject specialists and mentors',
+  'Classrooms': 'Smart 4K interactive digital learning studios',
+  'Laboratories': 'Physics, Chemistry, Biology & Computer workstation suites',
+  'Library': '25,000+ volumes, journals & digital research carrels',
+  'Sports': '400m track, cricket, football & martial arts complex',
+  'Transport': 'GPS-monitored city-wide fleet with parent tracking',
+};
+
+function parsePathToRoute(path: string): { route: RouteType; hashTarget?: string } {
+  if (!path || path === '/') {
+    return { route: 'home' };
+  }
+  const [cleanPath, hash] = path.split('#');
+  const normalized = cleanPath.replace(/^\/+|\/+$/g, '').toLowerCase();
+
+  let route: RouteType = 'home';
+  switch (normalized) {
+    case 'about':
+      route = 'about';
+      break;
+    case 'academics':
+      route = 'academics';
+      break;
+    case 'faculty':
+      route = 'faculty';
+      break;
+    case 'campus':
+    case 'facilities':
+      route = 'campus';
+      break;
+    case 'student-life':
+      route = 'student-life';
+      break;
+    case 'gallery':
+      route = 'gallery';
+      break;
+    case 'achievements':
+      route = 'achievements';
+      break;
+    case 'news-events':
+      route = 'news-events';
+      break;
+    case 'alumni':
+      route = 'alumni';
+      break;
+    case 'administration':
+      route = 'administration';
+      break;
+    case 'admin':
+      route = 'admin';
+      break;
+    case 'contact':
+      route = 'contact';
+      break;
+    default:
+      route = 'home';
+  }
+  return { route, hashTarget: hash ? `#${hash}` : undefined };
+}
+
 export const Navbar: React.FC<NavbarProps> = ({
   currentRoute = 'home',
   onNavigateRoute,
   onOpenAdmission,
   onOpenSearch,
 }) => {
+  const { getSetting, navigation } = useCmsShell();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  const shortName = getSetting('site_short_name', 'A.M.A. Adinarayana');
+  const brandSubtitle = getSetting('site_brand_subtitle', 'English Medium High School');
+  const establishedYear = getSetting('site_established_year', '1965');
+  const ctaText = getSetting('navbar_cta_text', 'APPLY FOR 2025–26');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,48 +122,38 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems: NavItem[] = [
-    { label: 'Home', href: '/', route: 'home' },
-    {
-      label: 'About',
-      href: '/about',
-      route: 'about',
-      dropdown: [
-        { title: 'Our Story', desc: '60 years of academic excellence since 1965', route: 'about', hashTarget: '#our-story' },
-        { title: 'Vision & Mission', desc: 'Guiding principles and institutional commitments', route: 'about', hashTarget: '#vision-mission' },
-        { title: 'Administration', desc: 'Governing body members & trust operations', route: 'administration' },
-        { title: 'Leadership', desc: "Principal's message and school governance", route: 'about', hashTarget: '#leadership' },
-        { title: 'Values', desc: 'The pillars of character and integrity we build', route: 'about', hashTarget: '#values' },
-        { title: 'History', desc: 'Key milestones from 1965 to Diamond Jubilee', route: 'about', hashTarget: '#history' },
-      ],
-    },
-    {
-      label: 'Academics',
-      href: '/academics',
-      route: 'academics',
-      dropdown: [
-        { title: 'Curriculum', desc: 'Holistic learning framework for Grades VI to Class 10', route: 'academics', hashTarget: '#curriculum' },
-        { title: 'Academic Stages', desc: 'Middle (Grades VI–VIII) & Secondary (Grades IX–X) wings', route: 'academics', hashTarget: '#stages' },
-        { title: 'Teaching & Learning', desc: 'Our pedagogical philosophy and methodology', route: 'academics', hashTarget: '#pedagogy' },
-        { title: 'Faculty & Mentors', desc: 'Experienced subject specialists and mentors', route: 'academics', hashTarget: '#faculty' },
-      ],
-    },
-    {
-      label: 'Campus',
-      href: '/campus',
-      route: 'campus',
-      dropdown: [
-        { title: 'Classrooms', desc: 'Smart 4K interactive digital learning studios', route: 'campus', hashTarget: '#classrooms' },
-        { title: 'Laboratories', desc: 'Physics, Chemistry, Biology & Computer workstation suites', route: 'campus', hashTarget: '#laboratories' },
-        { title: 'Library', desc: '25,000+ volumes, journals & digital research carrels', route: 'campus', hashTarget: '#library' },
-        { title: 'Sports', desc: '400m track, cricket, football & martial arts complex', route: 'campus', hashTarget: '#sports' },
-        { title: 'Transport', desc: 'GPS-monitored city-wide fleet with parent tracking', route: 'campus', hashTarget: '#transport' },
-      ],
-    },
-    { label: 'Gallery', href: '/gallery', route: 'gallery' },
-    { label: 'Alumni', href: '/alumni', route: 'alumni' },
-    { label: 'Contact', href: '/contact', route: 'contact' },
-  ];
+  const navItems: NavItem[] = useMemo(() => {
+    return navigation
+      .filter((root) => root.is_visible)
+      .sort((a, b) => a.sort_order - b.sort_order)
+      .map((root) => {
+        const { route } = parsePathToRoute(root.path);
+        const hasChildren = root.children && root.children.length > 0;
+
+        const dropdown: DropdownItem[] | undefined = hasChildren
+          ? root.children!
+              .filter((child) => child.is_visible)
+              .sort((a, b) => a.sort_order - b.sort_order)
+              .map((child) => {
+                const { route: childRoute, hashTarget } = parsePathToRoute(child.path);
+                return {
+                  title: child.label,
+                  desc: DROPDOWN_DESCRIPTIONS[child.label] || '',
+                  route: childRoute,
+                  hashTarget,
+                  href: child.path,
+                };
+              })
+          : undefined;
+
+        return {
+          label: root.label,
+          href: root.path,
+          route,
+          dropdown: dropdown && dropdown.length > 0 ? dropdown : undefined,
+        };
+      });
+  }, [navigation]);
 
   return (
     <motion.header
@@ -113,20 +180,20 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           <img
             src={logoImg}
-            alt="A.M.A. Adinarayana Eng. Med. High School Crest"
+            alt={`${shortName} Crest`}
             className="w-13 h-13 sm:w-14 sm:h-14 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-xs"
           />
           <div className="flex flex-col">
             <span className="font-crest text-lg sm:text-xl font-extrabold tracking-tight text-[#1b2213] group-hover:text-[#354024] transition-colors leading-tight">
-              A.M.A. Adinarayana
+              {shortName}
             </span>
             <div className="flex items-center gap-2 mt-0.5">
               <span className="text-xs font-semibold text-slate-500 tracking-wide">
-                English Medium High School
+                {brandSubtitle}
               </span>
               <span className="text-slate-300 hidden sm:inline">•</span>
               <span className="text-[11px] font-bold text-[#cfbb99] hidden sm:inline">
-                Estd. 1965
+                Estd. {establishedYear}
               </span>
             </div>
           </div>
@@ -225,7 +292,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer"
           >
             <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
-            <span>APPLY FOR 2025–26</span>
+            <span>{ctaText}</span>
             <ArrowRight className="w-3.5 h-3.5 text-white" />
           </button>
         </div>
@@ -310,7 +377,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }}
                 className="w-full bg-[#354024] hover:bg-[#252d19] text-white py-3.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-md cursor-pointer transition-colors flex items-center justify-center gap-2"
               >
-                <span>Apply for Admission 2025–26</span>
+                <span>{ctaText}</span>
                 <ArrowRight className="w-4 h-4 text-white" />
               </button>
             </div>

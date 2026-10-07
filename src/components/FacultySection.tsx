@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Sparkles,
@@ -15,6 +15,8 @@ import {
 } from 'lucide-react';
 import { TextReveal } from './motion/TextReveal';
 import { MagneticButton } from './motion/MagneticButton';
+import { getActiveFaculty } from '../lib/cms';
+import type { FacultyMemberRow } from '../types/cms';
 import logoImg from '../assets/logo.png';
 import type { RouteType } from '../types/routes';
 
@@ -24,7 +26,7 @@ interface FacultySectionProps {
 }
 
 export interface FacultyMember {
-  id: number;
+  id: number | string;
   name: string;
   role: string;
   department: 'Leadership' | 'Sciences' | 'Mathematics' | 'Languages' | 'Arts & Sports';
@@ -50,15 +52,7 @@ const getInitials = (name: string) => {
     .toUpperCase();
 };
 
-export const FacultySection: React.FC<FacultySectionProps> = ({
-  onNavigateRoute,
-  onOpenAdmission,
-}) => {
-  const [activeDepartment, setActiveDepartment] = useState<string>('All');
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [selectedFaculty, setSelectedFaculty] = useState<FacultyMember | null>(null);
-
-  const facultyList: FacultyMember[] = [
+const DEFAULT_FACULTY_LIST: FacultyMember[] = [
     {
       id: 1,
       name: 'Dr. K. S. Ramanathan',
@@ -211,7 +205,57 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
       officeHours: 'Friday & Saturday • 02:00 PM – 04:00 PM',
       email: 'p.devi@amaahighschool.edu.in',
     },
-  ];
+];
+
+export const FacultySection: React.FC<FacultySectionProps> = ({
+  onNavigateRoute,
+  onOpenAdmission,
+}) => {
+  const [activeDepartment, setActiveDepartment] = useState<string>('All');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [selectedFaculty, setSelectedFaculty] = useState<FacultyMember | null>(null);
+  const [facultyMembers, setFacultyMembers] = useState<FacultyMember[]>(DEFAULT_FACULTY_LIST);
+
+  useEffect(() => {
+    let isMounted = true;
+    getActiveFaculty()
+      .then((rows: FacultyMemberRow[]) => {
+        if (!isMounted || !rows || rows.length === 0) return;
+
+        const defaultMap = new Map<string, FacultyMember>();
+        for (const def of DEFAULT_FACULTY_LIST) {
+          defaultMap.set(def.name.toLowerCase().trim(), def);
+        }
+
+        const mapped: FacultyMember[] = rows.map((row, idx) => {
+          const fallback = defaultMap.get(row.name.toLowerCase().trim()) || DEFAULT_FACULTY_LIST[idx] || DEFAULT_FACULTY_LIST[0];
+          return {
+            id: row.id,
+            name: row.name,
+            role: row.designation || fallback.role,
+            department: (row.department as FacultyMember['department']) || fallback.department,
+            qualification: row.qualification || fallback.qualification,
+            experience: row.experience || fallback.experience,
+            image: row.avatar_url || fallback.image,
+            subjects: fallback.subjects,
+            quote: fallback.quote,
+            bio: row.bio || fallback.bio,
+            achievements: fallback.achievements,
+            officeHours: row.office_hours || fallback.officeHours,
+            email: row.email || fallback.email,
+          };
+        });
+
+        setFacultyMembers(mapped);
+      })
+      .catch((err) => {
+        console.error('[CMS] Failed to load active faculty members:', err);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const departments = [
     { label: 'All Mentors', key: 'All' },
@@ -222,7 +266,7 @@ export const FacultySection: React.FC<FacultySectionProps> = ({
     { label: 'Arts & Athletics', key: 'Arts & Sports' },
   ];
 
-  const filteredFaculty = facultyList.filter((faculty) => {
+  const filteredFaculty = facultyMembers.filter((faculty) => {
     const matchesDept = activeDepartment === 'All' || faculty.department === activeDepartment;
     const matchesSearch =
       searchQuery === '' ||

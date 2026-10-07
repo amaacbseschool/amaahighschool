@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle2, ShieldCheck } from 'lucide-react';
-import { db } from '../lib/db';
+import { addContactMessage } from '../lib/submissions';
 import { TextReveal } from './motion/TextReveal';
 import { MagneticButton } from './motion/MagneticButton';
 
@@ -19,21 +19,22 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
 
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage(null);
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      db.addContactMessage({
-        full_name: formData.full_name,
-        email: formData.email,
-        phone: formData.phone,
-        subject: formData.subject,
-        message: formData.message,
+    try {
+      await addContactMessage({
+        full_name: formData.full_name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        subject: formData.subject.trim(),
+        message: formData.message.trim(),
       });
 
-      setIsSubmitting(false);
       setSubmitted(true);
       onRecordAdded();
       setFormData({
@@ -43,7 +44,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
         subject: '',
         message: '',
       });
-    }, 500);
+    } catch (error) {
+      console.error('Error submitting contact message:', error);
+      setErrorMessage(
+        'Unable to dispatch your message right now. Please check your network connection and try again, or reach our front office desk directly.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -150,14 +158,23 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onRecordAdded })
                   Your inquiry has been stored in our communications database. Our front office counselor will respond within 24 business hours.
                 </p>
                 <button
-                  onClick={() => setSubmitted(false)}
-                  className="mt-2 text-xs font-bold text-[#354024] hover:underline"
+                  onClick={() => {
+                    setSubmitted(false);
+                    setErrorMessage(null);
+                  }}
+                  className="mt-2 text-xs font-bold text-[#354024] hover:underline cursor-pointer"
                 >
                   Send another query
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                {errorMessage && (
+                  <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs flex items-center gap-2">
+                    <span className="font-bold">Notice:</span>
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">

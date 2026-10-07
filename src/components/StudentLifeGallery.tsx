@@ -3,15 +3,27 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, X, ZoomIn, Sparkles, Camera } from 'lucide-react';
 import { TextReveal } from './motion/TextReveal';
 import type { RouteType } from '../types/routes';
+import type { CmsSectionWithItems } from '../types/cms';
 import { SCHOOL_PHOTOS, type SchoolPhoto } from '../data/schoolGalleryData';
 
 interface StudentLifeGalleryProps {
+  cmsSection?: CmsSectionWithItems;
   onNavigateRoute?: (route: RouteType, hashTarget?: string) => void;
 }
 
-export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNavigateRoute }) => {
+export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({
+  cmsSection,
+  onNavigateRoute,
+}) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [selectedPhoto, setSelectedPhoto] = useState<SchoolPhoto | null>(null);
+
+  const eyebrow = cmsSection?.eyebrow || 'AUTHENTIC VISUAL CHRONICLE';
+  const heading = cmsSection?.heading || 'Life & Learning at AMAA';
+  const subheading =
+    cmsSection?.subheading ||
+    'Real moments from our 15-acre campus: smart interactive classrooms, high-tech IT suites, NCC ceremonial march-past, and disaster preparedness assemblies.';
+  const ctaText = cmsSection?.cta_text || 'EXPLORE ALL 38 PHOTOS';
 
   // Curated showcase of featured authentic photos
   const featuredIds = [
@@ -44,14 +56,14 @@ export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNaviga
             <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
               <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
               <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">
-                AUTHENTIC VISUAL CHRONICLE
+                {eyebrow}
               </span>
             </div>
             <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] tracking-tight mt-1">
-              <TextReveal>Life &amp; Learning at AMAA</TextReveal>
+              <TextReveal>{heading}</TextReveal>
             </h2>
             <p className="text-slate-600 text-sm sm:text-base max-w-xl mt-2 leading-relaxed">
-              Real moments from our 15-acre campus: smart interactive classrooms, high-tech IT suites, NCC ceremonial march-past, and disaster preparedness assemblies.
+              {subheading}
             </p>
           </div>
 
@@ -79,7 +91,7 @@ export const StudentLifeGallery: React.FC<StudentLifeGalleryProps> = ({ onNaviga
                 className="inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-5 py-2.5 rounded-full text-xs uppercase tracking-wider shadow-subtle hover:shadow-md transition-all cursor-pointer"
               >
                 <Camera className="w-3.5 h-3.5" />
-                <span>EXPLORE ALL 38 PHOTOS</span>
+                <span>{ctaText}</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#cfbb99]" />
               </button>
             )}

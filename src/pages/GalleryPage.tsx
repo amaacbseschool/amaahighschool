@@ -27,8 +27,11 @@ import type { RouteType } from '../types/routes';
 import {
   SCHOOL_PHOTOS,
   GALLERY_CATEGORIES,
+  type SchoolPhoto,
   type GalleryCategory,
 } from '../data/schoolGalleryData';
+import { getPageWithSections, getActiveGalleryImages } from '../lib/cms';
+import type { CmsPageWithSections, GalleryImageRow } from '../types/cms';
 
 interface GalleryPageProps {
   onNavigateRoute: (route: RouteType, hashTarget?: string) => void;
@@ -41,6 +44,71 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [pageData, setPageData] = useState<CmsPageWithSections | null>(null);
+  const [galleryRows, setGalleryRows] = useState<GalleryImageRow[]>([]);
+
+  useEffect(() => {
+    let isMounted = true;
+    getPageWithSections('gallery')
+      .then((data) => {
+        if (isMounted && data) {
+          setPageData(data);
+        }
+      })
+      .catch((err) => {
+        console.error('[CMS] Failed to load gallery page:', err);
+      });
+
+    getActiveGalleryImages()
+      .then((rows) => {
+        if (isMounted && rows && rows.length > 0) {
+          setGalleryRows(rows);
+        }
+      })
+      .catch((err) => {
+        console.error('[CMS] Failed to load gallery images:', err);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const photosList: SchoolPhoto[] = useMemo(() => {
+    if (galleryRows && galleryRows.length > 0) {
+      const defaultPhotoMap = new Map<string, SchoolPhoto>();
+      for (const p of SCHOOL_PHOTOS) {
+        defaultPhotoMap.set(p.image, p);
+        defaultPhotoMap.set(p.title.toLowerCase().trim(), p);
+      }
+
+      return galleryRows.map((r, idx) => {
+        const fallback =
+          defaultPhotoMap.get(r.image_url) ||
+          defaultPhotoMap.get(r.title.toLowerCase().trim()) ||
+          SCHOOL_PHOTOS[idx] ||
+          SCHOOL_PHOTOS[0];
+        return {
+          id: r.id,
+          filename: fallback.filename,
+          image: r.image_url || fallback.image,
+          title: r.title || fallback.title,
+          category: (r.category as SchoolPhoto['category']) || fallback.category,
+          badge: fallback.badge,
+          caption: r.caption || fallback.caption,
+          featured: r.is_featured,
+        };
+      });
+    }
+    return SCHOOL_PHOTOS;
+  }, [galleryRows]);
+
+  const heroHeading =
+    pageData?.sections?.find((s) => s.section_key === 'gallery.hero')?.heading ||
+    'Inside A.M.A. Adinarayana High School';
+  const heroSubheading =
+    pageData?.sections?.find((s) => s.section_key === 'gallery.hero')?.subheading ||
+    'Explore authentic high-resolution moments from our 15-acre campus: smart interactive classrooms, science & IT laboratories, NCC marching drills, emergency preparedness assemblies, and trophy cabinets honoring 60 years of heritage.';
 
   const handleOpenLightbox = (idx: number) => {
     setSelectedPhotoIndex(idx);
@@ -49,7 +117,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
 
   // Filtered photos based on category and search query
   const filteredPhotos = useMemo(() => {
-    return SCHOOL_PHOTOS.filter((photo) => {
+    return photosList.filter((photo) => {
       const matchesCategory = activeCategory === 'All' || photo.category === activeCategory;
       const matchesSearch =
         searchQuery.trim() === '' ||
@@ -59,7 +127,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
         photo.category.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesCategory && matchesSearch;
     });
-  }, [activeCategory, searchQuery]);
+  }, [photosList, activeCategory, searchQuery]);
 
   const selectedPhoto =
     selectedPhotoIndex !== null ? filteredPhotos[selectedPhotoIndex] : null;
@@ -103,14 +171,14 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
 
   // Counts for each category
   const categoryCounts = useMemo(() => {
-    const counts: Record<string, number> = { All: SCHOOL_PHOTOS.length };
+    const counts: Record<string, number> = { All: photosList.length };
     GALLERY_CATEGORIES.forEach((cat) => {
       if (cat !== 'All') {
-        counts[cat] = SCHOOL_PHOTOS.filter((p) => p.category === cat).length;
+        counts[cat] = photosList.filter((p) => p.category === cat).length;
       }
     });
     return counts;
-  }, []);
+  }, [photosList]);
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -163,10 +231,10 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
             </div>
 
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white max-w-3xl leading-[1.1]">
-              <TextReveal>Inside A.M.A. Adinarayana High School</TextReveal>
+              <TextReveal>{heroHeading}</TextReveal>
             </h1>
             <p className="text-slate-200 text-base sm:text-lg max-w-2xl mt-5 leading-relaxed font-normal">
-              Explore authentic high-resolution moments from our 15-acre campus: smart interactive classrooms, science &amp; IT laboratories, NCC marching drills, emergency preparedness assemblies, and trophy cabinets honoring 60 years of heritage.
+              {heroSubheading}
             </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 pt-8 border-t border-white/15 max-w-4xl">
@@ -238,7 +306,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
 
               <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
                 <div className="text-xs text-slate-400">
-                  <span className="text-white font-bold">{SCHOOL_PHOTOS.length} Authentic Photos</span> in this gallery
+                  <span className="text-white font-bold">{photosList.length} Authentic Photos</span> in this gallery
                 </div>
                 <button
                   onClick={() => {
@@ -268,7 +336,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigateRoute, embed
               Photographic Archive
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-1">
-              Showing {filteredPhotos.length} of {SCHOOL_PHOTOS.length} high-resolution photographs
+              Showing {filteredPhotos.length} of {photosList.length} high-resolution photographs
             </p>
           </div>
 

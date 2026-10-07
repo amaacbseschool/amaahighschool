@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowLeft,
@@ -20,6 +20,8 @@ import {
 } from 'lucide-react';
 import { TextReveal } from '../components/motion/TextReveal';
 import { GalleryPage } from './GalleryPage';
+import { getPageWithSections } from '../lib/cms';
+import type { CmsPageWithSections, CmsSectionWithItems } from '../types/cms';
 import type { RouteType } from '../types/routes';
 
 interface StudentLifePageProps {
@@ -27,7 +29,7 @@ interface StudentLifePageProps {
   onOpenAdmission: () => void;
 }
 
-const activities = [
+const DEFAULT_ACTIVITIES = [
   { icon: Music2, title: 'Performing Arts', desc: 'Classical vocal & instrumental training, symphonic band, and annual cultural performances on the main stage.', tag: 'Arts & Music' },
   { icon: Paintbrush, title: 'Visual Arts Studio', desc: 'Drawing, watercolour, sculpture, digital art, and annual art exhibitions showcasing student creativity.', tag: 'Fine Arts' },
   { icon: Mic2, title: 'Debate & Elocution', desc: 'Inter-house debates, MUN participation, public speaking and competitive elocution rounds at state level.', tag: 'Communication' },
@@ -36,7 +38,7 @@ const activities = [
   { icon: Leaf, title: 'Eco & Nature Club', desc: 'School garden maintenance, environmental awareness campaigns, and district-level eco science fairs.', tag: 'Environment' },
 ];
 
-const sportsOffered = [
+const DEFAULT_SPORTS = [
   { name: 'Athletics (Track & Field)', icon: Activity, detail: '400m track, sprint, relay, long jump, high jump — with NIS-certified coaches.' },
   { name: 'Cricket', icon: Trophy, detail: 'Year-round cricket nets, district U-16 teams, and state inter-school tournaments.' },
   { name: 'Football', icon: Trophy, detail: 'Full-size turf ground, inter-house leagues, and district championship squads.' },
@@ -45,14 +47,14 @@ const sportsOffered = [
   { name: 'Yoga & Fitness', icon: Dumbbell, detail: 'Daily morning yoga, flexibility training, and stress management for all grades.' },
 ];
 
-const artsAndCulture = [
+const DEFAULT_ARTS = [
   { year: 'Tarangini (Annual Day)', desc: 'Grand cultural evening with drama, dance, music, fashion show, and talent awards — over 500 performers each year.' },
   { year: 'Republic Day Programme', desc: 'Patriotic stage performances, flag hoisting, special assembly, and certificate distribution for achievers.' },
   { year: 'Diwali & Ugadi Celebrations', desc: 'Cultural unity programmes celebrating major Indian festivals with rangoli, food fairs, and art competitions.' },
   { year: 'Science Mela & Expo', desc: 'Annual school-wide science fair with working models, experiments, and a public showcase for parents.' },
 ];
 
-const clubs = [
+const DEFAULT_CLUBS = [
   { name: 'Computer & Coding Club', members: '45+ Members', meets: 'Every Saturday', lead: 'Mr. Anand Kumar (CS Dept.)' },
   { name: 'Nature & Ecology Club', members: '38 Members', meets: 'Every Thursday', lead: 'Ms. Radha Iyer (Biology)' },
   { name: 'Debate & MUN Club', members: '52 Members', meets: 'Tuesdays & Fridays', lead: 'Mr. Venkata Rao (English)' },
@@ -65,6 +67,111 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
   onNavigateRoute,
   onOpenAdmission,
 }) => {
+  const [pageData, setPageData] = useState<CmsPageWithSections | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    getPageWithSections('student-life')
+      .then((data) => {
+        if (isMounted && data) {
+          setPageData(data);
+        }
+      })
+      .catch((err) => {
+        console.error('[CMS] Failed to load student-life page data:', err);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const sectionMap = useMemo(() => {
+    const map = new Map<string, CmsSectionWithItems>();
+    if (pageData?.sections) {
+      for (const sec of pageData.sections) {
+        map.set(sec.section_key, sec);
+      }
+    }
+    return map;
+  }, [pageData]);
+
+  // Section 1: Hero
+  const heroSection = sectionMap.get('student_life.hero');
+  const heroHeading = heroSection?.heading || 'Vibrant Student Life at AMAA';
+  const heroSubheading =
+    heroSection?.subheading ||
+    'Education at AMAA extends far beyond textbooks. We nurture athletes, artists, debaters, coders, and creators — building whole human beings who lead with character.';
+
+  // Section 2: Activities
+  const activitiesSection = sectionMap.get('student_life.activities');
+  const activitiesHeading = activitiesSection?.heading || 'Activities & Programmes';
+  const activitiesList = useMemo(() => {
+    if (activitiesSection?.items && activitiesSection.items.length > 0) {
+      return activitiesSection.items.map((item, idx) => {
+        const fallback = DEFAULT_ACTIVITIES[idx] || DEFAULT_ACTIVITIES[0];
+        return {
+          icon: fallback.icon,
+          title: item.title || fallback.title,
+          desc: item.description || fallback.desc,
+          tag: item.badge || fallback.tag,
+        };
+      });
+    }
+    return DEFAULT_ACTIVITIES;
+  }, [activitiesSection]);
+
+  // Section 3: Sports
+  const sportsSection = sectionMap.get('student_life.sports');
+  const sportsHeading = sportsSection?.heading || 'Athletics & Sports';
+  const sportsList = useMemo(() => {
+    if (sportsSection?.items && sportsSection.items.length > 0) {
+      return sportsSection.items.map((item, idx) => {
+        const fallback = DEFAULT_SPORTS[idx] || DEFAULT_SPORTS[0];
+        return {
+          name: item.title || fallback.name,
+          icon: fallback.icon,
+          detail: item.description || fallback.detail,
+        };
+      });
+    }
+    return DEFAULT_SPORTS;
+  }, [sportsSection]);
+
+  // Section 4: Arts & Culture
+  const artsSection = sectionMap.get('student_life.arts');
+  const artsHeading = artsSection?.heading || 'Arts & Cultural Programmes';
+  const artsList = useMemo(() => {
+    if (artsSection?.items && artsSection.items.length > 0) {
+      return artsSection.items.map((item, idx) => {
+        const fallback = DEFAULT_ARTS[idx] || DEFAULT_ARTS[0];
+        return {
+          year: item.title || fallback.year,
+          desc: item.description || fallback.desc,
+        };
+      });
+    }
+    return DEFAULT_ARTS;
+  }, [artsSection]);
+
+  // Section 5: Clubs
+  const clubsSection = sectionMap.get('student_life.clubs');
+  const clubsHeading = clubsSection?.heading || 'Clubs & Interest Groups';
+  const clubsList = useMemo(() => {
+    if (clubsSection?.items && clubsSection.items.length > 0) {
+      return clubsSection.items.map((item, idx) => {
+        const fallback = DEFAULT_CLUBS[idx] || DEFAULT_CLUBS[0];
+        return {
+          name: item.title || fallback.name,
+          members: item.badge || fallback.members,
+          meets: item.subtitle || fallback.meets,
+          lead: item.description || fallback.lead,
+        };
+      });
+    }
+    return DEFAULT_CLUBS;
+  }, [clubsSection]);
+
   return (
     <div className="bg-[#f8f9fa] min-h-screen">
       {/* Breadcrumb */}
@@ -93,10 +200,10 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
             <span className="text-xs font-bold tracking-widest uppercase text-[#cfbb99]">Beyond the Classroom</span>
           </div>
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight font-crest max-w-4xl">
-            <TextReveal>Vibrant Student Life at AMAA</TextReveal>
+            <TextReveal>{heroHeading}</TextReveal>
           </h1>
           <p className="mt-6 text-base sm:text-lg text-slate-200 max-w-2xl leading-relaxed">
-            Education at AMAA extends far beyond textbooks. We nurture athletes, artists, debaters, coders, and creators — building whole human beings who lead with character.
+            {heroSubheading}
           </p>
 
           {/* Section anchors */}
@@ -137,29 +244,33 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
             <Star className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Co-curricular Enrichment</span>
           </div>
-          <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">Activities & Programmes</h2>
-          <p className="text-slate-600 text-sm mt-2 max-w-2xl">Our co-curricular ecosystem is designed to discover, develop, and amplify each student's unique talents alongside their academic journey.</p>
+          <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">{activitiesHeading}</h2>
+          <p className="text-slate-600 text-sm mt-2 max-w-2xl">Holistic development through clubs, creative arts, competitions, and environmental stewardship.</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {activities.map((act, idx) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {activitiesList.map((act, idx) => {
             const Icon = act.icon;
             return (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: idx * 0.07 }}
                 whileHover={{ y: -4 }}
-                className="bg-white border border-slate-200/90 rounded-3xl p-7 shadow-card hover:shadow-xl hover:border-[#354024]/30 transition-all duration-300"
+                className="bg-white border border-slate-200/90 rounded-3xl p-7 shadow-card hover:border-[#354024]/40 hover:shadow-xl transition-all"
               >
-                <div className="w-12 h-12 rounded-2xl bg-[#354024]/10 text-[#354024] flex items-center justify-center mb-5">
-                  <Icon className="w-6 h-6" />
+                <div className="flex items-center justify-between mb-5">
+                  <div className="w-12 h-12 rounded-2xl bg-[#354024]/10 flex items-center justify-center">
+                    <Icon className="w-6 h-6 text-[#354024]" />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#354024] bg-[#354024]/10 border border-[#354024]/20 px-3 py-1 rounded-full">
+                    {act.tag}
+                  </span>
                 </div>
-                <span className="text-[10px] font-bold text-[#cfbb99] uppercase tracking-widest bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full">{act.tag}</span>
-                <h3 className="font-crest text-lg font-bold text-[#1b2213] mt-3 mb-2">{act.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{act.desc}</p>
+                <h3 className="font-crest font-bold text-lg text-[#1b2213] mb-2">{act.title}</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">{act.desc}</p>
               </motion.div>
             );
           })}
@@ -167,70 +278,44 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
       </section>
 
       {/* ── SPORTS ────────────────────────────────────────── */}
-      <section id="sports" className="bg-white border-y border-slate-200 py-16 lg:py-20">
+      <section id="sports" className="bg-[#141a0e] text-white py-16 lg:py-20 border-y border-[#252d19]">
         <div className="w-[90%] mx-auto px-2 sm:px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12"
+            className="mb-12"
           >
-            <div>
-              <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
-                <Trophy className="w-3.5 h-3.5 text-[#cfbb99]" />
-                <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Athletics & Physical Education</span>
-              </div>
-              <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">Sports at AMAA</h2>
-              <p className="text-slate-600 text-sm mt-2 max-w-2xl">Our sprawling 15-acre campus includes a regulation 400m athletics track, cricket grounds, indoor sports hall, and certified coaching staff.</p>
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-1.5 rounded-full mb-3">
+              <Trophy className="w-3.5 h-3.5 text-[#cfbb99]" />
+              <span className="text-[11px] font-bold tracking-widest text-[#cfbb99] uppercase">Physical Education & Athletics</span>
             </div>
-            <button
-              onClick={() => onNavigateRoute('achievements')}
-              className="shrink-0 inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-6 py-3 rounded-full text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
-            >
-              <span>View Sports Honours</span>
-              <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
-            </button>
+            <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-white">{sportsHeading}</h2>
+            <p className="text-slate-300 text-sm mt-2 max-w-2xl">Building grit, teamwork, and lifelong fitness through competitive and recreational sports programmes.</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {sportsOffered.map((sport, idx) => {
-              const Icon = sport.icon;
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sportsList.map((sp, idx) => {
+              const Icon = sp.icon;
               return (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.07 }}
-                  whileHover={{ y: -3 }}
-                  className="bg-[#f8f9fa] border border-slate-200/90 rounded-2xl p-6 hover:border-[#354024]/40 transition-all"
+                  transition={{ duration: 0.45, delay: idx * 0.07 }}
+                  whileHover={{ y: -4 }}
+                  className="bg-white/5 border border-white/10 rounded-3xl p-7 hover:border-white/25 hover:bg-white/8 transition-all"
                 >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#354024]/10 text-[#354024] flex items-center justify-center shrink-0">
-                      <Icon className="w-5 h-5" />
-                    </div>
-                    <h4 className="font-bold text-[#1b2213] text-sm">{sport.name}</h4>
+                  <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-[#cfbb99]" />
                   </div>
-                  <p className="text-xs text-slate-600 leading-relaxed">{sport.detail}</p>
+                  <h3 className="font-crest font-bold text-lg text-white mb-2">{sp.name}</h3>
+                  <p className="text-xs text-slate-300 leading-relaxed">{sp.detail}</p>
                 </motion.div>
               );
             })}
-          </div>
-
-          {/* Stats strip */}
-          <div className="mt-10 bg-gradient-to-r from-[#141a0e] to-[#252d19] text-white rounded-3xl p-7 flex flex-wrap gap-6 justify-around items-center">
-            {[
-              { value: '45+', label: 'Sports Trophies' },
-              { value: '6', label: 'Sports Disciplines' },
-              { value: 'NIS', label: 'Certified Coaches' },
-              { value: '400m', label: 'Regulation Track' },
-            ].map((s, idx) => (
-              <div key={idx} className="text-center">
-                <div className="text-2xl font-extrabold text-[#cfbb99] font-modern">{s.value}</div>
-                <div className="text-xs text-slate-300 font-semibold mt-0.5">{s.label}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -246,14 +331,14 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
         >
           <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
             <Music2 className="w-3.5 h-3.5 text-[#cfbb99]" />
-            <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Creativity & Culture</span>
+            <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Annual Cultural Calendar</span>
           </div>
-          <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">Arts & Cultural Programmes</h2>
+          <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">{artsHeading}</h2>
           <p className="text-slate-600 text-sm mt-2 max-w-2xl">AMAA celebrates India's rich artistic heritage while nurturing modern creative expression through year-round cultural programming.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-          {artsAndCulture.map((item, idx) => (
+          {artsList.map((item, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
@@ -305,12 +390,12 @@ export const StudentLifePage: React.FC<StudentLifePageProps> = ({
               <Users className="w-3.5 h-3.5 text-[#cfbb99]" />
               <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Student Clubs & Societies</span>
             </div>
-            <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">Clubs & Interest Groups</h2>
+            <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">{clubsHeading}</h2>
             <p className="text-slate-600 text-sm mt-2 max-w-2xl">Six active student-led clubs meeting regularly, open to all students from Grades V onwards.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {clubs.map((club, idx) => (
+            {clubsList.map((club, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}

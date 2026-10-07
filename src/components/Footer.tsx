@@ -9,24 +9,56 @@ import {
 } from 'lucide-react';
 import logoImg from '../assets/logo.png';
 import artechLogo from '../assets/artech_logo.png';
-import { db } from '../lib/db';
+import { addNewsletterSubscriber } from '../lib/submissions';
 import type { RouteType } from '../types/routes';
+import { useCmsShell } from '../context/CmsShellContext';
 
 interface FooterProps {
   onOpenAdmission: () => void;
-  onOpenSqlConsole?: () => void;
   onNavigateRoute?: (route: RouteType, hashTarget?: string) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onOpenAdmission, onNavigateRoute }) => {
+  const { getSetting } = useCmsShell();
   const [email, setEmail] = useState('');
   const [subscribedMsg, setSubscribedMsg] = useState<string | null>(null);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const shortName = getSetting('site_short_name', 'A.M.A. ADINARAYANA');
+  const brandSubtitle = getSetting('site_brand_subtitle', 'ENG. MED. HIGH SCHOOL');
+  const motto = getSetting('site_motto', 'Lead Kindly Light');
+  const establishedYear = getSetting('site_established_year', '1965');
+  const footerDesc = getSetting(
+    'footer_description',
+    'Illuminating young minds since 1965 with foundational moral values, academic rigor, scientific curiosity, and holistic development.'
+  );
+  const facebookUrl = getSetting('site_facebook', 'https://facebook.com');
+  const instagramUrl = getSetting('site_instagram', 'https://instagram.com');
+  const youtubeUrl = getSetting('site_youtube', 'https://youtube.com');
+  const linkedinUrl = getSetting('site_linkedin', 'https://linkedin.com');
+  const address = getSetting('site_address', 'Beldari, Simri Bakhtiyarpur, Patna – 801113, Bihar');
+  const phone = getSetting('site_phone', '+91 75440 10044');
+  const secondaryPhone = getSetting('site_phone_secondary', '+91 75440 10045');
+  const schoolEmail = getSetting('site_email', 'info@amaaschool.edu');
+  const hours = getSetting('site_hours', 'Mon – Sat: 8:00 AM – 4:00 PM');
+  const newsletterTitle = getSetting('footer_newsletter_title', 'NEWSLETTER');
+  const newsletterDesc = getSetting(
+    'footer_newsletter_description',
+    'Subscribe to our newsletter for latest notifications, examination circulars, and sports event updates.'
+  );
+  const copyright = getSetting(
+    'footer_copyright',
+    `© ${new Date().getFullYear()} AMAA High School. All Rights Reserved.`
+  );
+  const devName = getSetting('footer_developer_name', 'AR TECH studio');
+  const devUrl = getSetting('footer_developer_url', 'https://www.artechstudio.co.in');
+
+  const cleanPhone = phone.replace(/\s+/g, '');
+
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
 
-    const res = db.addNewsletterSubscriber(email);
+    const res = await addNewsletterSubscriber(email);
     setSubscribedMsg(res.message);
     setEmail('');
 
@@ -51,31 +83,33 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmission, onNavigateRoute
               <div className="w-16 h-16 rounded-2xl bg-white/10 p-2 flex items-center justify-center backdrop-blur-xs">
                 <img
                   src={logoImg}
-                  alt="A.M.A. Adinarayana Eng. Med. High School Crest"
+                  alt={`${shortName} Crest`}
                   className="w-full h-full object-contain"
                 />
               </div>
               <div>
                 <span className="font-crest text-base font-bold text-white tracking-wider block leading-tight">
-                  A.M.A. ADINARAYANA
+                  {shortName.toUpperCase()}
                 </span>
                 <span className="font-crest text-xs font-bold text-[#cfbb99] tracking-widest block mt-0.5">
-                  ENG. MED. HIGH SCHOOL
+                  {brandSubtitle.toUpperCase()}
                 </span>
                 <span className="text-[10px] font-bold text-[#cfbb99] uppercase tracking-wider block mt-1">
-                  "Lead Kindly Light" • Estd. 1965
+                  "{motto}" • Estd. {establishedYear}
                 </span>
               </div>
             </div>
 
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-              Illuminating young minds since 1965 with foundational moral values, academic rigor, scientific curiosity, and holistic development.
+              {footerDesc}
             </p>
 
             {/* Social Icons */}
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="#"
+                href={facebookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Facebook"
                 className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#354024] text-white flex items-center justify-center transition-colors border border-white/20"
               >
@@ -84,7 +118,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmission, onNavigateRoute
                 </svg>
               </a>
               <a
-                href="#"
+                href={instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Instagram"
                 className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#354024] text-white flex items-center justify-center transition-colors border border-white/20"
               >
@@ -93,7 +129,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmission, onNavigateRoute
                 </svg>
               </a>
               <a
-                href="#"
+                href={youtubeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="YouTube"
                 className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#354024] text-white flex items-center justify-center transition-colors border border-white/20"
               >
@@ -102,7 +140,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmission, onNavigateRoute
                 </svg>
               </a>
               <a
-                href="#"
+                href={linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="LinkedIn"
                 className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#354024] text-white flex items-center justify-center transition-colors border border-white/20"
               >
@@ -234,19 +274,30 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmission, onNavigateRoute
             <div className="space-y-2.5 text-xs text-slate-300">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#cfbb99] shrink-0 mt-0.5" />
-                <span>Beldari, Simri Bakhtiyarpur, Patna – 801113, Bihar</span>
+                <span>{address}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#cfbb99] shrink-0" />
-                <span>+91 75440 10044</span>
+                <a
+                  href={`tel:${cleanPhone}`}
+                  className="hover:text-white transition-colors"
+                  title={secondaryPhone ? `Secondary: ${secondaryPhone}` : undefined}
+                >
+                  {phone}
+                </a>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#cfbb99] shrink-0" />
-                <span>info@amaaschool.edu</span>
+                <a
+                  href={`mailto:${schoolEmail}`}
+                  className="hover:text-white transition-colors"
+                >
+                  {schoolEmail}
+                </a>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-[#cfbb99] shrink-0" />
-                <span>Mon – Sat: 8:00 AM – 4:00 PM</span>
+                <span>{hours}</span>
               </div>
             </div>
           </div>
@@ -254,10 +305,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmission, onNavigateRoute
           {/* Column 5: Newsletter */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-bold tracking-widest text-white uppercase">
-              NEWSLETTER
+              {newsletterTitle}
             </h4>
             <p className="text-xs text-slate-400">
-              Subscribe to our newsletter for latest notifications, examination circulars, and sports event updates.
+              {newsletterDesc}
             </p>
 
             <form onSubmit={handleSubscribe} className="space-y-2">
@@ -291,26 +342,26 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmission, onNavigateRoute
 
         {/* Copyright, Legal & Developer Credits */}
         <div className="pt-8 mt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-5 text-[11px] text-slate-400">
-          <p>© {new Date().getFullYear()} AMAA High School. All Rights Reserved.</p>
+          <p>{copyright}</p>
 
           {/* Developed by AR TECH studio with Logo & URL */}
           <a
-            href="https://www.artechstudio.co.in"
+            href={devUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#354024]/40 px-4 py-2 rounded-full transition-all duration-300 shadow-sm cursor-pointer"
-            title="Visit AR TECH studio official website"
+            title={`Visit ${devName} official website`}
           >
             <span className="text-[11px] text-slate-400 group-hover:text-slate-300 transition-colors">
               Developed by
             </span>
             <img
               src={artechLogo}
-              alt="AR TECH studio logo"
+              alt={`${devName} logo`}
               className="h-6 w-auto object-contain transition-transform duration-300 group-hover:scale-110 drop-shadow-xs"
             />
             <span className="font-semibold text-xs tracking-wider text-white group-hover:text-[#cfbb99] transition-colors">
-              AR TECH studio
+              {devName}
             </span>
           </a>
 

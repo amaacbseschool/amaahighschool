@@ -1,26 +1,22 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   ShieldCheck,
   Award,
   Users,
   Building2,
-  BookOpen,
   Mail,
   Phone,
-  Plus,
-  Trash2,
-  Edit2,
-  X,
   Search,
   ArrowLeft,
-  CheckCircle2,
   Scale,
   Clock,
   GraduationCap,
   Lock,
+  X,
 } from 'lucide-react';
-import { db } from '../lib/db';
-import type { GoverningBodyMember } from '../lib/db';
+import { supabase } from '../lib/supabase';
+import { getPageWithSections } from '../lib/cms';
+import type { CmsPageWithSections } from '../types/cms';
 import type { RouteType } from '../types/routes';
 import { AnimatedCounter } from '../components/motion/AnimatedCounter';
 import logoImg from '../assets/logo.png';
@@ -29,6 +25,20 @@ interface AdministrationPageProps {
   onNavigateHome: () => void;
   onNavigateRoute: (route: RouteType, hashTarget?: string) => void;
   onOpenAdmission?: () => void;
+}
+
+export interface PublicGoverningMember {
+  id: string;
+  name: string;
+  designation: string;
+  committee: string;
+  qualification: string;
+  experience: string;
+  photo_url?: string;
+  email?: string;
+  phone?: string;
+  order_index: number;
+  added_at: string;
 }
 
 const COMMITTEES = [
@@ -44,25 +54,67 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
   onNavigateRoute,
   onOpenAdmission,
 }) => {
-  const [members, setMembers] = useState<GoverningBodyMember[]>(() => db.getGoverningBody());
+  const [members, setMembers] = useState<PublicGoverningMember[]>([]);
+  const [pageData, setPageData] = useState<CmsPageWithSections | null>(null);
   const [selectedCommittee, setSelectedCommittee] = useState<string>('All Wings');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [editingMember, setEditingMember] = useState<GoverningBodyMember | null>(null);
-  const [successToast, setSuccessToast] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // Form State
-  const [formData, setFormData] = useState({
-    name: '',
-    designation: '',
-    committee: 'Board of Trustees',
-    qualification: '',
-    experience: '',
-    photo_url: '',
-    email: '',
-    phone: '',
-    order_index: 10,
-  });
+  useEffect(() => {
+    let isMounted = true;
+
+    getPageWithSections('administration')
+      .then((data) => {
+        if (isMounted && data) {
+          setPageData(data);
+        }
+      })
+      .catch((err) => {
+        console.error('[CMS] Failed to load administration page data:', err);
+      });
+
+    const fetchGoverningBody = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('governing_body')
+          .select('*')
+          .eq('is_active', true)
+          .order('display_order', { ascending: true });
+
+        if (error) {
+          console.error('[Public Governing Body Error] Failed to load from Supabase:', error);
+          if (isMounted) setMembers([]);
+          return;
+        }
+
+        if (data && isMounted) {
+          const adapted: PublicGoverningMember[] = data.map((m) => ({
+            id: m.id,
+            name: m.full_name,
+            designation: m.position,
+            committee: m.department || 'Board of Trustees',
+            qualification: m.department || '',
+            experience: m.bio || '',
+            photo_url: m.avatar_url || undefined,
+            order_index: m.display_order ?? 99,
+            added_at: m.created_at ? m.created_at.slice(0, 10) : 'Estd. 1965',
+          }));
+          setMembers(adapted);
+        }
+      } catch (err: unknown) {
+        console.error('[Public Governing Body Error] Unexpected exception querying governing_body:', err);
+        if (isMounted) setMembers([]);
+      } finally {
+        if (isMounted) setIsLoading(false);
+      }
+    };
+
+    fetchGoverningBody();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Filter members
   const filteredMembers = useMemo(() => {
@@ -82,100 +134,15 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
       .sort((a, b) => (a.order_index || 99) - (b.order_index || 99));
   }, [members, selectedCommittee, searchQuery]);
 
-  const showToast = (msg: string) => {
-    setSuccessToast(msg);
-    setTimeout(() => setSuccessToast(null), 3500);
-  };
-
-  const handleOpenAdd = () => {
-    setEditingMember(null);
-    setFormData({
-      name: '',
-      designation: '',
-      committee: 'Board of Trustees',
-      qualification: '',
-      experience: '',
-      photo_url: '',
-      email: '',
-      phone: '',
-      order_index: members.length + 1,
-    });
-    setIsModalOpen(true);
-  };
-
-  const handleOpenEdit = (member: GoverningBodyMember) => {
-    setEditingMember(member);
-    setFormData({
-      name: member.name,
-      designation: member.designation,
-      committee: member.committee,
-      qualification: member.qualification,
-      experience: member.experience,
-      photo_url: member.photo_url || '',
-      email: member.email || '',
-      phone: member.phone || '',
-      order_index: member.order_index,
-    });
-    setIsModalOpen(true);
-  };
-
-  const handleDelete = (id: number, name: string) => {
-    if (window.confirm(`Are you sure you want to remove ${name} from the Governing Body?`)) {
-      db.deleteGoverningBodyMember(id);
-      setMembers(db.getGoverningBody());
-      showToast(`Removed "${name}" from the Governing Body.`);
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name.trim() || !formData.designation.trim()) {
-      alert('Please provide the member full name and designation.');
-      return;
-    }
-
-    if (editingMember) {
-      db.updateGoverningBodyMember(editingMember.id, {
-        name: formData.name.trim(),
-        designation: formData.designation.trim(),
-        committee: formData.committee,
-        qualification: formData.qualification.trim(),
-        experience: formData.experience.trim(),
-        photo_url: formData.photo_url.trim() || undefined,
-        email: formData.email.trim() || undefined,
-        phone: formData.phone.trim() || undefined,
-        order_index: Number(formData.order_index) || 10,
-      });
-      showToast(`Successfully updated details for "${formData.name}".`);
-    } else {
-      db.addGoverningBodyMember({
-        name: formData.name.trim(),
-        designation: formData.designation.trim(),
-        committee: formData.committee,
-        qualification: formData.qualification.trim(),
-        experience: formData.experience.trim(),
-        photo_url: formData.photo_url.trim() || undefined,
-        email: formData.email.trim() || undefined,
-        phone: formData.phone.trim() || undefined,
-        order_index: Number(formData.order_index) || members.length + 1,
-      });
-      showToast(`Successfully appointed "${formData.name}" to the Governing Body!`);
-    }
-
-    setMembers(db.getGoverningBody());
-    setIsModalOpen(false);
-  };
+  const heroSection = pageData?.sections?.find((s) => s.section_key === 'administration.hero');
+  const heroEyebrow = heroSection?.eyebrow || 'Institutional Governance & Stewardship';
+  const heroHeading = heroSection?.heading || 'School Administration & Governing Council';
+  const heroSubheading =
+    heroSection?.subheading ||
+    'Operating under the sacred trust of "Lead Kindly Light" (Estd. 1965), our Governing Body formulates institutional policy, preserves ethical fiduciary standards, and ensures world-class academic stewardship for future generations.';
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-[#354024] selection:text-white pb-20">
-      {/* Toast Notification */}
-      {successToast && (
-        <div className="fixed top-5 right-5 z-50 flex items-center gap-3 bg-[#1b2213] text-white px-5 py-3.5 rounded-xl shadow-2xl border border-[#cfbb99]/40 animate-bounce">
-          <CheckCircle2 className="w-5 h-5 text-[#cfbb99] shrink-0" />
-          <span className="text-sm font-medium">{successToast}</span>
-        </div>
-      )}
-
       {/* Hero / Header Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#1b2213] via-[#0f274a] to-[#071324] text-white pt-12 pb-20 border-b border-slate-800">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(53,64,36,0.15),transparent_70%)] pointer-events-none" />
@@ -218,35 +185,25 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
               />
               <div className="inline-flex items-center gap-2 bg-[#cfbb99]/15 border border-[#cfbb99]/30 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#cfbb99]">
                 <ShieldCheck className="w-4 h-4 text-[#cfbb99]" />
-                <span>Institutional Governance & Stewardship</span>
+                <span>{heroEyebrow}</span>
               </div>
             </div>
 
             <h1 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-              School Administration & Governing Council
+              {heroHeading}
             </h1>
 
             <p className="text-sm sm:text-base text-slate-300 mt-4 leading-relaxed max-w-2xl">
-              Operating under the sacred trust of <em>"Lead Kindly Light"</em> (Estd. 1965), our Governing Body 
-              formulates institutional policy, preserves ethical fiduciary standards, and ensures world-class academic 
-              stewardship for future generations.
+              {heroSubheading}
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <button
-                onClick={handleOpenAdd}
-                className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#354024] to-[#252d19] hover:from-[#252d19] hover:to-[#1b2213] text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-stone-900/40 transition-all hover:scale-[1.02] cursor-pointer"
-              >
-                <Plus className="w-4 h-4" />
-                <span>Add Governing Member</span>
-              </button>
-
-              <button
                 onClick={() => onNavigateRoute('admin')}
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2.5 rounded-xl text-xs font-semibold border border-white/15 transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#354024] to-[#252d19] hover:from-[#252d19] hover:to-[#1b2213] text-white px-5 py-2.5 rounded-xl font-semibold text-xs border border-white/15 shadow-lg shadow-stone-900/40 transition-all hover:scale-[1.02] cursor-pointer"
               >
                 <Lock className="w-3.5 h-3.5 text-[#cfbb99]" />
-                <span>Go to Admin Dashboard</span>
+                <span>Manage via Staff Portal (/admin)</span>
               </button>
 
               {onOpenAdmission && (
@@ -287,7 +244,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
 
       {/* Main Directory & Control Panel */}
       <div className="w-[90%] mx-auto mt-10">
-        {/* Filters & Actions Bar */}
+        {/* Filters Bar */}
         <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs mb-8 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
           {/* Committee Tabs */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
@@ -311,7 +268,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Search by name, role, qualification..."
+              placeholder="Search by name, role, department..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full text-xs bg-slate-50 border border-slate-200 focus:border-[#354024] focus:bg-white rounded-xl pl-9 pr-3 py-2.5 text-slate-800 placeholder-slate-400 outline-none transition-all"
@@ -337,33 +294,31 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
               Showing {filteredMembers.length} of {members.length} institutional office bearers
             </p>
           </div>
-
-          <button
-            onClick={handleOpenAdd}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#354024] hover:text-[#252d19] bg-[#354024]/10 hover:bg-[#354024]/15 px-3.5 py-1.5 rounded-lg transition-colors cursor-pointer"
-          >
-            <Plus className="w-3.5 h-3.5" />
-            <span>Add Member</span>
-          </button>
         </div>
 
         {/* Members Cards Grid */}
         {filteredMembers.length === 0 ? (
           <div className="bg-white rounded-2xl border border-dashed border-slate-300 p-12 text-center my-8">
             <Users className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-            <h3 className="font-crest text-lg font-bold text-slate-700">No Governing Body Members Found</h3>
+            <h3 className="font-crest text-lg font-bold text-slate-700">
+              {isLoading ? 'Loading Governing Body...' : 'No Governing Body Members Found'}
+            </h3>
             <p className="text-xs text-slate-500 max-w-md mx-auto mt-1 mb-5">
-              No office bearer matches your active filter. Try resetting your search query or add a new governing body member.
+              {isLoading
+                ? 'Retrieving official leadership roster from the institution registry...'
+                : 'No office bearer matches your active filter or search query.'}
             </p>
-            <button
-              onClick={() => {
-                setSelectedCommittee('All Wings');
-                setSearchQuery('');
-              }}
-              className="text-xs font-bold text-[#354024] hover:underline cursor-pointer"
-            >
-              Reset Filters
-            </button>
+            {selectedCommittee !== 'All Wings' && (
+              <button
+                onClick={() => {
+                  setSelectedCommittee('All Wings');
+                  setSearchQuery('');
+                }}
+                className="text-xs font-semibold bg-[#354024] text-white px-4 py-2 rounded-xl hover:bg-[#252d19] transition-colors cursor-pointer"
+              >
+                Reset Filters
+              </button>
+            )}
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -385,7 +340,6 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                           alt={member.name}
                           className="w-16 h-16 rounded-2xl object-cover border-2 border-slate-100 shadow-xs"
                           onError={(e) => {
-                            // Fallback to initial
                             (e.currentTarget as HTMLElement).style.display = 'none';
                           }}
                         />
@@ -409,18 +363,22 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                     </div>
                   </div>
 
-                  {/* Name & Academic Credentials */}
+                  {/* Name & Title */}
                   <h3 className="font-crest text-lg font-bold text-[#1b2213] group-hover:text-[#354024] transition-colors">
                     {member.name}
                   </h3>
-                  <p className="text-xs font-mono font-medium text-slate-600 mt-1">
-                    {member.qualification}
-                  </p>
+                  {member.qualification && (
+                    <p className="text-xs font-mono font-medium text-slate-600 mt-1">
+                      {member.qualification}
+                    </p>
+                  )}
 
                   {/* Experience Bio */}
-                  <p className="text-xs text-slate-600 leading-relaxed mt-3 line-clamp-4 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                    {member.experience}
-                  </p>
+                  {member.experience && (
+                    <p className="text-xs text-slate-600 leading-relaxed mt-3 line-clamp-4 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                      {member.experience}
+                    </p>
+                  )}
 
                   {/* Contact details if available */}
                   {(member.email || member.phone) && (
@@ -444,29 +402,15 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                   )}
                 </div>
 
-                {/* Card Footer: Management Controls */}
+                {/* Card Footer: Metadata (Public View Only) */}
                 <div className="px-6 py-3 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-[10px] text-slate-400 flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    Appointed {member.added_at.slice(0, 10)}
+                  <span className="text-[10px] text-slate-400 flex items-center gap-1 font-medium">
+                    <Clock className="w-3 h-3 text-slate-400" />
+                    Appointed {member.added_at}
                   </span>
-
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => handleOpenEdit(member)}
-                      className="p-1.5 text-slate-500 hover:text-[#354024] hover:bg-white rounded-lg transition-colors cursor-pointer"
-                      title="Edit Member Information"
-                    >
-                      <Edit2 className="w-3.5 h-3.5" />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(member.id, member.name)}
-                      className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
-                      title="Delete from Governing Body"
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
+                  <span className="text-[10px] font-semibold text-[#354024] bg-[#354024]/10 px-2 py-0.5 rounded-full">
+                    Active Trustee
+                  </span>
                 </div>
               </div>
             ))}
@@ -486,7 +430,7 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
                 School Administrative Operations & Staff Dashboard
               </h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Staff members and authorized trustees can log in to the administrative dashboard to review admissions, manage circulars, and access the database inspection tools.
+                Staff members and authorized trustees can log in to the administrative dashboard to review admissions, manage circulars, and manage the official governing body roster.
               </p>
             </div>
 
@@ -518,222 +462,40 @@ export const AdministrationPage: React.FC<AdministrationPageProps> = ({
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/80">
-              <Scale className="w-6 h-6 text-[#354024] mb-3" />
-              <h4 className="font-crest text-base font-bold text-[#1b2213]">Fiduciary Oversight</h4>
-              <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                Independent annual chartered audits, transparent fee structures, and disciplined allocation of resources toward lab and library modernization.
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+              <Scale className="w-8 h-8 text-[#354024] mb-3" />
+              <h3 className="font-crest text-sm font-bold text-[#1b2213]">Fiduciary Integrity</h3>
+              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                Bi-annual external statutory audits with transparent financial allocation dedicated 100% to infrastructure and academic grants.
               </p>
             </div>
 
-            <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/80">
-              <BookOpen className="w-6 h-6 text-[#354024] mb-3" />
-              <h4 className="font-crest text-base font-bold text-[#1b2213]">Academic Autonomy</h4>
-              <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                Empowering the Principal and faculty council with complete pedagogical freedom to introduce enriched science practicals, Olympiad training, and arts.
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+              <Award className="w-8 h-8 text-amber-600 mb-3" />
+              <h3 className="font-crest text-sm font-bold text-[#1b2213]">Academic Autonomy</h3>
+              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                Empowering the Principal and faculty council with complete pedagogical freedom aligned with NEP 2020 national curriculum guidelines.
               </p>
             </div>
 
-            <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/80">
-              <Building2 className="w-6 h-6 text-[#354024] mb-3" />
-              <h4 className="font-crest text-base font-bold text-[#1b2213]">Campus Safety & Health</h4>
-              <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                Statutory fire safety audits, CCTV surveillance protocols, seismic structural compliance, and strict background checks for all campus personnel.
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+              <Users className="w-8 h-8 text-[#44105c] mb-3" />
+              <h3 className="font-crest text-sm font-bold text-[#1b2213]">Community Representation</h3>
+              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                Active parent advisory representation and prominent alumni trustees ensuring generational accountability and community goodwill.
               </p>
             </div>
 
-            <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/80">
-              <Users className="w-6 h-6 text-[#354024] mb-3" />
-              <h4 className="font-crest text-base font-bold text-[#1b2213]">Parent & Alumni Voice</h4>
-              <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                Formal representation of parent councils and alumni advisors in all strategic expansion and student wellness decisions.
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+              <Building2 className="w-8 h-8 text-emerald-700 mb-3" />
+              <h3 className="font-crest text-sm font-bold text-[#1b2213]">Infrastructure Stewardship</h3>
+              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                Long-term campus master plan oversight overseeing solar integration, modern science labs, and sports academy expansion.
               </p>
             </div>
           </div>
         </section>
       </div>
-
-      {/* --- ADD / EDIT MEMBER MODAL --- */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="bg-white w-full max-w-xl rounded-3xl shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200 max-h-[92vh] flex flex-col">
-            {/* Modal Header */}
-            <div className="bg-[#1b2213] text-white px-6 py-5 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-xl bg-[#354024]/20 border border-[#354024]/40 text-[#cfbb99]">
-                  <ShieldCheck className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="font-crest text-lg font-bold">
-                    {editingMember ? 'Edit Governing Member' : 'Appoint Governing Member'}
-                  </h3>
-                  <p className="text-xs text-slate-300">
-                    A.M.A. Adinarayana High School — Institutional Trust
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="text-slate-400 hover:text-white p-1 rounded-lg cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Modal Body: Form */}
-            <form onSubmit={handleSubmit} className="p-6 overflow-y-auto space-y-4 text-xs">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block font-semibold text-slate-700 mb-1">
-                    Full Name <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Dr. S. K. Narayana"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-semibold text-slate-700 mb-1">
-                    Designation / Title <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Vice-Chairman / Trustee"
-                    value={formData.designation}
-                    onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block font-semibold text-slate-700 mb-1">
-                    Committee / Wing
-                  </label>
-                  <select
-                    value={formData.committee}
-                    onChange={(e) => setFormData({ ...formData, committee: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none"
-                  >
-                    <option value="Board of Trustees">Board of Trustees</option>
-                    <option value="Academic Committee">Academic Committee</option>
-                    <option value="Executive Council">Executive Council</option>
-                    <option value="Parent Advisory Committee">Parent Advisory Committee</option>
-                    <option value="Finance & Audit Committee">Finance & Audit Committee</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block font-semibold text-slate-700 mb-1">
-                    Qualifications & Credentials
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. M.Sc., Ph.D. — IIT Madras"
-                    value={formData.qualification}
-                    onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block font-semibold text-slate-700 mb-1">
-                  Background, Experience & Institutional Contribution
-                </label>
-                <textarea
-                  rows={3}
-                  placeholder="Describe professional background, achievements, and responsibilities in governing the school..."
-                  value={formData.experience}
-                  onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none resize-none"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block font-semibold text-slate-700 mb-1">
-                    Official Email (Optional)
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="member@amaaschool.edu.in"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-semibold text-slate-700 mb-1">
-                    Phone / Office Contact (Optional)
-                  </label>
-                  <input
-                    type="tel"
-                    placeholder="+91 94400 00000"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="sm:col-span-2">
-                  <label className="block font-semibold text-slate-700 mb-1">
-                    Photo URL (Optional)
-                  </label>
-                  <input
-                    type="url"
-                    placeholder="https://images.unsplash.com/photo-..."
-                    value={formData.photo_url}
-                    onChange={(e) => setFormData({ ...formData, photo_url: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-semibold text-slate-700 mb-1">
-                    Order Priority
-                  </label>
-                  <input
-                    type="number"
-                    min={1}
-                    max={99}
-                    value={formData.order_index}
-                    onChange={(e) => setFormData({ ...formData, order_index: Number(e.target.value) })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:border-[#354024] focus:bg-white outline-none"
-                  />
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-100 font-semibold cursor-pointer"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-[#1b2213] to-[#354024] hover:from-[#0f274a] hover:to-[#252d19] text-white font-semibold shadow-md shadow-slate-900/20 cursor-pointer"
-                >
-                  {editingMember ? 'Save Changes' : 'Confirm Appointment'}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

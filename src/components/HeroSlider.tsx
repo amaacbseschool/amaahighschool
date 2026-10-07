@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ChevronLeft,
@@ -8,8 +8,10 @@ import {
   Images,
 } from 'lucide-react';
 import type { RouteType } from '../types/routes';
+import type { CmsSectionWithItems } from '../types/cms';
 
 interface HeroSliderProps {
+  cmsSection?: CmsSectionWithItems;
   onOpenAdmission: () => void;
   onExploreCampus: () => void;
   onNavigateRoute?: (route: RouteType, hashTarget?: string) => void;
@@ -24,7 +26,47 @@ interface Slide {
   subtitle: string;
 }
 
+const DEFAULT_SLIDES: Slide[] = [
+  {
+    image: '/gallery/jai00311.webp',
+    badge: 'DIAMOND JUBILEE • ESTD. 1965',
+    badgeHighlight: '60 Years of Heritage',
+    title: 'Empowering Young Minds,',
+    highlightText: 'Shaping Tomorrow',
+    subtitle:
+      'Sixty years of disciplined academic excellence, ethical character, and progressive learning under our sacred motto "Lead Kindly Light".',
+  },
+  {
+    image: '/gallery/jai00385.webp',
+    badge: 'GRADES VI TO X • RECOGNISED HIGH SCHOOL BOARD',
+    badgeHighlight: '100% Board Distinction',
+    title: 'Inspiring Curiosity,',
+    highlightText: 'Building Character',
+    subtitle:
+      'A world-class secondary curriculum blending deep conceptual mastery, 1:20 mentor ratio, and dedicated personal care.',
+  },
+  {
+    image: '/gallery/jai00343.webp',
+    badge: '15-ACRE GREEN CAMPUS',
+    badgeHighlight: 'Modern Infrastructure',
+    title: 'A Premier Sanctuary for',
+    highlightText: 'Lifelong Learning',
+    subtitle:
+      'State-of-the-art 4K smart interactive classrooms, science discovery laboratories, and championship athletic grounds.',
+  },
+  {
+    image: '/gallery/jai00447.webp',
+    badge: 'HOLISTIC EXCELLENCE',
+    badgeHighlight: '10,000+ Global Alumni',
+    title: 'Excellence in Academics,',
+    highlightText: 'Sports & Leadership',
+    subtitle:
+      'Nurturing champions in academic boards, national science olympiads, inter-school athletics, and creative arts.',
+  },
+];
+
 export const HeroSlider: React.FC<HeroSliderProps> = ({
+  cmsSection,
   onOpenAdmission,
   onExploreCampus,
   onNavigateRoute,
@@ -34,44 +76,35 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
   const [direction, setDirection] = useState(1);
   const [isAutoplay, setIsAutoplay] = useState(true);
 
-  const slides: Slide[] = [
-    {
-      image: '/gallery/jai00311.webp',
-      badge: 'DIAMOND JUBILEE • ESTD. 1965',
-      badgeHighlight: '60 Years of Heritage',
-      title: 'Empowering Young Minds,',
-      highlightText: 'Shaping Tomorrow',
-      subtitle:
-        'Sixty years of disciplined academic excellence, ethical character, and progressive learning under our sacred motto "Lead Kindly Light".',
-    },
-    {
-      image: '/gallery/jai00385.webp',
-      badge: 'GRADES VI TO X • RECOGNISED HIGH SCHOOL BOARD',
-      badgeHighlight: '100% Board Distinction',
-      title: 'Inspiring Curiosity,',
-      highlightText: 'Building Character',
-      subtitle:
-        'A world-class secondary curriculum blending deep conceptual mastery, 1:20 mentor ratio, and dedicated personal care.',
-    },
-    {
-      image: '/gallery/jai00343.webp',
-      badge: '15-ACRE GREEN CAMPUS',
-      badgeHighlight: 'Modern Infrastructure',
-      title: 'A Premier Sanctuary for',
-      highlightText: 'Lifelong Learning',
-      subtitle:
-        'State-of-the-art 4K smart interactive classrooms, science discovery laboratories, and championship athletic grounds.',
-    },
-    {
-      image: '/gallery/jai00447.webp',
-      badge: 'HOLISTIC EXCELLENCE',
-      badgeHighlight: '10,000+ Global Alumni',
-      title: 'Excellence in Academics,',
-      highlightText: 'Sports & Leadership',
-      subtitle:
-        'Nurturing champions in academic boards, national science olympiads, inter-school athletics, and creative arts.',
-    },
-  ];
+  const slides: Slide[] = useMemo(() => {
+    if (cmsSection && cmsSection.items && cmsSection.items.length > 0) {
+      return cmsSection.items.map((it) => {
+        let title = it.title || '';
+        let highlightText = '';
+        if (title.includes(',')) {
+          const idx = title.indexOf(',');
+          highlightText = title.slice(idx + 1).trim();
+          title = title.slice(0, idx + 1);
+        } else if (title.includes(' for ')) {
+          const idx = title.indexOf(' for ');
+          highlightText = title.slice(idx + 5).trim();
+          title = title.slice(0, idx + 5);
+        }
+        return {
+          image: it.image_url || '/gallery/jai00311.webp',
+          badge: it.subtitle || cmsSection.eyebrow || 'DIAMOND JUBILEE • ESTD. 1965',
+          badgeHighlight: it.badge || '60 Years of Heritage',
+          title,
+          highlightText,
+          subtitle: it.description || cmsSection.subheading || '',
+        };
+      });
+    }
+    return DEFAULT_SLIDES;
+  }, [cmsSection]);
+
+  const applyCta = cmsSection?.cta_text || 'APPLY FOR 2025–26';
+  const exploreCta = cmsSection?.secondary_cta_text || 'EXPLORE CAMPUS';
 
   const slideVariants = {
     enter: (dir: number) => ({
@@ -202,7 +235,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
                 onClick={onOpenAdmission}
                 className="group inline-flex items-center justify-center gap-3 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-8 py-4 rounded-full text-xs sm:text-sm uppercase tracking-wider shadow-xl hover:shadow-2xl transition-all cursor-pointer"
               >
-                <span>APPLY FOR 2025–26</span>
+                <span>{applyCta}</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
 
@@ -211,7 +244,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
                 className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white font-bold px-7 py-4 rounded-full border border-white/30 backdrop-blur-md text-xs sm:text-sm uppercase tracking-wider transition-all cursor-pointer shadow-md"
               >
                 <Compass className="w-4 h-4 text-white" />
-                <span>EXPLORE CAMPUS</span>
+                <span>{exploreCta}</span>
               </button>
 
               <button

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -12,40 +12,69 @@ import {
 import { TextReveal } from './motion/TextReveal';
 import logoImg from '../assets/logo.png';
 import type { RouteType } from '../types/routes';
+import type { CmsSectionWithItems } from '../types/cms';
+import { useCmsShell } from '../context/CmsShellContext';
 
 interface AdmissionsCtaSectionProps {
+  cmsSection?: CmsSectionWithItems;
   onOpenAdmission: () => void;
   onNavigateRoute?: (route: RouteType, hashTarget?: string) => void;
 }
 
+const DEFAULT_STEPS = [
+  {
+    step: '01',
+    title: 'Online Enquiry',
+    desc: 'Fill out our 60-second digital application token or call our admissions cell directly.',
+  },
+  {
+    step: '02',
+    title: 'Campus Walkthrough',
+    desc: 'Tour our 15-acre campus, 4K smart classrooms, science laboratories, and athletic grounds.',
+  },
+  {
+    step: '03',
+    title: 'Child Interaction',
+    desc: 'A friendly, non-intimidating observation session to assess child curiosity and grade readiness.',
+  },
+  {
+    step: '04',
+    title: 'Confirmed Seat',
+    desc: 'Complete fee clearance, document verification, and receive your welcome orientation kit.',
+  },
+];
+
 export const AdmissionsCtaSection: React.FC<AdmissionsCtaSectionProps> = ({
+  cmsSection,
   onOpenAdmission,
   onNavigateRoute,
 }) => {
+  const { getSetting } = useCmsShell();
+  const sitePhone = getSetting('site_phone', '+91 75440 10044');
+  const sitePhoneSecondary = getSetting('site_phone_secondary', '+91 75440 10045');
+  const admissionsEmail = getSetting('site_email_admissions', 'admissions@amaaschool.edu');
+  const siteAddress = getSetting('site_address', 'Beldari, Simri Bakhtiyarpur, Patna – 801113, Bihar');
+
   const [prospectusDownloaded, setProspectusDownloaded] = useState(false);
 
-  const steps = [
-    {
-      step: '01',
-      title: 'Online Enquiry',
-      desc: 'Fill out our 60-second digital application token or call our admissions cell directly.',
-    },
-    {
-      step: '02',
-      title: 'Campus Walkthrough',
-      desc: 'Tour our 15-acre campus, 4K smart classrooms, science laboratories, and athletic grounds.',
-    },
-    {
-      step: '03',
-      title: 'Child Interaction',
-      desc: 'A friendly, non-intimidating observation session to assess child curiosity and grade readiness.',
-    },
-    {
-      step: '04',
-      title: 'Confirmed Seat',
-      desc: 'Complete fee clearance, document verification, and receive your welcome orientation kit.',
-    },
-  ];
+  const eyebrow = cmsSection?.eyebrow || 'ADMISSIONS OPEN • ACADEMIC SESSION 2025–26';
+  const heading = cmsSection?.heading || 'Give Your Child the Foundation of a Lifetime';
+  const subheading =
+    cmsSection?.subheading ||
+    'Join our 60-year legacy of academic brilliance, moral character, and future-ready innovation under the sacred invocation "Lead Kindly Light". Admissions open for Grades VI to Grade X.';
+  const ctaText = cmsSection?.cta_text || 'APPLY ONLINE FOR 2025–26';
+  const secondaryCtaText = cmsSection?.secondary_cta_text || 'DOWNLOAD PROSPECTUS (PDF)';
+
+  const steps = useMemo(() => {
+    if (cmsSection?.items && cmsSection.items.length >= 4) {
+      return cmsSection.items.map((it, idx) => ({
+        step: it.subtitle ? it.subtitle.replace(/^Step\s*/i, '') : DEFAULT_STEPS[idx].step,
+        title: it.title || DEFAULT_STEPS[idx].title,
+        desc: it.description || DEFAULT_STEPS[idx].desc,
+      }));
+    }
+    return DEFAULT_STEPS;
+  }, [cmsSection]);
 
   const handleDownloadProspectus = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -68,8 +97,9 @@ Hallmarks:
 - GPS-monitored city-wide bus transport fleet
 
 Admissions Office:
-Phone: +91 891 2548900 / +91 94401 23456
-Email: admissions@amaaschool.edu.in
+Phone: ${sitePhone} / ${sitePhoneSecondary}
+Email: ${admissionsEmail}
+Campus Address: ${siteAddress}
 `;
 
     const blob = new Blob([prospectusText], { type: 'text/plain;charset=utf-8' });
@@ -101,16 +131,16 @@ Email: admissions@amaaschool.edu.in
               <div className="inline-flex items-center gap-2.5 bg-white/10 border border-white/20 px-4 py-1.5 rounded-full">
                 <Sparkles className="w-4 h-4 text-[#cfbb99]" />
                 <span className="text-xs font-bold tracking-widest text-white uppercase">
-                  ADMISSIONS OPEN • ACADEMIC SESSION 2025–26
+                  {eyebrow}
                 </span>
               </div>
 
               <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-                <TextReveal>Give Your Child the Foundation of a Lifetime</TextReveal>
+                <TextReveal>{heading}</TextReveal>
               </h2>
 
               <p className="text-slate-200 text-sm sm:text-base leading-relaxed max-w-2xl">
-                Join our 60-year legacy of academic brilliance, moral character, and future-ready innovation under the sacred invocation <strong>"Lead Kindly Light"</strong>. Admissions open for Grades VI to Grade X.
+                {subheading}
               </p>
 
               {/* Badges Matrix */}
@@ -135,7 +165,7 @@ Email: admissions@amaaschool.edu.in
                   onClick={onOpenAdmission}
                   className="inline-flex items-center justify-center gap-3 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-8 py-4 rounded-full text-xs sm:text-sm tracking-wider uppercase shadow-lg hover:shadow-xl transition-all cursor-pointer"
                 >
-                  <span>APPLY ONLINE FOR 2025–26</span>
+                  <span>{ctaText}</span>
                   <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
                 </button>
 
@@ -144,7 +174,7 @@ Email: admissions@amaaschool.edu.in
                   className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-4 rounded-full border border-white/20 text-xs sm:text-sm tracking-wider uppercase transition-all cursor-pointer"
                 >
                   <Download className="w-4 h-4 text-[#cfbb99]" />
-                  <span>{prospectusDownloaded ? 'Prospectus Downloaded ✓' : 'Download Prospectus (PDF)'}</span>
+                  <span>{prospectusDownloaded ? 'Prospectus Downloaded ✓' : secondaryCtaText}</span>
                 </button>
               </div>
             </div>
@@ -168,13 +198,13 @@ Email: admissions@amaaschool.edu.in
               <div className="space-y-3 pt-2 text-xs text-slate-200 relative z-10">
                 <div className="flex items-center gap-2.5">
                   <PhoneCall className="w-4 h-4 text-[#cfbb99] shrink-0" />
-                  <a href="tel:+918912548900" className="hover:text-white font-bold transition-colors">
-                    +91 891 2548900 / +91 94401 23456
+                  <a href={`tel:${sitePhone.replace(/\s+/g, '')}`} className="hover:text-white font-bold transition-colors">
+                    {sitePhone} / {sitePhoneSecondary}
                   </a>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <MapPin className="w-4 h-4 text-[#cfbb99] shrink-0" />
-                  <span>AMAA High School Campus, Main Road</span>
+                  <span>{siteAddress}</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />

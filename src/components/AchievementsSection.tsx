@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import {
   Trophy,
@@ -14,16 +14,78 @@ import {
 import { AnimatedCounter } from './motion/AnimatedCounter';
 import { TextReveal } from './motion/TextReveal';
 import type { RouteType } from '../types/routes';
+import type { CmsSectionWithItems } from '../types/cms';
 
 interface AchievementsSectionProps {
+  cmsSection?: CmsSectionWithItems;
   onNavigateRoute?: (route: RouteType, hashTarget?: string) => void;
   onOpenAdmission?: () => void;
 }
 
 export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
+  cmsSection,
   onNavigateRoute,
   onOpenAdmission,
 }) => {
+  const eyebrow = cmsSection?.eyebrow || 'ACADEMIC DISTINCTIONS & BOARD HONORS';
+  const heading = cmsSection?.heading || 'Tradition of Excellence';
+  const subheading =
+    cmsSection?.subheading ||
+    'Consistently outperforming state averages, our students secure top ranks in secondary board exams, Olympiads, and athletic meets.';
+  const ctaText = cmsSection?.cta_text || 'VIEW ACADEMIC HONORS';
+
+  const bentoStats = useMemo(() => {
+    const items = cmsSection?.items;
+    const parseNum = (str: string, defaultVal: number, defaultSuff: string) => {
+      const match = str.trim().match(/^([0-9,]+)(.*)$/);
+      if (match) {
+        return {
+          value: parseInt(match[1].replace(/,/g, ''), 10),
+          suffix: match[2],
+        };
+      }
+      return { value: defaultVal, suffix: defaultSuff };
+    };
+
+    const card1Item = items && items[0];
+    const card2Item = items && items[1];
+    const card3Item = items && items[2];
+    const card4Item = items && items[3];
+
+    return {
+      card1: {
+        ...parseNum(card1Item?.badge || '100%', 100, '%'),
+        badge: 'HALLMARK OF EXCELLENCE',
+        title: card1Item?.title || 'Secondary Board Pass Rate',
+        desc:
+          card1Item?.description ||
+          'Unbroken 100% board passing record maintained across decades, with 9 out of 10 students achieving premier first-class and distinction honors.',
+      },
+      card2: {
+        ...parseNum(card2Item?.badge || '92%', 92, '%'),
+        badge: 'Secondary Aggregate',
+        title: card2Item?.title || 'Distinctions & First Class Honors',
+        desc:
+          card2Item?.description ||
+          'Over nine out of ten graduating students score in the topmost distinction tier in Class X board exams, securing state top ranks.',
+      },
+      card3: {
+        ...parseNum(card3Item?.badge || '140+', 140, '+'),
+        title: card3Item?.title || 'Olympiad State & National Medals',
+        desc:
+          card3Item?.description ||
+          'SOF Science, Mathematics, Cyber and National Talent Search Examination (NTSE) state honors.',
+      },
+      card4: {
+        ...parseNum(card4Item?.badge || '45+', 45, '+'),
+        title: card4Item?.title || 'Sports Championships & Trophies',
+        desc:
+          card4Item?.description ||
+          'Athletics track championships, taekwondo gold medals, district cricket and football shields.',
+      },
+    };
+  }, [cmsSection]);
+
   const toppers = [
     {
       name: 'Sneha K. Varma',
@@ -100,14 +162,14 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
               <Trophy className="w-3.5 h-3.5 text-[#cfbb99]" />
               <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">
-                ACADEMIC DISTINCTIONS & BOARD HONORS
+                {eyebrow}
               </span>
             </div>
             <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] tracking-tight mt-1">
-              <TextReveal>Tradition of Excellence</TextReveal>
+              <TextReveal>{heading}</TextReveal>
             </h2>
             <p className="text-slate-600 text-sm sm:text-base max-w-2xl mt-3 leading-relaxed">
-              Consistently outperforming state averages, our students secure top ranks in secondary board exams, Olympiads, and athletic meets.
+              {subheading}
             </p>
           </div>
 
@@ -116,7 +178,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
               onClick={() => onNavigateRoute('academics')}
               className="shrink-0 inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-6 py-3 rounded-full text-xs tracking-wider uppercase transition-all shadow-md hover:shadow-lg cursor-pointer"
             >
-              <span>VIEW ACADEMIC HONORS</span>
+              <span>{ctaText}</span>
               <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
             </button>
           )}
@@ -138,14 +200,14 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                 <ShieldCheck className="w-8 h-8" />
               </div>
               <span className="text-[11px] font-bold uppercase tracking-widest bg-[#dc2626] text-white px-3.5 py-1.5 rounded-full">
-                HALLMARK OF EXCELLENCE
+                {bentoStats.card1.badge}
               </span>
             </div>
 
             <div className="relative z-10">
               <div className="flex items-baseline gap-2">
                 <div className="text-5xl sm:text-6xl font-extrabold tracking-tight text-white font-modern">
-                  <AnimatedCounter value={100} suffix="%" />
+                  <AnimatedCounter value={bentoStats.card1.value} suffix={bentoStats.card1.suffix} />
                 </div>
                 <span className="text-xs font-bold text-[#cfbb99] uppercase tracking-wider bg-white/10 px-3 py-1 rounded-full border border-white/10">
                   Unbroken Legacy
@@ -153,10 +215,10 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
               </div>
 
               <h3 className="font-crest text-2xl sm:text-3xl font-bold text-white mt-3">
-                Secondary Board Pass Rate
+                {bentoStats.card1.title}
               </h3>
               <p className="text-xs sm:text-sm text-slate-200 mt-2 leading-relaxed max-w-md">
-                Unbroken 100% board passing record maintained across decades, with 9 out of 10 students achieving premier first-class and distinction honors.
+                {bentoStats.card1.desc}
               </p>
 
               <div className="flex flex-wrap gap-2 mt-5 pt-4 border-t border-white/15">
@@ -184,20 +246,20 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
                 <Award className="w-8 h-8" />
               </div>
               <span className="text-[11px] font-bold uppercase tracking-wider bg-[#354024]/10 text-[#354024] px-3.5 py-1.5 rounded-full">
-                Secondary Aggregate
+                {bentoStats.card2.badge}
               </span>
             </div>
 
             <div className="relative z-10">
               <div className="text-4xl sm:text-5xl font-extrabold text-[#1b2213] tracking-tight font-modern">
-                <AnimatedCounter value={92} suffix="%" />
+                <AnimatedCounter value={bentoStats.card2.value} suffix={bentoStats.card2.suffix} />
               </div>
 
               <h3 className="font-crest text-2xl font-bold text-[#1b2213] mt-2">
-                Distinctions & First Class Honors
+                {bentoStats.card2.title}
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                Over nine out of ten graduating students score in the topmost distinction tier in Class X board exams, securing state top ranks.
+                {bentoStats.card2.desc}
               </p>
 
               <div className="flex flex-wrap gap-2 mt-5 pt-4 border-t border-slate-200">
@@ -229,13 +291,13 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
 
             <div className="relative z-10">
               <div className="text-3xl sm:text-4xl font-extrabold text-[#1b2213] tracking-tight font-modern">
-                <AnimatedCounter value={140} suffix="+" />
+                <AnimatedCounter value={bentoStats.card3.value} suffix={bentoStats.card3.suffix} />
               </div>
               <h4 className="font-crest text-xl font-bold text-[#1b2213] mt-1">
-                Olympiad State & National Medals
+                {bentoStats.card3.title}
               </h4>
               <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                SOF Science, Mathematics, Cyber and National Talent Search Examination (NTSE) state honors.
+                {bentoStats.card3.desc}
               </p>
             </div>
           </motion.div>
@@ -258,13 +320,13 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
 
             <div className="relative z-10">
               <div className="text-3xl sm:text-4xl font-extrabold text-[#1b2213] tracking-tight font-modern">
-                <AnimatedCounter value={45} suffix="+" />
+                <AnimatedCounter value={bentoStats.card4.value} suffix={bentoStats.card4.suffix} />
               </div>
               <h4 className="font-crest text-xl font-bold text-[#1b2213] mt-1">
-                Inter-School Sports Trophies
+                {bentoStats.card4.title}
               </h4>
               <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                Athletics track championships, taekwondo gold medals, district cricket and football shields.
+                {bentoStats.card4.desc}
               </p>
             </div>
           </motion.div>

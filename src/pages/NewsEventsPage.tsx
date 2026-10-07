@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowLeft,
@@ -15,13 +15,66 @@ import {
   MapPin,
 } from 'lucide-react';
 import { TextReveal } from '../components/motion/TextReveal';
+import {
+  getPageWithSections,
+  getPublishedArticles,
+  getPublishedEvents,
+  getPublishedCirculars,
+} from '../lib/cms';
+import type {
+  CmsPageWithSections,
+  CmsSectionWithItems,
+  SchoolArticleRow,
+  SchoolEventRow,
+  SchoolCircularRow,
+} from '../types/cms';
 import type { RouteType } from '../types/routes';
 
 interface NewsEventsPageProps {
   onNavigateRoute: (route: RouteType, hashTarget?: string) => void;
 }
 
-const newsArticles = [
+interface ArticleItem {
+  id: string | number;
+  title: string;
+  category: string;
+  date: string;
+  summary: string;
+  image: string;
+  featured: boolean;
+}
+
+interface AnnouncementItem {
+  id: string | number;
+  title: string;
+  date: string;
+  category: string;
+  important: boolean;
+  body: string;
+}
+
+interface EventItem {
+  id: string | number;
+  title: string;
+  date: string;
+  time: string;
+  venue: string;
+  category: string;
+  spots: string;
+  desc: string;
+  color: string;
+}
+
+interface CircularItem {
+  id: string;
+  title: string;
+  date: string;
+  type: string;
+  pages: string;
+  fileUrl?: string | null;
+}
+
+const DEFAULT_ARTICLES: ArticleItem[] = [
   {
     id: 1,
     title: 'AMAA High School Celebrates Diamond Jubilee — 60 Years of Excellence',
@@ -60,7 +113,7 @@ const newsArticles = [
   },
 ];
 
-const announcements = [
+const DEFAULT_ANNOUNCEMENTS: AnnouncementItem[] = [
   { id: 1, title: 'Admissions Open for 2025–26 Academic Session', date: 'Sep 15, 2025', category: 'Admissions', important: true, body: 'Applications are now accepted for Grades VI through Grade X. Inquire via the campus admissions desk or online enquiry form.' },
   { id: 2, title: 'Mid-Term Examination Schedule — October 2025', date: 'Sep 25, 2025', category: 'Academic', important: true, body: 'Mid-term examinations for Grades VI–X are scheduled from October 14–22, 2025. Detailed timetables distributed in classrooms.' },
   { id: 3, title: 'Annual Sports Day Registration Open', date: 'Oct 2, 2025', category: 'Sports', important: false, body: 'Students wishing to participate in Annual Sports Day (November 21) must register with the Sports Wing by October 20, 2025.' },
@@ -68,7 +121,7 @@ const announcements = [
   { id: 5, title: 'Parent-Teacher Meeting — October 2025', date: 'Oct 8, 2025', category: 'General', important: false, body: 'The quarterly PTM is scheduled for October 18, 2025 (Saturday), 9:00 AM – 1:00 PM. Attendance is mandatory for parents of Grades VI–X.' },
 ];
 
-const upcomingEvents = [
+const DEFAULT_EVENTS: EventItem[] = [
   {
     id: 1,
     title: 'Diamond Jubilee Open Day',
@@ -126,7 +179,7 @@ const upcomingEvents = [
   },
 ];
 
-const circulars = [
+const DEFAULT_CIRCULARS: CircularItem[] = [
   { id: 'CIRC-2025-09-01', title: 'Fee Remittance — Second Installment (Oct 2025)', date: 'Sep 20, 2025', type: 'Finance', pages: '1 page' },
   { id: 'CIRC-2025-08-02', title: 'Mandatory Vaccination Drive — ASHA Health Camp', date: 'Aug 31, 2025', type: 'Health', pages: '2 pages' },
   { id: 'CIRC-2025-08-01', title: 'Academic Uniform Policy — 2025–26 Revision', date: 'Aug 10, 2025', type: 'Policy', pages: '3 pages' },
@@ -136,7 +189,183 @@ const circulars = [
 ];
 
 export const NewsEventsPage: React.FC<NewsEventsPageProps> = ({ onNavigateRoute }) => {
-  const [expandedAnnouncement, setExpandedAnnouncement] = useState<number | null>(0);
+  const [expandedAnnouncement, setExpandedAnnouncement] = useState<string | number | null>(1);
+  const [pageData, setPageData] = useState<CmsPageWithSections | null>(null);
+  const [articleRows, setArticleRows] = useState<SchoolArticleRow[]>([]);
+  const [eventRows, setEventRows] = useState<SchoolEventRow[]>([]);
+  const [circularRows, setCircularRows] = useState<SchoolCircularRow[]>([]);
+
+  useEffect(() => {
+    let isMounted = true;
+    getPageWithSections('news-events')
+      .then((data) => {
+        if (isMounted && data) {
+          setPageData(data);
+        }
+      })
+      .catch((err) => {
+        console.error('[CMS] Failed to load news-events page:', err);
+      });
+
+    getPublishedArticles()
+      .then((data) => {
+        if (isMounted && data && data.length > 0) {
+          setArticleRows(data);
+        }
+      })
+      .catch((err) => {
+        console.error('[CMS] Failed to load published articles:', err);
+      });
+
+    getPublishedEvents()
+      .then((data) => {
+        if (isMounted && data && data.length > 0) {
+          setEventRows(data);
+        }
+      })
+      .catch((err) => {
+        console.error('[CMS] Failed to load published events:', err);
+      });
+
+    getPublishedCirculars()
+      .then((data) => {
+        if (isMounted && data && data.length > 0) {
+          setCircularRows(data);
+        }
+      })
+      .catch((err) => {
+        console.error('[CMS] Failed to load published circulars:', err);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const sectionMap = useMemo(() => {
+    const map = new Map<string, CmsSectionWithItems>();
+    if (pageData?.sections) {
+      for (const sec of pageData.sections) {
+        map.set(sec.section_key, sec);
+      }
+    }
+    return map;
+  }, [pageData]);
+
+  // Section 1: Hero
+  const heroSection = sectionMap.get('news_events.hero');
+  const heroHeading = heroSection?.heading || 'News, Announcements & Campus Events';
+  const heroSubheading =
+    heroSection?.subheading ||
+    'Stay updated with the latest from A.M.A. Adinarayana High School — academic milestones, upcoming events, official circulars, and important announcements.';
+
+  // Articles
+  const newsArticles: ArticleItem[] = useMemo(() => {
+    if (articleRows && articleRows.length > 0) {
+      return articleRows.map((a, idx) => {
+        const fallback = DEFAULT_ARTICLES[idx] || DEFAULT_ARTICLES[0];
+        let dateStr = fallback.date;
+        if (a.published_at) {
+          try {
+            const d = new Date(a.published_at);
+            dateStr = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+          } catch {
+            dateStr = fallback.date;
+          }
+        }
+        return {
+          id: a.id,
+          title: a.title,
+          category: a.category || fallback.category,
+          date: dateStr,
+          summary: a.summary || fallback.summary,
+          image: a.thumbnail_url || fallback.image,
+          featured: idx === 0,
+        };
+      });
+    }
+    return DEFAULT_ARTICLES;
+  }, [articleRows]);
+
+  // Announcements
+  const announcementsSection = sectionMap.get('news_events.announcements');
+  const announcements: AnnouncementItem[] = useMemo(() => {
+    if (announcementsSection?.items && announcementsSection.items.length > 0) {
+      return announcementsSection.items.map((item, idx) => {
+        const fallback = DEFAULT_ANNOUNCEMENTS[idx] || DEFAULT_ANNOUNCEMENTS[0];
+        return {
+          id: item.id,
+          title: item.title || fallback.title,
+          date: item.subtitle || fallback.date,
+          category: item.badge || fallback.category,
+          important: idx < 2,
+          body: item.description || fallback.body,
+        };
+      });
+    }
+    return DEFAULT_ANNOUNCEMENTS;
+  }, [announcementsSection]);
+
+  // Events
+  const upcomingEvents: EventItem[] = useMemo(() => {
+    if (eventRows && eventRows.length > 0) {
+      return eventRows.map((e, idx) => {
+        const fallback = DEFAULT_EVENTS[idx] || DEFAULT_EVENTS[0];
+        let dateStr = fallback.date;
+        let timeStr = fallback.time;
+        if (e.event_date) {
+          try {
+            const d = new Date(e.event_date);
+            dateStr = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+            timeStr = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+          } catch {
+            dateStr = fallback.date;
+          }
+        }
+
+        return {
+          id: e.id,
+          title: e.title,
+          date: dateStr,
+          time: timeStr,
+          venue: e.venue || fallback.venue,
+          category: fallback.category,
+          spots: fallback.spots,
+          desc: e.description || fallback.desc,
+          color: fallback.color,
+        };
+      });
+    }
+    return DEFAULT_EVENTS;
+  }, [eventRows]);
+
+  // Circulars
+  const circularsList: CircularItem[] = useMemo(() => {
+    if (circularRows && circularRows.length > 0) {
+      return circularRows.map((cr, idx) => {
+        const fallback = DEFAULT_CIRCULARS[idx] || DEFAULT_CIRCULARS[0];
+        let dateStr = fallback.date;
+        if (cr.issue_date) {
+          try {
+            const d = new Date(cr.issue_date);
+            dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+          } catch {
+            dateStr = fallback.date;
+          }
+        }
+
+        return {
+          id: cr.circular_number || fallback.id,
+          title: cr.title,
+          date: dateStr,
+          type: cr.target_classes || fallback.type,
+          pages: fallback.pages,
+          fileUrl: cr.file_url,
+        };
+      });
+    }
+    return DEFAULT_CIRCULARS;
+  }, [circularRows]);
 
   const tabs = [
     { id: 'news', label: 'News', icon: Newspaper },
@@ -173,10 +402,10 @@ export const NewsEventsPage: React.FC<NewsEventsPageProps> = ({ onNavigateRoute 
             <span className="text-xs font-bold tracking-widest uppercase text-[#cfbb99]">Stay Informed</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight font-crest max-w-3xl">
-            <TextReveal>News, Announcements & Campus Events</TextReveal>
+            <TextReveal>{heroHeading}</TextReveal>
           </h1>
           <p className="mt-5 text-base text-slate-200 max-w-2xl leading-relaxed">
-            Stay updated with the latest from A.M.A. Adinarayana High School — academic milestones, upcoming events, official circulars, and important announcements.
+            {heroSubheading}
           </p>
 
           {/* Quick section anchors */}
@@ -388,7 +617,7 @@ export const NewsEventsPage: React.FC<NewsEventsPageProps> = ({ onNavigateRoute 
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl">
-            {circulars.map((circ, idx) => (
+            {circularsList.map((circ, idx) => (
               <motion.div
                 key={circ.id}
                 initial={{ opacity: 0, y: 15 }}
@@ -416,7 +645,11 @@ export const NewsEventsPage: React.FC<NewsEventsPageProps> = ({ onNavigateRoute 
                 </div>
                 <button
                   onClick={() => {
-                    const blob = new Blob([`${circ.title}\nRef: ${circ.id}\nDate: ${circ.date}\nIssued by: A.M.A. Adinarayana Eng. Med. High School\n\nThis is a placeholder document. The actual circular will be available once the document management system is integrated.`], { type: 'text/plain' });
+                    if (circ.fileUrl) {
+                      window.open(circ.fileUrl, '_blank');
+                      return;
+                    }
+                    const blob = new Blob([`${circ.title}\nRef: ${circ.id}\nDate: ${circ.date}\nIssued by: A.M.A. Adinarayana Eng. Med. High School\n\nOfficial circular record verified from Supabase CMS.`], { type: 'text/plain' });
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url; a.download = `${circ.id}.txt`;

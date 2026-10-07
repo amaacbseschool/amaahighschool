@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Star,
@@ -7,8 +7,10 @@ import {
 } from 'lucide-react';
 import { TextReveal } from './motion/TextReveal';
 import type { RouteType } from '../types/routes';
+import type { CmsSectionWithItems } from '../types/cms';
 
 interface TestimonialsSectionProps {
+  cmsSection?: CmsSectionWithItems;
   onNavigateRoute?: (route: RouteType, hashTarget?: string) => void;
 }
 
@@ -25,76 +27,105 @@ interface Testimonial {
   initials: string;
 }
 
-export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
+const DEFAULT_TESTIMONIALS: Testimonial[] = [
+  {
+    id: 1,
+    name: 'Dr. Priya Sharma, MBBS, MS',
+    role: 'Senior Consultant Cardiologist, AIIMS New Delhi',
+    category: 'Alumni',
+    tag: 'Healthcare Leader',
+    batchOrGrade: 'Alumna • Batch of 2012',
+    rating: 5,
+    content:
+      'AMAA High School provided the bedrock of disciplined scientific inquiry, analytical rigor, and human empathy that defines my medical practice today. The science faculty laid foundations that carried me through AIIMS.',
+    avatarBg: 'bg-[#354024]',
+    initials: 'PS',
+  },
+  {
+    id: 2,
+    name: 'Mr. Rajesh & Dr. Sunita Kulkarni',
+    role: 'Parents of Rohan Kulkarni (Grade IX)',
+    category: 'Parents',
+    tag: 'Parent Trust',
+    batchOrGrade: 'Parent Community',
+    rating: 5,
+    content:
+      'Enrolling our son in AMAA High School was the single best decision for his overall personality. The harmonious blend of rigorous academic curriculum, modern science and computer laboratories, and strong moral values under the motto "Lead Kindly Light" is unmatched.',
+    avatarBg: 'bg-[#dc2626]',
+    initials: 'RK',
+  },
+  {
+    id: 3,
+    name: 'Vikramaditya Roy, B.Tech, M.S.',
+    role: 'Principal Cloud Systems Architect, Seattle, USA',
+    category: 'Alumni',
+    tag: 'Tech Executive',
+    batchOrGrade: 'Alumnus • Batch of 2014',
+    rating: 5,
+    content:
+      'The computer applications lab and mathematics training gave me a decade-long head start. The focus on fundamental concepts over rote learning is AMAA High School’s greatest secret.',
+    avatarBg: 'bg-[#1b2213]',
+    initials: 'VR',
+  },
+  {
+    id: 4,
+    name: 'Mrs. Lakshmi Narayanan',
+    role: 'Mother of Ananya (Class X) & Karthik (Class VI)',
+    category: 'Parents',
+    tag: 'Multi-Child Trust',
+    batchOrGrade: 'Parent Community',
+    rating: 5,
+    content:
+      'What sets AMAA apart is the individual care. The 1:20 mentor ratio is not just on paper—teachers know each student by name, monitor their emotional well-being, and provide personalized extra guidance.',
+    avatarBg: 'bg-[#354024]',
+    initials: 'LN',
+  },
+  {
+    id: 5,
+    name: 'Sneha K. Varma',
+    role: 'Class X Secondary Board State Rank 2 (98.6%)',
+    category: 'Students',
+    tag: 'Board Achiever',
+    batchOrGrade: 'Class of 2025',
+    rating: 5,
+    content:
+      'The teachers were always approachable for doubts even after regular hours. Regular diagnostic tests, calm encouragement, and state-of-the-art labs gave our batch the clarity to achieve 100% board distinction.',
+    avatarBg: 'bg-[#1b2213]',
+    initials: 'SV',
+  },
+];
+
+export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ cmsSection }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
 
-  const testimonials: Testimonial[] = [
-    {
-      id: 1,
-      name: 'Dr. Priya Sharma, MBBS, MS',
-      role: 'Senior Consultant Cardiologist, AIIMS New Delhi',
-      category: 'Alumni',
-      tag: 'Healthcare Leader',
-      batchOrGrade: 'Alumna • Batch of 2012',
-      rating: 5,
-      content:
-        'AMAA High School provided the bedrock of disciplined scientific inquiry, analytical rigor, and human empathy that defines my medical practice today. The science faculty laid foundations that carried me through AIIMS.',
-      avatarBg: 'bg-[#354024]',
-      initials: 'PS',
-    },
-    {
-      id: 2,
-      name: 'Mr. Rajesh & Dr. Sunita Kulkarni',
-      role: 'Parents of Rohan Kulkarni (Grade IX)',
-      category: 'Parents',
-      tag: 'Parent Trust',
-      batchOrGrade: 'Parent Community',
-      rating: 5,
-      content:
-        'Enrolling our son in AMAA High School was the single best decision for his overall personality. The harmonious blend of rigorous academic curriculum, modern science and computer laboratories, and strong moral values under the motto "Lead Kindly Light" is unmatched.',
-      avatarBg: 'bg-[#dc2626]',
-      initials: 'RK',
-    },
-    {
-      id: 3,
-      name: 'Vikramaditya Roy, B.Tech, M.S.',
-      role: 'Principal Cloud Systems Architect, Seattle, USA',
-      category: 'Alumni',
-      tag: 'Tech Executive',
-      batchOrGrade: 'Alumnus • Batch of 2014',
-      rating: 5,
-      content:
-        'The computer applications lab and mathematics training gave me a decade-long head start. The focus on fundamental concepts over rote learning is AMAA High School’s greatest secret.',
-      avatarBg: 'bg-[#1b2213]',
-      initials: 'VR',
-    },
-    {
-      id: 4,
-      name: 'Mrs. Lakshmi Narayanan',
-      role: 'Mother of Ananya (Class X) & Karthik (Class VI)',
-      category: 'Parents',
-      tag: 'Multi-Child Trust',
-      batchOrGrade: 'Parent Community',
-      rating: 5,
-      content:
-        'What sets AMAA apart is the individual care. The 1:20 mentor ratio is not just on paper—teachers know each student by name, monitor their emotional well-being, and provide personalized extra guidance.',
-      avatarBg: 'bg-[#354024]',
-      initials: 'LN',
-    },
-    {
-      id: 5,
-      name: 'Sneha K. Varma',
-      role: 'Class X Secondary Board State Rank 2 (98.6%)',
-      category: 'Students',
-      tag: 'Board Achiever',
-      batchOrGrade: 'Class of 2025',
-      rating: 5,
-      content:
-        'The teachers were always approachable for doubts even after regular hours. Regular diagnostic tests, calm encouragement, and state-of-the-art labs gave our batch the clarity to achieve 100% board distinction.',
-      avatarBg: 'bg-[#1b2213]',
-      initials: 'SV',
-    },
-  ];
+  const eyebrow = cmsSection?.eyebrow || 'VOICES OF TRUST & EXCELLENCE';
+  const heading = cmsSection?.heading || 'What Parents & Alumni Say';
+  const subheading =
+    cmsSection?.subheading ||
+    'Discover authentic experiences from families whose children thrive at AMAA High School, and distinguished alumni making an impact across the globe.';
+
+  const testimonials: Testimonial[] = useMemo(() => {
+    if (cmsSection?.items && cmsSection.items.length >= 5) {
+      return cmsSection.items.map((item, idx) => {
+        const fallback = DEFAULT_TESTIMONIALS[idx] || DEFAULT_TESTIMONIALS[0];
+        const tag = item.badge ? item.badge.split('•')[0].trim() : fallback.tag;
+
+        return {
+          id: idx + 1,
+          name: item.title || fallback.name,
+          role: item.subtitle || fallback.role,
+          category: fallback.category,
+          tag,
+          batchOrGrade: fallback.batchOrGrade,
+          rating: fallback.rating,
+          content: item.description || fallback.content,
+          avatarBg: fallback.avatarBg,
+          initials: fallback.initials,
+        };
+      });
+    }
+    return DEFAULT_TESTIMONIALS;
+  }, [cmsSection]);
 
   const categories = ['All', 'Parents', 'Alumni', 'Students'];
 
@@ -118,14 +149,14 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
             <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
               <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
               <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">
-                VOICES OF TRUST & EXCELLENCE
+                {eyebrow}
               </span>
             </div>
             <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] tracking-tight mt-1">
-              <TextReveal>What Parents & Alumni Say</TextReveal>
+              <TextReveal>{heading}</TextReveal>
             </h2>
             <p className="text-slate-600 text-sm sm:text-base max-w-2xl mt-3 leading-relaxed">
-              Discover authentic experiences from families whose children thrive at AMAA High School, and distinguished alumni making an impact across the globe.
+              {subheading}
             </p>
           </div>
 

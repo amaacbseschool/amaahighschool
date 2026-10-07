@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle, User, Mail, Phone, BookOpen, School, Sparkles } from 'lucide-react';
+import { X, CheckCircle, User, Mail, Phone, BookOpen, School, Sparkles, AlertCircle } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import logoImg from '../assets/logo.png';
-import { db } from '../lib/db';
-import type { AdmissionEnquiry } from '../lib/db';
+import { supabase } from '../lib/supabase';
 
 interface AdmissionModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onOpenSqlConsole?: () => void;
   onRecordAdded: () => void;
+}
+
+interface SubmittedAdmissionReceipt {
+  student_name: string;
+  parent_name: string;
+  email: string;
+  phone: string;
+  grade_applying: string;
+  status: string;
+  submitted_at: string;
 }
 
 export const AdmissionModal: React.FC<AdmissionModalProps> = ({
@@ -28,8 +36,9 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
     notes: '',
   });
 
-  const [submittedData, setSubmittedData] = useState<AdmissionEnquiry | null>(null);
+  const [submittedData, setSubmittedData] = useState<SubmittedAdmissionReceipt | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const gradeOptions = [
     'Grade VI (Middle School)',
@@ -39,23 +48,49 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
     'Grade X (Board Examination)',
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage(null);
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      const newRecord = db.addAdmission({
-        student_name: formData.student_name,
-        parent_name: formData.parent_name,
-        email: formData.email,
-        phone: formData.phone,
+    try {
+      // Direct anonymous insert into Supabase public.admissions_enquiries
+      // Plain insert without .select() because anonymous users cannot SELECT admissions records
+      const { error } = await supabase
+        .from('admissions_enquiries')
+        .insert([{
+          student_name: formData.student_name.trim(),
+          parent_name: formData.parent_name.trim(),
+          parent_email: formData.email.trim(),
+          parent_phone: formData.phone.trim(),
+          class_applying_for: formData.grade_applying,
+          previous_school: formData.previous_school.trim() || null,
+          message: formData.notes.trim() || null,
+          document_urls: [],
+        }]);
+
+      if (error) {
+        console.error('[Supabase Admissions Error] Failed to submit enquiry:', error);
+        setErrorMessage('Unable to submit your application right now. Please check your details and try again.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      const receipt: SubmittedAdmissionReceipt = {
+        student_name: formData.student_name.trim(),
+        parent_name: formData.parent_name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
         grade_applying: formData.grade_applying,
-        previous_school: formData.previous_school || 'Not Specified',
-        notes: formData.notes || 'None',
-      });
+        status: 'Pending Review',
+        submitted_at: new Date().toLocaleString('en-IN', {
+          dateStyle: 'medium',
+          timeStyle: 'short',
+        }),
+      };
 
       setIsSubmitting(false);
-      setSubmittedData(newRecord);
+      setSubmittedData(receipt);
       onRecordAdded();
 
       try {
@@ -68,11 +103,16 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
       } catch (err) {
         console.log('Confetti error:', err);
       }
-    }, 500);
+    } catch (err: unknown) {
+      console.error('[Supabase Admissions Error] Unexpected exception:', err);
+      setErrorMessage('A network error occurred while submitting your application. Please check your connection and try again.');
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {
     setSubmittedData(null);
+    setErrorMessage(null);
     setFormData({
       student_name: '',
       parent_name: '',
@@ -126,6 +166,13 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
                   </p>
                 </div>
               </div>
+
+              {errorMessage && (
+                <div className="mb-4 p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -268,7 +315,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
                     {isSubmitting ? (
                       <span className="flex items-center gap-2">
                         <span className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full" />
-                        Persisting Application to Database...
+                        Submitting Application to Supabase...
                       </span>
                     ) : (
                       <>
@@ -288,8 +335,8 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
               </div>
 
               <div>
-                <span className="text-[11px] font-bold text-[#44105c] bg-purple-50 px-3 py-1 rounded-full uppercase tracking-wider">
-                  Application Persisted to Database
+                <span className="text-[11px] font-bold text-[#354024] bg-[#354024]/10 px-3 py-1 rounded-full uppercase tracking-wider">
+                  Application Submitted Successfully
                 </span>
                 <h3 className="font-heading text-2xl font-bold text-slate-900 mt-3">
                   Admission Enquiry Received!
@@ -297,15 +344,23 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
                 <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto mt-2">
                   Thank you, <strong>{submittedData.parent_name}</strong>. The application for{' '}
                   <strong>{submittedData.student_name}</strong> ({submittedData.grade_applying}) has been
-                  persisted with status <em>'{submittedData.status}'</em>.
+                  received with status <em>'{submittedData.status}'</em>.
                 </p>
               </div>
 
               {/* Receipt card */}
               <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-left text-xs space-y-2 max-w-md mx-auto">
                 <div className="flex justify-between border-b border-slate-200 pb-2 font-semibold text-slate-800">
-                  <span>Reference ID:</span>
-                  <span className="font-mono text-[#44105c] font-bold">AMAA-2025-00{submittedData.id}</span>
+                  <span>Application Status:</span>
+                  <span className="font-mono text-[#354024] font-bold">{submittedData.status}</span>
+                </div>
+                <div className="flex justify-between text-slate-600">
+                  <span>Student Name:</span>
+                  <span className="font-semibold text-slate-800">{submittedData.student_name}</span>
+                </div>
+                <div className="flex justify-between text-slate-600">
+                  <span>Grade / Class:</span>
+                  <span>{submittedData.grade_applying}</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>Registered Contact:</span>
@@ -316,8 +371,8 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
                   <span>{submittedData.email}</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
-                  <span>Timestamp:</span>
-                  <span className="font-mono text-[11px]">{submittedData.created_at}</span>
+                  <span>Submitted At:</span>
+                  <span className="font-mono text-[11px]">{submittedData.submitted_at}</span>
                 </div>
               </div>
 

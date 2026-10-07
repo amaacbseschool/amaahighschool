@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   ArrowLeft,
   GraduationCap,
@@ -10,6 +10,8 @@ import { TextReveal } from '../components/motion/TextReveal';
 import { AnimatedCounter } from '../components/motion/AnimatedCounter';
 import { FacultySection } from '../components/FacultySection';
 import logoImg from '../assets/logo.png';
+import { getPageWithSections } from '../lib/cms';
+import type { CmsPageWithSections, CmsSectionWithItems } from '../types/cms';
 import type { RouteType } from '../types/routes';
 
 interface AcademicsPageProps {
@@ -18,43 +20,165 @@ interface AcademicsPageProps {
   onNavigateRoute?: (route: RouteType, hashTarget?: string) => void;
 }
 
+const DEFAULT_WINGS = {
+  middle: {
+    title: 'Middle School Wing',
+    grades: 'Grade 6 through Grade 8',
+    age: 'Age 11 to 14 Years',
+    desc: 'Focusing on specialized sciences, abstract algebra, geometry, social studies, and introductory computer programming with real-world applications.',
+    highlights: [
+      'Dedicated Physics, Chemistry and Biology laboratory experiments',
+      'Foundation courses for Olympiads, NTSE, and talent exams',
+      'Inter-house debate conclaves, essay symposiums, and quizzes',
+      'Computer & science club workshops and practical demonstrations',
+    ],
+    curriculumFocus: [
+      'Advanced Science (PCB)',
+      'Algebra & Geometry',
+      'Social Studies & Civics',
+      'Introductory Python & Computer Literacy',
+    ],
+  },
+  secondary: {
+    title: 'Secondary Board Wing',
+    grades: 'Grade 9 & Grade 10',
+    age: 'Age 14 to 16 Years',
+    desc: 'Rigorous academic preparation aligned with State Board benchmarks, intense diagnostic mock examinations, peer-study circles, and career orientation for higher secondary streams.',
+    highlights: [
+      'Decades of unbroken 100% board clearance record',
+      'Over 90% of students scoring distinction and first-class marks',
+      'Targeted doubt-clearing sessions and model question clinics',
+      'Career counseling seminars with alumni from IITs, AIIMS, and NITs',
+    ],
+    curriculumFocus: [
+      'Physical Sciences Mastery',
+      'Secondary Mathematics',
+      'Social Sciences & Economics',
+      'Language Excellence',
+    ],
+  },
+};
+
+const DEFAULT_STATS = [
+  { label: 'Secondary Board Pass Rate', value: 100, suffix: '%', prefix: '', desc: 'Unbroken 1st class honors' },
+  { label: 'Student-Teacher Ratio', value: 20, prefix: '1:', suffix: '', desc: 'Mentorship in every classroom' },
+  { label: 'Hands-on Lab Experiments', value: 120, suffix: '+', prefix: '', desc: 'Annual per-student practicals' },
+  { label: 'Olympiad & Academic Awards', value: 45, suffix: '+', prefix: '', desc: 'State & national honors won' },
+];
+
 export const AcademicsPage: React.FC<AcademicsPageProps> = ({
   onNavigateHome,
   onOpenAdmission,
   onNavigateRoute,
 }) => {
   const [activeWing, setActiveWing] = useState<'middle' | 'secondary'>('middle');
+  const [pageData, setPageData] = useState<CmsPageWithSections | null>(null);
 
-  const wings = {
-    middle: {
-      title: 'Middle School Wing',
-      grades: 'Grade 6 through Grade 8',
-      age: 'Age 11 to 14 Years',
-      desc: 'Focusing on specialized sciences, abstract algebra, geometry, social studies, and introductory computer programming with real-world applications.',
-      highlights: [
-        'Dedicated Physics, Chemistry and Biology laboratory experiments',
-        'Foundation courses for Olympiads, NTSE, and talent exams',
-        'Inter-house debate conclaves, essay symposiums, and quizzes',
-        'Computer & science club workshops and practical demonstrations',
-      ],
-      curriculumFocus: ['Advanced Science (PCB)', 'Algebra & Geometry', 'Social Studies & Civics', 'Introductory Python & Computer Literacy'],
-    },
-    secondary: {
-      title: 'Secondary Board Wing',
-      grades: 'Grade 9 & Grade 10',
-      age: 'Age 14 to 16 Years',
-      desc: 'Rigorous academic preparation aligned with State Board benchmarks, intense diagnostic mock examinations, peer-study circles, and career orientation for higher secondary streams.',
-      highlights: [
-        'Decades of unbroken 100% board clearance record',
-        'Over 90% of students scoring distinction and first-class marks',
-        'Targeted doubt-clearing sessions and model question clinics',
-        'Career counseling seminars with alumni from IITs, AIIMS, and NITs',
-      ],
-      curriculumFocus: ['Physical Sciences Mastery', 'Secondary Mathematics', 'Social Sciences & Economics', 'Language Excellence'],
-    },
-  };
+  useEffect(() => {
+    let isMounted = true;
+    getPageWithSections('academics')
+      .then((data) => {
+        if (isMounted && data) {
+          setPageData(data);
+        }
+      })
+      .catch((err) => {
+        console.error('[CMS] Failed to load academics page with sections:', err);
+      });
 
-  const currentWing = wings[activeWing];
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const sectionMap = useMemo(() => {
+    const map = new Map<string, CmsSectionWithItems>();
+    if (pageData?.sections) {
+      for (const sec of pageData.sections) {
+        map.set(sec.section_key, sec);
+      }
+    }
+    return map;
+  }, [pageData]);
+
+  // Section 1: Hero
+  const heroSection = sectionMap.get('academics.hero');
+  const heroHeading = heroSection?.heading || 'Nurturing Intellectual Rigor & Lifelong Curiosity';
+  const heroSubheading =
+    heroSection?.subheading ||
+    'From foundational conceptual mastery in Middle School through Class 10 secondary board distinction, our pedagogy translates our motto "Lead Kindly Light" into rigorous intellect, moral clarity, and future technologies.';
+  const heroCtaText = heroSection?.cta_text || 'Enroll for Session 2025–26';
+  const heroSecondaryCtaText = heroSection?.secondary_cta_text || 'Explore Laboratories';
+
+  // Section 2: Metrics Strip
+  const statsSection = sectionMap.get('academics.stats');
+  const statsList = useMemo(() => {
+    if (statsSection?.items && statsSection.items.length > 0) {
+      return statsSection.items.map((item, idx) => {
+        const fallback = DEFAULT_STATS[idx] || DEFAULT_STATS[0];
+        const rawBadge = (item.badge || '').trim();
+        let value = fallback.value;
+        let prefix = fallback.prefix;
+        let suffix = fallback.suffix;
+
+        if (rawBadge.startsWith('1:')) {
+          prefix = '1:';
+          const num = parseInt(rawBadge.replace('1:', '').trim(), 10);
+          if (!isNaN(num)) value = num;
+          suffix = '';
+        } else {
+          const match = rawBadge.match(/^([0-9,]+)(.*)$/);
+          if (match) {
+            value = parseInt(match[1].replace(/,/g, ''), 10);
+            suffix = match[2];
+            prefix = '';
+          }
+        }
+
+        return {
+          label: item.title || fallback.label,
+          value,
+          prefix,
+          suffix,
+          desc: item.subtitle || item.description || fallback.desc,
+        };
+      });
+    }
+    return DEFAULT_STATS;
+  }, [statsSection]);
+
+  // Section 3: Wings
+  const wingsSection = sectionMap.get('academics.wings');
+  const wingsHeading = wingsSection?.heading || 'High School Curriculum Stages (Grades VI to X)';
+  const wingsSubheading =
+    wingsSection?.subheading ||
+    'Each stage is developmentally tailored to build on previously mastered milestones while introducing deeper scientific and mathematical inquiries.';
+
+  const wingsData = useMemo(() => {
+    const middleItem = wingsSection?.items?.[0];
+    const secondaryItem = wingsSection?.items?.[1];
+
+    return {
+      middle: {
+        title: middleItem?.title || DEFAULT_WINGS.middle.title,
+        grades: DEFAULT_WINGS.middle.grades,
+        age: DEFAULT_WINGS.middle.age,
+        desc: middleItem?.description || DEFAULT_WINGS.middle.desc,
+        highlights: DEFAULT_WINGS.middle.highlights,
+        curriculumFocus: DEFAULT_WINGS.middle.curriculumFocus,
+      },
+      secondary: {
+        title: secondaryItem?.title || DEFAULT_WINGS.secondary.title,
+        grades: DEFAULT_WINGS.secondary.grades,
+        age: DEFAULT_WINGS.secondary.age,
+        desc: secondaryItem?.description || DEFAULT_WINGS.secondary.desc,
+        highlights: DEFAULT_WINGS.secondary.highlights,
+        curriculumFocus: DEFAULT_WINGS.secondary.curriculumFocus,
+      },
+    };
+  }, [wingsSection]);
+
+  const currentWing = wingsData[activeWing];
 
   return (
     <div className="bg-[#f8f9fa] min-h-screen">
@@ -91,11 +215,11 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight font-crest">
-            <TextReveal>Nurturing Intellectual Rigor & Lifelong Curiosity</TextReveal>
+            <TextReveal>{heroHeading}</TextReveal>
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-slate-200 max-w-3xl mx-auto leading-relaxed font-normal">
-            From foundational conceptual mastery in Middle School through Class 10 secondary board distinction, our pedagogy translates our motto <strong className="text-[#cfbb99]">"Lead Kindly Light"</strong> into rigorous intellect, moral clarity, and future technologies.
+            {heroSubheading}
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -104,14 +228,14 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
               className="bg-[#354024] hover:bg-[#252d19] text-white font-bold px-8 py-3.5 rounded-full transition-all text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg hover:shadow-xl cursor-pointer"
             >
               <GraduationCap className="w-4 h-4 text-[#cfbb99]" />
-              <span>Enroll for Session 2025–26</span>
+              <span>{heroCtaText}</span>
             </button>
             {onNavigateRoute && (
               <button
                 onClick={() => onNavigateRoute('campus')}
                 className="bg-white/10 hover:bg-white/20 text-white font-semibold px-7 py-3.5 rounded-full border border-white/25 transition-all text-xs uppercase tracking-wider flex items-center gap-2 cursor-pointer backdrop-blur-xs"
               >
-                <span>Explore Laboratories</span>
+                <span>{heroSecondaryCtaText}</span>
                 <ChevronRight className="w-4 h-4 text-[#cfbb99]" />
               </button>
             )}
@@ -122,12 +246,7 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
       {/* 3. Metrics Strip */}
       <section className="relative -mt-8 w-[90%] mx-auto px-2 sm:px-4 z-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            { label: 'Secondary Board Pass Rate', value: 100, suffix: '%', desc: 'Unbroken 1st class honors' },
-            { label: 'Student-Teacher Ratio', value: 20, prefix: '1:', suffix: '', desc: 'Mentorship in every classroom' },
-            { label: 'Hands-on Lab Experiments', value: 120, suffix: '+', desc: 'Annual per-student practicals' },
-            { label: 'Olympiad & Academic Awards', value: 45, suffix: '+', desc: 'State & national honors won' },
-          ].map((m, idx) => (
+          {statsList.map((m, idx) => (
             <div
               key={idx}
               className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-card flex items-start gap-4 hover:-translate-y-1 transition-transform"
@@ -154,22 +273,22 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
             PROGRESSIVE LEARNING STAGES
           </span>
           <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#0f172a] mt-3">
-            High School Curriculum Stages (Grades VI to X)
+            {wingsHeading}
           </h2>
           <p className="text-slate-600 text-sm mt-2">
-            Each stage is developmentally tailored to build on previously mastered milestones while introducing deeper scientific and mathematical inquiries.
+            {wingsSubheading}
           </p>
         </div>
 
         {/* Wing Navigation Tabs */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-10 bg-white p-2 rounded-full border border-slate-200 shadow-subtle max-w-xl mx-auto">
           {[
-            { id: 'middle', label: 'Middle School (Grades 6 – 8)' },
-            { id: 'secondary', label: 'Secondary Board (Grades 9 & 10)' },
+            { id: 'middle' as const, label: 'Middle School (Grades 6 – 8)' },
+            { id: 'secondary' as const, label: 'Secondary Board (Grades 9 & 10)' },
           ].map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveWing(tab.id as any)}
+              onClick={() => setActiveWing(tab.id)}
               className={`px-5 py-2.5 text-xs font-bold rounded-full transition-all duration-200 cursor-pointer ${
                 activeWing === tab.id
                   ? 'bg-[#354024] text-white shadow-md'
@@ -239,8 +358,6 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({
           </div>
         </div>
       </section>
-
-
 
       {/* Distinguished Academic Faculty & Mentors */}
       <FacultySection

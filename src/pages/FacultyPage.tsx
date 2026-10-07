@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Home, ChevronRight } from 'lucide-react';
 import { FacultySection } from '../components/FacultySection';
 import { TextReveal } from '../components/motion/TextReveal';
 import logoImg from '../assets/logo.png';
+import { getPublishedPageBySlug } from '../lib/cms';
+import type { CmsPageRow } from '../types/cms';
 import type { RouteType } from '../types/routes';
 
 interface FacultyPageProps {
@@ -14,6 +16,30 @@ export const FacultyPage: React.FC<FacultyPageProps> = ({
   onNavigateRoute,
   onOpenAdmission,
 }) => {
+  const [pageMeta, setPageMeta] = useState<CmsPageRow | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    getPublishedPageBySlug('faculty')
+      .then((data) => {
+        if (isMounted && data) {
+          setPageMeta(data);
+        }
+      })
+      .catch((err) => {
+        console.error('[CMS] Failed to load faculty page meta:', err);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const heroHeading = pageMeta?.title || 'Distinguished Faculty & Subject Masters';
+  const heroDescription =
+    pageMeta?.meta_description ||
+    'Meet the dedicated educators, subject chairpersons, and research mentors shaping generations of young minds under our sacred motto "Lead Kindly Light."';
+
   return (
     <div className="min-h-screen bg-[#f8f9fa] pb-24">
       {/* Breadcrumb */}
@@ -45,10 +71,10 @@ export const FacultyPage: React.FC<FacultyPageProps> = ({
           </div>
 
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white max-w-3xl leading-[1.1]">
-            <TextReveal>Distinguished Faculty & Subject Masters</TextReveal>
+            <TextReveal>{heroHeading}</TextReveal>
           </h1>
           <p className="text-slate-200 text-base sm:text-lg max-w-2xl mt-5 leading-relaxed font-normal">
-            Meet the dedicated educators, subject chairpersons, and research mentors shaping generations of young minds under our sacred motto "Lead Kindly Light."
+            {heroDescription}
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 pt-8 border-t border-white/15 max-w-4xl">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowLeft,
@@ -15,6 +15,8 @@ import {
 } from 'lucide-react';
 import { TextReveal } from '../components/motion/TextReveal';
 import { AnimatedCounter } from '../components/motion/AnimatedCounter';
+import { getPageWithSections, getActiveToppers } from '../lib/cms';
+import type { CmsPageWithSections, CmsSectionWithItems, AcademicTopperRow } from '../types/cms';
 import type { RouteType } from '../types/routes';
 
 interface AchievementsPageProps {
@@ -22,100 +24,261 @@ interface AchievementsPageProps {
   onOpenAdmission: () => void;
 }
 
+interface TopperItem {
+  name: string;
+  score: string;
+  badge: string;
+  quote: string;
+  field: string;
+  year: string;
+  image: string;
+}
+
+const DEFAULT_TOPPERS: TopperItem[] = [
+  {
+    name: 'Sneha K. Varma',
+    score: '98.6%',
+    badge: 'State Rank 2 • Board Class X',
+    quote: 'AMAA faculty treated every doubt with patience. Regular model exams gave me unwavering confidence.',
+    field: 'Aspiring Biomedical Researcher',
+    year: 'Class of 2025',
+    image: '/toppers/sneha_varma.webp',
+  },
+  {
+    name: 'Aditya R. Prasad',
+    score: '98.2%',
+    badge: 'Math & Science Centum (100/100)',
+    quote: 'The computer club and science practical labs taught me the practical side of complex formulas.',
+    field: 'National Cyber Olympiad Gold',
+    year: 'Class of 2025',
+    image: '/toppers/aditya_prasad.webp',
+  },
+  {
+    name: 'Meghana Sen',
+    score: '97.8%',
+    badge: 'All-Rounder Award Winner',
+    quote: 'Balancing athletics track meets with daily study schedules was made possible by our supportive mentors.',
+    field: 'State Level Sprinter & Orator',
+    year: 'Class of 2025',
+    image: '/toppers/meghana_sen.webp',
+  },
+  {
+    name: 'Ravi Teja Nalluri',
+    score: '97.4%',
+    badge: 'Science Distinction',
+    quote: 'Our teachers never gave up on any student. Personal attention is what sets AMAA apart.',
+    field: 'IIT-JEE Foundation Scholar',
+    year: 'Class of 2024',
+    image: '/toppers/raviteja_nalluri.webp',
+  },
+  {
+    name: 'Divya Srinivasan',
+    score: '96.9%',
+    badge: 'Language & Arts Topper',
+    quote: 'The literary club and drama wing built my confidence far beyond the classroom.',
+    field: 'Aspiring Civil Services',
+    year: 'Class of 2024',
+    image: '/toppers/divya_srinivasan.webp',
+  },
+  {
+    name: 'Harshith Reddy',
+    score: '96.6%',
+    badge: 'Mathematics Centum',
+    quote: 'Daily diagnostic tests and individual feedback helped me identify and close every gap.',
+    field: 'State Math Olympiad Silver',
+    year: 'Class of 2023',
+    image: '/toppers/harshith_reddy.webp',
+  },
+];
+
+const DEFAULT_OLYMPIADS = [
+  { category: 'Science Olympiad (SOF)', medals: '48 Gold / Silver', years: '2018–2025' },
+  { category: 'National Cyber Olympiad', medals: '32 State Ranks', years: '2019–2025' },
+  { category: 'Mathematics Olympiad', medals: '27 Gold / Distinction', years: '2017–2025' },
+  { category: 'NTSE State Selection', medals: '11 Scholars', years: '2015–2025' },
+  { category: 'National Science Exhibition', medals: '8 State Prizes', years: '2020–2025' },
+  { category: 'Art & Creative Writing', medals: '14 National Awards', years: '2018–2025' },
+];
+
+const DEFAULT_SPORTS = [
+  { sport: 'Athletics (Track & Field)', prize: 'District Championship × 9', icon: '🏃' },
+  { sport: 'Cricket', prize: 'State U-16 Shield × 3', icon: '🏏' },
+  { sport: 'Taekwondo', prize: 'State Gold × 7', icon: '🥋' },
+  { sport: 'Football', prize: 'District Gold × 5', icon: '⚽' },
+  { sport: 'Volleyball', prize: 'Inter-School Cup × 4', icon: '🏐' },
+  { sport: 'Badminton', prize: 'State Under-14 × 2', icon: '🏸' },
+];
+
+const DEFAULT_ALUMNI = [
+  { name: 'Dr. Priya Sharma, MBBS, MS', batch: 'Batch of 2012', role: 'Senior Consultant Cardiologist', org: 'AIIMS New Delhi', tag: 'Healthcare Pioneer' },
+  { name: 'Vikramaditya Roy, B.Tech, M.S.', batch: 'Batch of 2014', role: 'Principal Systems Architect', org: 'Global Technology Enterprise', tag: 'Tech Innovator' },
+  { name: 'Ananya Deshmukh, IAS', batch: 'Batch of 2010', role: 'District Magistrate & Collector', org: 'Government Administration', tag: 'Public Governance' },
+  { name: 'Maj. Siddharth Menon', batch: 'Batch of 2008', role: 'Squadron Commander', org: 'Indian Armed Forces', tag: 'National Defence' },
+];
+
+const DEFAULT_STATS = [
+  { value: 100, suffix: '%', label: 'Board Pass Record', sub: 'Unbroken multi-decade tradition', icon: ShieldCheck, dark: true },
+  { value: 92, suffix: '%', label: 'First Class & Distinctions', sub: 'Class X secondary aggregate', icon: Award, dark: false },
+  { value: 140, suffix: '+', label: 'Olympiad Medals', sub: 'SOF, NTSE & National level', icon: Medal, dark: false },
+  { value: 45, suffix: '+', label: 'Sports Trophies', sub: 'Athletics, cricket, taekwondo', icon: Trophy, dark: false },
+  { value: 10000, suffix: '+', label: 'Global Alumni', sub: 'Across medicine, tech & governance', icon: GraduationCap, dark: false },
+  { value: 60, suffix: '+', label: 'Years of Excellence', sub: 'Diamond Jubilee legacy', icon: BookOpen, dark: false },
+];
+
 export const AchievementsPage: React.FC<AchievementsPageProps> = ({
   onNavigateRoute,
   onOpenAdmission,
 }) => {
-  const toppers = [
-    {
-      name: 'Sneha K. Varma',
-      score: '98.6%',
-      badge: 'State Rank 2 • Board Class X',
-      quote: 'AMAA faculty treated every doubt with patience. Regular model exams gave me unwavering confidence.',
-      field: 'Aspiring Biomedical Researcher',
-      year: 'Class of 2025',
-      image: '/toppers/sneha_varma.webp',
-    },
-    {
-      name: 'Aditya R. Prasad',
-      score: '98.2%',
-      badge: 'Math & Science Centum (100/100)',
-      quote: 'The computer club and science practical labs taught me the practical side of complex formulas.',
-      field: 'National Cyber Olympiad Gold',
-      year: 'Class of 2025',
-      image: '/toppers/aditya_prasad.webp',
-    },
-    {
-      name: 'Meghana Sen',
-      score: '97.8%',
-      badge: 'All-Rounder Award Winner',
-      quote: 'Balancing athletics track meets with daily study schedules was made possible by our supportive mentors.',
-      field: 'State Level Sprinter & Orator',
-      year: 'Class of 2025',
-      image: '/toppers/meghana_sen.webp',
-    },
-    {
-      name: 'Ravi Teja Nalluri',
-      score: '97.4%',
-      badge: 'Science Distinction',
-      quote: 'Our teachers never gave up on any student. Personal attention is what sets AMAA apart.',
-      field: 'IIT-JEE Foundation Scholar',
-      year: 'Class of 2024',
-      image: '/toppers/raviteja_nalluri.webp',
-    },
-    {
-      name: 'Divya Srinivasan',
-      score: '96.9%',
-      badge: 'Language & Arts Topper',
-      quote: 'The literary club and drama wing built my confidence far beyond the classroom.',
-      field: 'Aspiring Civil Services',
-      year: 'Class of 2024',
-      image: '/toppers/divya_srinivasan.webp',
-    },
-    {
-      name: 'Harshith Reddy',
-      score: '96.6%',
-      badge: 'Mathematics Centum',
-      quote: 'Daily diagnostic tests and individual feedback helped me identify and close every gap.',
-      field: 'State Math Olympiad Silver',
-      year: 'Class of 2023',
-      image: '/toppers/harshith_reddy.webp',
-    },
-  ];
+  const [pageData, setPageData] = useState<CmsPageWithSections | null>(null);
+  const [topperRows, setTopperRows] = useState<AcademicTopperRow[]>([]);
 
-  const olympiadAwards = [
-    { category: 'Science Olympiad (SOF)', medals: '48 Gold / Silver', years: '2018–2025' },
-    { category: 'National Cyber Olympiad', medals: '32 State Ranks', years: '2019–2025' },
-    { category: 'Mathematics Olympiad', medals: '27 Gold / Distinction', years: '2017–2025' },
-    { category: 'NTSE State Selection', medals: '11 Scholars', years: '2015–2025' },
-    { category: 'National Science Exhibition', medals: '8 State Prizes', years: '2020–2025' },
-    { category: 'Art & Creative Writing', medals: '14 National Awards', years: '2018–2025' },
-  ];
+  useEffect(() => {
+    let isMounted = true;
+    getPageWithSections('achievements')
+      .then((data) => {
+        if (isMounted && data) {
+          setPageData(data);
+        }
+      })
+      .catch((err) => {
+        console.error('[CMS] Failed to load achievements page data:', err);
+      });
 
-  const sportsHonours = [
-    { sport: 'Athletics (Track & Field)', prize: 'District Championship × 9', icon: '🏃' },
-    { sport: 'Cricket', prize: 'State U-16 Shield × 3', icon: '🏏' },
-    { sport: 'Taekwondo', prize: 'State Gold × 7', icon: '🥋' },
-    { sport: 'Football', prize: 'District Gold × 5', icon: '⚽' },
-    { sport: 'Volleyball', prize: 'Inter-School Cup × 4', icon: '🏐' },
-    { sport: 'Badminton', prize: 'State Under-14 × 2', icon: '🏸' },
-  ];
+    getActiveToppers()
+      .then((rows) => {
+        if (isMounted && rows && rows.length > 0) {
+          setTopperRows(rows);
+        }
+      })
+      .catch((err) => {
+        console.error('[CMS] Failed to load active toppers:', err);
+      });
 
-  const alumniProdigies = [
-    { name: 'Dr. Priya Sharma, MBBS, MS', batch: 'Batch of 2012', role: 'Senior Consultant Cardiologist', org: 'AIIMS New Delhi', tag: 'Healthcare Pioneer' },
-    { name: 'Vikramaditya Roy, B.Tech, M.S.', batch: 'Batch of 2014', role: 'Principal Systems Architect', org: 'Global Technology Enterprise', tag: 'Tech Innovator' },
-    { name: 'Ananya Deshmukh, IAS', batch: 'Batch of 2010', role: 'District Magistrate & Collector', org: 'Government Administration', tag: 'Public Governance' },
-    { name: 'Maj. Siddharth Menon', batch: 'Batch of 2008', role: 'Squadron Commander', org: 'Indian Armed Forces', tag: 'National Defence' },
-  ];
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
-  const stats = [
-    { value: 100, suffix: '%', label: 'Board Pass Record', sub: 'Unbroken multi-decade tradition', icon: ShieldCheck, dark: true },
-    { value: 92, suffix: '%', label: 'First Class & Distinctions', sub: 'Class X secondary aggregate', icon: Award, dark: false },
-    { value: 140, suffix: '+', label: 'Olympiad Medals', sub: 'SOF, NTSE & National level', icon: Medal, dark: false },
-    { value: 45, suffix: '+', label: 'Sports Trophies', sub: 'Athletics, cricket, taekwondo', icon: Trophy, dark: false },
-    { value: 10000, suffix: '+', label: 'Global Alumni', sub: 'Across medicine, tech & governance', icon: GraduationCap, dark: false },
-    { value: 60, suffix: '+', label: 'Years of Excellence', sub: 'Diamond Jubilee legacy', icon: BookOpen, dark: false },
-  ];
+  const sectionMap = useMemo(() => {
+    const map = new Map<string, CmsSectionWithItems>();
+    if (pageData?.sections) {
+      for (const sec of pageData.sections) {
+        map.set(sec.section_key, sec);
+      }
+    }
+    return map;
+  }, [pageData]);
+
+  // Section 1: Hero
+  const heroSection = sectionMap.get('achievements.hero');
+  const heroHeading = heroSection?.heading || 'Academic Distinctions & Board Honours';
+  const heroSubheading =
+    heroSection?.subheading ||
+    'Consistently outperforming state averages — our students secure top ranks in secondary board exams, Olympiads, athletic championships, and cultural competitions.';
+
+  // Section 2: Stats
+  const statsSection = sectionMap.get('achievements.stats');
+  const statsList = useMemo(() => {
+    if (statsSection?.items && statsSection.items.length > 0) {
+      return statsSection.items.map((item, idx) => {
+        const fallback = DEFAULT_STATS[idx] || DEFAULT_STATS[0];
+        const rawBadge = (item.badge || '').trim();
+        const numMatch = rawBadge.match(/^([0-9,]+)(.*)$/);
+        const val = numMatch ? parseInt(numMatch[1].replace(/,/g, ''), 10) : fallback.value;
+        const suffix = numMatch ? numMatch[2] : fallback.suffix;
+
+        return {
+          value: val,
+          suffix,
+          label: item.title || fallback.label,
+          sub: item.subtitle || fallback.sub,
+          icon: fallback.icon,
+          dark: fallback.dark,
+        };
+      });
+    }
+    return DEFAULT_STATS;
+  }, [statsSection]);
+
+  // Toppers Showcase
+  const toppersList: TopperItem[] = useMemo(() => {
+    if (topperRows && topperRows.length > 0) {
+      const defaultMap = new Map<string, TopperItem>();
+      for (const def of DEFAULT_TOPPERS) {
+        defaultMap.set(def.name.toLowerCase().trim(), def);
+      }
+
+      return topperRows.map((t, idx) => {
+        const fallback = defaultMap.get(t.student_name.toLowerCase().trim()) || DEFAULT_TOPPERS[idx] || DEFAULT_TOPPERS[0];
+        return {
+          name: t.student_name,
+          score: t.score || fallback.score,
+          badge: t.rank_badge || fallback.badge,
+          quote: t.quote || fallback.quote,
+          field: fallback.field,
+          year: t.academic_year || fallback.year,
+          image: t.photo_url || fallback.image,
+        };
+      });
+    }
+    return DEFAULT_TOPPERS;
+  }, [topperRows]);
+
+  // Section 3: Olympiads
+  const olympiadsSection = sectionMap.get('achievements.olympiads');
+  const olympiadsHeading = olympiadsSection?.heading || 'Olympiad & Academic Honours';
+  const olympiadsList = useMemo(() => {
+    if (olympiadsSection?.items && olympiadsSection.items.length > 0) {
+      return olympiadsSection.items.map((item, idx) => {
+        const fallback = DEFAULT_OLYMPIADS[idx] || DEFAULT_OLYMPIADS[0];
+        return {
+          category: item.title || fallback.category,
+          medals: item.badge || fallback.medals,
+          years: item.subtitle?.replace('Years: ', '') || fallback.years,
+        };
+      });
+    }
+    return DEFAULT_OLYMPIADS;
+  }, [olympiadsSection]);
+
+  // Section 4: Sports
+  const sportsSection = sectionMap.get('achievements.sports');
+  const sportsHeading = sportsSection?.heading || 'Sports Championship Honours';
+  const sportsList = useMemo(() => {
+    if (sportsSection?.items && sportsSection.items.length > 0) {
+      return sportsSection.items.map((item, idx) => {
+        const fallback = DEFAULT_SPORTS[idx] || DEFAULT_SPORTS[0];
+        return {
+          sport: item.title || fallback.sport,
+          prize: item.badge || fallback.prize,
+          icon: fallback.icon,
+        };
+      });
+    }
+    return DEFAULT_SPORTS;
+  }, [sportsSection]);
+
+  // Section 5: Alumni
+  const alumniSection = sectionMap.get('achievements.alumni');
+  const alumniList = useMemo(() => {
+    if (alumniSection?.items && alumniSection.items.length > 0) {
+      return alumniSection.items.map((item, idx) => {
+        const fallback = DEFAULT_ALUMNI[idx] || DEFAULT_ALUMNI[0];
+        const subParts = (item.subtitle || '').split('•');
+        const batch = subParts[0] ? subParts[0].trim() : fallback.batch;
+        const role = subParts[1] ? subParts[1].trim() : fallback.role;
+
+        return {
+          name: item.title || fallback.name,
+          batch,
+          role,
+          org: fallback.org,
+          tag: item.badge || fallback.tag,
+        };
+      });
+    }
+    return DEFAULT_ALUMNI;
+  }, [alumniSection]);
 
   return (
     <div className="bg-[#f8f9fa] min-h-screen">
@@ -145,10 +308,10 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
             <span className="text-xs font-bold tracking-widest uppercase text-[#cfbb99]">Tradition of Excellence</span>
           </div>
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight font-crest">
-            <TextReveal>Academic Distinctions & Board Honours</TextReveal>
+            <TextReveal>{heroHeading}</TextReveal>
           </h1>
           <p className="mt-6 text-base sm:text-lg text-slate-200 max-w-3xl mx-auto leading-relaxed">
-            Consistently outperforming state averages — our students secure top ranks in secondary board exams, Olympiads, athletic championships, and cultural competitions.
+            {heroSubheading}
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <button
@@ -165,7 +328,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
       {/* Key Stats Grid */}
       <section className="relative -mt-8 w-[90%] mx-auto px-2 sm:px-4 z-20 mb-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {stats.map((stat, idx) => {
+          {statsList.map((stat, idx) => {
             const Icon = stat.icon;
             return (
               <motion.div
@@ -215,7 +378,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-          {toppers.map((t, idx) => (
+          {toppersList.map((t, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 25 }}
@@ -288,11 +451,11 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
             <Medal className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">National & State Level Competitions</span>
           </div>
-          <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">Olympiad & Academic Honours</h2>
+          <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">{olympiadsHeading}</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
-          {olympiadAwards.map((o, idx) => (
+          {olympiadsList.map((o, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
@@ -303,7 +466,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
               className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-card hover:border-[#354024]/40 transition-all duration-300"
             >
               <div className="flex items-center gap-2 mb-3">
-                <Sparkles className="w-4 h-4 text-[#cfbb99] shrink-0" />
+                <Sparkles className="w-4 h-4 text-[#cfbb99]" />
                 <h4 className="font-bold text-[#1b2213] text-sm">{o.category}</h4>
               </div>
               <div className="text-xl font-extrabold text-[#354024] font-modern">{o.medals}</div>
@@ -324,11 +487,11 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
             <Trophy className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">Inter-School & State Sports</span>
           </div>
-          <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">Sports Championship Honours</h2>
+          <h2 className="font-crest text-3xl sm:text-4xl font-extrabold text-[#1b2213]">{sportsHeading}</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
-          {sportsHonours.map((s, idx) => (
+          {sportsList.map((s, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
@@ -373,7 +536,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({
             </button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {alumniProdigies.map((alum, idx) => (
+            {alumniList.map((alum, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}

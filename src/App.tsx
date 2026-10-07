@@ -5,7 +5,6 @@ import { Navbar } from './components/Navbar';
 import { NoticeTicker } from './components/NoticeTicker';
 import { Footer } from './components/Footer';
 import { AdmissionModal } from './components/AdmissionModal';
-import { SqlConsoleModal } from './components/SqlConsoleModal';
 import { SearchModal } from './components/SearchModal';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
@@ -21,9 +20,10 @@ import { NewsEventsPage } from './pages/NewsEventsPage';
 import { AdministrationPage } from './pages/AdministrationPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
 import { Preloader } from './components/Preloader';
-import { db } from './lib/db';
+import { supabase } from './lib/supabase';
 import { initLenis, destroyLenis, scrollToElement } from './lib/lenis';
-import type { SchoolNotice } from './lib/db';
+import { CmsShellProvider } from './context/CmsShellContext';
+import type { PublicNotice } from './components/NoticeTicker';
 import type { RouteType } from './types/routes';
 
 export function App() {
@@ -73,16 +73,62 @@ export function App() {
   const [route, setRoute] = useState<RouteType>(getRouteFromUrl);
   const [showPreloader, setShowPreloader] = useState(true);
   const [admissionModalOpen, setAdmissionModalOpen] = useState(false);
-  const [sqlConsoleOpen, setSqlConsoleOpen] = useState(false);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
-  const [notices, setNotices] = useState<SchoolNotice[]>([]);
+  const [notices, setNotices] = useState<PublicNotice[]>([]);
+
+  const fetchPublicNotices = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('school_notices')
+        .select('*')
+        .eq('published', true)
+        .order('published_at', { ascending: false });
+
+      if (error) {
+        console.error('[Public Notices Error] Failed to load notices from Supabase:', error);
+        setNotices([]);
+        return;
+      }
+
+      if (data) {
+        const formatted: PublicNotice[] = data.map((n) => {
+          let dateStr = 'Official Circular';
+          if (n.published_at || n.created_at) {
+            try {
+              const d = new Date(n.published_at || n.created_at);
+              if (!isNaN(d.getTime())) {
+                dateStr = d.toLocaleDateString('en-IN', {
+                  day: 'numeric',
+                  month: 'short',
+                  year: 'numeric',
+                });
+              }
+            } catch {
+              dateStr = 'Official Circular';
+            }
+          }
+          return {
+            id: n.id,
+            title: n.title,
+            category: n.category,
+            content: n.content,
+            date: dateStr,
+          };
+        });
+        setNotices(formatted);
+      }
+    } catch (err: unknown) {
+      console.error('[Public Notices Error] Unexpected error querying school_notices:', err);
+      setNotices([]);
+    }
+  };
 
   const reloadDatabaseRecords = () => {
-    setNotices(db.getNotices());
+    fetchPublicNotices();
   };
 
   useEffect(() => {
-    reloadDatabaseRecords();
+    fetchPublicNotices();
 
     // Initialize Lenis buttery-smooth momentum scroll
     initLenis();
@@ -153,7 +199,7 @@ export function App() {
   };
 
   return (
-    <>
+    <CmsShellProvider>
       <AnimatePresence>
         {showPreloader && (
           <Preloader
@@ -266,7 +312,6 @@ export function App() {
               <AdminDashboardPage
                 onNavigateHome={() => navigateToRoute('home')}
                 onNavigateRoute={navigateToRoute}
-                onOpenSqlConsole={() => setSqlConsoleOpen(true)}
               />
             )}
 
@@ -295,18 +340,11 @@ export function App() {
       />
 
       {/* --- Interactive Modals --- */}
-      {/* Admission Enquiry Modal (Persists to SQLite database) */}
+      {/* Admission Enquiry Modal */}
       <AdmissionModal
         isOpen={admissionModalOpen}
         onClose={() => setAdmissionModalOpen(false)}
         onRecordAdded={reloadDatabaseRecords}
-      />
-
-      {/* SQL Management Console & Application Workflow Terminal */}
-      <SqlConsoleModal
-        isOpen={sqlConsoleOpen}
-        onClose={() => setSqlConsoleOpen(false)}
-        onDatabaseChanged={reloadDatabaseRecords}
       />
 
       {/* Instant Search Modal with Route Navigation */}
@@ -316,7 +354,7 @@ export function App() {
         onSelectRoute={(targetRoute) => navigateToRoute(targetRoute)}
       />
     </div>
-    </>
+    </CmsShellProvider>
   );
 }
 

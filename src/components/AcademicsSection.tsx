@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   BookOpen,
@@ -12,91 +12,158 @@ import {
 } from 'lucide-react';
 import { TextReveal } from './motion/TextReveal';
 import type { RouteType } from '../types/routes';
+import type { CmsSectionWithItems } from '../types/cms';
 
 interface AcademicsSectionProps {
+  cmsSection?: CmsSectionWithItems;
   onNavigateRoute?: (route: RouteType, hashTarget?: string) => void;
   onOpenAdmission?: () => void;
 }
 
+interface Stage {
+  id: string;
+  title: string;
+  gradeRange: string;
+  ageRange: string;
+  badge: string;
+  icon: React.ComponentType<{ className?: string }>;
+  badgeColor: string;
+  tagline: string;
+  description: string;
+  ratio: string;
+  subjects: string[];
+  outcomes: string[];
+}
+
+const DEFAULT_STAGES: Stage[] = [
+  {
+    id: 'middle',
+    title: 'Middle School',
+    gradeRange: 'Grades VI – VIII',
+    ageRange: 'Ages 11 – 14',
+    badge: 'Analytical Discovery',
+    icon: BrainCircuit,
+    badgeColor: 'bg-purple-100 text-purple-800',
+    tagline: 'Subject specialization, lab practicals, and Olympiad readiness.',
+    description:
+      'Students explore independent thinking, abstract reasoning, and systematic science. Introduction to certified laboratory apparatus, computer programming, and debate conclaves.',
+    ratio: '1:20',
+    subjects: [
+      'Physics, Chemistry, Biology',
+      'Algebra & Geometry',
+      'Social Studies & History',
+      'Computer Applications & Coding',
+    ],
+    outcomes: [
+      'Direct laboratory experimentation and data logging',
+      'Preparation for National Cyber & Science Olympiads',
+      'Inter-house public speaking and leadership guilds',
+    ],
+  },
+  {
+    id: 'secondary',
+    title: 'Secondary Board Wing',
+    gradeRange: 'Grades IX – X',
+    ageRange: 'Ages 14 – 16',
+    badge: 'Board Excellence',
+    icon: Trophy,
+    badgeColor: 'bg-rose-100 text-[#dc2626]',
+    tagline: 'Unbroken 100% board distinction and career gateway preparation.',
+    description:
+      'Intensive State Board preparation with daily doubt resolution, rigorous diagnostic mock tests, and personalized mentoring to secure top state ranks and medical/engineering foundations.',
+    ratio: '1:20',
+    subjects: [
+      'Advanced Physical Sciences',
+      'Advanced Mathematics',
+      'Economics & Social Sciences',
+      'English Language & Literature',
+    ],
+    outcomes: [
+      'Unbroken 100% Class X secondary board clearance record',
+      '92% students securing first-class and distinctions',
+      'Personalized roadmap for IIT-JEE, NEET & Olympiads',
+    ],
+  },
+];
+
+const DEFAULT_GUARANTEES = [
+  {
+    icon: Users2,
+    number: '1:20',
+    title: 'Individual Attention',
+    desc: 'Small class batches ensure teachers know every child’s learning speed and doubts.',
+  },
+  {
+    icon: Trophy,
+    number: '100%',
+    title: 'Board Pass Record',
+    desc: 'Unbroken multi-decade tradition of zero failures and top distinction honors.',
+  },
+  {
+    icon: BookOpen,
+    number: '4K',
+    title: 'Smart Digital Suites',
+    desc: 'Interactive touch panels, modern laboratories, and fully equipped computer workstations.',
+  },
+];
+
 export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
+  cmsSection,
   onNavigateRoute,
   onOpenAdmission,
 }) => {
   const [selectedStageIndex, setSelectedStageIndex] = useState(0);
 
-  const stages = [
-    {
-      id: 'middle',
-      title: 'Middle School',
-      gradeRange: 'Grades VI – VIII',
-      ageRange: 'Ages 11 – 14',
-      badge: 'Analytical Discovery',
-      icon: BrainCircuit,
-      badgeColor: 'bg-purple-100 text-purple-800',
-      tagline: 'Subject specialization, lab practicals, and Olympiad readiness.',
-      description:
-        'Students explore independent thinking, abstract reasoning, and systematic science. Introduction to certified laboratory apparatus, computer programming, and debate conclaves.',
-      ratio: '1:20',
-      subjects: [
-        'Physics, Chemistry, Biology',
-        'Algebra & Geometry',
-        'Social Studies & History',
-        'Computer Applications & Coding',
-      ],
-      outcomes: [
-        'Direct laboratory experimentation and data logging',
-        'Preparation for National Cyber & Science Olympiads',
-        'Inter-house public speaking and leadership guilds',
-      ],
-    },
-    {
-      id: 'secondary',
-      title: 'Secondary Board Wing',
-      gradeRange: 'Grades IX – X',
-      ageRange: 'Ages 14 – 16',
-      badge: 'Board Excellence',
-      icon: Trophy,
-      badgeColor: 'bg-rose-100 text-[#dc2626]',
-      tagline: 'Unbroken 100% board distinction and career gateway preparation.',
-      description:
-        'Intensive State Board preparation with daily doubt resolution, rigorous diagnostic mock tests, and personalized mentoring to secure top state ranks and medical/engineering foundations.',
-      ratio: '1:20',
-      subjects: [
-        'Advanced Physical Sciences',
-        'Advanced Mathematics',
-        'Economics & Social Sciences',
-        'English Language & Literature',
-      ],
-      outcomes: [
-        'Unbroken 100% Class X secondary board clearance record',
-        '92% students securing first-class and distinctions',
-        'Personalized roadmap for IIT-JEE, NEET & Olympiads',
-      ],
-    },
-  ];
+  const eyebrow = cmsSection?.eyebrow || 'ACADEMIC PATHWAYS • GRADES VI TO X';
+  const heading = cmsSection?.heading || 'Explore. Learn. Excel.';
+  const subheading =
+    cmsSection?.subheading ||
+    'We guide students from Grade VI analytical discovery through Class X secondary board distinctions. Select a wing below to explore curriculum, subjects, and outcomes.';
+  const ctaText = cmsSection?.cta_text || 'MEET OUR FACULTY';
+  const secondaryCtaText = cmsSection?.secondary_cta_text || 'VIEW SYLLABUS';
 
-  const coreGuarantees = [
-    {
-      icon: Users2,
-      number: '1:20',
-      title: 'Individual Attention',
-      desc: 'Small class batches ensure teachers know every child’s learning speed and doubts.',
-    },
-    {
-      icon: Trophy,
-      number: '100%',
-      title: 'Board Pass Record',
-      desc: 'Unbroken multi-decade tradition of zero failures and top distinction honors.',
-    },
-    {
-      icon: BookOpen,
-      number: '4K',
-      title: 'Smart Digital Suites',
-      desc: 'Interactive touch panels, modern laboratories, and fully equipped computer workstations.',
-    },
-  ];
+  const stages: Stage[] = useMemo(() => {
+    if (cmsSection?.items && cmsSection.items.length >= 2) {
+      const stageItems = cmsSection.items.slice(0, 2);
+      return stageItems.map((item, idx) => {
+        const fallback = DEFAULT_STAGES[idx];
+        return {
+          id: idx === 0 ? 'middle' : 'secondary',
+          title: item.title || fallback.title,
+          gradeRange: fallback.gradeRange,
+          ageRange: fallback.ageRange,
+          badge: item.badge || fallback.badge,
+          icon: fallback.icon,
+          badgeColor: fallback.badgeColor,
+          tagline: fallback.tagline,
+          description: item.description || fallback.description,
+          ratio: fallback.ratio,
+          subjects: fallback.subjects,
+          outcomes: fallback.outcomes,
+        };
+      });
+    }
+    return DEFAULT_STAGES;
+  }, [cmsSection]);
 
-  const currentStage = stages[selectedStageIndex];
+  const coreGuarantees = useMemo(() => {
+    if (cmsSection?.items && cmsSection.items.length >= 5) {
+      const metricItems = cmsSection.items.slice(2, 5);
+      return metricItems.map((item, idx) => {
+        const fallback = DEFAULT_GUARANTEES[idx];
+        return {
+          icon: fallback.icon,
+          number: item.badge || fallback.number,
+          title: item.title || fallback.title,
+          desc: item.description || fallback.desc,
+        };
+      });
+    }
+    return DEFAULT_GUARANTEES;
+  }, [cmsSection]);
+
+  const safeIndex = selectedStageIndex < stages.length ? selectedStageIndex : 0;
+  const currentStage = stages[safeIndex];
   const StageIcon = currentStage.icon;
 
   return (
@@ -111,14 +178,14 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
             <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
               <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
               <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">
-                ACADEMIC PATHWAYS • GRADES VI TO X
+                {eyebrow}
               </span>
             </div>
             <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] tracking-tight">
-              <TextReveal>Explore. Learn. Excel.</TextReveal>
+              <TextReveal>{heading}</TextReveal>
             </h2>
             <p className="text-slate-600 text-sm sm:text-base max-w-2xl mt-3 leading-relaxed">
-              We guide students from Grade VI analytical discovery through Class X secondary board distinctions. Select a wing below to explore curriculum, subjects, and outcomes.
+              {subheading}
             </p>
           </div>
 
@@ -128,7 +195,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                 onClick={() => onNavigateRoute('home', '#faculty')}
                 className="inline-flex items-center gap-2 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-6 py-3 rounded-full text-xs tracking-wider uppercase transition-all shadow-md hover:shadow-lg cursor-pointer"
               >
-                <span>MEET OUR FACULTY</span>
+                <span>{ctaText}</span>
                 <ArrowRight className="w-4 h-4 text-[#cfbb99]" />
               </button>
 
@@ -136,7 +203,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({
                 onClick={() => onNavigateRoute('academics')}
                 className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#1b2213] font-bold px-5 py-3 rounded-full border border-slate-200 text-xs tracking-wider uppercase transition-all cursor-pointer shadow-subtle"
               >
-                <span>VIEW SYLLABUS</span>
+                <span>{secondaryCtaText}</span>
                 <ArrowRight className="w-4 h-4 text-[#354024]" />
               </button>
             </div>

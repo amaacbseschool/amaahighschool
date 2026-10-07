@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import {
   Sparkles,
@@ -13,46 +13,126 @@ import { TextReveal } from './motion/TextReveal';
 import { AnimatedCounter } from './motion/AnimatedCounter';
 import logoImg from '../assets/logo.png';
 import type { RouteType } from '../types/routes';
+import type { CmsSectionWithItems } from '../types/cms';
 
 interface SchoolHeritageSectionProps {
+  cmsSection?: CmsSectionWithItems;
   onNavigateRoute?: (route: RouteType, hashTarget?: string) => void;
   onOpenAdmission?: () => void;
 }
 
+const DEFAULT_PILLARS = [
+  {
+    title: 'Rooted in Values',
+    desc: 'Guided by our sacred motto "Lead Kindly Light", character formation and ethical integrity accompany every academic triumph.',
+    icon: ShieldCheck,
+    iconColor: 'text-[#354024]',
+    badgeColor: 'bg-[#354024]/10 text-[#354024]',
+  },
+  {
+    title: 'Academic Distinction',
+    desc: 'Unbroken tradition of 100% board pass results, state merit ranks, and Olympiad medals over multiple decades.',
+    icon: Award,
+    iconColor: 'text-[#dc2626]',
+    badgeColor: 'bg-[#dc2626]/10 text-[#dc2626]',
+  },
+  {
+    title: 'Global Alumni Legacy',
+    desc: 'Our graduates thrive across top institutions like AIIMS, Google DeepMind, Indian Administrative Services, and the Armed Forces.',
+    icon: Users,
+    iconColor: 'text-[#354024]',
+    badgeColor: 'bg-[#354024]/10 text-[#354024]',
+  },
+  {
+    title: 'Compassionate Mentorship',
+    desc: 'A dedicated 1:20 educator ratio ensures that every child receives individualized encouragement, empathy, and intellectual guidance.',
+    icon: HeartHandshake,
+    iconColor: 'text-[#cfbb99]',
+    badgeColor: 'bg-[#cfbb99]/20 text-[#9e8760]',
+  },
+];
+
+const DEFAULT_STATS = [
+  { value: 60, suffix: '+', label: 'Years Heritage' },
+  { value: 100, suffix: '%', label: 'Board Pass Rate' },
+  { value: 10000, suffix: '+', label: 'Global Alumni' },
+];
+
+const COLOR_MAP: Record<number, { iconColor: string; badgeColor: string }> = {
+  0: { iconColor: 'text-[#354024]', badgeColor: 'bg-[#354024]/10 text-[#354024]' },
+  1: { iconColor: 'text-[#dc2626]', badgeColor: 'bg-[#dc2626]/10 text-[#dc2626]' },
+  2: { iconColor: 'text-[#354024]', badgeColor: 'bg-[#354024]/10 text-[#354024]' },
+  3: { iconColor: 'text-[#cfbb99]', badgeColor: 'bg-[#cfbb99]/20 text-[#9e8760]' },
+};
+
 export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
+  cmsSection,
   onNavigateRoute,
 }) => {
+  const eyebrow = cmsSection?.eyebrow || 'DIAMOND JUBILEE • 60 YEARS OF EXCELLENCE';
+  const heading = cmsSection?.heading || 'School Heritage & Founding Ethos';
+  const subheading =
+    cmsSection?.subheading ||
+    'Since 1965, A.M.A. Adinarayana English Medium High School has illuminated young minds under the timeless invocation "Lead Kindly Light". We combine traditional moral fortitude with contemporary academic excellence.';
+  const imageUrl = cmsSection?.image_url || '/gallery/jai00286.webp';
+  const badgePhilosophy = cmsSection?.badge || 'Tamaso Ma Jyotirgamaya';
+  const ctaText = cmsSection?.cta_text || 'EXPLORE PHOTO ARCHIVES';
+  const secondaryCtaText = cmsSection?.secondary_cta_text || 'Read Full History';
 
-  const heritagePillars = [
-    {
-      title: 'Rooted in Values',
-      desc: 'Guided by our sacred motto "Lead Kindly Light", character formation and ethical integrity accompany every academic triumph.',
-      icon: ShieldCheck,
-      iconColor: 'text-[#354024]',
-      badgeColor: 'bg-[#354024]/10 text-[#354024]',
-    },
-    {
-      title: 'Academic Distinction',
-      desc: 'Unbroken tradition of 100% board pass results, state merit ranks, and Olympiad medals over multiple decades.',
-      icon: Award,
-      iconColor: 'text-[#dc2626]',
-      badgeColor: 'bg-[#dc2626]/10 text-[#dc2626]',
-    },
-    {
-      title: 'Global Alumni Legacy',
-      desc: 'Our graduates thrive across top institutions like AIIMS, Google DeepMind, Indian Administrative Services, and the Armed Forces.',
-      icon: Users,
-      iconColor: 'text-[#354024]',
-      badgeColor: 'bg-[#354024]/10 text-[#354024]',
-    },
-    {
-      title: 'Compassionate Mentorship',
-      desc: 'A dedicated 1:20 educator ratio ensures that every child receives individualized encouragement, empathy, and intellectual guidance.',
-      icon: HeartHandshake,
-      iconColor: 'text-[#cfbb99]',
-      badgeColor: 'bg-[#cfbb99]/20 text-[#9e8760]',
-    },
-  ];
+  const defaultQuote =
+    '“True education is not merely the transmission of facts, but the ignition of intellect, character, and humanitarian empathy that guides an individual through life like a kindly light.”';
+  const defaultQuoteAuthor = 'Institutional Motto, Estd. 1965';
+
+  const { quoteText, quoteAuthor } = useMemo(() => {
+    if (cmsSection?.content_html) {
+      const parts = cmsSection.content_html.split('—');
+      if (parts.length > 1) {
+        return {
+          quoteText: parts[0].trim(),
+          quoteAuthor: parts[1].trim(),
+        };
+      }
+      return { quoteText: cmsSection.content_html, quoteAuthor: defaultQuoteAuthor };
+    }
+    return { quoteText: defaultQuote, quoteAuthor: defaultQuoteAuthor };
+  }, [cmsSection]);
+
+  const statItems = useMemo(() => {
+    if (cmsSection?.items && cmsSection.items.length >= 3) {
+      const stats = cmsSection.items.slice(0, 3);
+      return stats.map((st, idx) => {
+        const rawBadge = (st.badge || '').trim();
+        const numMatch = rawBadge.match(/^([0-9,]+)(.*)$/);
+        const fallback = DEFAULT_STATS[idx];
+        const numVal = numMatch ? parseInt(numMatch[1].replace(/,/g, ''), 10) : fallback.value;
+        const suffix = numMatch ? numMatch[2] : fallback.suffix;
+        return {
+          value: numVal,
+          suffix,
+          label: st.title || fallback.label,
+        };
+      });
+    }
+    return DEFAULT_STATS;
+  }, [cmsSection]);
+
+  const heritagePillars = useMemo(() => {
+    if (cmsSection?.items && cmsSection.items.length >= 7) {
+      const pillars = cmsSection.items.slice(3, 7);
+      return pillars.map((p, idx) => {
+        const fallback = DEFAULT_PILLARS[idx];
+        const colors = COLOR_MAP[idx % 4];
+        return {
+          title: p.title || fallback.title,
+          desc: p.description || fallback.desc,
+          icon: fallback.icon,
+          iconColor: colors.iconColor,
+          badgeColor: colors.badgeColor,
+        };
+      });
+    }
+    return DEFAULT_PILLARS;
+  }, [cmsSection]);
 
   return (
     <section id="heritage" className="py-20 lg:py-28 bg-white border-b border-slate-200 relative overflow-hidden">
@@ -71,21 +151,20 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
           <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
             <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">
-              DIAMOND JUBILEE • 60 YEARS OF EXCELLENCE
+              {eyebrow}
             </span>
           </div>
 
           <h2 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] tracking-tight">
-            <TextReveal>School Heritage & Founding Ethos</TextReveal>
+            <TextReveal>{heading}</TextReveal>
           </h2>
 
           <p className="text-slate-600 text-sm sm:text-base mt-4 leading-relaxed">
-            Since 1965, A.M.A. Adinarayana English Medium High School has illuminated young minds under the timeless invocation{' '}
-            <strong className="text-[#1b2213] font-bold">"Lead Kindly Light"</strong>. We combine traditional moral fortitude with contemporary academic excellence.
+            {subheading}
           </p>
         </motion.div>
 
-        {/* Unboxed Editorial Showcase Layout (No Card Container) */}
+        {/* Unboxed Editorial Showcase Layout */}
         <div className="max-w-6xl mx-auto mb-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left: Photographic Archival Visual (5 cols) */}
@@ -98,7 +177,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 group">
                 <img
-                  src="/gallery/jai00286.webp"
+                  src={imageUrl}
                   alt="A.M.A. Adinarayana High School Campus Quadrangle"
                   className="w-full h-[380px] sm:h-[440px] lg:h-[500px] object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                 />
@@ -146,7 +225,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                   <span className="w-2 h-2 rounded-full bg-[#354024]" />
                   <span>FOUNDING ETHOS & PHILOSOPHY</span>
                   <span className="text-slate-300">•</span>
-                  <span className="text-slate-500 font-normal">Tamaso Ma Jyotirgamaya</span>
+                  <span className="text-slate-500 font-normal">{badgePhilosophy}</span>
                 </div>
 
                 {/* Main Heading */}
@@ -161,10 +240,10 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
               {/* Editorial Quote */}
               <div className="relative pl-6 border-l-4 border-[#354024] py-1">
                 <p className="font-serif text-base sm:text-lg text-slate-700 italic leading-relaxed">
-                  “True education is not merely the transmission of facts, but the ignition of intellect, character, and humanitarian empathy that guides an individual through life like a kindly light.”
+                  {quoteText}
                 </p>
                 <div className="mt-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
-                  — Institutional Motto, Estd. 1965
+                  — {quoteAuthor}
                 </div>
               </div>
 
@@ -172,28 +251,28 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
               <div className="grid grid-cols-3 gap-4 py-5 border-y border-slate-200">
                 <div className="text-left">
                   <div className="text-3xl sm:text-4xl font-extrabold text-[#354024] font-modern">
-                    <AnimatedCounter value={60} suffix="+" />
+                    <AnimatedCounter value={statItems[0].value} suffix={statItems[0].suffix} />
                   </div>
                   <div className="text-xs font-bold text-slate-600 uppercase tracking-wider mt-1">
-                    Years Heritage
+                    {statItems[0].label}
                   </div>
                 </div>
 
                 <div className="text-left border-l border-slate-200 pl-4 sm:pl-6">
                   <div className="text-3xl sm:text-4xl font-extrabold text-[#1b2213] font-modern">
-                    <AnimatedCounter value={100} suffix="%" />
+                    <AnimatedCounter value={statItems[1].value} suffix={statItems[1].suffix} />
                   </div>
                   <div className="text-xs font-bold text-slate-600 uppercase tracking-wider mt-1">
-                    Board Pass Rate
+                    {statItems[1].label}
                   </div>
                 </div>
 
                 <div className="text-left border-l border-slate-200 pl-4 sm:pl-6">
                   <div className="text-3xl sm:text-4xl font-extrabold text-[#cfbb99] font-modern">
-                    <AnimatedCounter value={10000} suffix="+" />
+                    <AnimatedCounter value={statItems[2].value} suffix={statItems[2].suffix} />
                   </div>
                   <div className="text-xs font-bold text-slate-600 uppercase tracking-wider mt-1">
-                    Global Alumni
+                    {statItems[2].label}
                   </div>
                 </div>
               </div>
@@ -212,7 +291,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                   className="group inline-flex items-center gap-2.5 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-7 py-3.5 rounded-full text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all cursor-pointer"
                 >
                   <Images className="w-4 h-4 text-white" />
-                  <span>EXPLORE PHOTO ARCHIVES</span>
+                  <span>{ctaText}</span>
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </button>
 
@@ -221,7 +300,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
                     onClick={() => onNavigateRoute('about')}
                     className="inline-flex items-center gap-2 text-xs font-bold text-[#1b2213] hover:text-[#354024] uppercase tracking-wider transition-colors py-3.5 px-4 cursor-pointer"
                   >
-                    <span>Read Full History</span>
+                    <span>{secondaryCtaText}</span>
                     <span>→</span>
                   </button>
                 )}
@@ -268,3 +347,4 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
     </section>
   );
 };
+
