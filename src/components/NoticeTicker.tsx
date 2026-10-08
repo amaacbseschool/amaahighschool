@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Bell, ChevronRight, X, Calendar, Sparkles } from 'lucide-react';
 
 export interface PublicNotice {
@@ -16,11 +16,26 @@ interface NoticeTickerProps {
 export const NoticeTicker: React.FC<NoticeTickerProps> = ({ notices }) => {
   const [selectedNotice, setSelectedNotice] = useState<PublicNotice | null>(null);
 
+  const tickerItems = useMemo(() => {
+    if (!notices || notices.length === 0) return [];
+    // Ensure sufficient repetitions so even on large 4K/ultrawide displays (up to 3840px),
+    // the marquee strip occupies 100% of the screen from end to end with zero gaps.
+    const targetCount = Math.max(24, notices.length * 8);
+    const factor = Math.ceil(targetCount / notices.length);
+    const evenFactor = factor % 2 === 0 ? factor : factor + 1;
+    return Array.from({ length: evenFactor }).flatMap((_, cycleIdx) =>
+      notices.map((notice) => ({
+        ...notice,
+        _uniqueKey: `${cycleIdx}-${notice.id}`,
+      }))
+    );
+  }, [notices]);
+
   if (!notices || notices.length === 0) return null;
 
   return (
     <section id="notices" className="w-full bg-[#141a0e] border-b border-white/10 py-2.5 relative overflow-hidden z-30">
-      <div className="w-full flex items-center px-3 sm:px-6 lg:px-8 relative">
+      <div className="w-full flex items-center pl-2 sm:pl-4 pr-0 relative">
         {/* Badge Label */}
         <div className="shrink-0 z-20 flex items-center gap-2 bg-[#dc2626] text-white px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mr-3 sm:mr-4 shadow-sm">
           <Bell className="w-3.5 h-3.5 animate-bounce shrink-0" />
@@ -29,30 +44,28 @@ export const NoticeTicker: React.FC<NoticeTickerProps> = ({ notices }) => {
 
         {/* Edge Fade Gradients for visual polish */}
         <div className="pointer-events-none absolute left-36 sm:left-48 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-r from-[#141a0e] to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-10 sm:w-16 bg-gradient-to-l from-[#141a0e] to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-l from-[#141a0e] to-transparent z-10" />
 
         {/* Auto-scrolling Continuous Marquee Ticker */}
-        <div className="flex-1 overflow-hidden relative">
-          <div className="animate-marquee flex items-center gap-10 py-0.5">
-            {[0, 1, 2].flatMap((repeatIdx) =>
-              notices.map((notice) => (
-                <button
-                  key={`notice-${repeatIdx}-${notice.id}`}
-                  onClick={() => setSelectedNotice(notice)}
-                  className="flex items-center gap-2.5 text-xs font-medium text-slate-200 hover:text-white shrink-0 group transition-colors cursor-pointer text-left"
-                  title="Click to view announcement details"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#dc2626] group-hover:scale-150 transition-transform shrink-0" />
-                  <span className="font-bold text-white bg-white/10 px-2.5 py-0.5 rounded-full text-[10px] uppercase tracking-wider border border-white/10">
-                    {notice.category}
-                  </span>
-                  <span className="group-hover:underline underline-offset-2 font-medium">
-                    {notice.title}
-                  </span>
-                  <span className="text-[11px] text-[#cfbb99] font-mono">({notice.date})</span>
-                </button>
-              ))
-            )}
+        <div className="flex-1 overflow-hidden relative w-full">
+          <div className="animate-marquee flex items-center gap-8 sm:gap-10 py-0.5">
+            {tickerItems.map((notice) => (
+              <button
+                key={notice._uniqueKey}
+                onClick={() => setSelectedNotice(notice)}
+                className="flex items-center gap-2.5 text-xs font-medium text-slate-200 hover:text-white shrink-0 group transition-colors cursor-pointer text-left whitespace-nowrap"
+                title="Click to view announcement details"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-[#dc2626] group-hover:scale-150 transition-transform shrink-0" />
+                <span className="font-bold text-white bg-white/10 px-2.5 py-0.5 rounded-full text-[10px] uppercase tracking-wider border border-white/10">
+                  {notice.category}
+                </span>
+                <span className="group-hover:underline underline-offset-2 font-medium">
+                  {notice.title}
+                </span>
+                <span className="text-[11px] text-[#cfbb99] font-mono">({notice.date})</span>
+              </button>
+            ))}
           </div>
         </div>
       </div>
