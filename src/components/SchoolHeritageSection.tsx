@@ -8,6 +8,7 @@ import {
   Images,
   HeartHandshake,
   ArrowRight,
+  Landmark,
 } from 'lucide-react';
 import { TextReveal } from './motion/TextReveal';
 import { AnimatedCounter } from './motion/AnimatedCounter';
@@ -53,9 +54,9 @@ const DEFAULT_PILLARS = [
 ];
 
 const DEFAULT_STATS = [
-  { value: 60, suffix: '+', label: 'Years Heritage' },
-  { value: 100, suffix: '%', label: 'Board Pass Rate' },
-  { value: 10000, suffix: '+', label: 'Global Alumni' },
+  { value: 60, suffix: '+', label: 'Years Heritage', sublabel: 'Six uninterrupted decades of transformative education since 1965' },
+  { value: 100, suffix: '%', label: 'Board Pass Rate', sublabel: 'Consistently exceptional Class X state board results' },
+  { value: 10000, suffix: '+', label: 'Global Alumni', sublabel: 'Leaders across medicine, technology, IAS and public service' },
 ];
 
 const COLOR_MAP: Record<number, { iconColor: string; badgeColor: string }> = {
@@ -110,6 +111,7 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
           value: numVal,
           suffix,
           label: st.title || fallback.label,
+          sublabel: st.description || fallback.sublabel,
         };
       });
     }
@@ -136,19 +138,20 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
 
   return (
     <section id="heritage" className="py-20 lg:py-28 bg-white border-b border-slate-200 relative overflow-hidden">
-      {/* Decorative ambient blue light */}
-      <div className="absolute top-1/3 -right-20 w-80 h-80 bg-[#354024]/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Decorative ambient ambient gradients */}
+      <div className="absolute top-1/4 -right-24 w-96 h-96 bg-[#354024]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 -left-24 w-96 h-96 bg-[#cfbb99]/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="w-[90%] mx-auto px-2 sm:px-4 lg:px-6 relative z-10">
-        {/* Section Header */}
+      <div className="w-[92%] max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 relative z-10">
+        {/* 1. SECTION HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.55 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3">
+          <div className="inline-flex items-center gap-2 bg-[#354024]/10 border border-[#354024]/20 px-4 py-1.5 rounded-full mb-3.5">
             <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
             <span className="text-[11px] font-bold tracking-widest text-[#354024] uppercase">
               {eyebrow}
@@ -159,192 +162,241 @@ export const SchoolHeritageSection: React.FC<SchoolHeritageSectionProps> = ({
             <TextReveal>{heading}</TextReveal>
           </h2>
 
-          <p className="text-slate-600 text-sm sm:text-base mt-4 leading-relaxed">
+          <p className="text-slate-600 text-sm sm:text-base mt-4 leading-relaxed max-w-2xl mx-auto">
             {subheading}
           </p>
         </motion.div>
 
-        {/* Unboxed Editorial Showcase Layout */}
-        <div className="max-w-6xl mx-auto mb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Left: Photographic Archival Visual (5 cols) */}
-            <motion.div
-              initial={{ opacity: 0, x: -25 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-5"
-            >
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 group">
-                <img
-                  src={imageUrl}
-                  alt="A.M.A. Adinarayana High School Campus Quadrangle"
-                  className="w-full h-[380px] sm:h-[440px] lg:h-[500px] object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
+        {/* 2. GRAND FULL-SIZE PHOTO ARCHITECTURAL SHOWCASE (NOT A SQUEEZED CARD) */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65 }}
+          className="mb-16 sm:mb-20"
+        >
+          <div className="relative rounded-3xl sm:rounded-4xl overflow-hidden shadow-2xl border border-slate-200/90 group bg-slate-950">
+            {/* The Landscape Architectural Photograph in Full Glory */}
+            <img
+              src={imageUrl}
+              alt="A.M.A. Adinarayana High School Historic Quadrangle and Academic Block"
+              className="w-full h-[360px] sm:h-[480px] md:h-[560px] lg:h-[640px] object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-103"
+            />
 
-                {/* Floating Top Badge */}
-                <div className="absolute top-5 left-5 right-5 flex items-center justify-between z-10">
-                  <div className="inline-flex items-center gap-2 bg-black/65 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-full shadow-lg">
-                    <img src={logoImg} alt="Crest" className="w-5 h-5 object-contain" />
-                    <span className="text-[11px] font-bold text-white tracking-widest uppercase">
-                      ESTD. 1965
-                    </span>
-                  </div>
-                  <span className="bg-[#dc2626] text-white text-[11px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full shadow-md">
-                    60 YEARS
-                  </span>
-                </div>
+            {/* Depth Vignette & Atmospheric Gradients */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-slate-950/40 pointer-events-none" />
 
-                {/* Bottom Archival Caption */}
-                <div className="absolute bottom-5 left-5 right-5 z-10">
-                  <div className="bg-black/60 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-white">
-                    <div className="flex items-center gap-2 text-xs font-bold text-[#cfbb99] uppercase tracking-wider mb-1">
-                      <Sparkles className="w-3.5 h-3.5 text-[#cfbb99]" />
-                      <span>Diamond Jubilee Milestone</span>
-                    </div>
-                    <p className="text-xs text-slate-200 font-medium leading-relaxed">
-                      Sixty uninterrupted years of academic distinction, ethical leadership, and character formation.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Right: Editorial Content & Ethos directly on page (7 cols) */}
-            <motion.div
-              initial={{ opacity: 0, x: 25 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-7 flex flex-col justify-center space-y-6"
-            >
-              <div>
-                {/* Eyebrow */}
-                <div className="flex items-center gap-2 text-xs font-bold text-[#354024] uppercase tracking-wider mb-2">
-                  <span className="w-2 h-2 rounded-full bg-[#354024]" />
-                  <span>FOUNDING ETHOS & PHILOSOPHY</span>
-                  <span className="text-slate-300">•</span>
-                  <span className="text-slate-500 font-normal">{badgePhilosophy}</span>
-                </div>
-
-                {/* Main Heading */}
-                <h3 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] tracking-tight leading-tight">
-                  “Lead Kindly Light”
-                </h3>
-                <p className="text-xs font-semibold text-[#cfbb99] tracking-wider uppercase mt-1.5">
-                  The Sacred Inscription of A.M.A. Adinarayana
-                </p>
+            {/* Top Heritage Badges */}
+            <div className="absolute top-4 sm:top-7 left-4 sm:left-7 right-4 sm:right-7 flex items-center justify-between z-10">
+              <div className="inline-flex items-center gap-2.5 bg-black/60 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full shadow-lg">
+                <img src={logoImg} alt="Crest" className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
+                <span className="text-xs sm:text-sm font-bold text-white tracking-widest uppercase">
+                  ESTD. 1965
+                </span>
+                <span className="text-white/40 hidden sm:inline">•</span>
+                <span className="text-xs text-[#cfbb99] font-medium hidden sm:inline">
+                  Historic Quadrangle
+                </span>
               </div>
 
-              {/* Editorial Quote */}
-              <div className="relative pl-6 border-l-4 border-[#354024] py-1">
-                <p className="font-serif text-base sm:text-lg text-slate-700 italic leading-relaxed">
-                  {quoteText}
-                </p>
-                <div className="mt-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
-                  — {quoteAuthor}
-                </div>
+              <div className="flex items-center gap-2">
+                <span className="bg-[#dc2626] text-white text-xs sm:text-sm font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-md">
+                  60 YEARS OF EXCELLENCE
+                </span>
               </div>
+            </div>
 
-              {/* 3 Metric Stats with Clean Dividers */}
-              <div className="grid grid-cols-3 gap-4 py-5 border-y border-slate-200">
-                <div className="text-left">
-                  <div className="text-3xl sm:text-4xl font-extrabold text-[#354024] font-modern">
-                    <AnimatedCounter value={statItems[0].value} suffix={statItems[0].suffix} />
-                  </div>
-                  <div className="text-xs font-bold text-slate-600 uppercase tracking-wider mt-1">
-                    {statItems[0].label}
-                  </div>
-                </div>
-
-                <div className="text-left border-l border-slate-200 pl-4 sm:pl-6">
-                  <div className="text-3xl sm:text-4xl font-extrabold text-[#1b2213] font-modern">
-                    <AnimatedCounter value={statItems[1].value} suffix={statItems[1].suffix} />
-                  </div>
-                  <div className="text-xs font-bold text-slate-600 uppercase tracking-wider mt-1">
-                    {statItems[1].label}
-                  </div>
-                </div>
-
-                <div className="text-left border-l border-slate-200 pl-4 sm:pl-6">
-                  <div className="text-3xl sm:text-4xl font-extrabold text-[#cfbb99] font-modern">
-                    <AnimatedCounter value={statItems[2].value} suffix={statItems[2].suffix} />
-                  </div>
-                  <div className="text-xs font-bold text-slate-600 uppercase tracking-wider mt-1">
-                    {statItems[2].label}
-                  </div>
-                </div>
-              </div>
-
-              {/* Action Buttons Row */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <button
-                  onClick={() => {
-                    if (onNavigateRoute) {
-                      onNavigateRoute('gallery');
-                    } else {
-                      const el = document.getElementById('gallery');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                  className="group inline-flex items-center gap-2.5 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-7 py-3.5 rounded-full text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all cursor-pointer"
-                >
-                  <Images className="w-4 h-4 text-white" />
-                  <span>{ctaText}</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </button>
-
-                {onNavigateRoute && (
-                  <button
-                    onClick={() => onNavigateRoute('about')}
-                    className="inline-flex items-center gap-2 text-xs font-bold text-[#1b2213] hover:text-[#354024] uppercase tracking-wider transition-colors py-3.5 px-4 cursor-pointer"
-                  >
-                    <span>{secondaryCtaText}</span>
-                    <span>→</span>
-                  </button>
-                )}
-              </div>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* 4 Core Heritage Pillars - Clean Editorial Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-6 border-t border-slate-200">
-          {heritagePillars.map((pillar, idx) => {
-            const Icon = pillar.icon;
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: idx * 0.1 }}
-                whileHover={{ y: -4 }}
-                className="p-5 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all duration-300 flex flex-col justify-between group"
-              >
+            {/* Bottom Panoramic Plaque / Caption Ribbon */}
+            <div className="absolute bottom-4 sm:bottom-7 left-4 sm:left-7 right-4 sm:right-7 z-10">
+              <div className="bg-black/65 backdrop-blur-md border border-white/15 rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-white flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xl">
                 <div>
-                  <div className="w-11 h-11 rounded-xl bg-slate-100/80 border border-slate-200/60 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <Icon className={`w-5 h-5 ${pillar.iconColor}`} />
+                  <div className="flex items-center gap-2 text-xs font-bold text-[#cfbb99] uppercase tracking-wider mb-1">
+                    <Landmark className="w-4 h-4 text-[#cfbb99]" />
+                    <span>Main Academic Quadrangle & Grounds • Estd. 1965</span>
                   </div>
-                  <h4 className="font-crest text-base font-bold text-[#1b2213] group-hover:text-[#354024] transition-colors">
-                    {pillar.title}
-                  </h4>
-                  <p className="text-slate-600 text-xs mt-2 leading-relaxed">
-                    {pillar.desc}
+                  <p className="text-xs sm:text-sm text-slate-200 font-medium leading-relaxed max-w-3xl">
+                    Six uninterrupted decades of academic distinction, disciplined character formation, and ethical leadership in North Coastal Andhra Pradesh.
                   </p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-400 group-hover:text-[#354024] transition-colors">
-                  <span>Pillar 0{idx + 1}</span>
-                  <span className="text-[#354024] font-bold">→</span>
+                <div className="flex items-center gap-3 shrink-0">
+                  <button
+                    onClick={() => {
+                      if (onNavigateRoute) {
+                        onNavigateRoute('gallery');
+                      } else {
+                        const el = document.getElementById('gallery');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    className="inline-flex items-center gap-2 bg-white/20 hover:bg-white text-white hover:text-[#1b2213] text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all duration-300 cursor-pointer backdrop-blur-sm"
+                  >
+                    <Images className="w-4 h-4" />
+                    <span>View Archives</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
                 </div>
-              </motion.div>
-            );
-          })}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* 3. EDITORIAL NARRATIVE & METRICS SPREAD */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start mb-20">
+          {/* Left: Ethos, Sacred Quote & Actions (7 cols) */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-7 space-y-6"
+          >
+            <div>
+              <div className="flex items-center gap-2 text-xs font-bold text-[#354024] uppercase tracking-wider mb-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#354024]" />
+                <span>FOUNDING ETHOS & PHILOSOPHY</span>
+                <span className="text-slate-300">•</span>
+                <span className="text-slate-500 font-medium">{badgePhilosophy}</span>
+              </div>
+
+              <h3 className="font-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] tracking-tight leading-tight">
+                “Lead Kindly Light”
+              </h3>
+              <p className="text-xs sm:text-sm font-semibold text-[#9e8760] tracking-wider uppercase mt-1.5">
+                The Sacred Inscription & Moral Compass of A.M.A. Adinarayana
+              </p>
+            </div>
+
+            {/* Editorial Quote */}
+            <div className="relative pl-6 sm:pl-8 border-l-4 border-[#354024] py-2 bg-slate-50/70 rounded-r-2xl">
+              <p className="font-serif text-base sm:text-lg lg:text-xl text-slate-800 italic leading-relaxed">
+                {quoteText}
+              </p>
+              <div className="mt-3 text-xs sm:text-sm font-bold text-slate-500 uppercase tracking-wider">
+                — {quoteAuthor}
+              </div>
+            </div>
+
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              Founded under the benevolent patronage of A.M.A. Adinarayana, the institution has stood for sixty uninterrupted years as an enduring beacon of intellectual vigor, disciplined values, and holistic human growth.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <button
+                onClick={() => {
+                  if (onNavigateRoute) {
+                    onNavigateRoute('gallery');
+                  } else {
+                    const el = document.getElementById('gallery');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="group inline-flex items-center gap-2.5 bg-[#354024] hover:bg-[#252d19] text-white font-bold px-7 py-3.5 rounded-full text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all cursor-pointer"
+              >
+                <Images className="w-4 h-4 text-white" />
+                <span>{ctaText}</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </button>
+
+              {onNavigateRoute && (
+                <button
+                  onClick={() => onNavigateRoute('about')}
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#1b2213] hover:text-[#354024] uppercase tracking-wider transition-colors py-3.5 px-4 cursor-pointer"
+                >
+                  <span>{secondaryCtaText}</span>
+                  <span>→</span>
+                </button>
+              )}
+            </div>
+          </motion.div>
+
+          {/* Right: Key Verified Statistics Cards (5 cols) */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5 bg-[#fbf9f5] border border-[#cfbb99]/40 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm"
+          >
+            <div className="flex items-center justify-between border-b border-slate-200/80 pb-4">
+              <span className="text-xs font-bold text-[#354024] uppercase tracking-wider">
+                Institutional Milestones
+              </span>
+              <span className="text-[11px] font-semibold text-slate-500">
+                Verified Records
+              </span>
+            </div>
+
+            {statItems.map((stat, idx) => (
+              <div
+                key={idx}
+                className={`${idx !== statItems.length - 1 ? 'border-b border-slate-200/70 pb-5' : ''}`}
+              >
+                <div className="flex items-baseline gap-2">
+                  <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1b2213] font-modern">
+                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                  </span>
+                  <span className="text-xs sm:text-sm font-bold text-[#354024] uppercase tracking-wider">
+                    {stat.label}
+                  </span>
+                </div>
+                {stat.sublabel && (
+                  <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                    {stat.sublabel}
+                  </p>
+                )}
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* 4. FOUR CORE HERITAGE PILLARS */}
+        <div className="pt-10 border-t border-slate-200">
+          <div className="text-center mb-10">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#354024]">
+              Foundations of Character
+            </span>
+            <h4 className="font-crest text-2xl sm:text-3xl font-extrabold text-[#1b2213] mt-1">
+              Four Pillars of Our Educational Journey
+            </h4>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {heritagePillars.map((pillar, idx) => {
+              const Icon = pillar.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: idx * 0.1 }}
+                  whileHover={{ y: -4 }}
+                  className="p-6 rounded-2xl bg-white hover:bg-slate-50 border border-slate-200 transition-all duration-300 flex flex-col justify-between group shadow-subtle hover:shadow-md"
+                >
+                  <div>
+                    <div className="w-12 h-12 rounded-xl bg-slate-100/90 border border-slate-200/60 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <Icon className={`w-5 h-5 ${pillar.iconColor}`} />
+                    </div>
+                    <h5 className="font-crest text-lg font-bold text-[#1b2213] group-hover:text-[#354024] transition-colors">
+                      {pillar.title}
+                    </h5>
+                    <p className="text-slate-600 text-xs sm:text-sm mt-2.5 leading-relaxed">
+                      {pillar.desc}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-400 group-hover:text-[#354024] transition-colors">
+                    <span>Pillar 0{idx + 1}</span>
+                    <span className="text-[#354024] font-bold text-sm">→</span>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
   );
 };
-

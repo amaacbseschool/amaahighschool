@@ -20,7 +20,6 @@ export const TopBar: React.FC<TopBarProps> = ({ onNavigateRoute }) => {
     'site_board_recognition',
     'State Board Recognized High School (Grades VI to Class X)'
   );
-  const adminPortalLabel = getSetting('topbar_admin_portal_label', 'Admin Portal');
   const campusDeskLabel = getSetting('topbar_campus_desk_label', 'Campus Desk');
 
   const cleanPhone = phone.replace(/\s+/g, '');
@@ -60,23 +59,8 @@ export const TopBar: React.FC<TopBarProps> = ({ onNavigateRoute }) => {
           </div>
         </div>
 
-        {/* Quick Links & Admin Portal Action */}
+        {/* Quick Links */}
         <div className="flex items-center gap-3 sm:gap-5 ml-auto">
-          <a
-            href="/admin"
-            onClick={(e) => {
-              if (onNavigateRoute) {
-                e.preventDefault();
-                onNavigateRoute('admin');
-              }
-            }}
-            className="flex items-center gap-1.5 bg-white/10 hover:bg-[#354024] text-white px-3 py-1 rounded-full border border-white/20 text-[11px] font-semibold transition-all shadow-subtle cursor-pointer"
-            title="Staff Operations & Admin Dashboard"
-          >
-            <ShieldCheck className="w-3 h-3 text-[#cfbb99]" />
-            <span>{adminPortalLabel}</span>
-          </a>
-
           <a
             href="/about"
             onClick={(e) => {

@@ -231,8 +231,8 @@ export function App() {
         onOpenSearch={() => setSearchModalOpen(true)}
       />
 
-      {/* 3. Live SQL School Notices (Shown on Subpages) */}
-      {route !== 'home' && <NoticeTicker notices={notices} />}
+      {/* 3. Live SQL School Notices (Shown on All Pages) */}
+      <NoticeTicker notices={notices} />
 
       {/* 4. Multi-Page Main Content Area with Route Transitions */}
       <main className="flex-1">

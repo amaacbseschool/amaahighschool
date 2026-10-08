@@ -162,8 +162,8 @@ export const Navbar: React.FC<NavbarProps> = ({
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       className={`sticky top-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-card border-b border-slate-200/90 py-2.5'
-          : 'bg-white py-3.5 border-b border-slate-200'
+          ? 'bg-white/95 backdrop-blur-md shadow-card border-b border-slate-200/90 py-2 sm:py-2.5'
+          : 'bg-white py-2.5 sm:py-3.5 border-b border-slate-200'
       }`}
     >
       <div className="w-[90%] mx-auto flex items-center justify-between gap-4">
@@ -176,23 +176,23 @@ export const Navbar: React.FC<NavbarProps> = ({
           }}
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.99 }}
-          className="flex items-center gap-3.5 shrink-0 cursor-pointer group"
+          className="flex items-center gap-3.5 sm:gap-4 shrink-0 cursor-pointer group"
         >
           <img
             src={logoImg}
             alt={`${shortName} Crest`}
-            className="w-13 h-13 sm:w-14 sm:h-14 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-xs"
+            className="w-16 h-16 sm:w-20 sm:h-20 lg:w-[84px] lg:h-[84px] object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm shrink-0"
           />
           <div className="flex flex-col">
-            <span className="font-crest text-lg sm:text-xl font-extrabold tracking-tight text-[#1b2213] group-hover:text-[#354024] transition-colors leading-tight">
+            <span className="font-crest text-xl sm:text-2xl lg:text-[26px] font-extrabold tracking-tight text-[#1b2213] group-hover:text-[#354024] transition-colors leading-tight">
               {shortName}
             </span>
-            <div className="flex items-center gap-2 mt-0.5">
-              <span className="text-xs font-semibold text-slate-500 tracking-wide">
+            <div className="flex items-center gap-2 mt-0.5 sm:mt-1">
+              <span className="text-xs sm:text-sm font-semibold text-slate-500 tracking-wide">
                 {brandSubtitle}
               </span>
               <span className="text-slate-300 hidden sm:inline">•</span>
-              <span className="text-[11px] font-bold text-[#cfbb99] hidden sm:inline">
+              <span className="text-[11px] sm:text-xs font-bold text-[#cfbb99] hidden sm:inline">
                 Estd. {establishedYear}
               </span>
             </div>
