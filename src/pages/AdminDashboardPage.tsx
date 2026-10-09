@@ -24,6 +24,10 @@ import {
   Check,
   X,
   Globe,
+  Download,
+  FileSpreadsheet,
+  LayoutGrid,
+  Table,
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import type { User } from '@supabase/supabase-js';
@@ -226,6 +230,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
   const [messageSearch, setMessageSearch] = useState('');
   const [alumniSearch, setAlumniSearch] = useState('');
   const [alumniFilter, setAlumniFilter] = useState<'all' | 'verified' | 'unverified'>('all');
+  const [alumniViewMode, setAlumniViewMode] = useState<'table' | 'cards'>('table');
   const [subscriberSearch, setSubscriberSearch] = useState('');
   const [toastMsg, setToastMsg] = useState<string | null>(null);
 
@@ -1448,6 +1453,68 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
       console.error('[Supabase CMS Error] Error deleting alumni record:', err);
       showToast(`Error deleting alumni: ${message}`);
     }
+  };
+
+  // Export Alumni Directory to Excel-compatible CSV (RFC-4180 with UTF-8 BOM)
+  const handleExportAlumniToExcel = (exportAll: boolean = false) => {
+    const records = exportAll ? alumni : filteredAlumni;
+    if (!records || records.length === 0) {
+      showToast('No alumni records available to download.');
+      return;
+    }
+
+    const headers = [
+      'ID',
+      'Full Name',
+      'Graduation Batch',
+      'Email Address',
+      'Phone Number',
+      'Current Profession / Role',
+      'Organization / Employer',
+      'City / Location',
+      'Verification Status',
+      'Testimonial / Notes',
+      'Registration Date',
+    ];
+
+    const escapeCsv = (val: unknown): string => {
+      if (val === null || val === undefined) return '""';
+      const clean = String(val).replace(/"/g, '""');
+      return `"${clean}"`;
+    };
+
+    const rows = records.map((m) => [
+      escapeCsv(m.id),
+      escapeCsv(m.full_name),
+      escapeCsv(m.graduation_year),
+      escapeCsv(m.email),
+      escapeCsv(m.phone || ''),
+      escapeCsv(m.current_profession || ''),
+      escapeCsv(m.current_organization || ''),
+      escapeCsv(m.location || ''),
+      escapeCsv(m.verified ? 'Verified' : 'Pending Verification'),
+      escapeCsv(m.message || ''),
+      escapeCsv(m.created_at ? new Date(m.created_at).toISOString().replace('T', ' ').substring(0, 19) : ''),
+    ]);
+
+    // Prepend UTF-8 BOM (\uFEFF) so Microsoft Excel natively opens special characters cleanly
+    const csvContent =
+      '\uFEFF' +
+      [headers.map((h) => `"${h}"`).join(','), ...rows.map((r) => r.join(','))].join('\r\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    const dateStr = new Date().toISOString().slice(0, 10);
+    const filterTag = exportAll || alumniFilter === 'all' ? 'All' : alumniFilter === 'verified' ? 'Verified' : 'Pending';
+    link.href = url;
+    link.download = `AMAA_Alumni_Registry_${filterTag}_${dateStr}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    showToast(`Successfully downloaded ${records.length} alumni records in Excel format.`);
   };
 
   // Newsletter Actions (Supabase)
@@ -3273,18 +3340,54 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
         {/* TAB 6: ALUMNI NETWORK & MODERATION */}
         {activeTab === 'alumni' && (
           <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-card space-y-6">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-4 border-b border-slate-100">
               <div>
-                <h2 className="font-crest text-xl font-bold text-[#1b2213]">
-                  Alumni Directory & Registration Moderation
-                </h2>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  Review and verify alumni registrations submitted through the digital portal (public.alumni_members)
+                <div className="flex items-center gap-2 mb-1">
+                  <h2 className="font-crest text-xl font-bold text-[#1b2213]">
+                    Alumni Registry & Administrative Directory
+                  </h2>
+                  <span className="inline-flex items-center gap-1 bg-amber-50 text-amber-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-amber-200/60">
+                    <Lock className="w-3 h-3 text-amber-600" />
+                    <span>Staff Confidential</span>
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500">
+                  Private database of alumni registrations (hidden from public view). Verified and exported for school records & reunion administration.
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
-                <div className="relative flex-1 sm:w-64">
+              {/* Action Buttons: Export to Excel & Quick Stats */}
+              <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto">
+                <button
+                  onClick={() => handleExportAlumniToExcel(false)}
+                  disabled={filteredAlumni.length === 0}
+                  className="bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-xs transition-all flex items-center gap-2 cursor-pointer"
+                  title="Download alumni records formatted directly for Microsoft Excel, Google Sheets, or Apple Numbers"
+                >
+                  <FileSpreadsheet className="w-4 h-4" />
+                  <span>Download Excel (.csv)</span>
+                  <span className="bg-emerald-800/80 px-2 py-0.5 rounded-md text-[10px] font-mono">
+                    {filteredAlumni.length}
+                  </span>
+                </button>
+
+                {alumni.length !== filteredAlumni.length && (
+                  <button
+                    onClick={() => handleExportAlumniToExcel(true)}
+                    className="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium px-3 py-2.5 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer"
+                    title="Export all alumni records in the database, ignoring current search/filter"
+                  >
+                    <Download className="w-3.5 h-3.5 text-slate-500" />
+                    <span>Export All ({alumni.length})</span>
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Filter, Search & View Mode Bar */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center gap-2.5 flex-1">
+                <div className="relative flex-1 min-w-[200px] sm:max-w-xs">
                   <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
@@ -3300,10 +3403,38 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                   onChange={(e) => setAlumniFilter(e.target.value as 'all' | 'verified' | 'unverified')}
                   className="text-xs bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 outline-none font-medium cursor-pointer"
                 >
-                  <option value="all">All Registrations</option>
-                  <option value="verified">Verified Only</option>
-                  <option value="unverified">Pending Verification</option>
+                  <option value="all">All ({alumni.length})</option>
+                  <option value="verified">Verified Only ({alumni.filter(a => a.verified).length})</option>
+                  <option value="unverified">Pending Verification ({alumni.filter(a => !a.verified).length})</option>
                 </select>
+              </div>
+
+              {/* View Toggle */}
+              <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl self-end sm:self-auto">
+                <button
+                  onClick={() => setAlumniViewMode('table')}
+                  className={`p-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
+                    alumniViewMode === 'table'
+                      ? 'bg-white text-slate-900 shadow-xs'
+                      : 'text-slate-500 hover:text-slate-900'
+                  }`}
+                  title="Spreadsheet Table View"
+                >
+                  <Table className="w-4 h-4" />
+                  <span className="hidden sm:inline">Table</span>
+                </button>
+                <button
+                  onClick={() => setAlumniViewMode('cards')}
+                  className={`p-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
+                    alumniViewMode === 'cards'
+                      ? 'bg-white text-slate-900 shadow-xs'
+                      : 'text-slate-500 hover:text-slate-900'
+                  }`}
+                  title="Card Grid View"
+                >
+                  <LayoutGrid className="w-4 h-4" />
+                  <span className="hidden sm:inline">Cards</span>
+                </button>
               </div>
             </div>
 
@@ -3316,7 +3447,97 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
               <div className="py-12 text-center text-slate-400 text-xs">
                 No alumni registrations match your search criteria.
               </div>
+            ) : alumniViewMode === 'table' ? (
+              /* EXCEL-LIKE SPREADSHEET TABLE VIEW */
+              <div className="overflow-x-auto border border-slate-200 rounded-2xl">
+                <table className="w-full text-left text-xs">
+                  <thead className="bg-slate-50 text-slate-600 border-b border-slate-200 uppercase tracking-wider font-bold text-[11px]">
+                    <tr>
+                      <th className="py-3 px-4">Alumnus Name</th>
+                      <th className="py-3 px-4">Batch</th>
+                      <th className="py-3 px-4">Contact</th>
+                      <th className="py-3 px-4">Profession & Org</th>
+                      <th className="py-3 px-4">City</th>
+                      <th className="py-3 px-4">Status</th>
+                      <th className="py-3 px-4">Registered Date</th>
+                      <th className="py-3 px-4 text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 font-medium">
+                    {filteredAlumni.map((alum) => (
+                      <tr key={alum.id} className="hover:bg-slate-50/80 transition-colors">
+                        <td className="py-3.5 px-4 font-bold text-slate-900">
+                          {alum.full_name}
+                        </td>
+                        <td className="py-3.5 px-4">
+                          <span className="bg-[#354024]/10 text-[#354024] font-mono px-2 py-0.5 rounded text-[11px] font-semibold">
+                            Class of {alum.graduation_year}
+                          </span>
+                        </td>
+                        <td className="py-3.5 px-4 text-slate-600">
+                          <div className="flex flex-col">
+                            <a href={`mailto:${alum.email}`} className="text-[#354024] hover:underline font-medium">
+                              {alum.email}
+                            </a>
+                            {alum.phone && (
+                              <span className="text-[11px] text-slate-400">{alum.phone}</span>
+                            )}
+                          </div>
+                        </td>
+                        <td className="py-3.5 px-4 text-slate-700">
+                          <div>{alum.current_profession || '—'}</div>
+                          {alum.current_organization && (
+                            <div className="text-[11px] text-slate-400">{alum.current_organization}</div>
+                          )}
+                        </td>
+                        <td className="py-3.5 px-4 text-slate-600">
+                          {alum.location || '—'}
+                        </td>
+                        <td className="py-3.5 px-4">
+                          <span
+                            className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                              alum.verified
+                                ? 'bg-emerald-100 text-emerald-800'
+                                : 'bg-amber-100 text-amber-800'
+                            }`}
+                          >
+                            {alum.verified ? <Check className="w-3 h-3" /> : <AlertCircle className="w-3 h-3" />}
+                            <span>{alum.verified ? 'Verified' : 'Pending'}</span>
+                          </span>
+                        </td>
+                        <td className="py-3.5 px-4 text-slate-400 font-mono text-[11px]">
+                          {alum.created_at ? new Date(alum.created_at).toLocaleDateString('en-US') : '—'}
+                        </td>
+                        <td className="py-3.5 px-4 text-right">
+                          <div className="inline-flex items-center gap-1.5">
+                            <button
+                              onClick={() => handleToggleVerifyAlumni(alum.id, alum.verified)}
+                              className={`text-[11px] font-bold px-2.5 py-1 rounded-lg transition-colors cursor-pointer flex items-center gap-1 ${
+                                alum.verified
+                                  ? 'bg-amber-50 hover:bg-amber-100 text-amber-800'
+                                  : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-800'
+                              }`}
+                              title={alum.verified ? 'Mark unverified' : 'Verify alumnus'}
+                            >
+                              {alum.verified ? <UserX className="w-3 h-3" /> : <UserCheck className="w-3 h-3" />}
+                              <span>{alum.verified ? 'Unverify' : 'Verify'}</span>
+                            </button>
+                            <button
+                              onClick={() => handleDeleteAlumni(alum.id, alum.full_name)}
+                              className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
+                              title="Delete alumni record"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             ) : (
+              /* CARD GRID VIEW */
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {filteredAlumni.map((alum) => (
                   <div

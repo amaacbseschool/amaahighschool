@@ -22,7 +22,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
     { title: 'Student Life, Sports, Arts & Cultural Gallery', category: 'Student Life', icon: Calendar, route: 'student-life' },
     { title: 'Board Toppers, Olympiad & Sports Honours', category: 'Achievements', icon: Award, route: 'achievements' },
     { title: 'School News, Events, Circulars & Announcements', category: 'News & Events', icon: Calendar, route: 'news-events' },
-    { title: 'Alumni Network, Hall of Fame & Directory', category: 'Alumni', icon: Users, route: 'alumni' },
+    { title: 'Alumni Network, Hall of Fame & Reunions', category: 'Alumni', icon: Users, route: 'alumni' },
     { title: 'Administration & Governing Council Members', category: 'About', icon: Award, route: 'administration' },
     { title: 'Campus Tour Booking & Counselor Inquiries', category: 'Contact', icon: Phone, route: 'contact' },
     { title: 'About AMAA High School, Mission & Vision', category: 'About', icon: Award, route: 'about' },
